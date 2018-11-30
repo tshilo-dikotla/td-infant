@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 
 import os
 import sys
+APP_NAME = 'td_infant'
 from pathlib import Path
 import configparser
 from pathlib import PurePath
@@ -20,12 +21,8 @@ from pathlib import PurePath
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 SITE_ID = 40
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
-
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = '0s7@cgv8cq9x5(6*#v@=!447wj6a)1ptauvzf$7_1k3(gvn5m%'
-APP_NAME = 'td_infant'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -37,7 +34,7 @@ if DEBUG:
 else:
     ETC_DIR = '/etc/'
 
-CONFIG_PATH = ETC_DIR 
+CONFIG_PATH = ETC_DIR
 config = configparser.RawConfigParser()
 config.read(os.path.join(CONFIG_PATH, CONFIG_FILE))
 
