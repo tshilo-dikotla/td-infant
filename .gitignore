@@ -6,17 +6,19 @@ etc/*
 .DS_Store
 db.sqlite3*
 tp_infant/migrations/
-
-# Byte-compiled / optimized / DLL files
-__pycache__/
-*.py[cod]
-*$py.class
-
-# C extensions
-*.so
-
-# Distribution / packaging
-.Python
+.pydevproject
+db.sqlite3-journal
+.DS_Store
+.project
+.settings
+*migrations
+upgrade/
+*static
+test-*
+db.sqlite3
+etc/*
+td_infant/migrations/*
+env/
 build/
 develop-eggs/
 dist/
@@ -32,7 +34,6 @@ wheels/
 *.egg-info/
 .installed.cfg
 *.egg
-MANIFEST
 
 # PyInstaller
 #  Usually these files are written by a python script from a template
@@ -71,6 +72,7 @@ instance/
 
 # Scrapy stuff:
 .scrapy
+
 
 # Sphinx documentation
 docs/_build/
@@ -111,3 +113,11 @@ venv.bak/
 
 # mypy
 .mypy_cache/
+#Ipython Notebook
+.ipynb_checkpoints
+
+# Keys
+*.pem
+*.key
+*keys
+gunicorn.pid
