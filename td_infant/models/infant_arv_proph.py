@@ -5,11 +5,10 @@ from edc_base.model_mixins import BaseUuidModel
 from edc_constants.choices import YES_NO
 from edc_constants.constants import NOT_APPLICABLE
 from edc_export.model_mixins import ExportTrackingFieldsModelMixin
-from edc_sync.models import SyncModelMixin, SyncHistoricalRecords
-from edc_visit_tracking.models import CrfInlineModelMixin
-from tshilo_dikotla.choices import ARV_STATUS_WITH_NEVER
+# from edc_sync.models import SyncModelMixin, SyncHistoricalRecords
+from edc_visit_tracking.model_mixins import CrfInlineModelMixin
 
-from ..choices import ARV_MODIFICATION_REASON, ARV_DRUG_LIST, DOSE_STATUS
+from ..choices import ARV_MODIFICATION_REASON, ARV_DRUG_LIST, DOSE_STATUS, ARV_STATUS_WITH_NEVER
 from ..managers import InfantArvProphModManager
 
 from .infant_crf_model import InfantCrfModel
@@ -38,7 +37,7 @@ class InfantArvProph(InfantCrfModel):
         verbose_name_plural = 'Infant NVP or AZT Proph'
 
 
-class InfantArvProphMod(CrfInlineModelMixin, SyncModelMixin, ExportTrackingFieldsModelMixin, BaseUuidModel):
+class InfantArvProphMod(CrfInlineModelMixin, ExportTrackingFieldsModelMixin, BaseUuidModel):
     """ A model completed by the user on the infant's nvp or azt prophylaxis modifications. """
 
     infant_arv_proph = models.ForeignKey(InfantArvProph)
@@ -73,7 +72,6 @@ class InfantArvProphMod(CrfInlineModelMixin, SyncModelMixin, ExportTrackingField
 
     objects = InfantArvProphModManager()
 
-    history = SyncHistoricalRecords()
 
     def natural_key(self):
         return (self.arv_code, ) + self.infant_arv_proph.natural_key()

@@ -1,7 +1,5 @@
 from edc_constants.constants import NOT_APPLICABLE, OTHER
 
-from tshilo_dikotla.constants import MIN_AGE_OF_CONSENT
-
 from .constants import BROUGHT, REALTIME, CLOTH_NAPPY
 
 
@@ -12,7 +10,8 @@ NAPPY_TYPE = (
     (NOT_APPLICABLE, 'Not applicable'),
 )
 
-
+ARV_STATUS_WITH_NEVER = 'ARV_STATUS_WITH_NEVER'
+MIN_AGE_OF_CONSENT = 'MIN_AGE_OF_CONSENT'
 STOOL_COLLECTION_TIME = (
     (REALTIME, 'Real Time'),
     (BROUGHT, 'Brought by mother'),

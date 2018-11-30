@@ -1,12 +1,12 @@
 from django.db import models
 
-from edc_base.model.fields.custom_fields import OtherCharField
-from edc_base.model.models import BaseUuidModel
+from edc_base.model_fields import OtherCharField
+from edc_base.model_mixins import BaseUuidModel
 from edc_constants.choices import DRUG_ROUTE
 from edc_constants.choices import YES_NO
-from edc_export.models import ExportTrackingFieldsMixin
-from edc_sync.models import SyncModelMixin, SyncHistoricalRecords
-from edc_visit_tracking.models import CrfInlineModelMixin
+from edc_export.model_mixins import ExportTrackingFieldsModelMixin
+#from edc_sync.models import SyncModelMixin, SyncHistoricalRecords
+from edc_visit_tracking.model_mixins import CrfInlineModelMixin
 
 from tshilo_dikotla.choices import MEDICATIONS
 
@@ -34,7 +34,7 @@ class InfantFuNewMed(InfantCrfModel):
         verbose_name_plural = "Infant FollowUp: New Medication"
 
 
-class InfantFuNewMedItems(CrfInlineModelMixin, SyncModelMixin, ExportTrackingFieldsMixin,
+class InfantFuNewMedItems(CrfInlineModelMixin, ExportTrackingFieldsModelMixin,
                           BaseUuidModel):
 
     """A model completed by the user on the infant's follow up medication items."""

@@ -1,23 +1,20 @@
 from django.db import models
 
-from edc_base.model.models import BaseUuidModel
-from edc_base.model.validators import datetime_not_before_study_start, datetime_not_future
-from edc_base.model.validators.date import date_not_future
+from edc_base.model_mixins import BaseUuidModel
+from edc_base.model_validators import  datetime_not_future
+from edc_base.model_validators.date import date_not_future
 from edc_constants.choices import GENDER_UNDETERMINED
-from edc_export.models import ExportTrackingFieldsMixin
+from edc_export.model_mixins import ExportTrackingFieldsModelMixin
 from edc_offstudy.models import OffStudyMixin
 from edc_registration.models import RegisteredSubject
-from edc_sync.models import SyncModelMixin, SyncHistoricalRecords
-
+#from edc_sync.models import SyncModelMixin, SyncHistoricalRecords
 from td_maternal.models import MaternalLabourDel
-
 from ..managers import InfantBirthModelManager
 from td_maternal.models.maternal_consent import MaternalConsent
 from td_appoinement_mixin import TdAppointmentMixin
 
 
-class InfantBirth(
-        SyncModelMixin, OffStudyMixin, TdAppointmentMixin, ExportTrackingFieldsMixin, BaseUuidModel):
+class InfantBirth( OffStudyMixin, TdAppointmentMixin, ExportTrackingFieldsModelMixin, BaseUuidModel):
     """ A model completed by the user on the infant's birth. """
 
     off_study_model = ('td_infant', 'InfantOffStudy')
@@ -31,8 +28,7 @@ class InfantBirth(
     report_datetime = models.DateTimeField(
         verbose_name="Date and Time infant enrolled",
         validators=[
-            datetime_not_before_study_start,
-            datetime_not_future, ],
+            datetime_not_future,],
         help_text='')
 
     first_name = models.CharField(

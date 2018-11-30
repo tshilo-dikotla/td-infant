@@ -3,26 +3,28 @@
 from edc_appointment.models import Appointment
 from edc_meta_data.models import CrfMetaDataMixin
 # from edc_base.audit_trail import AuditTrail
-from edc_base.model.models import BaseUuidModel
-from edc_constants.constants import (
-    UNSCHEDULED, SCHEDULED, COMPLETED_PROTOCOL_VISIT, DEAD, POS, MALE, MISSED_VISIT)
-from edc_export.models import ExportTrackingFieldsMixin
+from edc_base.model_mixins import BaseUuidModel
+from edc_visit_tracking.constants import (
+    UNSCHEDULED, SCHEDULED, COMPLETED_PROTOCOL_VISIT,  MISSED_VISIT)
+from edc_constants.constants import (DEAD, POS, MALE )
+
+from edc_export.model_mixins import ExportTrackingFieldsModelMixin
 from edc_offstudy.models import OffStudyMixin
 from edc_registration.models import RegisteredSubject
-from edc_sync.models import SyncModelMixin, SyncHistoricalRecords
-from edc_visit_tracking.constants import VISIT_REASON_NO_FOLLOW_UP_CHOICES, LOST_VISIT
-from edc_visit_tracking.models import VisitModelMixin
+#from edc_sync.models import SyncModelMixin, SyncHistoricalRecords
+from edc_visit_tracking.constants import NO_FOLLOW_UP_REASONS, LOST_VISIT
+from edc_visit_tracking.model_mixins import VisitModelMixin
 
 from tshilo_dikotla.choices import VISIT_REASON
 from tshilo_dikotla.td_previous_visit_mixin import TdPreviousVisitMixin
-from edc_visit_tracking.models.caretaker_fields_mixin import CaretakerFieldsMixin
+from edc_visit_tracking.model_mixins.caretaker_fields_mixin import CaretakerFieldsMixin
 
 from .infant_birth import InfantBirth
 
 
 class InfantVisit(
-        CrfMetaDataMixin, SyncModelMixin, TdPreviousVisitMixin, OffStudyMixin, VisitModelMixin,
-        CaretakerFieldsMixin, ExportTrackingFieldsMixin, BaseUuidModel):
+        CrfMetaDataMixin, TdPreviousVisitMixin, OffStudyMixin, VisitModelMixin,
+        CaretakerFieldsMixin, ExportTrackingFieldsModelMixin, BaseUuidModel):
 
     """ A model completed by the user on the infant visits. """
 
@@ -32,7 +34,7 @@ class InfantVisit(
 
     consent_model = InfantBirth  # a bit weird, see visit_form_mixin clean()
 
-    history = SyncHistoricalRecords()
+    #history = SyncHistoricalRecords()
 
     def __str__(self):
         return '{} {} {}'.format(self.appointment.registered_subject.subject_identifier,

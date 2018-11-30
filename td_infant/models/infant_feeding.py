@@ -1,10 +1,10 @@
 from django.db import models
 
-from edc_base.model.fields.custom_fields import OtherCharField
-from edc_base.model.validators import date_not_future
+from edc_base.model_fields.custom_fields import OtherCharField
+from edc_base.model_validators import date_not_future
 from edc_constants.choices import YES_NO, YES_NO_NA, YES_NO_UNSURE_NA
 from edc_constants.constants import NOT_APPLICABLE
-from edc_visit_schedule.models import VisitDefinition
+from edc_visit_schedule.model_mixins import VisitDefinition
 
 from tshilo_dikotla.choices import COWS_MILK, TIMES_BREASTFED, WATER_USED
 

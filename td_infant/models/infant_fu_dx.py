@@ -1,10 +1,10 @@
 from django.db import models
 
-from edc_base.model.models import BaseUuidModel
+from edc_base.model_mixins import BaseUuidModel
 from edc_constants.choices import YES_NO
-from edc_export.models import ExportTrackingFieldsMixin
-from edc_sync.models import SyncModelMixin, SyncHistoricalRecords
-from edc_visit_tracking.models import CrfInlineModelMixin
+from edc_export.model_mixins import ExportTrackingFieldsModelMixin
+#from edc_sync.models import SyncModelMixin, SyncHistoricalRecords
+from edc_visit_tracking.model_mixins import CrfInlineModelMixin
 from tshilo_dikotla.choices import DX_INFANT
 
 from ..managers import InfantFuDxItemsManager
@@ -21,7 +21,7 @@ class InfantFuDx(InfantCrfModel):
         verbose_name_plural = "Infant FollowUp: Dx"
 
 
-class InfantFuDxItems(CrfInlineModelMixin, SyncModelMixin, ExportTrackingFieldsMixin,
+class InfantFuDxItems(CrfInlineModelMixin, ExportTrackingFieldsModelMixin,
                       BaseUuidModel):
 
     infant_fu_dx = models.ForeignKey(InfantFuDx)

@@ -17,8 +17,7 @@ import configparser
 from pathlib import PurePath
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 SITE_ID = 40
 
 # Quick-start development settings - unsuitable for production
@@ -33,7 +32,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 CONFIG_FILE = f'{APP_NAME}.conf'
-
 if DEBUG:
     ETC_DIR = str(PurePath(BASE_DIR).joinpath('etc'))
 else:
@@ -42,11 +40,6 @@ else:
 CONFIG_PATH = ETC_DIR 
 config = configparser.RawConfigParser()
 config.read(os.path.join(CONFIG_PATH, CONFIG_FILE))
-
-if DEBUG:
-    KEY_PATH = str(PurePath(BASE_DIR).joinpath('crypto_fields'))
-else:
-    KEY_PATH = config['django_crypto_fields'].get('key_path')
 
 HOLIDAY_FILE = os.path.join(BASE_DIR, 'holidays.csv')
 
@@ -63,16 +56,10 @@ INSTALLED_APPS = [
     'django_crypto_fields.apps.AppConfig',
     'edc_protocol.apps.AppConfig',
     'edc_label.apps.AppConfig',
-    'td_infant.apps.EdcFacilityAppConfig',
     'td_infant.apps.AppConfig',
-#     'td_maternal.apps.AppConfig',
-    'edc_appointment.apps.AppConfig',
-    'django_revision.apps.AppConfig',
-    'edc_timepoint.apps.AppConfig',
-    'edc_visit_tracking.apps.AppConfig',
     'edc_export.apps.AppConfig',
-    'edc_sync.apps.AppConfig',
-
+    'edc_timepoint.apps.AppConfig',
+    'edc_appointment.apps.AppConfig',
 ]
 
 MIDDLEWARE = [
