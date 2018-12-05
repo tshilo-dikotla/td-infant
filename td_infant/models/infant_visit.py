@@ -1,40 +1,22 @@
-# from django.db.models import get_model
-
 from edc_appointment.models import Appointment
-from edc_meta_data.models import CrfMetaDataMixin
-# from edc_base.audit_trail import AuditTrail
 from edc_base.model_mixins import BaseUuidModel
 from edc_visit_tracking.constants import (
-    UNSCHEDULED, SCHEDULED, COMPLETED_PROTOCOL_VISIT,  MISSED_VISIT)
-from edc_constants.constants import (DEAD, POS, MALE )
+    UNSCHEDULED, SCHEDULED, COMPLETED_PROTOCOL_VISIT, MISSED_VISIT)
+from edc_constants.constants import (DEAD, MALE)
 
-from edc_export.model_mixins import ExportTrackingFieldsModelMixin
-from edc_offstudy.models import OffStudyMixin
-from edc_registration.models import RegisteredSubject
-#from edc_sync.models import SyncModelMixin, SyncHistoricalRecords
-from edc_visit_tracking.constants import NO_FOLLOW_UP_REASONS, LOST_VISIT
+from edc_visit_tracking.constants import LOST_VISIT
+from edc_visit_tracking.choices import VISIT_REASON_MISSED
 from edc_visit_tracking.model_mixins import VisitModelMixin
 
-from tshilo_dikotla.choices import VISIT_REASON
-from tshilo_dikotla.td_previous_visit_mixin import TdPreviousVisitMixin
-from edc_visit_tracking.model_mixins.caretaker_fields_mixin import CaretakerFieldsMixin
+from edc_visit_tracking.model_mixins import CaretakerFieldsMixin
 
+from ..choices import VISIT_REASON
 from .infant_birth import InfantBirth
 
 
-class InfantVisit(
-        CrfMetaDataMixin, TdPreviousVisitMixin, OffStudyMixin, VisitModelMixin,
-        CaretakerFieldsMixin, ExportTrackingFieldsModelMixin, BaseUuidModel):
+class InfantVisit(CaretakerFieldsMixin, VisitModelMixin, BaseUuidModel):
 
     """ A model completed by the user on the infant visits. """
-
-    off_study_model = ('td_infant', 'InfantOffStudy')
-
-    death_report_model = ('td_infant', 'InfantDeathReport')
-
-    consent_model = InfantBirth  # a bit weird, see visit_form_mixin clean()
-
-    #history = SyncHistoricalRecords()
 
     def __str__(self):
         return '{} {} {}'.format(self.appointment.registered_subject.subject_identifier,
@@ -110,7 +92,7 @@ class InfantVisit(
         """Returns the visit reasons that do not imply any data collection;
         that is, the subject is not available."""
         dct = {}
-        for item in VISIT_REASON_NO_FOLLOW_UP_CHOICES:
+        for item in VISIT_REASON_MISSED:
             if item not in [COMPLETED_PROTOCOL_VISIT, LOST_VISIT]:
                 dct.update({item: item})
         return dct

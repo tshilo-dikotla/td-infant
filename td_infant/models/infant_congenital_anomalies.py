@@ -7,17 +7,17 @@ from edc_visit_tracking.model_mixins import CrfInlineModelMixin
 from edc_export.model_mixins import ExportTrackingFieldsModelMixin
 #from edc_sync.models import SyncModelMixin, SyncHistoricalRecords
 
-from tshilo_dikotla.choices import (
+from ..choices import (
     CNS_ABNORMALITIES, FACIAL_DEFECT, CLEFT_DISORDER, MOUTH_UP_GASTROINT_DISORDER,
     CARDIOVASCULAR_DISORDER, RESPIRATORY_DEFECT, LOWER_GASTROINTESTINAL_ABNORMALITY,
     FEM_GENITAL_ANOMALY, MALE_GENITAL_ANOMALY, RENAL_ANOMALY, MUSCULOSKELETAL_ABNORMALITY,
     SKIN_ABNORMALITY, TRISOME_CHROSOMESOME_ABNORMALITY, OTHER_DEFECT)
 
-from ..managers import (InfantCnsManager, InfantFacialDefectManager,
-                        InfantCleftDisorderManager, InfantMouthUpGiManager, InfantOtherAbnormalityItemsManager,
-                        InfantCardioDisorderManager, InfantRespiratoryDefectManager, InfantLowerGiManager,
-                        InfantFemaleGenitalManager, InfantMaleGenitalManager, InfantRenalManager,
-                        InfantMusculoskeletalManager, InfantSkinManager, InfantTrisomiesManager)
+# from ..managers import (InfantCnsManager, InfantFacialDefectManager,
+#                         InfantCleftDisorderManager, InfantMouthUpGiManager, InfantOtherAbnormalityItemsManager,
+#                         InfantCardioDisorderManager, InfantRespiratoryDefectManager, InfantLowerGiManager,
+#                         InfantFemaleGenitalManager, InfantMaleGenitalManager, InfantRenalManager,
+# InfantMusculoskeletalManager, InfantSkinManager, InfantTrisomiesManager)
 
 from .infant_crf_model import InfantCrfModel
 
@@ -31,9 +31,10 @@ class InfantCongenitalAnomalies(InfantCrfModel):
         verbose_name = "Congenital Anomalies"
 
 
-class BaseCnsItem(CrfInlineModelMixin , ExportTrackingFieldsModelMixin, BaseUuidModel):
+class BaseCnsItem(CrfInlineModelMixin, ExportTrackingFieldsModelMixin, BaseUuidModel):
 
-    congenital_anomalies = models.ForeignKey(InfantCongenitalAnomalies)
+    congenital_anomalies = models.ForeignKey(
+        InfantCongenitalAnomalies, on_delete=models.CASCADE)
 
     #history = SyncHistoricalRecords()
 
@@ -62,7 +63,7 @@ class InfantCns(BaseCnsItem):
         null=True,
     )
 
-    objects = InfantCnsManager()
+#     objects = InfantCnsManager()
 
     def natural_key(self):
         return (self.cns, ) + self.congenital_anomalies.natural_key()
@@ -94,7 +95,7 @@ class InfantFacialDefect(BaseCnsItem):
         null=True,
     )
 
-    objects = InfantFacialDefectManager()
+#     objects = InfantFacialDefectManager()
 
     def natural_key(self):
         return (self.facial_defect, ) + self.congenital_anomalies.natural_key()
@@ -126,7 +127,7 @@ class InfantCleftDisorder(BaseCnsItem):
         null=True,
     )
 
-    objects = InfantCleftDisorderManager()
+#     objects = InfantCleftDisorderManager()
 
     def natural_key(self):
         return (self.cleft_disorder, ) + self.congenital_anomalies.natural_key()
@@ -158,7 +159,7 @@ class InfantMouthUpGi(BaseCnsItem):
         null=True
     )
 
-    objects = InfantMouthUpGiManager()
+#     objects = InfantMouthUpGiManager()
 
     def natural_key(self):
         return (self.mouth_up_gi, ) + self.congenital_anomalies.natural_key()
@@ -190,7 +191,7 @@ class InfantCardioDisorder(BaseCnsItem):
         null=True,
     )
 
-    objects = InfantCardioDisorderManager()
+#     objects = InfantCardioDisorderManager()
 
     def natural_key(self):
         return (self.cardio_disorder, ) + self.congenital_anomalies.natural_key()
@@ -222,7 +223,7 @@ class InfantRespiratoryDefect(BaseCnsItem):
         null=True,
     )
 
-    objects = InfantRespiratoryDefectManager()
+#     objects = InfantRespiratoryDefectManager()
 
     def natural_key(self):
         return (self.respiratory_defect, ) + self.congenital_anomalies.natural_key()
@@ -254,7 +255,7 @@ class InfantLowerGi(BaseCnsItem):
         null=True,
     )
 
-    objects = InfantLowerGiManager()
+#     objects = InfantLowerGiManager()
 
     def natural_key(self):
         return (self.lower_gi, ) + self.congenital_anomalies.natural_key()
@@ -286,7 +287,7 @@ class InfantFemaleGenital(BaseCnsItem):
         null=True,
     )
 
-    objects = InfantFemaleGenitalManager()
+#     objects = InfantFemaleGenitalManager()
 
     def natural_key(self):
         return (self.female_genital, ) + self.congenital_anomalies.natural_key()
@@ -318,7 +319,7 @@ class InfantMaleGenital(BaseCnsItem):
         null=True,
     )
 
-    objects = InfantMaleGenitalManager()
+#     objects = InfantMaleGenitalManager()
 
     def natural_key(self):
         return (self.male_genital, ) + self.congenital_anomalies.natural_key()
@@ -350,7 +351,7 @@ class InfantRenal(BaseCnsItem):
         null=True,
     )
 
-    objects = InfantRenalManager()
+#     objects = InfantRenalManager()
 
     def natural_key(self):
         return (self.renal, ) + self.congenital_anomalies.natural_key()
@@ -382,7 +383,7 @@ class InfantMusculoskeletal(BaseCnsItem):
         null=True,
     )
 
-    objects = InfantMusculoskeletalManager()
+#     objects = InfantMusculoskeletalManager()
 
     def natural_key(self):
         return (self.musculo_skeletal, ) + self.congenital_anomalies.natural_key()
@@ -416,7 +417,7 @@ class InfantSkin(BaseCnsItem):
         null=True,
     )
 
-    objects = InfantSkinManager()
+#     objects = InfantSkinManager()
 
     def natural_key(self):
         return (self.skin, ) + self.congenital_anomalies.natural_key()
@@ -448,7 +449,7 @@ class InfantTrisomies(BaseCnsItem):
         null=True,
     )
 
-    objects = InfantTrisomiesManager()
+#     objects = InfantTrisomiesManager()
 
     def natural_key(self):
         return (self.trisomies, ) + self.congenital_anomalies.natural_key()
@@ -480,7 +481,7 @@ class InfantOtherAbnormalityItems(BaseCnsItem):
         null=True,
     )
 
-    objects = InfantOtherAbnormalityItemsManager()
+#     objects = InfantOtherAbnormalityItemsManager()
 
     def natural_key(self):
         return (self.other_abnormalities, ) + self.congenital_anomalies.natural_key()

@@ -1,13 +1,296 @@
-from edc_constants.constants import NOT_APPLICABLE, OTHER
+from edc_constants.constants import (
+    NOT_APPLICABLE, OTHER, FAILED_ELIGIBILITY)
+from edc_visit_tracking.constants import (
+    SCHEDULED, UNSCHEDULED, LOST_VISIT, MISSED_VISIT, COMPLETED_PROTOCOL_VISIT)
+from .constants import BROUGHT, REALTIME, CLOTH_NAPPY, BREASTFEED_ONLY
 
-from .constants import BROUGHT, REALTIME, CLOTH_NAPPY
+CNS_ABNORMALITIES = (
+    ('None', 'None'),
+    ('Anencephaly', 'Anencephaly'),
+    ('Encephaloceis', 'Encephaloceis'),
+    ('Spina bifida, open', 'Spina bifida, open'),
+    ('Spina bifida, closed', 'Spina bifida, closed'),
+    ('Holoprosencephaly', 'Holoprosencephaly'),
+    ('Isolated hydroencephaly (not associated with spina bifida)',
+     'Isolated hydroencephaly (not associated with spina bifida)'),
+    ('Other CNS defect, specify', 'Other CNS defect, specify'),
+)
 
+CLEFT_DISORDER = (
+    ('None', 'None'),
+    ('Cleft lip without cleft palate', 'Cleft lip without cleft palate'),
+    ('Cleft palate without cleft lip', 'Cleft palate without cleft lip'),
+    ('Cleft lip and palate', 'Cleft lip and palate'),
+    ('Cleft uvula', 'Cleft uvula'),
+)
+
+CARDIOVASCULAR_DISORDER = (
+    ('None', 'None'),
+    ('Truncus arteriosus', 'Truncus arteriosus'),
+    ('Atrial septal defect', 'Atrial septal defect'),
+    ('Ventricula septal defect', 'Ventricula septal defect'),
+    ('Atrioventricular canal', 'Atrioventricular canal'),
+    ('Complete transposition of the great vessels (without VSD)',
+     'Complete transposition of the great vessels (without VSD)'),
+    ('Complete transposition of the great vessels (with VSD)',
+     'Complete transposition of the great vessels (with VSD)'),
+    ('Tetralogy of Fallot', 'Tetralogy of Fallot'),
+    ('Pulmonary valve stenosis or atresia',
+     'Pulmonary valve stenosis or atresia'),
+    ('Tricuspid valve stenosis or atresia',
+     'Tricuspid valve stenosis or atresia'),
+    ('Mitral valve stenosis or atresia', 'Mitral valve stenosis or atresia'),
+    ('Hypoplastic left ventricle', 'Hypoplastic left ventricle'),
+    ('Hypoplastic right ventricle', 'Hypoplastic right ventricle'),
+    ('Congenital cardiomyopath (do not code if only isolated cardiomegaly)',
+     'Congenital cardiomyopath (do not code if only isolated cardiomegaly)'),
+    ('Coarclation of the aorta', 'Coarclation of the aorta'),
+    ('Total anomalous pulmonary venous return',
+     'Total anomalous pulmonary venous return'),
+    ('Arteriovenous malformation, specify site',
+     'Arteriovenous malformation, specify site'),
+    ('Patent ductous arteriosus (persisting >6 weeks of age)',
+     'Patent ductous arteriosus (persisting >6 weeks of age)'),
+    (OTHER, 'Other cardiovascular malformation, specify'),
+)
+
+COWS_MILK = (
+    ('boiled', '1. Boiled from cow'),
+    ('unboiled', '2. Unboiled from cow'),
+    ('store', '3. From store'),
+    (NOT_APPLICABLE, 'Not Applicable'),
+)
+
+DX_INFANT = (
+    ('Poor weight gain or failure to thrive',
+     'Poor weight gain or failure to thrive'),
+    ('Severe diarrhea or gastroenteritis',
+     'Severe diarrhea or gastroenteritis'),
+    ('Pneumonia, suspected (no CXR or microbiologic confirmation)',
+     'Pneumonia, suspected (no CXR or microbiologic confirmation)'),
+    ('Pneumonia, CXR confirmed, no bacterial pathogen',
+     'Pneumonia, CXR confirmed, no bacterial pathogen'),
+    ('Pneumonia, CXR confirmed, bacterial pathogen isolated (specify pathogen)',
+     'Pneumonia, CXR confirmed, bacterial pathogen isolated (specify pathogen)'),
+    ('Pulmonary TB, suspected(no CXR or microbiologic confirmation)',
+     'Pulmonary TB, suspected(no CXR or microbiologic confirmation)'),
+    ('Pulmonary TB, CXR-confirmed (no microbiologic confirmation)',
+     'Pulmonary TB, CXR-confirmed (no microbiologic confirmation)'),
+    ('Pulmonary TB, smear and/or culture positive',
+     'Pulmonary TB, smear and/or culture positive'),
+    ('Extrapulmonary TB,suspected (no CXR or microbiologic confirmation)',
+     'Extrapulmonary TB,suspected (no CXR or microbiologic confirmation)'),
+    ('Bronchiolitis (not bronchitis)', 'Bronchiolitis (not bronchitis)'),
+    ('Hepatitis:Drug related',
+     'Hepatitis:Drug related (report for Grades 2,3,4)'),
+    ('Hepatitis:Traditional medication related',
+     'Hepatitis:Traditional medication related'),
+    ('Hepatitis:Hepatitis A', 'Hepatitis:Hepatitis A'),
+    ('Hepatitis:Hepatitis B', 'Hepatitis:Hepatitis B'),
+    ('Hepatitis:Other/Unknown', 'Hepatitis:Other/Unknown'),
+    ('Sepsis,unspecified', 'Sepsis,unspecified'),
+    ('Sepsis,pathogen specified', 'Sepsis,pathogen specified'),
+    ('Meningitis,unspecified', 'Meningitis,unspecified'),
+    ('Meningitis pathogen specified', 'Meningitis pathogen specified'),
+    ('Otitis media', 'Otitis media'),
+    ('Appendicitis', 'Appendicitis'),
+    ('Cholecystitis/cholanangitis', 'Cholecystitis/cholanangitis'),
+    ('Pancreatitis', 'Pancreatitis'),
+    ('Acute Renal Failure',
+     'Acute Renal Failure (Record highest creatinine level if creatine tested outside of the study) '),
+    ('Anemia',
+     'Anemia(Only report grade 3 or 4 anemia based on a lab value drawn outside the study'),
+    ('Rash', 'Rash (report for Grades 2,3,4)'),
+    ('Trauma/accident', 'Trauma/accident'),
+    (
+        ('Other abnormallaboratory tests(other than tests listed above '
+         'or tests done as part of this study), specify test and result'),
+        ('Other abnormallaboratory tests(other than tests listed above or '
+         'tests done as part of this study),specify test and result')
+    ),
+    ('New congenital abnormality not previously identified?,specify',
+     'New congenital abnormality not previously identified?,specify and complete "Congenital Anomaly"form'),
+    ('Other serious (grade 3 or 4)infection(not listed above),specify',
+     'Other serious (grade 3 or 4)infection(not listed above),specify'),
+    ('Other serious (grade 3 or 4) non-infectious(not listed above),specify',
+     'Other serious (grade 3 or 4)non-infectious(not listed above),specify'),
+
+)
+
+DRUG_ROUTE = (
+    ('Intramuscular', 'Intramuscular'),
+    ('Intravenous', 'Intravenous'),
+    ('Oral', 'Oral'),
+    ('Topical', 'Topical'),
+    ('Subcutaneous', 'Subcutaneous'),
+    ('Intravaginal', 'Intravaginal'),
+    ('Rectal', 'Rectal'),
+    (OTHER, 'Other'),
+)
+
+FACIAL_DEFECT = (
+    ('None', 'None'),
+    ('Anophthalmia/micro-opthalmia', 'Anophthalmia/micro-opthalmia'),
+    ('Cataracts', 'Cataracts'),
+    ('Coloboma', 'Coloboma'),
+    ('OTHER eye abnormality', 'Other eye abnormality, specify'),
+    ('Absence of ear', 'Absence of ear'),
+    ('Absence of auditory canal', 'Absence of auditory canal'),
+    ('Congenital deafness', 'Congenital deafness'),
+    ('Microtia', 'Microtia'),
+    ('OTHER ear anomaly', 'Other ear anomaly, specify'),
+    ('Brachial cleft cyst, sinus or pit', 'Brachial cleft cyst, sinus or pit'),
+    ('OTHER facial malformation', 'Other facial malformation, specify'),
+)
+
+FEM_GENITAL_ANOMALY = (
+    ('None', 'None'),
+    ('Ambinguous genitalia, female', 'Ambinguous genitalia, female'),
+    ('Vaginal agenesis', 'Vaginal agenesis'),
+    ('Absent or streak ovary', 'Absent or streak ovary'),
+    ('Uterine anomaly', 'Uterine anomaly'),
+    (OTHER,
+     'Other ovarian, fallopian, uterine, cervical, vaginal, or vulvar abnormality'),
+)
 
 NAPPY_TYPE = (
     (CLOTH_NAPPY, 'Cloth nappy'),
     ('commercial nappy', 'Commercial Nappy'),
     (OTHER, 'Other, specify'),
     (NOT_APPLICABLE, 'Not applicable'),
+)
+
+
+MOUTH_UP_GASTROINT_DISORDER = (
+    ('None', 'None'),
+    ('Aglossia', 'Aglossia'),
+    ('Macroglossia', 'Macroglossia'),
+    ('OTHER mouth, lip, or tongue',
+     'Other mouth, lip, or tongue anomaly, specify'),
+    ('Esophageal atresia', 'Esophageal atresia'),
+    ('Tracheoesphageal fistula', 'Tracheoesphageal fistula'),
+    ('Esophageal web', 'Esophageal web'),
+    ('Pyloric stenosis', 'Pyloric stenosis'),
+    ('OTHER esophageal or stomach',
+     'Other esophageal or stomach abnormality, specify'),
+)
+
+
+MALE_GENITAL_ANOMALY = (
+    ('None', 'None'),
+    ('Hypospadias, specify degree', 'Hypospadias, specify degree'),
+    ('Chordee', 'Chordee'),
+    ('Ambiguous genitalia, male', 'Ambiguous genitalia, male'),
+    ('Undescended testis', 'Undescended testis'),
+    (OTHER, 'Other male genital abnormality, specify'),
+)
+
+MUSCULOSKELETAL_ABNORMALITY = (
+    ('None', 'None'),
+    ('Craniosynostosis', 'Craniosynostosis'),
+    ('Torticollis', 'Torticollis'),
+    ('Congenital scoliosis, lordosis', 'Congenital scoliosis, lordosis'),
+    ('Congenital dislocation of hip', 'Congenital dislocation of hip'),
+    ('Talipes equinovarus (club feet excluding metatarsus varus)',
+     'Talipes equinovarus (club feet excluding metatarsus varus)'),
+    ('Funnel chest or pigeon chest (pectus excavatum or carinaturn)',
+     'Funnel chest or pigeon chest (pectus excavatum or carinaturn)'),
+    ('Polydactyly', 'Polydactyly'),
+    ('Syndactyly', 'Syndactyly'),
+    ('Other hand malformation, specify', 'Other hand malformation, specify'),
+    ('Webbed fingers or toes', 'Webbed fingers or toes'),
+    ('Upper limb reduction defect, specify',
+     'Upper limb reduction defect, specify'),
+    ('Lower limb reduction defect, specify',
+     'Lower limb reduction defect, specify'),
+    ('Other limb defect, specify', 'Other limb defect, specify'),
+    ('Other skull abnormality, specify', 'Other skull abnormality, specify'),
+    ('Anthrogryposis', 'Anthrogryposis'),
+    ('Vertebral or rib abnormalities, specify',
+     'Vertebral or rib abnormalities, specify'),
+    ('Osteogenesis imperfecta', 'Osteogenesis imperfecta'),
+    ('Dwarfing syndrome, specify', 'Dwarfing syndrome, specify'),
+    ('Congenital diaphramatic hernia', 'Congenital diaphramatic hernia'),
+    ('Omphalocele', 'Omphalocele'),
+    ('Gastroschisis', 'Gastroschisis'),
+    (OTHER, 'Other muscular or skeletal abnormality or syndrome, specify'),
+)
+
+MEDICATIONS = (
+    ('Acyclovir', 'Acyclovir'),
+    ('Albuterol', 'Albuterol'),
+    ('Albendazol', 'Albendazol'),
+    ('Aminophylline', 'Aminophylline'),
+    ('Amoxicillin', 'Amoxicillin'),
+    ('Ampicillin', 'Ampicillin'),
+    ('Antibiotic,unknown(specify 1V or oral)',
+     'Antibiotic,unknown(specify 1V or oral)'),
+    ('Azithromycin', 'Azithromycin'),
+    ('Carbamazepine', 'Carbamazepine'),
+    ('Ceftriaxone', 'Ceftriaxone'),
+    ('Cotrimoxazole (trimethoprim/sulfamethoxazole)',
+     'Cotrimoxazole (trimethoprim/sulfamethoxazole)'),
+    ('Cefaclor,cefixime,ceftizoxime,ceftraxone',
+     'Cefaclor,cefixime,ceftizoxime,ceftraxone'),
+    ('Chloramphenicol', 'Chloramphenicol'),
+    ('Ciprofloxacin', 'Ciprofloxacin'),
+    ('Clarithromycin', 'Clarithromycin'),
+    ('Cloxacillin', 'Cloxacillin'),
+    ('Doxycycline', 'Doxycycline'),
+    ('Dexamethasone', 'Dexamethasone'),
+    ('Diazepam', 'Diazepam'),
+    ('Erythromycin', 'Erythromycin'),
+    ('Ethambutol', 'Ethambutol'),
+    ('Ferrous sulfate', 'Ferrous sulfate'),
+    ('Fuconazole', 'Fuconazole'),
+    ('Foscarnate', 'Foscarnate'),
+    ('Ganciclovir', 'Ganciclovir'),
+    ('Gentamicin', 'Gentamicin'),
+    ('Hydrocortisone', 'Hydrocortisone'),
+    ('Insuline', 'Insuline'),
+    ('Isoniazid', 'Isoniazid'),
+    ('Ketoconazole', 'Ketoconazole'),
+    ('Mebendazole', 'Mebendazole'),
+    ('Metronidazole', 'Metronidazole'),
+    ('Methylprednisolone', 'Methylprednisolone'),
+    ('Nalidixic acid', 'Nalidixic acid'),
+    ('Norfloxacin,Ofloxacin', 'Norfloxacin,Ofloxacin'),
+    ('Pentamidine', 'Pentamidine'),
+    ('Pyridoxine', 'Pyridoxine'),
+    ('Phenytoin', 'Phenytoin'),
+    ('Prednisolone', 'Prednisolone'),
+    ('Pyrazinamide', 'Pyrazinamide'),
+    ('Pyrimethamine', 'Pyrimethamine'),
+    ('Quinidine', 'Quinidine'),
+    ('Red blood cell transfusion', 'Red blood cell transfusion'),
+    ('Rifampicin', 'Rifampicin'),
+    ('Salbutamol', 'Salbutamol'),
+    ('Streptomycin', 'Streptomycin'),
+    ('Sulfadiazine', 'Sulfadiazine'),
+    ('Terbinafine', 'Terbinafine'),
+    ('Tetracycline', 'Tetracycline'),
+    ('Theophylline', 'Theophylline'),
+    ('Vancomycin', 'Vancomycin'),
+    ('Vitamins(iron,B12,Folate)', 'Vitamins(iron,B12,Folate)'),
+    ('Traditional medication', 'Traditional Medications'),
+    (OTHER, 'Other, specify ...')
+)
+
+RENAL_ANOMALY = (
+    ('None', 'None'),
+    ('Bilateral renal agenesis', 'Bilateral renal agenesis'),
+    ('Unilateral renal agenesis or dysplasia',
+     'Unilateral renal agenesis or dysplasia'),
+    ('Polycystic kidneys', 'Polycystic kidneys'),
+    ('Congenital hydronephrosis', 'Congenital hydronephrosis'),
+    ('Unilateral stricture, stenosis, or hypoplasia',
+     'Unilateral stricture, stenosis, or hypoplasia'),
+    ('Duplicated kidney or collecting system',
+     'Duplicated kidney or collecting system'),
+    ('Horseshoe kidney', 'Horseshoe kidney'),
+    ('Exstrophy of bladder', 'Exstrophy of bladder'),
+    ('Posterior urethral valves', 'Posterior urethral valves'),
+    (OTHER, 'Other renal, ureteral, bladder, urethral abnormality, specify'),
 )
 
 ARV_STATUS_WITH_NEVER = 'ARV_STATUS_WITH_NEVER'
@@ -18,10 +301,97 @@ STOOL_COLLECTION_TIME = (
     (NOT_APPLICABLE, 'Not applicable')
 )
 
+RESPIRATORY_DEFECT = (
+    ('None', 'None'),
+    ('Choanal atresia', 'Choanal atresia'),
+    ('Agenesis or underdevelopment of nose',
+     'Agenesis or underdevelopment of nose'),
+    ('Nasal cleft', 'Nasal cleft'),
+    ('Single nostril, proboscis', 'Single nostril, proboscis'),
+    ('OTHER nasal or sinus abnormality',
+     'Other nasal or sinus abnormality, specify'),
+    ('Lryngeal web. glottic or subglottic',
+     'Lryngeal web. glottic or subglottic'),
+    ('Congenital laryngeal stenosis', 'Congenital laryngeal stenosis'),
+    ('OTHER laryngeal, tracheal or bronchial anomalies',
+     'Other laryngeal, tracheal or bronchial anomalies'),
+    ('Single lung cyst', 'Single lung cyst'),
+    ('Polycystic lung', 'Polycystic lung'),
+    (OTHER, 'Other respiratory anomaly, specify'),
+)
+
+LOWER_GASTROINTESTINAL_ABNORMALITY = (
+    ('None', 'None'),
+    ('Duodenal atresia, stenosis, or absence',
+     'Duodenal atresia, stenosis, or absence'),
+    ('Jejunal atresis, stenosis, or absence',
+     'Jejunal atresis, stenosis, or absence'),
+    ('Ileal atresia, stenosis, or absence',
+     'Ileal atresia, stenosis, or absence'),
+    ('Atresia, stenosis, or absence of large intestine, rectum, or anus',
+     'Atresia, stenosis, or absence of large intestine, rectum, or anus'),
+    ('Hirschsprung disease', 'Hirschsprung disease'),
+    ('OTHER megacolon', 'Other megacolon'),
+    ('Liver, pancreas, or gall bladder defect, specify',
+     'Liver, pancreas, or gall bladder defect, specify'),
+    ('Diaphramtic hernia', 'Diaphramtic hernia'),
+    ('OTHER GI anomaly', 'Other GI anomaly, specify'),
+)
+
 STOOL_STORED = (
     ('room temp', 'At room temperature (unrefrigerated)'),
     ('refrigerated', 'Refrigerated'),
     (NOT_APPLICABLE, 'Not applicable'),
+)
+
+TRISOME_CHROSOMESOME_ABNORMALITY = (
+    ('None', 'None'),
+    ('Trisomy 21', 'Trisomy 21'),
+    ('Trisomy 13', 'Trisomy 13'),
+    ('Trisomy 18', 'Trisomy 18'),
+    ('OTHER trisomy, specify', 'Other trisomy, specify'),
+    ('OTHER non-trisomic chromosome',
+     'Other non-trisomic chromosome abnormality, specify'),
+)
+
+TIMES_BREASTFED = (
+    ('<1 per week', '1. Less than once per week'),
+    ('<1 per day, but at least once per week',
+     '2. Less than once per day, but at least once per week'),
+    ('about 1 per day on most days', '3. About once per day on most days'),
+    ('>1 per day, but not for all feedings',
+     '4. More than once per day, but not for all feedings'),
+    ('For all feedings',
+     '5. For all feedings (i.e no formula or other foods or liquids)'),
+    (NOT_APPLICABLE, 'Not Applicable'),
+)
+
+
+WATER_USED = (
+    ('Water direct from source', 'Water direct from source'),
+    ('Water boiled immediately before use',
+     'Water boiled immediately before use'),
+    ('Water boiled earlier and then stored',
+     'Water boiled earlier and then stored'),
+    ('Specifically treated water', 'Specifically treated water'),
+    (OTHER, 'Other (specify)'),
+    (NOT_APPLICABLE, 'Not Applicable'),
+)
+
+REASONS_VACCINES_MISSED = (
+    ('missed scheduled vaccination', 'Mother or Caregiver has not yet taken infant '
+        'to clinic for this scheduled vaccination'),
+    ('caregiver declines vaccination',
+     'Mother or Caregiver declines this vaccicnation'),
+    ('no stock', 'Stock out at clinic'),
+    (OTHER, 'Other, specify'),
+)
+
+SKIN_ABNORMALITY = (
+    ('None', 'None'),
+    ('Icthyosis', 'Icthyosis'),
+    ('Ectodermal dysplasia', 'Ectodermal dysplasia'),
+    (OTHER, 'Other skin abnormality, specify'),
 )
 
 OFF_STUDY_REASON = [
@@ -191,3 +561,26 @@ SOLID_FOODS = (
     ('Other', 'Other')
 
 )
+
+FEEDING_CHOICES = (
+    (BREASTFEED_ONLY, 'Breastfeed only'),
+    ('Formula feeding only', 'Formula feeding only'),
+    ('Both breastfeeding and formula feeding',
+     'Both breastfeeding and formula feeding'),
+    ('Medical complications: Infant did not feed',
+     'Medical complications: Infant did not feed'),
+)
+
+OTHER_DEFECT = (
+    ('None', 'None'),
+    (OTHER, 'Other defect/syndrome not already reported, specify'),
+)
+
+VISIT_REASON = [
+    (SCHEDULED, 'Scheduled visit/contact'),
+    (MISSED_VISIT, 'Missed Scheduled visit'),
+    (UNSCHEDULED,
+     'Unscheduled visit at which lab samples or data are being submitted'),
+    (LOST_VISIT, 'Lost to follow-up (use only when taking subject off study)'),
+    (FAILED_ELIGIBILITY, 'Subject failed enrollment eligibility'),
+    (COMPLETED_PROTOCOL_VISIT, 'Subject has completed the study')]

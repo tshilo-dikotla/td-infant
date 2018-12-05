@@ -5,12 +5,11 @@ from edc_constants.choices import YES_NO_UNKNOWN
 from edc_base.model_mixins import BaseUuidModel
 from edc_base.model_validators import date_not_future
 from edc_visit_tracking.model_mixins import CrfInlineModelMixin
-#from edc_sync.models import SyncModelMixin, SyncHistoricalRecords
 
-from tshilo_dikotla.choices import REASONS_VACCINES_MISSED
 
-from ..choices import IMMUNIZATIONS, INFANT_AGE_VACCINE_GIVEN
-from ..managers import VaccinesMissedManager, VaccinesReceivedManager
+from ..choices import (
+    IMMUNIZATIONS, INFANT_AGE_VACCINE_GIVEN, REASONS_VACCINES_MISSED)
+# from ..managers import VaccinesMissedManager, VaccinesReceivedManager
 
 from .infant_crf_model import InfantCrfModel
 
@@ -37,11 +36,12 @@ class InfantFuImmunizations(InfantCrfModel):
         verbose_name_plural = "Infant FollowUp: Immunizations"
 
 
-class VaccinesReceived(CrfInlineModelMixin, SyncModelMixin, BaseUuidModel):
+class VaccinesReceived(CrfInlineModelMixin, BaseUuidModel):
 
     """ALL possible vaccines given to infant"""
 
-    infant_fu_immunizations = models.ForeignKey(InfantFuImmunizations)
+    infant_fu_immunizations = models.ForeignKey(
+        InfantFuImmunizations, on_delete=models.CASCADE)
 
     received_vaccine_name = models.CharField(
         verbose_name="Received vaccine name",
@@ -64,9 +64,7 @@ class VaccinesReceived(CrfInlineModelMixin, SyncModelMixin, BaseUuidModel):
         blank=True,
         max_length=35)
 
-    objects = VaccinesReceivedManager()
-
-    history = SyncHistoricalRecords()
+#     objects = VaccinesReceivedManager()
 
     def natural_key(self):
         return (self.received_vaccine_name, ) + self.infant_fu_immunizations.natural_key()
@@ -79,13 +77,14 @@ class VaccinesReceived(CrfInlineModelMixin, SyncModelMixin, BaseUuidModel):
             'received_vaccine_name', 'infant_fu_immunizations', 'infant_age')
 
 
-class VaccinesMissed(CrfInlineModelMixin, SyncModelMixin, BaseUuidModel):
+class VaccinesMissed(CrfInlineModelMixin, BaseUuidModel):
 
     """ALL vaccines missed by infant"""
 
     parent_model_attr = 'infant_fu_immunizations'
 
-    infant_fu_immunizations = models.ForeignKey(InfantFuImmunizations)
+    infant_fu_immunizations = models.ForeignKey(
+        InfantFuImmunizations, on_delete=models.CASCADE)
 
     missed_vaccine_name = models.CharField(
         verbose_name="Missed vaccine name",
@@ -103,9 +102,7 @@ class VaccinesMissed(CrfInlineModelMixin, SyncModelMixin, BaseUuidModel):
 
     reason_missed_other = OtherCharField()
 
-    objects = VaccinesMissedManager()
-
-    history = SyncHistoricalRecords()
+#     objects = VaccinesMissedManager()
 
     def natural_key(self):
         return (self.missed_vaccine_name, ) + self.infant_fu_immunizations.natural_key()

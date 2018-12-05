@@ -4,9 +4,8 @@ from edc_base.model_fields.custom_fields import OtherCharField
 from edc_base.model_validators import date_not_future
 from edc_constants.choices import YES_NO, YES_NO_NA, YES_NO_UNSURE_NA
 from edc_constants.constants import NOT_APPLICABLE
-from edc_visit_schedule.model_mixins import VisitDefinition
-
-from tshilo_dikotla.choices import COWS_MILK, TIMES_BREASTFED, WATER_USED
+from edc_visit_schedule.model_mixins import VisitScheduleModelMixin
+from ..choices import COWS_MILK, TIMES_BREASTFED, WATER_USED
 
 from .infant_crf_model import InfantCrfModel
 
@@ -227,10 +226,10 @@ class InfantFeeding(InfantCrfModel):
     @property
     def previous_infant_feeding(self):
         """ Return previous infant feeding from. """
-        visit_def = VisitDefinition.objects.all()
+        visit_def = VisitScheduleModelMixin.objects.all()
         visit = []
         for x in visit_def:
-            visit.append(x.code)
+            visit.append(x.visit_code)
 
         if not (self.infant_visit.appointment.visit_definition.code in ['2000', '2010']):
             prev_visit_index = visit.index(

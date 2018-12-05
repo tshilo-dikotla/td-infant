@@ -2,15 +2,14 @@ from django.db import models
 
 from edc_base.model_fields import OtherCharField
 from edc_base.model_mixins import BaseUuidModel
-from edc_constants.choices import DRUG_ROUTE
 from edc_constants.choices import YES_NO
 from edc_export.model_mixins import ExportTrackingFieldsModelMixin
 #from edc_sync.models import SyncModelMixin, SyncHistoricalRecords
 from edc_visit_tracking.model_mixins import CrfInlineModelMixin
 
-from tshilo_dikotla.choices import MEDICATIONS
+from ..choices import MEDICATIONS, DRUG_ROUTE
 
-from ..managers import InfantFuNewMedItemsManager
+# from ..managers import InfantFuNewMedItemsManager
 
 from .infant_crf_model import InfantCrfModel
 
@@ -39,7 +38,7 @@ class InfantFuNewMedItems(CrfInlineModelMixin, ExportTrackingFieldsModelMixin,
 
     """A model completed by the user on the infant's follow up medication items."""
 
-    infant_fu_med = models.ForeignKey(InfantFuNewMed)
+    infant_fu_med = models.ForeignKey(InfantFuNewMed, on_delete=models.CASCADE)
 
     medication = models.CharField(
         max_length=100,
@@ -65,9 +64,7 @@ class InfantFuNewMedItems(CrfInlineModelMixin, ExportTrackingFieldsModelMixin,
         verbose_name="Drug route",
     )
 
-    objects = InfantFuNewMedItemsManager()
-
-    history = SyncHistoricalRecords()
+#     objects = InfantFuNewMedItemsManager()
 
     def natural_key(self):
         return (self.medication, ) + self.infant_fu_med.natural_key()

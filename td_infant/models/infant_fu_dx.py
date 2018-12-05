@@ -5,9 +5,9 @@ from edc_constants.choices import YES_NO
 from edc_export.model_mixins import ExportTrackingFieldsModelMixin
 #from edc_sync.models import SyncModelMixin, SyncHistoricalRecords
 from edc_visit_tracking.model_mixins import CrfInlineModelMixin
-from tshilo_dikotla.choices import DX_INFANT
+from ..choices import DX_INFANT
 
-from ..managers import InfantFuDxItemsManager
+# from ..managers import InfantFuDxItemsManager
 from .infant_crf_model import InfantCrfModel
 
 
@@ -24,7 +24,7 @@ class InfantFuDx(InfantCrfModel):
 class InfantFuDxItems(CrfInlineModelMixin, ExportTrackingFieldsModelMixin,
                       BaseUuidModel):
 
-    infant_fu_dx = models.ForeignKey(InfantFuDx)
+    infant_fu_dx = models.ForeignKey(InfantFuDx, on_delete=models.CASCADE)
 
     fu_dx = models.CharField(
         verbose_name="Diagnosis",
@@ -47,9 +47,9 @@ class InfantFuDxItems(CrfInlineModelMixin, ExportTrackingFieldsModelMixin,
         choices=YES_NO,
         max_length=3)
 
-    objects = InfantFuDxItemsManager()
-
-    history = SyncHistoricalRecords()
+#     objects = InfantFuDxItemsManager()
+#
+#     history = SyncHistoricalRecords()
 
     def natural_key(self):
         return (self.fu_dx, ) + self.infant_fu_dx.natural_key()
