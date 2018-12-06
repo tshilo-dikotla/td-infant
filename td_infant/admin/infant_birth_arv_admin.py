@@ -37,6 +37,3 @@ class InfantBirthArvAdmin(BaseInfantScheduleModelAdmin):
         'sdnvp_after_birth': admin.VERTICAL,
         'azt_discharge_supply': admin.VERTICAL,
     }
-
-
-admin.site.register(InfantBirthArv, InfantBirthArvAdmin)

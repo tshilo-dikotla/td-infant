@@ -27,6 +27,3 @@ class InfantBirthDataAdmin(BaseInfantScheduleModelAdmin):
     radio_fields = {
         "apgar_score": admin.VERTICAL,
         "congenital_anomalities": admin.VERTICAL}
-
-
-admin.site.register(InfantBirthData, InfantBirthDataAdmin)
