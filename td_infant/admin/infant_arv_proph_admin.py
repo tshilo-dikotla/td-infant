@@ -8,15 +8,16 @@ from ..models import InfantArvProphMod, InfantArvProph
 from .modeladmin_mixins import CrfModelAdminMixin
 
 
+@admin.register(InfantArvProphMod, site=td_infant_admin)
 class InfantArvProphModInline(TabularInlineMixin, admin.TabularInline):
 
-    model = InfantArvProphMod
     form = InfantArvProphModForm
     extra = 1
 
     fieldsets = (
         (None, {
             'fields': [
+                'infant_arv_proph',
                 'arv_code',
                 'dose_status',
                 'modification_date',
@@ -32,6 +33,8 @@ class InfantArvProphAdmin(CrfModelAdminMixin, admin.ModelAdmin):
     fieldsets = (
         (None, {
             'fields': [
+                'report_datetime',
+                'infant_visit',
                 'prophylatic_nvp',
                 'arv_status']}
          ), audit_fieldset_tuple)
@@ -53,6 +56,7 @@ class InfantArvProphModAdmin(CrfModelAdminMixin, admin.ModelAdmin):
     fieldsets = (
         (None, {
             'fields': [
+                'infant_arv_proph',
                 'arv_code',
                 'dose_status',
                 'modification_date',
