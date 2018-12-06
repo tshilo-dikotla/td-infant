@@ -20,3 +20,5 @@ from .signals_form import SignalsForm
 from .solid_food_assessment_form import SolidFoodAssessmentForm
 from .infant_arv_proph_mod_form import InfantArvProphModForm
 from .infant_birth_exam_form import InfantBirthExamForm
+from .infant_vaccines_form import InfantVaccinesForm
+from .infant_birth_feedin_vaccine_form import InfantBirthFeedinVaccineForm
