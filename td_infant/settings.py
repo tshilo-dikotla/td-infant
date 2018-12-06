@@ -11,12 +11,12 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/2.0/ref/settings/
 """
 
+import configparser
 import os
+from pathlib import Path
+from pathlib import PurePath
 import sys
 APP_NAME = 'td_infant'
-from pathlib import Path
-import configparser
-from pathlib import PurePath
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -54,23 +54,27 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.sites',
     'django_crypto_fields.apps.AppConfig',
-    'edc_protocol.apps.AppConfig',
     'edc_label.apps.AppConfig',
     'edc_lab.apps.AppConfig',
     'edc_locator.apps.AppConfig',
     'edc_export.apps.AppConfig',
     'edc_timepoint.apps.AppConfig',
-    'edc_appointment.apps.AppConfig',
     'edc_action_item.apps.AppConfig',
     'td_maternal.apps.AppConfig',
-    #     'td_infant.apps.EdcVisitTrackingAppConfig',
+    'td_infant.apps.EdcVisitTrackingAppConfig',
+    'td_infant.apps.EdcProtocolAppConfig',
+    'td_infant.apps.EdcAppointmentAppConfig',
+    'td_infant.apps.EdcMetadataAppConfig',
+    'td_infant.apps.EdcFacilityAppConfig',
     'td_infant.apps.AppConfig',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.contrib.sites.middleware.CurrentSiteMiddleware',
     'edc_subject_dashboard.middleware.DashboardMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -125,13 +129,15 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Africa/Gaborone'
 
 USE_I18N = True
 
 USE_L10N = True
 
 USE_TZ = True
+
+AUTO_CREATE_KEYS = True
 
 
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
