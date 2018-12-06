@@ -57,6 +57,3 @@ class InfantBirthExamAdmin(BaseInfantScheduleModelAdmin):
         'skin_exam': admin.VERTICAL,
         'neurologic_exam': admin.VERTICAL
     }
-
-
-admin.site.register(InfantBirthExam, InfantBirthExamAdmin)

@@ -73,6 +73,3 @@ class InfantBirthAdmin(MembershipBaseModelAdmin):
 #                     registered_subject__subject_identifier=maternal_subject_identifier)
 # return super(InfantBirthAdmin, self).formfield_for_foreignkey(db_field,
 # request, **kwargs)
-
-
-admin.site.register(InfantBirth, InfantBirthAdmin)

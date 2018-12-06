@@ -71,6 +71,3 @@ class InfantVaccinesAdmin(admin.ModelAdmin):
 #                  'infant_birth_feed_vaccine__infant_visit__appointment__registered_subject__subject_identifier',
 #                  }),
 #         )]
-
-
-admin.site.register(InfantVaccines, InfantVaccinesAdmin)
