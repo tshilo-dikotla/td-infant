@@ -1,5 +1,5 @@
 from django.contrib import admin
-
+from edc_model_admin import audit_fieldset_tuple
 from ..admin_site import td_infant_admin
 from ..forms import InfantNvpDispensingForm
 from ..models import InfantNvpDispensing
@@ -10,6 +10,20 @@ from .modeladmin_mixins import CrfModelAdminMixin
 class InfantNvpDispensingAdmin(CrfModelAdminMixin, admin.ModelAdmin):
 
     form = InfantNvpDispensingForm
+
+    fieldsets = (
+        (None, {
+            'fields': [
+                'nvp_prophylaxis',
+                'reason_not_given',
+                'azt_prophylaxis',
+                'azt_dose_given',
+                'nvp_admin_date',
+                'medication_instructions',
+                'dose_admin_infant',
+                'correct_dose',
+                'corrected_dose']}
+         ), audit_fieldset_tuple)
 
     radio_fields = {'nvp_prophylaxis': admin.VERTICAL,
                     'azt_prophylaxis': admin.VERTICAL,

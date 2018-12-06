@@ -1,6 +1,9 @@
 from django import forms
+from ..models import InfantOffStudy
 
 
 class InfantOffStudyForm(forms.ModelForm):
 
-    pass
+    class Meta:
+        model = InfantOffStudy
+        fields = '__all_'
