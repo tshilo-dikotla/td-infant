@@ -5,7 +5,6 @@ from edc_base.model_mixins import BaseUuidModel
 from edc_constants.choices import CONFIRMED_SUSPECTED
 from edc_visit_tracking.model_mixins import CrfInlineModelMixin
 from edc_export.model_mixins import ExportTrackingFieldsModelMixin
-#from edc_sync.models import SyncModelMixin, SyncHistoricalRecords
 
 from ..choices import (
     CNS_ABNORMALITIES, FACIAL_DEFECT, CLEFT_DISORDER, MOUTH_UP_GASTROINT_DISORDER,
@@ -13,11 +12,6 @@ from ..choices import (
     FEM_GENITAL_ANOMALY, MALE_GENITAL_ANOMALY, RENAL_ANOMALY, MUSCULOSKELETAL_ABNORMALITY,
     SKIN_ABNORMALITY, TRISOME_CHROSOMESOME_ABNORMALITY, OTHER_DEFECT)
 
-# from ..managers import (InfantCnsManager, InfantFacialDefectManager,
-#                         InfantCleftDisorderManager, InfantMouthUpGiManager, InfantOtherAbnormalityItemsManager,
-#                         InfantCardioDisorderManager, InfantRespiratoryDefectManager, InfantLowerGiManager,
-#                         InfantFemaleGenitalManager, InfantMaleGenitalManager, InfantRenalManager,
-# InfantMusculoskeletalManager, InfantSkinManager, InfantTrisomiesManager)
 
 from .infant_crf_model import InfantCrfModel
 
@@ -35,8 +29,6 @@ class BaseCnsItem(CrfInlineModelMixin, ExportTrackingFieldsModelMixin, BaseUuidM
 
     congenital_anomalies = models.ForeignKey(
         InfantCongenitalAnomalies, on_delete=models.CASCADE)
-
-    #history = SyncHistoricalRecords()
 
     class Meta:
         abstract = True
@@ -62,8 +54,6 @@ class InfantCns(BaseCnsItem):
         blank=True,
         null=True,
     )
-
-#     objects = InfantCnsManager()
 
     def natural_key(self):
         return (self.cns, ) + self.congenital_anomalies.natural_key()
@@ -95,8 +85,6 @@ class InfantFacialDefect(BaseCnsItem):
         null=True,
     )
 
-#     objects = InfantFacialDefectManager()
-
     def natural_key(self):
         return (self.facial_defect, ) + self.congenital_anomalies.natural_key()
 
@@ -126,8 +114,6 @@ class InfantCleftDisorder(BaseCnsItem):
         blank=True,
         null=True,
     )
-
-#     objects = InfantCleftDisorderManager()
 
     def natural_key(self):
         return (self.cleft_disorder, ) + self.congenital_anomalies.natural_key()
@@ -159,8 +145,6 @@ class InfantMouthUpGi(BaseCnsItem):
         null=True
     )
 
-#     objects = InfantMouthUpGiManager()
-
     def natural_key(self):
         return (self.mouth_up_gi, ) + self.congenital_anomalies.natural_key()
 
@@ -191,8 +175,6 @@ class InfantCardioDisorder(BaseCnsItem):
         null=True,
     )
 
-#     objects = InfantCardioDisorderManager()
-
     def natural_key(self):
         return (self.cardio_disorder, ) + self.congenital_anomalies.natural_key()
 
@@ -222,8 +204,6 @@ class InfantRespiratoryDefect(BaseCnsItem):
         blank=True,
         null=True,
     )
-
-#     objects = InfantRespiratoryDefectManager()
 
     def natural_key(self):
         return (self.respiratory_defect, ) + self.congenital_anomalies.natural_key()

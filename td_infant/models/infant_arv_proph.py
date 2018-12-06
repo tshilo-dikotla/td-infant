@@ -6,7 +6,6 @@ from edc_export.model_mixins import ExportTrackingFieldsModelMixin
 from edc_visit_tracking.model_mixins import CrfInlineModelMixin
 
 from ..choices import ARV_MODIFICATION_REASON, ARV_DRUG_LIST, DOSE_STATUS, ARV_STATUS_WITH_NEVER
-# from ..managers import InfantArvProphModManager
 
 from .infant_crf_model import InfantCrfModel
 
@@ -67,8 +66,6 @@ class InfantArvProphMod(CrfInlineModelMixin, ExportTrackingFieldsModelMixin, Bas
         max_length=100,
         null=True,
         blank=True)
-
-#     objects = InfantArvProphModManager()
 
     def natural_key(self):
         return (self.arv_code, ) + self.infant_arv_proph.natural_key()
