@@ -62,6 +62,7 @@ INSTALLED_APPS = [
     'edc_timepoint.apps.AppConfig',
     'edc_appointment.apps.AppConfig',
     'edc_action_item.apps.AppConfig',
+    'edc_visit_tracking.apps.AppConfig',
     'td_maternal.apps.AppConfig',
     #     'td_infant.apps.EdcVisitTrackingAppConfig',
     'td_infant.apps.AppConfig',
