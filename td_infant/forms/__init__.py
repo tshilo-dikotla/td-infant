@@ -18,3 +18,4 @@ from .infant_offstudy_form import InfantOffStudyForm
 from .infant_visit_form import InfantVisitForm
 from .signals_form import SignalsForm
 from .solid_food_assessment_form import SolidFoodAssessmentForm
+from .infant_arv_proph_mod_form import InfantArvProphModForm
