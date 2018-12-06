@@ -4,7 +4,7 @@ from edc_constants.choices import (NORMAL_ABNORMAL, YES_NO_UNKNOWN,
 # from td_maternal.models import Foods, Rations
 from edc_constants.constants import NOT_APPLICABLE
 from edc_base.model_fields import OtherCharField
-from td_infant.models import Foods, Rations
+from ..models import Foods, Rations
 from .infant_crf_model import InfantCrfModel
 
 
@@ -18,13 +18,13 @@ class SolidFoodAssessment(InfantCrfModel):
         help_text="Months.",
     )
 
-#     solid_foods = models.ManyToManyField(
-#         Foods,
-#         max_length=15,
-#         verbose_name="For infants and children who are taking solid foods, what foods is your infant/child taking"
-#                      " (choose all that apply.)",
-#         help_text=""
-#     )
+    solid_foods = models.ManyToManyField(
+        Foods,
+        max_length=15,
+        verbose_name="For infants and children who are taking solid foods, what foods is your infant/child taking"
+                     " (choose all that apply.)",
+        help_text=""
+    )
 
     solid_foods_other = OtherCharField(
         max_length=35,
@@ -228,11 +228,11 @@ class SolidFoodAssessment(InfantCrfModel):
                      " ration?",
         help_text="")
 
-#     rations_receviced = models.ManyToManyField(
-#         Rations,
-#         verbose_name="If yes, please indicate all applicable rations received at the last visit",
-#         help_text="",
-#     )
+    rations_receviced = models.ManyToManyField(
+        Rations,
+        verbose_name="If yes, please indicate all applicable rations received at the last visit",
+        help_text="",
+    )
 
     class Meta:
         app_label = 'td_infant'

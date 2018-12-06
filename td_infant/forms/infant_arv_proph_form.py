@@ -4,6 +4,6 @@ from django import forms
 # from ..form_mixins import SubjectModelFormMixin
 
 
-class InfantBirthFeedingVaccine(forms.ModelForm):
+class InfantArvProphForm(forms.ModelForm):
 
     pass

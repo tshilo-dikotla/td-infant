@@ -1,3 +1,7 @@
+# from collections import OrderedDict
+
+# from edc_export.actions import export_as_csv_action
+# from edc_base.modeladmin_mixins import MembershipBaseModelAdmin
 from django.contrib import admin
 from django.urls.base import reverse
 from django.urls.exceptions import NoReverseMatch
@@ -8,7 +12,8 @@ from edc_model_admin import (
     audit_fieldset_tuple, ModelAdminNextUrlRedirectMixin,
     ModelAdminNextUrlRedirectError, ModelAdminReplaceLabelTextMixin)
 
-from ..models import InfantVisit
+
+# from ..models import InfantVisit
 
 
 # from edc_export.actions import export_as_csv_action
@@ -43,13 +48,14 @@ class BaseInfantScheduleModelAdmin(ModelAdminMixin, admin.ModelAdmin):
         'infant_visit__appointment__registered_subject__subject_identifier',
         'infant_visit__appointment__registered_subject__initials', ]
 
-    def formfield_for_foreignkey(self, db_field, request, **kwargs):
-        if db_field.name == "infant_visit":
-            if request.GET.get('infant_visit'):
-                kwargs["queryset"] = InfantVisit.objects.filter(
-                    id=request.GET.get('infant_visit'))
-        return super(BaseInfantScheduleModelAdmin, self).formfield_for_foreignkey(db_field, request, **kwargs)
 
+#     def formfield_for_foreignkey(self, db_field, request, **kwargs):
+#         if db_field.name == "infant_visit":
+#             if request.GET.get('infant_visit'):
+#                 kwargs["queryset"] = InfantVisit.objects.filter(
+#                     id=request.GET.get('infant_visit'))
+#         return super(BaseInfantScheduleModelAdmin, self).formfield_for_foreignkey(db_field, request, **kwargs)
+#
 #     actions = [
 #         export_as_csv_action(
 #             description="Export CSV file",
