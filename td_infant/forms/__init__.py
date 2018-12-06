@@ -23,7 +23,9 @@ from .infant_feeding_form import InfantFeedingForm
 from .infant_fu_dx_form import InfantFuDxForm
 from .infant_fu_dx_form import InfantFuDxItemsForm
 from .infant_fu_form import InfantFuForm
-from .infant_fu_immunizations_form import InfantFuImmunizationForm
+from .infant_fu_immunizations_form import InfantFuImmunizationsForm
+from .infant_fu_immunizations_form import VaccinesReceivedForm
+from .infant_fu_immunizations_form import VaccinesMissedForm
 from .infant_fu_new_med_form import InfantFuNewMedForm
 from .infant_fu_physical_form import InfantFuPhysicalForm
 from .infant_nvp_adjustment_form import InfantNvpAdjustmentForm

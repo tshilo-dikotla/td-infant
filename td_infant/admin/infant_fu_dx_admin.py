@@ -30,6 +30,11 @@ class InfantFuDxItemsAdmin(CrfModelAdminMixin, admin.ModelAdmin):
         audit_fieldset_tuple
     )
 
+    radio_fields = {
+        'health_facility': admin.VERTICAL,
+        'was_hospitalized': admin.VERTICAL
+    }
+
     search_fields = [
         'infant_fu_dx__infant_visit__appointment__registered_subject__subject_identifier',
         'infant_fu_dx__infant_visit__appointment__registered_subject__initials', ]
