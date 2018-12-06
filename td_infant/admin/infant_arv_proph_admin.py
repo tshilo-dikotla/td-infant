@@ -1,18 +1,17 @@
 from collections import OrderedDict
 
 from django.contrib import admin
-
-from edc_base.modeladmin.admin import BaseTabularInline
-from edc_export.actions import export_as_csv_action
-
-from ..models import InfantArvProphMod, InfantArvProph
-from ..forms import InfantArvProphForm, InfantArvProphModForm
-
-from .base_infant_scheduled_modeladmin import BaseInfantScheduleModelAdmin
+from django.contrib import admin
+from edc_model_admin import TabularInlineMixin
 from edc_model_admin.model_admin_audit_fields_mixin import audit_fieldset_tuple
 
+from ..admin_site import td_infant_admin
+from ..forms import InfantArvProphForm, InfantArvProphModForm
+from ..models import InfantArvProphMod, InfantArvProph
+from .base_infant_scheduled_modeladmin import BaseInfantScheduleModelAdmin
 
-class InfantArvProphModInline(BaseTabularInline):
+
+class InfantArvProphModInline(TabularInlineMixin, admin.TabularInline):
 
     model = InfantArvProphMod
     form = InfantArvProphModForm
