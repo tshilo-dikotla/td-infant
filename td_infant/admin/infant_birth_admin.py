@@ -15,6 +15,8 @@ class InfantBirthAdmin(ModelAdminMixin, admin.ModelAdmin):
     fieldsets = (
         (None, {
             'fields': [
+                'maternal_labour_del',
+                'report_datetime',
                 'first_name',
                 'initials',
                 'dob',
@@ -22,7 +24,6 @@ class InfantBirthAdmin(ModelAdminMixin, admin.ModelAdmin):
          ), audit_fieldset_tuple)
 
     list_display = (
-        'registered_subject',
         'maternal_labour_del',
         'report_datetime',
         'first_name',

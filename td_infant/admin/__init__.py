@@ -1,4 +1,3 @@
-from td_infant.admin.modeladmin_mixins import BaseInfantScheduleModelAdmin
 from .infant_arv_proph_admin import (
     InfantArvProphAdmin, InfantArvProphModAdmin)
 from .infant_birth_admin import InfantBirthAdmin
