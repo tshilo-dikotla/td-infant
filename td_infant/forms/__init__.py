@@ -21,6 +21,7 @@ from .infant_crf_model_form import InfantCrfModelForm
 from .infant_death_report_form import InfantDeathReportForm
 from .infant_feeding_form import InfantFeedingForm
 from .infant_fu_dx_form import InfantFuDxForm
+from .infant_fu_dx_form import InfantFuDxItemsForm
 from .infant_fu_form import InfantFuForm
 from .infant_fu_immunizations_form import InfantFuImmunizationForm
 from .infant_fu_new_med_form import InfantFuNewMedForm

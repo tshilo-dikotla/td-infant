@@ -1,13 +1,8 @@
-from collections import OrderedDict
-
 from django.contrib import admin
-from edc_model_admin import TabularInlineMixin
-
-from td_infant.admin.modeladmin_mixins import BaseInfantScheduleModelAdmin
-from tshilo_dikotla.base_model_admin import BaseModelAdmin
+from edc_model_admin import TabularInlineMixin, audit_fieldset_tuple
 
 from ..admin_site import td_infant_admin
-from ..forms import InfantFuDxItemsForm
+from ..forms import InfantFuDxItemsForm, InfantFuDxForm
 from ..models import InfantFuDx, InfantFuDxItems
 from .modeladmin_mixins import CrfModelAdminMixin
 
@@ -23,6 +18,18 @@ class InfantFuDxItemsInline(TabularInlineMixin, admin.TabularInline):
 class InfantFuDxItemsAdmin(CrfModelAdminMixin, admin.ModelAdmin):
     form = InfantFuDxItemsForm
 
+    fieldsets = (
+        (None, {
+            'fields': (
+                'infant_fu_dx',
+                'fu_dx',
+                'fu_dx_specify',
+                'health_facility',
+                'was_hospitalized')
+        }),
+        audit_fieldset_tuple
+    )
+
     search_fields = [
         'infant_fu_dx__infant_visit__appointment__registered_subject__subject_identifier',
         'infant_fu_dx__infant_visit__appointment__registered_subject__initials', ]
@@ -30,5 +37,15 @@ class InfantFuDxItemsAdmin(CrfModelAdminMixin, admin.ModelAdmin):
 
 @admin.register(InfantFuDx, site=td_infant_admin)
 class InfantFuDxAdmin(CrfModelAdminMixin, admin.ModelAdmin):
+    form = InfantFuDxForm
+
+    fieldsets = (
+        (None, {
+            'fields': (
+                'report_datetime',
+                'infant_visit')
+        }),
+        audit_fieldset_tuple
+    )
 
     inlines = [InfantFuDxItemsInline, ]
