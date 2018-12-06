@@ -44,6 +44,7 @@ class InfantCnsInline(TabularInlineMixin, admin.TabularInline):
     extra = 0
 
 
+@admin.register(InfantFacialDefect, site=td_infant_admin)
 class InfantFacialDefectAdmin(CrfModelAdminMixin):
     form = InfantFacialDefectForm
     list_display = ('congenital_anomalies',)
@@ -65,6 +66,7 @@ class InfantFacialDefectInline(TabularInlineMixin, admin.TabularInline):
     extra = 0
 
 
+@admin.register(InfantCleftDisorder, site=td_infant_admin)
 class InfantCleftDisorderAdmin(CrfModelAdminMixin):
     form = InfantCleftDisorderForm
 
@@ -87,6 +89,7 @@ class InfantCleftDisorderInline(TabularInlineMixin, admin.TabularInline):
     extra = 0
 
 
+@admin.register(InfantMouthUpGi, site=td_infant_admin)
 class InfantMouthUpGiAdmin(CrfModelAdminMixin):
     form = InfantMouthUpGiForm
 
@@ -109,6 +112,7 @@ class InfantMouthUpGiInline(TabularInlineMixin, admin.TabularInline):
     extra = 0
 
 
+@admin.register(InfantCardioDisorder, site=td_infant_admin)
 class InfantCardioDisorderAdmin(CrfModelAdminMixin):
     form = InfantCardioDisorderForm
 
@@ -124,9 +128,6 @@ class InfantCardioDisorderAdmin(CrfModelAdminMixin):
     }
 
 
-admin.site.register(InfantCardioDisorder, InfantCardioDisorderAdmin)
-
-
 class InfantCardioDisorderInline(TabularInlineMixin, admin.TabularInline):
 
     model = InfantCardioDisorder
@@ -134,6 +135,7 @@ class InfantCardioDisorderInline(TabularInlineMixin, admin.TabularInline):
     extra = 0
 
 
+@admin.register(InfantRespiratoryDefect, site=td_infant_admin)
 class InfantRespiratoryDefectAdmin(CrfModelAdminMixin):
     form = InfantRespiratoryDefectForm
 
@@ -156,6 +158,7 @@ class InfantRespiratoryDefectInline(TabularInlineMixin, admin.TabularInline):
     extra = 0
 
 
+@admin.register(InfantLowerGi, site=td_infant_admin)
 class InfantLowerGiAdmin(CrfModelAdminMixin):
     form = InfantLowerGiForm
 
@@ -178,6 +181,7 @@ class InfantLowerGiInline(TabularInlineMixin, admin.TabularInline):
     extra = 0
 
 
+@admin.register(InfantFemaleGenital, site=td_infant_admin)
 class InfantFemaleGenitalAdmin(CrfModelAdminMixin):
     form = InfantFemaleGenitalForm
 
@@ -200,6 +204,7 @@ class InfantFemaleGenitalInline(TabularInlineMixin, admin.TabularInline):
     extra = 0
 
 
+@admin.register(InfantMaleGenital, site=td_infant_admin)
 class InfantMaleGenitalAdmin(CrfModelAdminMixin):
     form = InfantMaleGenitalForm
 
@@ -222,6 +227,7 @@ class InfantMaleGenitalInline(TabularInlineMixin, admin.TabularInline):
     extra = 0
 
 
+@admin.register(InfantRenal, site=td_infant_admin)
 class InfantRenalAdmin(CrfModelAdminMixin):
     form = form = InfantRenalForm
 
@@ -244,6 +250,7 @@ class InfantRenalInline(TabularInlineMixin, admin.TabularInline):
     extra = 0
 
 
+@admin.register(InfantMusculoskeletal, site=td_infant_admin)
 class InfantMusculoskeletalAdmin(CrfModelAdminMixin):
     form = form = InfantMusculoskeletalForm
 
@@ -266,6 +273,7 @@ class InfantMusculoskeletalInline(TabularInlineMixin, admin.TabularInline):
     extra = 0
 
 
+@admin.register(InfantSkin, site=td_infant_admin)
 class InfantSkinAdmin(CrfModelAdminMixin):
     form = form = InfantSkinForm
 
@@ -288,6 +296,7 @@ class InfantSkinInline(TabularInlineMixin, admin.TabularInline):
     extra = 0
 
 
+@admin.register(InfantTrisomies, site=td_infant_admin)
 class InfantTrisomiesAdmin(CrfModelAdminMixin):
     form = InfantTrisomiesForm
 
@@ -310,6 +319,7 @@ class InfantTrisomiesInline(TabularInlineMixin, admin.TabularInline):
     extra = 0
 
 
+@admin.register(InfantCongenitalAnomalies, site=td_infant_admin)
 class InfantCongenitalAnomaliesAdmin(CrfModelAdminMixin):
 
     form = InfantCongenitalAnomaliesForm

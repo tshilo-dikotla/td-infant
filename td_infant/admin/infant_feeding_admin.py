@@ -1,12 +1,13 @@
 from django.contrib import admin
 
+from ..admin_site import td_infant_admin
 from ..forms import InfantFeedingForm
 from ..models import InfantFeeding
+from .modeladmin_mixins import CrfModelAdminMixin
 
-from td_infant.admin.modeladmin_mixins import BaseInfantScheduleModelAdmin
 
-
-class InfantFeedingAdmin(BaseInfantScheduleModelAdmin):
+@admin.register(InfantFeeding, site=td_infant_admin)
+class InfantFeedingAdmin(CrfModelAdminMixin, admin.ModelAdmin):
 
     form = InfantFeedingForm
     fields = (
@@ -61,5 +62,3 @@ class InfantFeedingAdmin(BaseInfantScheduleModelAdmin):
         "complete_weaning": admin.VERTICAL,
         "weaned_completely": admin.VERTICAL,
         "times_breastfed": admin.VERTICAL}
-
-admin.site.register(InfantFeeding, InfantFeedingAdmin)

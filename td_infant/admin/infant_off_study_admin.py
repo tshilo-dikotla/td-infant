@@ -1,14 +1,15 @@
 from django.contrib import admin
 
-from tshilo_dikotla.constants import INFANT
+from td_infant.admin.modeladmin_mixins import CrfModelAdminMixin
 
+from ..admin_site import td_infant_admin
+from ..constants import INFANT
 from ..forms import InfantOffStudyForm
 from ..models import InfantOffStudy
 
-from td_infant.admin.modeladmin_mixins import BaseInfantScheduleModelAdmin
 
-
-class InfantOffStudyAdmin(BaseInfantScheduleModelAdmin):
+@admin.register(InfantOffStudy, site=td_infant_admin)
+class InfantOffStudyAdmin(CrfModelAdminMixin, admin.ModelAdmin):
 
     form = InfantOffStudyForm
     dashboard_type = INFANT
@@ -27,5 +28,3 @@ class InfantOffStudyAdmin(BaseInfantScheduleModelAdmin):
         'infant_visit',
         'offstudy_date',
         'reason')
-
-admin.site.register(InfantOffStudy, InfantOffStudyAdmin)

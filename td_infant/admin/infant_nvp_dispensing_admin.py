@@ -1,12 +1,13 @@
 from django.contrib import admin
 
+from ..admin_site import td_infant_admin
 from ..forms import InfantNvpDispensingForm
 from ..models import InfantNvpDispensing
+from .modeladmin_mixins import CrfModelAdminMixin
 
-from td_infant.admin.modeladmin_mixins import BaseInfantScheduleModelAdmin
 
-
-class InfantNvpDispensingAdmin(BaseInfantScheduleModelAdmin, admin.ModelAdmin):
+@admin.register(InfantNvpDispensing, site=td_infant_admin)
+class InfantNvpDispensingAdmin(CrfModelAdminMixin, admin.ModelAdmin):
 
     form = InfantNvpDispensingForm
 
@@ -19,5 +20,3 @@ class InfantNvpDispensingAdmin(BaseInfantScheduleModelAdmin, admin.ModelAdmin):
                     'azt_prophylaxis', 'medication_instructions',)
 
     list_filter = ('nvp_prophylaxis', 'azt_prophylaxis', 'correct_dose',)
-
-admin.site.register(InfantNvpDispensing, InfantNvpDispensingAdmin)

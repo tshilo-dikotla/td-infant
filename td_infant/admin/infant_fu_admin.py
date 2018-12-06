@@ -1,12 +1,13 @@
 from django.contrib import admin
 
+from ..admin_site import td_infant_admin
 from ..forms import InfantFuForm
 from ..models import InfantFu
+from .modeladmin_mixins import CrfModelAdminMixin
 
-from td_infant.admin.modeladmin_mixins import BaseInfantScheduleModelAdmin
 
-
-class InfantFuAdmin(BaseInfantScheduleModelAdmin):
+@admin.register(InfantFu, site=td_infant_admin)
+class InfantFuAdmin(CrfModelAdminMixin, admin.ModelAdmin):
     form = InfantFuForm
 
     list_display = (
@@ -23,5 +24,3 @@ class InfantFuAdmin(BaseInfantScheduleModelAdmin):
         'has_dx': admin.VERTICAL,
         'was_hospitalized': admin.VERTICAL,
     }
-
-admin.site.register(InfantFu, InfantFuAdmin)

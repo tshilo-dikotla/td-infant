@@ -1,13 +1,11 @@
 from django.contrib import admin
 
-from tshilo_dikotla.base_model_admin import BaseModelAdmin
 from ..forms import SolidFoodAssessementForm
 from ..models import SolidFoodAssessment
+from .modeladmin_mixins import CrfModelAdminMixin
 
-from td_infant.admin.modeladmin_mixins import BaseInfantScheduleModelAdmin
 
-
-class SolidFoodAssessmentAdmin(BaseInfantScheduleModelAdmin, BaseModelAdmin):
+class SolidFoodAssessmentAdmin(CrfModelAdminMixin, admin.ModelAdmin):
 
     form = SolidFoodAssessementForm
 
