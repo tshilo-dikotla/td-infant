@@ -31,8 +31,10 @@ class InfantBirthFeedingVaccineAdmin(ModelAdminMixin, admin.ModelAdmin):
     fieldsets = (
         (None, {
             'fields': [
-                'vaccination',
-                'vaccine_date'
+                'report_datetime',
+                'infant_visit',
+                'feeding_after_delivery',
+                'comments',
             ]
         }), audit_fieldset_tuple,
     )
@@ -49,6 +51,15 @@ class InfantBirthFeedingVaccineAdmin(ModelAdminMixin, admin.ModelAdmin):
 @admin.register(InfantVaccines, site=td_infant_admin)
 class InfantVaccinesAdmin(ModelAdminMixin, admin.ModelAdmin):
     form = InfantVaccinesForm
+
+    fieldsets = (
+        (None, {
+            'fields': (
+                'infant_birth_feed_vaccine',
+                'vaccination',
+                'vaccine_date')
+        }),
+        audit_fieldset_tuple)
 
     search_fields = [
         'infant_birth_feed_vaccine__infant_visit__appointment__registered_subject__subject_identifier',
