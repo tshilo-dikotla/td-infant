@@ -8,23 +8,20 @@ from edc_constants.choices import GENDER_UNDETERMINED
 from edc_export.model_mixins import ExportTrackingFieldsModelMixin
 from edc_offstudy.model_mixins import OffstudyModelMixin
 from edc_registration.models import RegisteredSubject
-from td_maternal.models import MaternalLabourDel, SubjectConsent
-# from td_appoinement_mixin import TdAppointmentMixin
+# from td_maternal.models import MaternalLabourDel, SubjectConsent
 
 
-class InfantBirth(OffstudyModelMixin,  # TdAppointmentMixin,
+class InfantBirth(OffstudyModelMixin,
                   ExportTrackingFieldsModelMixin, BaseUuidModel):
     """ A model completed by the user on the infant's birth. """
+#
+#     registered_subject = models.OneToOneField(
+#         RegisteredSubject, null=True, on_delete=PROTECT)
 
-    off_study_model = ('td_infant', 'InfantOffStudy')
-
-    registered_subject = models.OneToOneField(
-        RegisteredSubject, null=True, on_delete=PROTECT)
-
-    maternal_labour_del = models.ForeignKey(
-        MaternalLabourDel,
-        verbose_name="Mother's delivery record",
-        on_delete=PROTECT)
+#     maternal_labour_del = models.ForeignKey(
+#         MaternalLabourDel,
+#         verbose_name="Mother's delivery record",
+#         on_delete=PROTECT)
 
     report_datetime = models.DateTimeField(
         verbose_name="Date and Time infant enrolled",
@@ -49,10 +46,6 @@ class InfantBirth(OffstudyModelMixin,  # TdAppointmentMixin,
     gender = models.CharField(
         max_length=10,
         choices=GENDER_UNDETERMINED)
-
-#     objects = InfantBirthModelManager()
-
-#     history = SyncHistoricalRecords()
 
     def natural_key(self):
         return self.maternal_labour_del.natural_key()

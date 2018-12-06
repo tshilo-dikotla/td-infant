@@ -7,17 +7,19 @@ from edc_base.model_fields import OtherCharField
 from edc_constants.choices import YES_NO
 from edc_protocol.validators import datetime_not_before_study_start
 from edc_registration.models import RegisteredSubject
-from td_maternal.choices import (
-    CAUSE_OF_DEATH, CAUSE_OF_DEATH_CAT, MED_RESPONSIBILITY, HOSPITILIZATION_REASONS, SOURCE_OF_DEATH_INFO)
+from ..choices import RELATIONSHIP_CHOICES
+from ..choices import (
+    CAUSE_OF_DEATH, CAUSE_OF_DEATH_CAT, MED_RESPONSIBILITY,
+    HOSPITILIZATION_REASONS, SOURCE_OF_DEATH_INFO)
 from .infant_crf_model import InfantCrfModel
 
 
-class InfantDeathReport (InfantCrfModel):
+class InfantDeathReport(InfantCrfModel):
 
     """ A model completed by the user after an infant's death. """
 
-    registered_subject = models.OneToOneField(
-        RegisteredSubject, on_delete=PROTECT)
+#     registered_subject = models.OneToOneField(
+#         RegisteredSubject, on_delete=PROTECT)
 
     report_datetime = models.DateTimeField(
         verbose_name='Report Date',
@@ -125,6 +127,30 @@ class InfantDeathReport (InfantCrfModel):
     illness_duration = models.IntegerField(
         verbose_name='Duration of acute illness directly causing death   ',
         help_text='in days (If unknown enter -1)')
+
+    relation_death_ctx = models.CharField(
+        verbose_name=('Relationship between the infant\'s death and '
+                      '(CTX vs Placebo): '),
+        max_length=20,
+        choices=RELATIONSHIP_CHOICES)
+
+    relation_death_enp = models.CharField(
+        verbose_name=('Relationship between the infant\'s death and '
+                      'infant extended nevirapine prophylaxis: '),
+        max_length=20,
+        choices=RELATIONSHIP_CHOICES)
+
+    relation_death_haart = models.CharField(
+        verbose_name=('Relationship between the infant\'s death and '
+                      'HAART: '),
+        max_length=20,
+        choices=RELATIONSHIP_CHOICES)
+
+    relation_death_trad_med = models.CharField(
+        verbose_name=('Relationship between the infant\'s death and '
+                      'traditional medicine use: '),
+        max_length=20,
+        choices=RELATIONSHIP_CHOICES)
 
     class Meta:
         app_label = 'td_infant'

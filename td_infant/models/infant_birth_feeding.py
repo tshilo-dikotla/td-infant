@@ -3,9 +3,7 @@ from django.db import models
 from edc_base.model_mixins.base_uuid_model import BaseUuidModel
 from edc_visit_tracking.model_mixins import CrfInlineModelMixin
 from edc_export.model_mixins import ExportTrackingFieldsModelMixin
-# from edc_sync.models import SyncModelMixin, SyncHistoricalRecords
 from ..choices import INFANT_VACCINATIONS, FEEDING_CHOICES
-# from ..managers import InfantVaccinesManager
 
 from .infant_crf_model import InfantCrfModel
 

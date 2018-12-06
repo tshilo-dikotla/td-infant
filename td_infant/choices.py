@@ -1,8 +1,8 @@
 from edc_constants.constants import (
-    NOT_APPLICABLE, OTHER, FAILED_ELIGIBILITY)
+    NOT_APPLICABLE, OTHER, FAILED_ELIGIBILITY, UNKNOWN)
 from edc_visit_tracking.constants import (
     SCHEDULED, UNSCHEDULED, LOST_VISIT, MISSED_VISIT, COMPLETED_PROTOCOL_VISIT)
-from .constants import BROUGHT, REALTIME, CLOTH_NAPPY, BREASTFEED_ONLY
+from .constants import BROUGHT, REALTIME, CLOTH_NAPPY, BREASTFEED_ONLY, TUBERCULOSIS
 
 CNS_ABNORMALITIES = (
     ('None', 'None'),
@@ -22,6 +22,14 @@ CLEFT_DISORDER = (
     ('Cleft palate without cleft lip', 'Cleft palate without cleft lip'),
     ('Cleft lip and palate', 'Cleft lip and palate'),
     ('Cleft uvula', 'Cleft uvula'),
+)
+
+RELATIONSHIP_CHOICES = (
+    ('Not related', 'Not related'),
+    ('Probably not related', 'Probably not related'),
+    ('Possibly related', 'Possibly related'),
+    ('Probably related', 'Probably related'),
+    ('Definitely related', 'Definitely related'),
 )
 
 CARDIOVASCULAR_DISORDER = (
@@ -60,6 +68,72 @@ COWS_MILK = (
     ('store', '3. From store'),
     (NOT_APPLICABLE, 'Not Applicable'),
 )
+
+CAUSE_OF_DEATH = (
+    ('cryptococcal_meningitis', 'Cryptococcal meningitis'),
+    ('Cryptococcal_meningitis_relapse_IRIS',
+     'Cryptococcal meningitis relapse/IRIS'),
+    (TUBERCULOSIS, 'TB'),
+    ('bacteraemia', 'Bacteraemia'),
+    ('bacterial_pneumonia', 'Bacterial pneumonia'),
+    ('malignancy', 'Malignancy'),
+    ('art_toxicity', 'ART toxicity'),
+    ('IRIS_non_CM', 'IRIS non-CM'),
+    ('diarrhea_wasting', 'Diarrhea/wasting'),
+    (UNKNOWN, 'Unknown'),
+    (OTHER, 'Other'),
+)
+
+SOURCE_OF_DEATH_INFO = (
+    ('autopsy', 'Autopsy'),
+    ('clinical_records', 'Clinical_records'),
+    ('study_staff',
+     'Information from study care taker staff prior participant death'),
+    ('health_care_provider',
+     'Contact with other (non-study) physician/nurse/other health care provider'),
+    ('death_certificate', 'Death Certificate'),
+    ('relatives_friends', 'Information from participant\'s relatives or friends'),
+    ('obituary', 'Obituary'),
+    ('pending_information', 'Information requested, still pending'),
+    ('no_info', 'No information will ever be available'),
+    (OTHER, 'Other, specify'),)
+
+CAUSE_OF_DEATH_CAT = (
+    ('hiv_related', 'HIV infection or HIV related diagnosis'),
+    ('hiv_unrelated', 'Disease unrelated to HIV'),
+    ('study_drug', 'Toxicity from Study Drug'),
+    ('non_study_drug', 'Toxicity from non-Study drug'),
+    ('trauma', 'Trauma/Accident'),
+    ('no_info', 'No information available'),
+    (OTHER, 'Other, specify'),)
+
+MED_RESPONSIBILITY = (
+    ('doctor', 'Doctor'),
+    ('nurse', 'Nurse'),
+    ('traditional', 'Traditional Healer'),
+    ('all', 'Both Doctor or Nurse and Traditional Healer'),
+    ('none', 'No known medical care received (family/friends only)'),)
+
+HOSPITILIZATION_REASONS = (
+    ('respiratory illness(unspecified)', 'Respiratory Illness(unspecified)'),
+    ('respiratory illness, cxr confirmed', 'Respiratory Illness, CXR confirmed'),
+    ('respiratory illness, cxr confirmed, bacterial pathogen, specify',
+     'Respiratory Illness, CXR confirmed, bacterial pathogen, specify'),
+    ('respiratory illness, cxr confirmed, tb or probable tb',
+     'Respiratory Illness, CXR confirmed, TB or probable TB'),
+    ('diarrhea illness(unspecified)', 'Diarrhea Illness(unspecified)'),
+    ('diarrhea illness, viral or bacterial pathogen, specify',
+     'Diarrhea Illness, viral or bacterial pathogen, specify'),
+    ('sepsis(unspecified)', 'Sepsis(unspecified)'),
+    ('sepsis, pathogen specified, specify', 'Sepsis, pathogen specified, specify'),
+    ('mengitis(unspecified)', 'Mengitis(unspecified)'),
+    ('mengitis, pathogen specified, specify',
+     'Mengitis, pathogen specified, specify'),
+    ('non-infectious reason for hospitalization, specify',
+     'Non-infectious reason for hospitalization, specify'),
+    (OTHER, 'Other infection, specify'),
+)
+
 
 DX_INFANT = (
     ('Poor weight gain or failure to thrive',
@@ -293,12 +367,12 @@ RENAL_ANOMALY = (
     (OTHER, 'Other renal, ureteral, bladder, urethral abnormality, specify'),
 )
 
-ARV_STATUS_WITH_NEVER = 'ARV_STATUS_WITH_NEVER'
+ARV_STATUS_WITH_NEVER = (('ARV_STATUS_WITH_NEVER', 'ARV_STATUS_WITH_NEVER'),)
 MIN_AGE_OF_CONSENT = 'MIN_AGE_OF_CONSENT'
 STOOL_COLLECTION_TIME = (
     (REALTIME, 'Real Time'),
     (BROUGHT, 'Brought by mother'),
-    (NOT_APPLICABLE, 'Not applicable')
+    (NOT_APPLICABLE, 'Not applicable'),
 )
 
 RESPIRATORY_DEFECT = (
