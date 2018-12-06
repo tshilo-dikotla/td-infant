@@ -1,11 +1,13 @@
 from django.contrib import admin
 
 from ..forms import InfantBirthDataForm
+from ..admin_site import td_infant_admin
 from ..models import InfantBirthData
 
 from .base_infant_scheduled_modeladmin import BaseInfantScheduleModelAdmin
 
 
+@admin.register(InfantBirthData, site=td_infant_admin)
 class InfantBirthDataAdmin(BaseInfantScheduleModelAdmin):
 
     form = InfantBirthDataForm
@@ -25,5 +27,6 @@ class InfantBirthDataAdmin(BaseInfantScheduleModelAdmin):
     radio_fields = {
         "apgar_score": admin.VERTICAL,
         "congenital_anomalities": admin.VERTICAL}
+
 
 admin.site.register(InfantBirthData, InfantBirthDataAdmin)

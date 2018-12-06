@@ -1,11 +1,27 @@
 from django.contrib import admin
-
+from ..admin_site import td_infant_admin
 from ..models import InfantBirthArv
 
 from .base_infant_scheduled_modeladmin import BaseInfantScheduleModelAdmin
+from edc_model_admin.model_admin_audit_fields_mixin import audit_fieldset_tuple
 
 
+@admin.register(InfantBirthArv, site=td_infant_admin)
 class InfantBirthArvAdmin(BaseInfantScheduleModelAdmin):
+
+    fieldsets = (
+        (None, {
+            'fields': [
+                'infant_visit',
+                'report_datetime',
+                'azt_after_birth',
+                'azt_dose_date',
+                'azt_additional_dose',
+                'sdnvp_after_birth',
+                'nvp_dose_date',
+                'azt_discharge_supply',
+                'infant_arv_comments', ]}
+         ), audit_fieldset_tuple)
 
     list_display = (
         'infant_visit', 'azt_after_birth',
@@ -21,5 +37,6 @@ class InfantBirthArvAdmin(BaseInfantScheduleModelAdmin):
         'sdnvp_after_birth': admin.VERTICAL,
         'azt_discharge_supply': admin.VERTICAL,
     }
+
 
 admin.site.register(InfantBirthArv, InfantBirthArvAdmin)
