@@ -9,7 +9,7 @@ from .modeladmin_mixins import CrfModelAdminMixin
 
 
 @admin.register(InfantArvProphMod, site=td_infant_admin)
-class InfantArvProphModInline(TabularInlineMixin, admin.TabularInline):
+class InfantArvProphModInline(TabularInlineMixin, admin.TabularInline, admin.ModelAdmin):
 
     form = InfantArvProphModForm
     extra = 1

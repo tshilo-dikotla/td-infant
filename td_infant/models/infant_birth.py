@@ -8,7 +8,7 @@ from edc_constants.choices import GENDER_UNDETERMINED
 from edc_export.model_mixins import ExportTrackingFieldsModelMixin
 from edc_offstudy.model_mixins import OffstudyModelMixin
 from edc_registration.models import RegisteredSubject
-# from td_maternal.models import MaternalLabourDel, SubjectConsent
+from td_maternal.models import MaternalLabourDel, SubjectConsent
 
 
 class InfantBirth(OffstudyModelMixin,
@@ -18,10 +18,10 @@ class InfantBirth(OffstudyModelMixin,
 #     registered_subject = models.OneToOneField(
 #         RegisteredSubject, null=True, on_delete=PROTECT)
 
-#     maternal_labour_del = models.ForeignKey(
-#         MaternalLabourDel,
-#         verbose_name="Mother's delivery record",
-#         on_delete=PROTECT)
+    maternal_labour_del = models.ForeignKey(
+        MaternalLabourDel,
+        verbose_name="Mother's delivery record",
+        on_delete=PROTECT)
 
     report_datetime = models.DateTimeField(
         verbose_name="Date and Time infant enrolled",
