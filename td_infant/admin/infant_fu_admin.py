@@ -1,5 +1,5 @@
 from django.contrib import admin
-
+from edc_model_admin import audit_fieldset_tuple
 from ..admin_site import td_infant_admin
 from ..forms import InfantFuForm
 from ..models import InfantFu
@@ -9,6 +9,19 @@ from .modeladmin_mixins import CrfModelAdminMixin
 @admin.register(InfantFu, site=td_infant_admin)
 class InfantFuAdmin(CrfModelAdminMixin, admin.ModelAdmin):
     form = InfantFuForm
+
+    fieldsets = (
+        (None, {
+            'fields': (
+                'report_datetime',
+                'infant_visit',
+                'physical_assessment',
+                'diarrhea_illness',
+                'has_dx',
+                'was_hospitalized',
+                'days_hospitalized')
+        }),
+        audit_fieldset_tuple)
 
     list_display = (
         'physical_assessment',
