@@ -10,7 +10,7 @@ from tshilo_dikotla.base_model_admin import BaseModelAdmin
 from ..models import InfantFuDx, InfantFuDxItems
 from ..forms import InfantFuDxItemsForm
 
-from .base_infant_scheduled_modeladmin import BaseInfantScheduleModelAdmin
+from td_infant.admin.modeladmin_mixins import BaseInfantScheduleModelAdmin
 
 
 class InfantFuDxItemsInline(BaseTabularInline):

@@ -1,15 +1,14 @@
 from django.contrib import admin
-
-from ..models import InfantBirthExam
-from ..forms import InfantBirthExamForm
-from ..admin_site import td_infant_admin
-
-from .base_infant_scheduled_modeladmin import BaseInfantScheduleModelAdmin
 from edc_model_admin.model_admin_audit_fields_mixin import audit_fieldset_tuple
+
+from ..admin_site import td_infant_admin
+from ..forms import InfantBirthExamForm
+from ..models import InfantBirthExam
+from .modeladmin_mixins import CrfModelAdminMixin
 
 
 @admin.register(InfantBirthExam, site=td_infant_admin)
-class InfantBirthExamAdmin(BaseInfantScheduleModelAdmin):
+class InfantBirthExamAdmin(CrfModelAdminMixin, admin.ModelAdmin):
     form = InfantBirthExamForm
 
     fiedlsets = (
@@ -57,6 +56,3 @@ class InfantBirthExamAdmin(BaseInfantScheduleModelAdmin):
         'skin_exam': admin.VERTICAL,
         'neurologic_exam': admin.VERTICAL
     }
-
-
-admin.site.register(InfantBirthExam, InfantBirthExamAdmin)

@@ -3,7 +3,7 @@ from django.contrib import admin
 from ..forms import InfantNvpDispensingForm
 from ..models import InfantNvpDispensing
 
-from .base_infant_scheduled_modeladmin import BaseInfantScheduleModelAdmin
+from td_infant.admin.modeladmin_mixins import BaseInfantScheduleModelAdmin
 
 
 class InfantNvpDispensingAdmin(BaseInfantScheduleModelAdmin, admin.ModelAdmin):

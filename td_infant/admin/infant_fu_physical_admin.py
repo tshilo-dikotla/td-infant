@@ -3,7 +3,7 @@ from django.contrib import admin
 from ..forms import InfantFuPhysicalForm
 from ..models import InfantFuPhysical
 
-from .base_infant_scheduled_modeladmin import BaseInfantScheduleModelAdmin
+from td_infant.admin.modeladmin_mixins import BaseInfantScheduleModelAdmin
 
 
 class InfantFuPhysicalAdmin(BaseInfantScheduleModelAdmin):

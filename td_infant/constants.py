@@ -1,5 +1,6 @@
-BROUGHT = 'brought'
 BREASTFEED_ONLY = 'Breastfeeding only'
-REALTIME = 'real-time'
+BROUGHT = 'brought'
 CLOTH_NAPPY = 'cloth nappy'
+INFANT = 'infant'
+REALTIME = 'real-time'
 TUBERCULOSIS = 'TB'

@@ -1,6 +1,3 @@
-from collections import OrderedDict
-
-from django.contrib import admin
 from django.contrib import admin
 from edc_model_admin import TabularInlineMixin
 from edc_model_admin.model_admin_audit_fields_mixin import audit_fieldset_tuple
@@ -8,7 +5,7 @@ from edc_model_admin.model_admin_audit_fields_mixin import audit_fieldset_tuple
 from ..admin_site import td_infant_admin
 from ..forms import InfantArvProphForm, InfantArvProphModForm
 from ..models import InfantArvProphMod, InfantArvProph
-from .base_infant_scheduled_modeladmin import BaseInfantScheduleModelAdmin
+from .modeladmin_mixins import CrfModelAdminMixin
 
 
 class InfantArvProphModInline(TabularInlineMixin, admin.TabularInline):
@@ -29,7 +26,7 @@ class InfantArvProphModInline(TabularInlineMixin, admin.TabularInline):
 
 
 @admin.register(InfantArvProph, site=td_infant_admin)
-class InfantArvProphAdmin(BaseInfantScheduleModelAdmin):
+class InfantArvProphAdmin(CrfModelAdminMixin, admin.ModelAdmin):
 
     form = InfantArvProphForm
     fieldsets = (
@@ -46,11 +43,8 @@ class InfantArvProphAdmin(BaseInfantScheduleModelAdmin):
     }
 
 
-admin.site.register(InfantArvProph, InfantArvProphAdmin)
-
-
 @admin.register(InfantArvProphAdmin, site=td_infant_admin)
-class InfantArvProphModAdmin(BaseInfantScheduleModelAdmin):
+class InfantArvProphModAdmin(CrfModelAdminMixin, admin.ModelAdmin):
 
     form = InfantArvProphModForm
 
@@ -67,22 +61,5 @@ class InfantArvProphModAdmin(BaseInfantScheduleModelAdmin):
          ), audit_fieldset_tuple)
 
     search_fields = [
-        'infant_arv_proph__infant_visit__appointment__registered_subject__subject_identifier',
+        'infant_arv_proph__infant_visit__subject_identifier',
         'infant_arv_proph__infant_visit__appointment__registered_subject__initials', ]
-
-    actions = [
-        export_as_csv_action(
-            description="CSV Export of Infant NVP or AZT Proph",
-            fields=[],
-            delimiter=',',
-            exclude=['created', 'modified', 'user_created', 'user_modified', 'revision', 'id', 'hostname_created',
-                     'hostname_modified'],
-            extra_fields=OrderedDict(
-                {'subject_identifier': 'infant_arv_proph__infant_visit__appointment__registered_subject__subject_identifier',
-                 'gender': 'infant_arv_proph__infant_visit__appointment__registered_subject__gender',
-                 'dob': 'infant_arv_proph__infant_visit__appointment__registered_subject__dob',
-                 }),
-        )]
-
-
-admin.site.register(InfantArvProphMod, InfantArvProphModAdmin)

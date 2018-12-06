@@ -4,7 +4,7 @@ from tshilo_dikotla.base_model_admin import BaseModelAdmin
 from ..forms import SolidFoodAssessementForm
 from ..models import SolidFoodAssessment
 
-from .base_infant_scheduled_modeladmin import BaseInfantScheduleModelAdmin
+from td_infant.admin.modeladmin_mixins import BaseInfantScheduleModelAdmin
 
 
 class SolidFoodAssessmentAdmin(BaseInfantScheduleModelAdmin, BaseModelAdmin):

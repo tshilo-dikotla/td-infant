@@ -1,13 +1,13 @@
 from django.contrib import admin
+from edc_model_admin.model_admin_audit_fields_mixin import audit_fieldset_tuple
+
 from ..admin_site import td_infant_admin
 from ..models import InfantBirthArv
-
-from .base_infant_scheduled_modeladmin import BaseInfantScheduleModelAdmin
-from edc_model_admin.model_admin_audit_fields_mixin import audit_fieldset_tuple
+from .modeladmin_mixins import CrfModelAdminMixin
 
 
 @admin.register(InfantBirthArv, site=td_infant_admin)
-class InfantBirthArvAdmin(BaseInfantScheduleModelAdmin):
+class InfantBirthArvAdmin(CrfModelAdminMixin, admin.ModelAdmin):
 
     fieldsets = (
         (None, {
@@ -37,6 +37,3 @@ class InfantBirthArvAdmin(BaseInfantScheduleModelAdmin):
         'sdnvp_after_birth': admin.VERTICAL,
         'azt_discharge_supply': admin.VERTICAL,
     }
-
-
-admin.site.register(InfantBirthArv, InfantBirthArvAdmin)

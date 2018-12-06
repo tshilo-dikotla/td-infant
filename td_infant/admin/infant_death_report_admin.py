@@ -10,7 +10,7 @@ from tshilo_dikotla.base_model_admin import BaseModelAdmin
 from ..forms import InfantDeathReportForm
 from ..models import InfantDeathReport, InfantVisit
 
-from .base_infant_scheduled_modeladmin import BaseInfantScheduleModelAdmin
+from td_infant.admin.modeladmin_mixins import BaseInfantScheduleModelAdmin
 
 
 class InfantDeathReportAdmin(BaseInfantScheduleModelAdmin, BaseModelAdmin):

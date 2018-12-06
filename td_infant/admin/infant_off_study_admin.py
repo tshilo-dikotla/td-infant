@@ -5,7 +5,7 @@ from tshilo_dikotla.constants import INFANT
 from ..forms import InfantOffStudyForm
 from ..models import InfantOffStudy
 
-from .base_infant_scheduled_modeladmin import BaseInfantScheduleModelAdmin
+from td_infant.admin.modeladmin_mixins import BaseInfantScheduleModelAdmin
 
 
 class InfantOffStudyAdmin(BaseInfantScheduleModelAdmin):

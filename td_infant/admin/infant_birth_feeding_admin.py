@@ -1,18 +1,14 @@
-from collections import OrderedDict
-
 from django.contrib import admin
-
-from edc_base.modeladmin.admin import BaseTabularInline
-from edc_export.actions import export_as_csv_action
-
-from ..models import InfantBirthFeedingVaccine, InfantVaccines
-from ..forms import InfantVaccinesForm, InfantBirthFeedinVaccineForm
-
-from .base_infant_scheduled_modeladmin import BaseInfantScheduleModelAdmin
+from edc_model_admin import TabularInlineMixin
 from edc_model_admin.model_admin_audit_fields_mixin import audit_fieldset_tuple
 
+from ..admin_site import td_infant_admin
+from ..forms import InfantVaccinesForm, InfantBirthFeedinVaccineForm
+from ..models import InfantBirthFeedingVaccine, InfantVaccines
+from .modeladmin_mixins import ModelAdminMixin
 
-class InfantVaccinesInline(BaseTabularInline):
+
+class InfantVaccinesInline(TabularInlineMixin, admin.TabularInline):
 
     model = InfantVaccines
     form = InfantVaccinesForm
@@ -28,7 +24,8 @@ class InfantVaccinesInline(BaseTabularInline):
     )
 
 
-class InfantBirthFeedingVaccineAdmin(BaseInfantScheduleModelAdmin):
+@admin.register(InfantBirthFeedingVaccine, site=td_infant_admin)
+class InfantBirthFeedingVaccineAdmin(ModelAdminMixin, admin.ModelAdmin):
     form = InfantBirthFeedinVaccineForm
 
     fieldsets = (
@@ -49,10 +46,8 @@ class InfantBirthFeedingVaccineAdmin(BaseInfantScheduleModelAdmin):
     radio_fields = {'feeding_after_delivery': admin.VERTICAL}
 
 
-admin.site.register(InfantBirthFeedingVaccine, InfantBirthFeedingVaccineAdmin)
-
-
-class InfantVaccinesAdmin(admin.ModelAdmin):
+@admin.register(InfantVaccines, site=td_infant_admin)
+class InfantVaccinesAdmin(ModelAdminMixin, admin.ModelAdmin):
     form = InfantVaccinesForm
 
     search_fields = [
@@ -71,6 +66,3 @@ class InfantVaccinesAdmin(admin.ModelAdmin):
 #                  'infant_birth_feed_vaccine__infant_visit__appointment__registered_subject__subject_identifier',
 #                  }),
 #         )]
-
-
-admin.site.register(InfantVaccines, InfantVaccinesAdmin)
