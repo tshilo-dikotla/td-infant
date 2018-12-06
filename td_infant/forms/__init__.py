@@ -4,6 +4,19 @@ from .infant_birth_data_form import InfantBirthDataForm
 from .infant_birth_feeding_forms import InfantBirthFeedingForm
 from .infant_birth_form import InfantBirthForm
 from .infant_congenital_anomalies_form import InfantCongenitalAnomaliesForm
+from .infant_congenital_anomalies_form import InfantCardioDisorderForm
+from .infant_congenital_anomalies_form import InfantCleftDisorderForm
+from .infant_congenital_anomalies_form import InfantCnsForm
+from .infant_congenital_anomalies_form import InfantFacialDefectForm
+from .infant_congenital_anomalies_form import InfantFemaleGenitalForm
+from .infant_congenital_anomalies_form import InfantLowerGiForm
+from .infant_congenital_anomalies_form import InfantMaleGenitalForm
+from .infant_congenital_anomalies_form import InfantMouthUpGiForm
+from .infant_congenital_anomalies_form import InfantMusculoskeletalForm
+from .infant_congenital_anomalies_form import InfantRenalForm
+from .infant_congenital_anomalies_form import InfantRespiratoryDefectForm
+from .infant_congenital_anomalies_form import InfantSkinForm
+from .infant_congenital_anomalies_form import InfantTrisomiesForm
 from .infant_crf_model_form import InfantCrfModelForm
 from .infant_death_report_form import InfantDeathReportForm
 from .infant_feeding_form import InfantFeedingForm
@@ -19,3 +32,6 @@ from .infant_visit_form import InfantVisitForm
 from .signals_form import SignalsForm
 from .solid_food_assessment_form import SolidFoodAssessmentForm
 from .infant_arv_proph_mod_form import InfantArvProphModForm
+from .infant_birth_exam_form import InfantBirthExamForm
+from .infant_vaccines_form import InfantVaccinesForm
+from .infant_birth_feedin_vaccine_form import InfantBirthFeedinVaccineForm
