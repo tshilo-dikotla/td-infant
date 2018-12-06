@@ -1,12 +1,14 @@
 from django.contrib import admin
 
+from td_infant.admin.modeladmin_mixins import CrfModelAdminMixin
+
+from ..admin_site import td_infant_admin
 from ..forms import InfantFuPhysicalForm
 from ..models import InfantFuPhysical
 
-from td_infant.admin.modeladmin_mixins import BaseInfantScheduleModelAdmin
 
-
-class InfantFuPhysicalAdmin(BaseInfantScheduleModelAdmin):
+@admin.register(InfantFuPhysical, site=td_infant_admin)
+class InfantFuPhysicalAdmin(CrfModelAdminMixin, admin.ModelAdmin):
     form = InfantFuPhysicalForm
 
     radio_fields = {
@@ -19,5 +21,3 @@ class InfantFuPhysicalAdmin(BaseInfantScheduleModelAdmin):
         'skin_exam': admin.VERTICAL,
         'neurologic_exam': admin.VERTICAL
     }
-
-admin.site.register(InfantFuPhysical, InfantFuPhysicalAdmin)

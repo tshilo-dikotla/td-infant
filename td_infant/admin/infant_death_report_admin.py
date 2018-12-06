@@ -1,19 +1,14 @@
-from collections import OrderedDict
-
 from django.contrib import admin
-
-from edc_export.actions import export_as_csv_action
 from edc_registration.models import RegisteredSubject
 
-from tshilo_dikotla.base_model_admin import BaseModelAdmin
-
+from ..admin_site import td_infant_admin
 from ..forms import InfantDeathReportForm
 from ..models import InfantDeathReport, InfantVisit
+from .modeladmin_mixins import ModelAdminMixin
 
-from td_infant.admin.modeladmin_mixins import BaseInfantScheduleModelAdmin
 
-
-class InfantDeathReportAdmin(BaseInfantScheduleModelAdmin, BaseModelAdmin):
+@admin.register(InfantDeathReport, site=td_infant_admin)
+class InfantDeathReportAdmin(ModelAdminMixin, admin.ModelAdmin):
 
     form = InfantDeathReportForm
 
@@ -69,5 +64,3 @@ class InfantDeathReportAdmin(BaseInfantScheduleModelAdmin, BaseModelAdmin):
                 kwargs["queryset"] = RegisteredSubject.objects.filter(
                     subject_identifier=infant_visit.appointment.registered_subject.subject_identifier)
         return super(InfantDeathReportAdmin, self).formfield_for_foreignkey(db_field, request, **kwargs)
-
-admin.site.register(InfantDeathReport, InfantDeathReportAdmin)

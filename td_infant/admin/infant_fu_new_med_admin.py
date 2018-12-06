@@ -1,25 +1,21 @@
-from collections import OrderedDict
-
 from django.contrib import admin
+from edc_model_admin import TabularInlineMixin
 
-from edc_base.modeladmin.admin import BaseTabularInline
-from edc_export.actions import export_as_csv_action
-
-from tshilo_dikotla.base_model_admin import BaseModelAdmin
-
+from ..admin_site import td_infant_admin
 from ..forms import InfantFuNewMedItemsForm, InfantFuNewMedForm
 from ..models import InfantFuNewMed, InfantFuNewMedItems
-from td_infant.admin.modeladmin_mixins import BaseInfantScheduleModelAdmin
+from .modeladmin_mixins import CrfModelAdminMixin
 
 
-class InfantFuNewMedItemsInline(BaseTabularInline):
+class InfantFuNewMedItemsInline(TabularInlineMixin, admin.TabularInline):
 
     model = InfantFuNewMedItems
     form = InfantFuNewMedItemsForm
     extra = 0
 
 
-class InfantFuNewMedItemsAdmin(BaseModelAdmin):
+@admin.register(InfantFuNewMedItems, site=td_infant_admin)
+class InfantFuNewMedItemsAdmin(CrfModelAdminMixin):
 
     form = InfantFuNewMedItemsForm
 
@@ -27,28 +23,10 @@ class InfantFuNewMedItemsAdmin(BaseModelAdmin):
         'infant_fu_med__infant_visit__appointment__registered_subject__subject_identifier',
         'infant_fu_med__infant_visit__appointment__registered_subject__initials', ]
 
-    actions = [
-        export_as_csv_action(
-            description="CSV Export of Followup New Medications with meds list",
-            fields=[],
-            delimiter=',',
-            exclude=['created', 'modified', 'user_created', 'user_modified', 'revision', 'id', 'hostname_created',
-                     'hostname_modified'],
-            extra_fields=OrderedDict(
-                {'subject_identifier':
-                 'infant_fu_med__infant_visit__appointment__registered_subject__subject_identifier',
-                 'gender': 'infant_fu_med__infant_visit__appointment__registered_subject__gender',
-                 'dob': 'infant_fu_med__infant_visit__appointment__registered_subject__dob',
-                 'new_medications': 'infant_fu_med__new_medications',
-                 }),
-        )]
-admin.site.register(InfantFuNewMedItems, InfantFuNewMedItemsAdmin)
 
-
-class InfantFuNewMedAdmin(BaseInfantScheduleModelAdmin):
+@admin.register(InfantFuNewMed, site=td_infant_admin)
+class InfantFuNewMedAdmin(CrfModelAdminMixin, admin.ModelAdmin):
 
     radio_fields = {'new_medications': admin.VERTICAL, }
     inlines = [InfantFuNewMedItemsInline, ]
     form = InfantFuNewMedForm
-
-admin.site.register(InfantFuNewMed, InfantFuNewMedAdmin)
