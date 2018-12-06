@@ -15,6 +15,7 @@ class InfantBirthExamAdmin(CrfModelAdminMixin, admin.ModelAdmin):
         (None, {
             'fields': [
                 'infant_visit',
+                'report_datetime',
                 'general_activity',
                 'abnormal_activity',
                 'physical_exam_result',
