@@ -19,8 +19,9 @@ import configparser
 from pathlib import PurePath
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SITE_ID = 40
+DEFAULT_STUDY_SITE = '40'
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = '0s7@cgv8cq9x5(6*#v@=!447wj6a)1ptauvzf$7_1k3(gvn5m%'
@@ -55,15 +56,21 @@ INSTALLED_APPS = [
     'django_crypto_fields.apps.AppConfig',
     'edc_protocol.apps.AppConfig',
     'edc_label.apps.AppConfig',
-    'td_infant.apps.AppConfig',
+    'edc_lab.apps.AppConfig',
+    'edc_locator.apps.AppConfig',
     'edc_export.apps.AppConfig',
     'edc_timepoint.apps.AppConfig',
     'edc_appointment.apps.AppConfig',
+    'edc_action_item.apps.AppConfig',
+    'edc_visit_tracking.apps.AppConfig',
+    'td_maternal.apps.AppConfig',
+    'td_infant.apps.AppConfig',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'edc_subject_dashboard.middleware.DashboardMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',

@@ -1,34 +1,35 @@
 from django.db import models
+from django.db.models.deletion import PROTECT
 
 from edc_base.model_mixins import BaseUuidModel
-from edc_base.model_validators import  datetime_not_future
+from edc_base.model_validators import datetime_not_future
 from edc_base.model_validators.date import date_not_future
 from edc_constants.choices import GENDER_UNDETERMINED
 from edc_export.model_mixins import ExportTrackingFieldsModelMixin
-from edc_offstudy.models import OffStudyMixin
+from edc_offstudy.model_mixins import OffstudyModelMixin
 from edc_registration.models import RegisteredSubject
-#from edc_sync.models import SyncModelMixin, SyncHistoricalRecords
-from td_maternal.models import MaternalLabourDel
-from ..managers import InfantBirthModelManager
-from td_maternal.models.maternal_consent import MaternalConsent
-from td_appoinement_mixin import TdAppointmentMixin
+from td_maternal.models import MaternalLabourDel, SubjectConsent
+# from td_appoinement_mixin import TdAppointmentMixin
 
 
-class InfantBirth( OffStudyMixin, TdAppointmentMixin, ExportTrackingFieldsModelMixin, BaseUuidModel):
+class InfantBirth(OffstudyModelMixin,  # TdAppointmentMixin,
+                  ExportTrackingFieldsModelMixin, BaseUuidModel):
     """ A model completed by the user on the infant's birth. """
 
     off_study_model = ('td_infant', 'InfantOffStudy')
 
-    registered_subject = models.OneToOneField(RegisteredSubject, null=True)
+    registered_subject = models.OneToOneField(
+        RegisteredSubject, null=True, on_delete=PROTECT)
 
     maternal_labour_del = models.ForeignKey(
         MaternalLabourDel,
-        verbose_name="Mother's delivery record")
+        verbose_name="Mother's delivery record",
+        on_delete=PROTECT)
 
     report_datetime = models.DateTimeField(
         verbose_name="Date and Time infant enrolled",
         validators=[
-            datetime_not_future,],
+            datetime_not_future, ],
         help_text='')
 
     first_name = models.CharField(
@@ -49,13 +50,14 @@ class InfantBirth( OffStudyMixin, TdAppointmentMixin, ExportTrackingFieldsModelM
         max_length=10,
         choices=GENDER_UNDETERMINED)
 
-    objects = InfantBirthModelManager()
+#     objects = InfantBirthModelManager()
 
-    history = SyncHistoricalRecords()
+#     history = SyncHistoricalRecords()
 
     def natural_key(self):
         return self.maternal_labour_del.natural_key()
-    natural_key.dependencies = ['td_maternal.maternallabourdel', 'edc_registration.registered_subject']
+    natural_key.dependencies = [
+        'td_maternal.maternallabourdel', 'edc_registration.registered_subject']
 
     def __str__(self):
         return "{} ({}) {}".format(self.first_name, self.initials, self.gender)
@@ -66,7 +68,7 @@ class InfantBirth( OffStudyMixin, TdAppointmentMixin, ExportTrackingFieldsModelM
 
 #     @property
 #     def maternal_consents(self):
-#         return MaternalConsent.objects.filter(
+#         return SubjectConsent.objects.filter(
 #             subject_identifier=self.registered_subject.relative_identifier)
 
 #     def prepare_appointments(self, using):
@@ -74,12 +76,12 @@ class InfantBirth( OffStudyMixin, TdAppointmentMixin, ExportTrackingFieldsModelM
 #         relative_identifier = self.registered_subject.relative_identifier
 #         maternal_labour_del = MaternalLabourDel.objects.get(
 #             registered_subject__subject_identifier=relative_identifier)
-#         maternal_consent = MaternalConsent.objects.filter(
+#         maternal_consent = SubjectConsent.objects.filter(
 #                     subject_identifier=relative_identifier).order_by('version').last()
 #         instruction = 'V' + maternal_consent.version
 #         self.create_all(
-#             base_appt_datetime=maternal_labour_del.delivery_datetime, using=using, instruction=instruction)
-
+# base_appt_datetime=maternal_labour_del.delivery_datetime, using=using,
+# instruction=instruction)
 
     def get_subject_identifier(self):
         return self.registered_subject.subject_identifier

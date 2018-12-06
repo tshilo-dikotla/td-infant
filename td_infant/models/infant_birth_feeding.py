@@ -2,13 +2,10 @@ from django.db import models
 
 from edc_base.model_mixins.base_uuid_model import BaseUuidModel
 from edc_visit_tracking.model_mixins import CrfInlineModelMixin
-#from edc_sync.models import SyncModelMixin, SyncHistoricalRecords
 from edc_export.model_mixins import ExportTrackingFieldsModelMixin
-
-from tshilo_dikotla.choices import FEEDING_CHOICES
-
-from ..choices import INFANT_VACCINATIONS
-from ..managers import InfantVaccinesManager
+# from edc_sync.models import SyncModelMixin, SyncHistoricalRecords
+from ..choices import INFANT_VACCINATIONS, FEEDING_CHOICES
+# from ..managers import InfantVaccinesManager
 
 from .infant_crf_model import InfantCrfModel
 
@@ -36,7 +33,8 @@ class InfantBirthFeedingVaccine(InfantCrfModel):
 
 class InfantVaccines(CrfInlineModelMixin, ExportTrackingFieldsModelMixin, BaseUuidModel):
 
-    infant_birth_feed_vaccine = models.ForeignKey(InfantBirthFeedingVaccine)
+    infant_birth_feed_vaccine = models.ForeignKey(
+        InfantBirthFeedingVaccine, on_delete=models.CASCADE)
 
     vaccination = models.CharField(
         choices=INFANT_VACCINATIONS,
@@ -47,10 +45,6 @@ class InfantVaccines(CrfInlineModelMixin, ExportTrackingFieldsModelMixin, BaseUu
         verbose_name='Date Vaccine was given',
         null=True,
         blank=True)
-
-    objects = InfantVaccinesManager()
-
-    history = SyncHistoricalRecords()
 
     def natural_key(self):
         return (self.vaccination, ) + self.infant_birth_feed_vaccine.natural_key()

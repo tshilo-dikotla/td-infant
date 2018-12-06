@@ -1,15 +1,12 @@
 from django.db import models
 
-# from edc_base.audit_trail import AuditTrail
 from edc_base.model_mixins import BaseUuidModel
 from edc_constants.choices import YES_NO
-from edc_constants.constants import NOT_APPLICABLE
 from edc_export.model_mixins import ExportTrackingFieldsModelMixin
-# from edc_sync.models import SyncModelMixin, SyncHistoricalRecords
 from edc_visit_tracking.model_mixins import CrfInlineModelMixin
 
 from ..choices import ARV_MODIFICATION_REASON, ARV_DRUG_LIST, DOSE_STATUS, ARV_STATUS_WITH_NEVER
-from ..managers import InfantArvProphModManager
+# from ..managers import InfantArvProphModManager
 
 from .infant_crf_model import InfantCrfModel
 
@@ -40,7 +37,8 @@ class InfantArvProph(InfantCrfModel):
 class InfantArvProphMod(CrfInlineModelMixin, ExportTrackingFieldsModelMixin, BaseUuidModel):
     """ A model completed by the user on the infant's nvp or azt prophylaxis modifications. """
 
-    infant_arv_proph = models.ForeignKey(InfantArvProph)
+    infant_arv_proph = models.ForeignKey(
+        InfantArvProph, on_delete=models.CASCADE)
 
     arv_code = models.CharField(
         verbose_name="ARV Code",
@@ -70,8 +68,7 @@ class InfantArvProphMod(CrfInlineModelMixin, ExportTrackingFieldsModelMixin, Bas
         null=True,
         blank=True)
 
-    objects = InfantArvProphModManager()
-
+#     objects = InfantArvProphModManager()
 
     def natural_key(self):
         return (self.arv_code, ) + self.infant_arv_proph.natural_key()
