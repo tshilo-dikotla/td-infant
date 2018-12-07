@@ -1,9 +1,9 @@
 from django import forms
-# from ..models import InfantBirthFeedingVaccine
-# from
-# from ..form_mixins import SubjectModelFormMixin
+from ..models import InfantArvProph
 
 
 class InfantArvProphForm(forms.ModelForm):
 
-    pass
+    class Meta:
+        model = InfantArvProph
+        fields = '__all__'
