@@ -1,6 +1,9 @@
 from django import forms
+from ..models import InfantVisit
 
 
 class InfantVisitForm(forms.ModelForm):
 
-    pass
+    class Meta:
+        model = InfantVisit
+        fields = '__all__'
