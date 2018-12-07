@@ -3,7 +3,7 @@ from django.contrib import admin
 from ..admin_site import td_infant_admin
 from ..forms import InfantFeedingForm
 from ..models import InfantFeeding
-from .modeladmin_mixins import CrfModelAdminMixin
+from td_infant.admin.model_admin_mixins import CrfModelAdminMixin
 
 
 @admin.register(InfantFeeding, site=td_infant_admin)

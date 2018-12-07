@@ -30,7 +30,7 @@ class InfantFuImmunizations(InfantCrfModel):
         verbose_name="Is the child missing any vaccinations?",
         help_text="")
 
-    class Meta:
+    class Meta(InfantCrfModel.Meta):
         app_label = 'td_infant'
         verbose_name = "Infant FollowUp: Immunizations"
         verbose_name_plural = "Infant FollowUp: Immunizations"

@@ -3,7 +3,7 @@ from edc_model_admin import TabularInlineMixin, audit_fieldset_tuple
 from ..admin_site import td_infant_admin
 from ..forms import InfantFuImmunizationsForm, VaccinesReceivedForm, VaccinesMissedForm
 from ..models import InfantFuImmunizations, VaccinesReceived, VaccinesMissed
-from .modeladmin_mixins import CrfModelAdminMixin
+from td_infant.admin.model_admin_mixins import CrfModelAdminMixin
 
 
 class VaccinesReceivedInlineAdmin(TabularInlineMixin, admin.TabularInline):

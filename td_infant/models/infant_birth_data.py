@@ -75,7 +75,7 @@ class InfantBirthData(InfantCrfModel):
         blank=True,
         null=True)
 
-    class Meta:
+    class Meta(InfantCrfModel.Meta):
         app_label = 'td_infant'
         verbose_name = "Infant Birth: Data"
         verbose_name_plural = "Infant Birth: Data"

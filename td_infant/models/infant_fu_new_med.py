@@ -26,7 +26,7 @@ class InfantFuNewMed(InfantCrfModel):
                   "only report oral and intravenous meds",
     )
 
-    class Meta:
+    class Meta(InfantCrfModel.Meta):
         app_label = 'td_infant'
         verbose_name = "Infant FollowUp: New Medication"
         verbose_name_plural = "Infant FollowUp: New Medication"
@@ -67,7 +67,6 @@ class InfantFuNewMedItems(CrfInlineModelMixin, BaseUuidModel):
     def natural_key(self):
         return (self.medication, ) + self.infant_fu_med.natural_key()
 
-    class Meta:
-        app_label = 'td_infant'
+    class Meta(InfantCrfModel.Meta):
         verbose_name = "Infant FollowUp: New Med Items"
         verbose_name_plural = "Infant FollowUp: New Med Items"

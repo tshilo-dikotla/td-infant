@@ -5,7 +5,7 @@ from edc_registration.models import RegisteredSubject
 from ..admin_site import td_infant_admin
 from ..forms import InfantDeathReportForm
 from ..models import InfantDeathReport, InfantVisit
-from .modeladmin_mixins import ModelAdminMixin
+from td_infant.admin.model_admin_mixins import ModelAdminMixin
 
 
 @admin.register(InfantDeathReport, site=td_infant_admin)

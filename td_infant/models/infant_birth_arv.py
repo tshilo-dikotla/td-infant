@@ -52,7 +52,7 @@ class InfantBirthArv(InfantCrfModel):
         blank=True,
         null=True)
 
-    class Meta:
+    class Meta(InfantCrfModel.Meta):
         app_label = 'td_infant'
         verbose_name = "Infant Birth Record: ARV"
         verbose_name_plural = "Infant Birth Record: ARV"

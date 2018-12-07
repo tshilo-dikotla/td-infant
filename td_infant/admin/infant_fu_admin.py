@@ -3,7 +3,7 @@ from edc_model_admin import audit_fieldset_tuple
 from ..admin_site import td_infant_admin
 from ..forms import InfantFuForm
 from ..models import InfantFu
-from .modeladmin_mixins import CrfModelAdminMixin
+from td_infant.admin.model_admin_mixins import CrfModelAdminMixin
 
 
 @admin.register(InfantFu, site=td_infant_admin)

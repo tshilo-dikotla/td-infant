@@ -1,6 +1,9 @@
+from ..models import InfantBirthData
 from .infant_form_mixin import InfantModelFormMixin
 
 
 class InfantBirthDataForm(InfantModelFormMixin):
 
-    pass
+    class Meta:
+        model = InfantBirthData
+        fields = '__all__'

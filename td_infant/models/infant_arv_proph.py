@@ -26,7 +26,7 @@ class InfantArvProph(InfantCrfModel):
         choices=ARV_STATUS_WITH_NEVER,
         help_text="referring to prophylaxis other than single dose NVP")
 
-    class Meta:
+    class Meta(InfantCrfModel.Meta):
         verbose_name = 'Infant NVP or AZT Proph'
         verbose_name_plural = 'Infant NVP or AZT Proph'
 
@@ -68,8 +68,7 @@ class InfantArvProphMod(CrfInlineModelMixin, BaseUuidModel):
     def natural_key(self):
         return (self.arv_code, ) + self.infant_arv_proph.natural_key()
 
-    class Meta:
-        app_label = 'td_infant'
+    class Meta(InfantCrfModel.Meta):
         verbose_name = 'Infant NVP or AZT Proph: Mods'
         verbose_name_plural = 'Infant NVP or AZT Proph: Mods'
         unique_together = (
