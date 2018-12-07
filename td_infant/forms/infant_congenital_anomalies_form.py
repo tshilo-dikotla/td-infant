@@ -1,4 +1,4 @@
-from django import forms
+from .infant_form_mixin import InfantModelFormMixin
 from ..models import (InfantCongenitalAnomalies, InfantCardioDisorder,
                       InfantMusculoskeletal, InfantRenal, InfantFemaleGenital,
                       InfantCleftDisorder, InfantFacialDefect, InfantMouthUpGi,
@@ -6,85 +6,85 @@ from ..models import (InfantCongenitalAnomalies, InfantCardioDisorder,
                       InfantSkin, InfantCns, InfantTrisomies)
 
 
-class InfantCongenitalAnomaliesForm(forms.ModelForm):
+class InfantCongenitalAnomaliesForm(InfantModelFormMixin):
     class Meta:
         model = InfantCongenitalAnomalies
         fields = '__all__'
 
 
-class InfantFacialDefectForm(forms.ModelForm):
+class InfantFacialDefectForm(InfantModelFormMixin):
     class Meta:
         model = InfantFacialDefect
         fields = '__all__'
 
 
-class InfantCleftDisorderForm(forms.ModelForm):
+class InfantCleftDisorderForm(InfantModelFormMixin):
     class Meta:
         model = InfantCleftDisorder
         fields = '__all__'
 
 
-class InfantMouthUpGiForm(forms.ModelForm):
+class InfantMouthUpGiForm(InfantModelFormMixin):
     class Meta:
         model = InfantMouthUpGi
         fields = '__all__'
 
 
-class InfantCardioDisorderForm(forms.ModelForm):
+class InfantCardioDisorderForm(InfantModelFormMixin):
     class Meta:
         model = InfantCardioDisorder
         fields = '__all__'
 
 
-class InfantRespiratoryDefectForm(forms.ModelForm):
+class InfantRespiratoryDefectForm(InfantModelFormMixin):
     class Meta:
         model = InfantRespiratoryDefect
         fields = '__all__'
 
 
-class InfantLowerGiForm(forms.ModelForm):
+class InfantLowerGiForm(InfantModelFormMixin):
     class Meta:
         model = InfantLowerGi
         fields = '__all__'
 
 
-class InfantFemaleGenitalForm(forms.ModelForm):
+class InfantFemaleGenitalForm(InfantModelFormMixin):
     class Meta:
         model = InfantFemaleGenital
         fields = '__all__'
 
 
-class InfantMaleGenitalForm(forms.ModelForm):
+class InfantMaleGenitalForm(InfantModelFormMixin):
     class Meta:
         model = InfantMaleGenital
         fields = '__all__'
 
 
-class InfantRenalForm(forms.ModelForm):
+class InfantRenalForm(InfantModelFormMixin):
     class Meta:
         model = InfantRenal
         fields = '__all__'
 
 
-class InfantMusculoskeletalForm(forms.ModelForm):
+class InfantMusculoskeletalForm(InfantModelFormMixin):
     class Meta:
         model = InfantMusculoskeletal
         fields = '__all__'
 
 
-class InfantSkinForm(forms.ModelForm):
+class InfantSkinForm(InfantModelFormMixin):
     class Meta:
         model = InfantSkin
         fields = '__all__'
 
 
-class InfantTrisomiesForm(forms.ModelForm):
+class InfantTrisomiesForm(InfantModelFormMixin):
     class Meta:
         model = InfantTrisomies
         fields = '__all__'
 
 
-class InfantCnsForm(forms.ModelForm):
+class InfantCnsForm(InfantModelFormMixin):
     class Meta:
         model = InfantCns
         fields = '__all__'
