@@ -5,18 +5,13 @@ from edc_base.model_mixins import BaseUuidModel
 from edc_base.model_validators import datetime_not_future
 from edc_base.model_validators.date import date_not_future
 from edc_constants.choices import GENDER_UNDETERMINED
-from edc_export.model_mixins import ExportTrackingFieldsModelMixin
-from edc_offstudy.model_mixins import OffstudyModelMixin
-from edc_registration.models import RegisteredSubject
+from edc_identifier.model_mixins import UniqueSubjectIdentifierFieldMixin
+
 from td_maternal.models import MaternalLabourDel, SubjectConsent
 
 
-class InfantBirth(OffstudyModelMixin,
-                  ExportTrackingFieldsModelMixin, BaseUuidModel):
+class InfantBirth(UniqueSubjectIdentifierFieldMixin, BaseUuidModel):
     """ A model completed by the user on the infant's birth. """
-#
-#     registered_subject = models.OneToOneField(
-#         RegisteredSubject, null=True, on_delete=PROTECT)
 
     maternal_labour_del = models.ForeignKey(
         MaternalLabourDel,

@@ -4,7 +4,6 @@ from edc_base.model_fields import OtherCharField
 from edc_base.model_mixins import BaseUuidModel
 from edc_constants.choices import CONFIRMED_SUSPECTED
 from edc_visit_tracking.model_mixins import CrfInlineModelMixin
-from edc_export.model_mixins import ExportTrackingFieldsModelMixin
 
 from ..choices import (
     CNS_ABNORMALITIES, FACIAL_DEFECT, CLEFT_DISORDER, MOUTH_UP_GASTROINT_DISORDER,
@@ -25,7 +24,7 @@ class InfantCongenitalAnomalies(InfantCrfModel):
         verbose_name = "Congenital Anomalies"
 
 
-class BaseCnsItem(CrfInlineModelMixin, ExportTrackingFieldsModelMixin, BaseUuidModel):
+class BaseCnsItem(CrfInlineModelMixin, BaseUuidModel):
 
     congenital_anomalies = models.ForeignKey(
         InfantCongenitalAnomalies, on_delete=models.CASCADE)

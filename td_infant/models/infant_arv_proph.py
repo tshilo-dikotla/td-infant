@@ -2,7 +2,6 @@ from django.db import models
 
 from edc_base.model_mixins import BaseUuidModel
 from edc_constants.choices import YES_NO
-from edc_export.model_mixins import ExportTrackingFieldsModelMixin
 from edc_visit_tracking.model_mixins import CrfInlineModelMixin
 
 from ..choices import ARV_MODIFICATION_REASON, ARV_DRUG_LIST, DOSE_STATUS, ARV_STATUS_WITH_NEVER
@@ -28,12 +27,11 @@ class InfantArvProph(InfantCrfModel):
         help_text="referring to prophylaxis other than single dose NVP")
 
     class Meta:
-        app_label = 'td_infant'
         verbose_name = 'Infant NVP or AZT Proph'
         verbose_name_plural = 'Infant NVP or AZT Proph'
 
 
-class InfantArvProphMod(CrfInlineModelMixin, ExportTrackingFieldsModelMixin, BaseUuidModel):
+class InfantArvProphMod(CrfInlineModelMixin, BaseUuidModel):
     """ A model completed by the user on the infant's nvp or azt prophylaxis modifications. """
 
     infant_arv_proph = models.ForeignKey(

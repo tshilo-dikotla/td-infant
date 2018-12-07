@@ -1,10 +1,9 @@
-from django import forms
-
 from ..models import InfantNvpAdjustment
+from .infant_form_mixin import InfantModelFormMixin
 
 
-class InfantNvpAdjustmentForm(forms.ModelForm):
+class InfantNvpAdjustmentForm(InfantModelFormMixin):
 
     class Meta:
         model = InfantNvpAdjustment
-        fields = '__all_'
+        fields = '__all__'

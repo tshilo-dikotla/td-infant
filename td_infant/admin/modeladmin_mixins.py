@@ -35,6 +35,8 @@ class CrfModelAdminMixin(VisitTrackingCrfModelAdminMixin,
                          FormAsJSONModelAdminMixin,
                          admin.ModelAdmin):
 
+    visit_attr = 'infant_visit'
+    dashboard_type = 'infant'
     show_save_next = True
     show_cancel = True
 

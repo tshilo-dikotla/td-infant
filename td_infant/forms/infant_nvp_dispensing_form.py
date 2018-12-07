@@ -1,8 +1,8 @@
-from django import forms
 from ..models import InfantNvpDispensing
+from .infant_form_mixin import InfantModelFormMixin
 
 
-class InfantNvpDispensingForm(forms.ModelForm):
+class InfantNvpDispensingForm(InfantModelFormMixin):
 
     class Meta:
         model = InfantNvpDispensing

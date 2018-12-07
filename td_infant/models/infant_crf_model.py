@@ -1,25 +1,34 @@
 from django.db import models
-from edc_base.model_mixins import BaseUuidModel
-from edc_offstudy.model_mixins import OffstudyModelMixin
-from edc_visit_tracking.model_mixins import CrfModelMixin
-from .infant_visit import InfantVisit
 from django.db.models.deletion import PROTECT
+from edc_base.model_mixins import BaseUuidModel, FormAsJSONModelMixin
+from edc_base.sites.site_model_mixin import SiteModelMixin
+from edc_consent.model_mixins import RequiresConsentFieldsModelMixin
+from edc_metadata.model_mixins.updates import UpdatesCrfMetadataModelMixin
+from edc_reference.model_mixins import ReferenceModelMixin
+from edc_visit_schedule.model_mixins import SubjectScheduleCrfModelMixin
+from edc_visit_tracking.model_mixins import CrfModelMixin as BaseCrfModelMixin
+from edc_visit_tracking.model_mixins import PreviousVisitModelMixin
+
+from .infant_visit import InfantVisit
 
 
-class InfantCrfModel(CrfModelMixin, OffstudyModelMixin,
-                     BaseUuidModel):
+class InfantCrfModel(
+        BaseCrfModelMixin, SubjectScheduleCrfModelMixin,
+        RequiresConsentFieldsModelMixin, PreviousVisitModelMixin,
+        UpdatesCrfMetadataModelMixin, SiteModelMixin,
+        FormAsJSONModelMixin, ReferenceModelMixin, BaseUuidModel):
 
-    """ A model completed by the user on the infant's scheduled visit. """
+    """ Base model for all scheduled models
+    """
 
     infant_visit = models.OneToOneField(InfantVisit, on_delete=PROTECT)
 
-    def __str__(self):
-        return "{}: {}".format(self.__class__._meta.model_name,
-                               self.infant_visit.appointment.registered_subject.subject_identifier)
-
-    def get_consenting_subject_identifier(self):
-        """Returns mother's identifier."""
-        return self.get_visit().appointment.registered_subject.relative_identifier
+    def natural_key(self):
+        return self.infant_visit.natural_key()
+    natural_key.dependencies = [
+        'td_infant.infantvisit',
+        'sites.Site',
+        'edc_appointment.appointment']
 
     class Meta:
         abstract = True

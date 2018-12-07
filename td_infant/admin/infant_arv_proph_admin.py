@@ -46,7 +46,7 @@ class InfantArvProphAdmin(CrfModelAdminMixin, admin.ModelAdmin):
     }
 
 
-@admin.register(InfantArvProphAdmin, site=td_infant_admin)
+@admin.register(InfantArvProphMod, site=td_infant_admin)
 class InfantArvProphModAdmin(CrfModelAdminMixin, admin.ModelAdmin):
 
     form = InfantArvProphModForm

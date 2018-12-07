@@ -1,12 +1,10 @@
 from django.db import models
-from django.db.models.deletion import PROTECT
 
 from edc_base.model_validators import datetime_not_future
 from edc_base.utils import get_utcnow
 from edc_base.model_fields import OtherCharField
 from edc_constants.choices import YES_NO
 from edc_protocol.validators import datetime_not_before_study_start
-from edc_registration.models import RegisteredSubject
 from ..choices import RELATIONSHIP_CHOICES
 from ..choices import (
     CAUSE_OF_DEATH, CAUSE_OF_DEATH_CAT, MED_RESPONSIBILITY,
@@ -17,9 +15,6 @@ from .infant_crf_model import InfantCrfModel
 class InfantDeathReport(InfantCrfModel):
 
     """ A model completed by the user after an infant's death. """
-
-#     registered_subject = models.OneToOneField(
-#         RegisteredSubject, on_delete=PROTECT)
 
     report_datetime = models.DateTimeField(
         verbose_name='Report Date',

@@ -1,6 +1,6 @@
-from django import forms
+from .infant_form_mixin import InfantModelFormMixin
 
 
-class InfantBirthFeedingForm(forms.ModelForm):
+class InfantBirthFeedingForm(InfantModelFormMixin):
 
     pass

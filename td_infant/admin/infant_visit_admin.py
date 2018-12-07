@@ -10,7 +10,6 @@ from ..models import InfantVisit
 from .modeladmin_mixins import ModelAdminMixin
 
 
-# from td_lab.models import InfantRequisition
 @admin.register(InfantVisit, site=td_infant_admin)
 class InfantVisitAdmin(VisitModelAdminMixin,
                        ModelAdminMixin,

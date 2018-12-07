@@ -2,8 +2,6 @@ from django.db import models
 
 from edc_base.model_mixins import BaseUuidModel
 from edc_constants.choices import YES_NO
-from edc_export.model_mixins import ExportTrackingFieldsModelMixin
-#from edc_sync.models import SyncModelMixin, SyncHistoricalRecords
 from edc_visit_tracking.model_mixins import CrfInlineModelMixin
 from ..choices import DX_INFANT
 
@@ -21,8 +19,7 @@ class InfantFuDx(InfantCrfModel):
         verbose_name_plural = "Infant FollowUp: Dx"
 
 
-class InfantFuDxItems(CrfInlineModelMixin, ExportTrackingFieldsModelMixin,
-                      BaseUuidModel):
+class InfantFuDxItems(CrfInlineModelMixin, BaseUuidModel):
 
     infant_fu_dx = models.ForeignKey(InfantFuDx, on_delete=models.CASCADE)
 

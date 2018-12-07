@@ -1,9 +1,9 @@
-from django import forms
+from .infant_form_mixin import InfantModelFormMixin
 
 
-class InfantFuDxForm(forms.ModelForm):
+class InfantFuDxForm(InfantModelFormMixin):
     pass
 
 
-class InfantFuDxItemsForm(forms.ModelForm):
+class InfantFuDxItemsForm(InfantModelFormMixin):
     pass

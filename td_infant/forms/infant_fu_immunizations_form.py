@@ -1,13 +1,13 @@
-from django import forms
+from .infant_form_mixin import InfantModelFormMixin
 
 
-class InfantFuImmunizationsForm(forms.ModelForm):
+class InfantFuImmunizationsForm(InfantModelFormMixin):
     pass
 
 
-class VaccinesReceivedForm(forms.ModelForm):
+class VaccinesReceivedForm(InfantModelFormMixin):
     pass
 
 
-class VaccinesMissedForm(forms.ModelForm):
+class VaccinesMissedForm(InfantModelFormMixin):
     pass

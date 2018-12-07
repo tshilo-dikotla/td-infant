@@ -2,7 +2,6 @@ from django.db import models
 
 from edc_base.model_mixins.base_uuid_model import BaseUuidModel
 from edc_visit_tracking.model_mixins import CrfInlineModelMixin
-from edc_export.model_mixins import ExportTrackingFieldsModelMixin
 from ..choices import INFANT_VACCINATIONS, FEEDING_CHOICES
 
 from .infant_crf_model import InfantCrfModel
@@ -29,7 +28,7 @@ class InfantBirthFeedingVaccine(InfantCrfModel):
         verbose_name = "Birth Feeding & Vaccination"
 
 
-class InfantVaccines(CrfInlineModelMixin, ExportTrackingFieldsModelMixin, BaseUuidModel):
+class InfantVaccines(CrfInlineModelMixin, BaseUuidModel):
 
     infant_birth_feed_vaccine = models.ForeignKey(
         InfantBirthFeedingVaccine, on_delete=models.CASCADE)
