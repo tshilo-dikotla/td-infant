@@ -15,7 +15,8 @@ class SolidFoodAssessmentAdmin(CrfModelAdminMixin, admin.ModelAdmin):
     fieldsets = (
         (None, {
             'fields': [
-                ''
+                'infant_visit',
+                'report_datetime',
                 'age_solid_food',
                 'solid_foods',
                 'solid_foods_other',
