@@ -246,7 +246,7 @@ class InfantFeeding(InfantCrfModel):
                 prev_visit_index = prev_visit_index - 1
         return None
 
-    class Meta:
+    class Meta(InfantCrfModel.Meta):
         app_label = 'td_infant'
         verbose_name = "Infant Feeding"
         verbose_name_plural = "Infant Feeding"

@@ -465,7 +465,7 @@ class InfantOtherAbnormalityItems(BaseCnsItem):
     def natural_key(self):
         return (self.other_abnormalities, ) + self.congenital_anomalies.natural_key()
 
-    class Meta:
+    class Meta(InfantCrfModel.Meta):
         app_label = 'td_infant'
         verbose_name = "Congenital Anomalies: Other"
         unique_together = ('other_abnormalities', 'congenital_anomalies')

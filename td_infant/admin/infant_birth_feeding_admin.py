@@ -5,7 +5,7 @@ from edc_model_admin.model_admin_audit_fields_mixin import audit_fieldset_tuple
 from ..admin_site import td_infant_admin
 from ..forms import InfantVaccinesForm, InfantBirthFeedinVaccineForm
 from ..models import InfantBirthFeedingVaccine, InfantVaccines
-from .modeladmin_mixins import ModelAdminMixin
+from td_infant.admin.model_admin_mixins import ModelAdminMixin
 
 
 class InfantVaccinesInline(TabularInlineMixin, admin.TabularInline):

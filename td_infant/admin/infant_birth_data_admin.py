@@ -3,7 +3,7 @@ from edc_model_admin import audit_fieldset_tuple
 from ..admin_site import td_infant_admin
 from ..forms import InfantBirthDataForm
 from ..models import InfantBirthData
-from .modeladmin_mixins import CrfModelAdminMixin
+from td_infant.admin.model_admin_mixins import CrfModelAdminMixin
 
 
 @admin.register(InfantBirthData, site=td_infant_admin)

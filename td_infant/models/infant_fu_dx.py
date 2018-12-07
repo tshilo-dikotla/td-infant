@@ -13,7 +13,7 @@ class InfantFuDx(InfantCrfModel):
 
     """ A model completed by the user on the infant's follow up dx. """
 
-    class Meta:
+    class Meta(InfantCrfModel.Meta):
         app_label = 'td_infant'
         verbose_name = "Infant FollowUp: Dx"
         verbose_name_plural = "Infant FollowUp: Dx"

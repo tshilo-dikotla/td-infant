@@ -23,7 +23,7 @@ class InfantBirthFeedingVaccine(InfantCrfModel):
         blank=True,
         null=True)
 
-    class Meta:
+    class Meta(InfantCrfModel.Meta):
         app_label = 'td_infant'
         verbose_name = "Birth Feeding & Vaccination"
 
@@ -46,7 +46,7 @@ class InfantVaccines(CrfInlineModelMixin, BaseUuidModel):
     def natural_key(self):
         return (self.vaccination, ) + self.infant_birth_feed_vaccine.natural_key()
 
-    class Meta:
+    class Meta(InfantCrfModel.Meta):
         app_label = 'td_infant'
         verbose_name = "Infant Vaccines"
         verbose_name_plural = "Infant Vaccines"
