@@ -1,5 +1,5 @@
 from .infant_arv_proph_admin import (
-    InfantArvProphAdmin, InfantArvProphModAdmin)
+    InfantArvProphAdmin)
 from .infant_birth_admin import InfantBirthAdmin
 from .infant_birth_arv_admin import InfantBirthArvAdmin
 from .infant_birth_data_admin import InfantBirthDataAdmin

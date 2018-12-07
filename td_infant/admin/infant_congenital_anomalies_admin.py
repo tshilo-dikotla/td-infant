@@ -21,7 +21,7 @@ from ..models import (
     InfantFemaleGenital, InfantRenal, InfantMusculoskeletal,
     InfantSkin, InfantTrisomies
 )
-from .modeladmin_mixins import CrfModelAdminMixin
+from td_infant.admin.model_admin_mixins import CrfModelAdminMixin
 from edc_model_admin.model_admin_audit_fields_mixin import audit_fieldset_tuple
 
 
