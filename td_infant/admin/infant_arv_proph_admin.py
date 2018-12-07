@@ -8,9 +8,9 @@ from ..models import InfantArvProphMod, InfantArvProph
 from .modeladmin_mixins import CrfModelAdminMixin
 
 
-@admin.register(InfantArvProphMod, site=td_infant_admin)
 class InfantArvProphModInline(TabularInlineMixin, admin.TabularInline, admin.ModelAdmin):
 
+    model = InfantArvProphMod
     form = InfantArvProphModForm
     extra = 1
 

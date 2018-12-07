@@ -38,7 +38,7 @@ class InfantDeathReport(InfantCrfModel):
         blank=True,
         null=True)
 
-    primary_source = models.CharField(
+    cause = models.CharField(
         max_length=100,
         choices=SOURCE_OF_DEATH_INFO,
         verbose_name=('what is the primary source of '
@@ -46,20 +46,20 @@ class InfantDeathReport(InfantCrfModel):
                       '(if multiple source of information, '
                       'list one with the smallest number closest to the top of the list)'))
 
-    primary_source_other = OtherCharField(
+    cause_other = OtherCharField(
         max_length=100,
         blank=True,
         null=True,
         verbose_name='If "Other" above, please specify')
 
-    cause_of_death = models.CharField(
+    diagnosis_code = models.CharField(
         max_length=50,
         choices=CAUSE_OF_DEATH,
         verbose_name=('Main cause of death'),
         help_text=('Main cause of death in the opinion of the '
                    ' local study doctor and local PI'))
 
-    cause_of_death_other = OtherCharField(
+    diagnosis_code_other = OtherCharField(
         max_length=100,
         blank=True,
         null=True,
@@ -115,7 +115,7 @@ class InfantDeathReport(InfantCrfModel):
         help_text="in days",
         default=0)
 
-    narrative = models.TextField(
+    death_cause = models.TextField(
         verbose_name=(
             'Describe the major cause of death (including pertinent autopsy information '
             'if available), starting with the first noticeable illness thought to be '
@@ -128,25 +128,25 @@ class InfantDeathReport(InfantCrfModel):
         verbose_name='Duration of acute illness directly causing death   ',
         help_text='in days (If unknown enter -1)')
 
-    relation_death_ctx = models.CharField(
+    study_drug_relationship = models.CharField(
         verbose_name=('Relationship between the infant\'s death and '
                       '(CTX vs Placebo): '),
         max_length=20,
         choices=RELATIONSHIP_CHOICES)
 
-    relation_death_enp = models.CharField(
+    infant_nvp_relationship = models.CharField(
         verbose_name=('Relationship between the infant\'s death and '
                       'infant extended nevirapine prophylaxis: '),
         max_length=20,
         choices=RELATIONSHIP_CHOICES)
 
-    relation_death_haart = models.CharField(
+    haart_relationship = models.CharField(
         verbose_name=('Relationship between the infant\'s death and '
                       'HAART: '),
         max_length=20,
         choices=RELATIONSHIP_CHOICES)
 
-    relation_death_trad_med = models.CharField(
+    trad_med_relationship = models.CharField(
         verbose_name=('Relationship between the infant\'s death and '
                       'traditional medicine use: '),
         max_length=20,

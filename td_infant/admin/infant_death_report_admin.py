@@ -1,4 +1,5 @@
 from django.contrib import admin
+from edc_model_admin import audit_fieldset_tuple
 from edc_registration.models import RegisteredSubject
 
 from ..admin_site import td_infant_admin
@@ -12,30 +13,32 @@ class InfantDeathReportAdmin(ModelAdminMixin, admin.ModelAdmin):
 
     form = InfantDeathReportForm
 
-    fields = (
-        "infant_visit",
-        "registered_subject",
-        "report_datetime",
-        "death_date",
-        "cause",
-        "cause_other",
-        "perform_autopsy",
-        "death_cause",
-        "cause_category",
-        "cause_category_other",
-        "diagnosis_code",
-        "diagnosis_code_other",
-        "illness_duration",
-        "medical_responsibility",
-        "participant_hospitalized",
-        "reason_hospitalized",
-        "reason_hospitalized_other",
-        "days_hospitalized",
-        "study_drug_relationship",
-        "infant_nvp_relationship",
-        "haart_relationship",
-        "trad_med_relationship",
-        "comment",
+    fieldsets = (
+        (None, {
+            'fields': (
+                "infant_visit",
+                "report_datetime",
+                "death_date",
+                "cause",
+                "cause_other",
+                "perform_autopsy",
+                "death_cause",
+                "cause_category",
+                "cause_category_other",
+                "diagnosis_code",
+                "diagnosis_code_other",
+                "illness_duration",
+                "medical_responsibility",
+                "participant_hospitalized",
+                "reason_hospitalized",
+                "reason_hospitalized_other",
+                "days_hospitalized",
+                "study_drug_relationship",
+                "infant_nvp_relationship",
+                "haart_relationship",
+                "trad_med_relationship",
+                "comment")}),
+        audit_fieldset_tuple
     )
 
     radio_fields = {
