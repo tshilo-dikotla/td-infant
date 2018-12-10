@@ -5,7 +5,7 @@ from edc_model_admin import audit_fieldset_tuple
 from ..admin_site import td_infant_admin
 from ..forms import InfantArvProphForm, InfantArvProphModForm
 from ..models import InfantArvProphMod, InfantArvProph
-from td_infant.admin.model_admin_mixins import CrfModelAdminMixin
+from .model_admin_mixins import InfantCrfModelAdminMixin
 
 
 class InfantArvProphModInline(TabularInlineMixin, admin.TabularInline, admin.ModelAdmin):
@@ -27,7 +27,7 @@ class InfantArvProphModInline(TabularInlineMixin, admin.TabularInline, admin.Mod
 
 
 @admin.register(InfantArvProph, site=td_infant_admin)
-class InfantArvProphAdmin(CrfModelAdminMixin, admin.ModelAdmin):
+class InfantArvProphAdmin(InfantCrfModelAdminMixin, admin.ModelAdmin):
 
     form = InfantArvProphForm
     fieldsets = (
@@ -47,7 +47,7 @@ class InfantArvProphAdmin(CrfModelAdminMixin, admin.ModelAdmin):
 
 
 @admin.register(InfantArvProphMod, site=td_infant_admin)
-class InfantArvProphModAdmin(CrfModelAdminMixin, admin.ModelAdmin):
+class InfantArvProphModAdmin(InfantCrfModelAdminMixin, admin.ModelAdmin):
 
     form = InfantArvProphModForm
 

@@ -4,7 +4,7 @@ from edc_model_admin import TabularInlineMixin, audit_fieldset_tuple
 from ..admin_site import td_infant_admin
 from ..forms import InfantFuNewMedItemsForm, InfantFuNewMedForm
 from ..models import InfantFuNewMed, InfantFuNewMedItems
-from td_infant.admin.model_admin_mixins import CrfModelAdminMixin
+from .model_admin_mixins import InfantCrfModelAdminMixin
 
 
 class InfantFuNewMedItemsInline(TabularInlineMixin, admin.TabularInline):
@@ -27,7 +27,7 @@ class InfantFuNewMedItemsInline(TabularInlineMixin, admin.TabularInline):
 
 
 @admin.register(InfantFuNewMedItems, site=td_infant_admin)
-class InfantFuNewMedItemsAdmin(CrfModelAdminMixin):
+class InfantFuNewMedItemsAdmin(InfantCrfModelAdminMixin, admin.ModelAdmin):
 
     form = InfantFuNewMedItemsForm
 
@@ -50,7 +50,7 @@ class InfantFuNewMedItemsAdmin(CrfModelAdminMixin):
 
 
 @admin.register(InfantFuNewMed, site=td_infant_admin)
-class InfantFuNewMedAdmin(CrfModelAdminMixin, admin.ModelAdmin):
+class InfantFuNewMedAdmin(InfantCrfModelAdminMixin, admin.ModelAdmin):
 
     form = InfantFuNewMedForm
 

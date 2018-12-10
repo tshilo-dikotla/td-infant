@@ -48,6 +48,5 @@ class InfantFu(InfantCrfModel):
     )
 
     class Meta:
-        app_label = 'td_infant'
         verbose_name = "Infant FollowUp"
         verbose_name_plural = "Infant FollowUp"
