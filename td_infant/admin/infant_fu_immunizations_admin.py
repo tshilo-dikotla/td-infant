@@ -35,43 +35,6 @@ class VaccinesMissedInlineAdmin(TabularInlineMixin, admin.TabularInline):
     )
 
 
-@admin.register(VaccinesReceived, site=td_infant_admin)
-class VaccinesReceivedAdmin(InfantCrfModelAdminMixin, admin.ModelAdmin):
-    form = VaccinesReceivedForm
-
-    fieldsets = (
-        (None, {
-            'fields': (
-                'received_vaccine_name',
-                'date_given',
-                'infant_age')
-        }),
-        audit_fieldset_tuple
-    )
-
-    search_fields = [
-        'infant_fu_immunizations__infant_visit__appointment__registered_subject__subject_identifier',
-        'infant_fu_immunizations__infant_visit__appointment__registered_subject__initials', ]
-
-
-@admin.register(VaccinesMissed, site=td_infant_admin)
-class VaccinesMissedAdmin(InfantCrfModelAdminMixin, admin.ModelAdmin):
-    form = VaccinesMissedForm
-
-    fieldsets = (
-        (None, {
-            'fields': (
-                'missed_vaccine_name',
-                'reason_missed')
-        }),
-        audit_fieldset_tuple
-    )
-
-    search_fields = [
-        'infant_fu_immunizations__infant_visit__appointment__registered_subject__subject_identifier',
-        'infant_fu_immunizations__infant_visit__appointment__registered_subject__initials', ]
-
-
 @admin.register(InfantFuImmunizations, site=td_infant_admin)
 class InfantFuImmunizationsAdmin(InfantCrfModelAdminMixin, admin.ModelAdmin):
     form = InfantFuImmunizationsForm

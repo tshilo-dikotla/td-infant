@@ -14,32 +14,6 @@ class InfantFuDxItemsInline(TabularInlineMixin, admin.TabularInline):
     extra = 0
 
 
-@admin.register(InfantFuDxItems, site=td_infant_admin)
-class InfantFuDxItemsAdmin(InfantCrfModelAdminMixin, admin.ModelAdmin):
-    form = InfantFuDxItemsForm
-
-    fieldsets = (
-        (None, {
-            'fields': (
-                'infant_fu_dx',
-                'fu_dx',
-                'fu_dx_specify',
-                'health_facility',
-                'was_hospitalized')
-        }),
-        audit_fieldset_tuple
-    )
-
-    radio_fields = {
-        'health_facility': admin.VERTICAL,
-        'was_hospitalized': admin.VERTICAL
-    }
-
-    search_fields = [
-        'infant_fu_dx__infant_visit__appointment__registered_subject__subject_identifier',
-        'infant_fu_dx__infant_visit__appointment__registered_subject__initials', ]
-
-
 @admin.register(InfantFuDx, site=td_infant_admin)
 class InfantFuDxAdmin(InfantCrfModelAdminMixin, admin.ModelAdmin):
     form = InfantFuDxForm

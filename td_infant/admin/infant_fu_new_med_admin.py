@@ -26,29 +26,6 @@ class InfantFuNewMedItemsInline(TabularInlineMixin, admin.TabularInline):
     )
 
 
-@admin.register(InfantFuNewMedItems, site=td_infant_admin)
-class InfantFuNewMedItemsAdmin(InfantCrfModelAdminMixin, admin.ModelAdmin):
-
-    form = InfantFuNewMedItemsForm
-
-    fieldsets = (
-        (None, {
-            'fields': (
-                'infant_fu_med',
-                'medication',
-                'other_medication',
-                'date_first_medication',
-                'stop_date',
-                'drug_route')
-        }),
-        audit_fieldset_tuple
-    )
-
-    search_fields = [
-        'infant_fu_med__infant_visit__appointment__registered_subject__subject_identifier',
-        'infant_fu_med__infant_visit__appointment__registered_subject__initials', ]
-
-
 @admin.register(InfantFuNewMed, site=td_infant_admin)
 class InfantFuNewMedAdmin(InfantCrfModelAdminMixin, admin.ModelAdmin):
 

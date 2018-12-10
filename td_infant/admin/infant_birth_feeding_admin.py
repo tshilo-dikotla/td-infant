@@ -15,17 +15,16 @@ class InfantVaccinesInline(TabularInlineMixin, admin.TabularInline):
     extra = 0
 
     fieldsets = (
-        (None, {
-            'fields': [
+        ['Infant Vaccines', {
+            'fields': (
                 'feeding_after_delivery',
-                'comments'
-            ]
-        })
-    )
+                'comments',)},
+         ],)
 
 
 @admin.register(InfantBirthFeedingVaccine, site=td_infant_admin)
 class InfantBirthFeedingVaccineAdmin(InfantCrfModelAdminMixin, admin.ModelAdmin):
+
     form = InfantBirthFeedinVaccineForm
 
     fieldsets = (
@@ -46,34 +45,3 @@ class InfantBirthFeedingVaccineAdmin(InfantCrfModelAdminMixin, admin.ModelAdmin)
     inlines = [InfantVaccinesInline]
 
     radio_fields = {'feeding_after_delivery': admin.VERTICAL}
-
-
-@admin.register(InfantVaccines, site=td_infant_admin)
-class InfantVaccinesAdmin(InfantCrfModelAdminMixin, admin.ModelAdmin):
-    form = InfantVaccinesForm
-
-    fieldsets = (
-        (None, {
-            'fields': (
-                'infant_birth_feed_vaccine',
-                'vaccination',
-                'vaccine_date')
-        }),
-        audit_fieldset_tuple)
-
-    search_fields = [
-        'infant_birth_feed_vaccine__infant_visit__appointment__registered_subject__subject_identifier',
-        'infant_birth_feed_vaccine__infant_visit__appointment__registered_subject__initials']
-#
-#     actions = [
-#         export_as_csv_action(
-#             description="CSV Export of Infant Congenital Anomalies",
-#             fields=[],
-#             delimiter=',',
-#             exclude=['created', 'modified', 'user_created', 'user_modified', 'revision', 'id', 'hostname_created',
-#                      'hostname_modified'],
-#             extra_fields=OrderedDict(
-#                 {'subject_identifier':
-#                  'infant_birth_feed_vaccine__infant_visit__appointment__registered_subject__subject_identifier',
-#                  }),
-#         )]
