@@ -1,6 +1,9 @@
 from .infant_form_mixin import InfantModelFormMixin
+from ..models import InfantBirthFeedingVaccine
 
 
 class InfantBirthFeedinVaccineForm(InfantModelFormMixin):
 
-    pass
+    class Meta:
+        model = InfantBirthFeedingVaccine
+        fields = '__all__'
