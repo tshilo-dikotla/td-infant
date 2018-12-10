@@ -3,7 +3,7 @@ from edc_model_admin import TabularInlineMixin, audit_fieldset_tuple
 from ..admin_site import td_infant_admin
 from ..forms import InfantFuImmunizationsForm, VaccinesReceivedForm, VaccinesMissedForm
 from ..models import InfantFuImmunizations, VaccinesReceived, VaccinesMissed
-from td_infant.admin.model_admin_mixins import CrfModelAdminMixin
+from .model_admin_mixins import InfantCrfModelAdminMixin
 
 
 class VaccinesReceivedInlineAdmin(TabularInlineMixin, admin.TabularInline):
@@ -36,7 +36,7 @@ class VaccinesMissedInlineAdmin(TabularInlineMixin, admin.TabularInline):
 
 
 @admin.register(VaccinesReceived, site=td_infant_admin)
-class VaccinesReceivedAdmin(CrfModelAdminMixin, admin.ModelAdmin):
+class VaccinesReceivedAdmin(InfantCrfModelAdminMixin, admin.ModelAdmin):
     form = VaccinesReceivedForm
 
     fieldsets = (
@@ -55,7 +55,7 @@ class VaccinesReceivedAdmin(CrfModelAdminMixin, admin.ModelAdmin):
 
 
 @admin.register(VaccinesMissed, site=td_infant_admin)
-class VaccinesMissedAdmin(CrfModelAdminMixin, admin.ModelAdmin):
+class VaccinesMissedAdmin(InfantCrfModelAdminMixin, admin.ModelAdmin):
     form = VaccinesMissedForm
 
     fieldsets = (
@@ -73,7 +73,7 @@ class VaccinesMissedAdmin(CrfModelAdminMixin, admin.ModelAdmin):
 
 
 @admin.register(InfantFuImmunizations, site=td_infant_admin)
-class InfantFuImmunizationsAdmin(CrfModelAdminMixin, admin.ModelAdmin):
+class InfantFuImmunizationsAdmin(InfantCrfModelAdminMixin, admin.ModelAdmin):
     form = InfantFuImmunizationsForm
 
     fieldsets = (

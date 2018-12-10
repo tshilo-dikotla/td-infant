@@ -3,11 +3,11 @@ from edc_model_admin import audit_fieldset_tuple
 from ..admin_site import td_infant_admin
 from ..forms import InfantFuForm
 from ..models import InfantFu
-from td_infant.admin.model_admin_mixins import CrfModelAdminMixin
+from .model_admin_mixins import InfantCrfModelAdminMixin
 
 
 @admin.register(InfantFu, site=td_infant_admin)
-class InfantFuAdmin(CrfModelAdminMixin, admin.ModelAdmin):
+class InfantFuAdmin(InfantCrfModelAdminMixin, admin.ModelAdmin):
     form = InfantFuForm
 
     fieldsets = (

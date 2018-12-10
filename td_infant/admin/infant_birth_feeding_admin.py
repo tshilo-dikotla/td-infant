@@ -5,7 +5,7 @@ from edc_model_admin.model_admin_audit_fields_mixin import audit_fieldset_tuple
 from ..admin_site import td_infant_admin
 from ..forms import InfantVaccinesForm, InfantBirthFeedinVaccineForm
 from ..models import InfantBirthFeedingVaccine, InfantVaccines
-from td_infant.admin.model_admin_mixins import ModelAdminMixin
+from .model_admin_mixins import InfantCrfModelAdminMixin
 
 
 class InfantVaccinesInline(TabularInlineMixin, admin.TabularInline):
@@ -25,7 +25,7 @@ class InfantVaccinesInline(TabularInlineMixin, admin.TabularInline):
 
 
 @admin.register(InfantBirthFeedingVaccine, site=td_infant_admin)
-class InfantBirthFeedingVaccineAdmin(ModelAdminMixin, admin.ModelAdmin):
+class InfantBirthFeedingVaccineAdmin(InfantCrfModelAdminMixin, admin.ModelAdmin):
     form = InfantBirthFeedinVaccineForm
 
     fieldsets = (
@@ -49,7 +49,7 @@ class InfantBirthFeedingVaccineAdmin(ModelAdminMixin, admin.ModelAdmin):
 
 
 @admin.register(InfantVaccines, site=td_infant_admin)
-class InfantVaccinesAdmin(ModelAdminMixin, admin.ModelAdmin):
+class InfantVaccinesAdmin(InfantCrfModelAdminMixin, admin.ModelAdmin):
     form = InfantVaccinesForm
 
     fieldsets = (

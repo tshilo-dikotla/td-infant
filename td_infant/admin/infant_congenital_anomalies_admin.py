@@ -19,14 +19,14 @@ from ..models import (
     InfantCleftDisorder, InfantMouthUpGi, InfantCardioDisorder,
     InfantRespiratoryDefect, InfantLowerGi, InfantMaleGenital,
     InfantFemaleGenital, InfantRenal, InfantMusculoskeletal,
-    InfantSkin, InfantTrisomies
+    InfantSkin
 )
-from td_infant.admin.model_admin_mixins import CrfModelAdminMixin
 from edc_model_admin.model_admin_audit_fields_mixin import audit_fieldset_tuple
+from .model_admin_mixins import InfantCrfModelAdminMixin
 
 
 @admin.register(InfantCns, site=td_infant_admin)
-class InfantCnsAdmin(CrfModelAdminMixin):
+class InfantCnsAdmin(InfantCrfModelAdminMixin):
     form = InfantCnsForm
 
     fieldsets = (
@@ -73,7 +73,7 @@ class InfantCnsInline(TabularInlineMixin, admin.TabularInline):
 
 
 @admin.register(InfantFacialDefect, site=td_infant_admin)
-class InfantFacialDefectAdmin(CrfModelAdminMixin):
+class InfantFacialDefectAdmin(InfantCrfModelAdminMixin):
     form = InfantFacialDefectForm
 
     fieldsets = (
@@ -122,7 +122,7 @@ class InfantFacialDefectInline(TabularInlineMixin, admin.TabularInline):
 
 
 @admin.register(InfantCleftDisorder, site=td_infant_admin)
-class InfantCleftDisorderAdmin(CrfModelAdminMixin):
+class InfantCleftDisorderAdmin(InfantCrfModelAdminMixin):
     form = InfantCleftDisorderForm
 
     fieldsets = (
@@ -171,7 +171,7 @@ class InfantCleftDisorderInline(TabularInlineMixin, admin.TabularInline):
 
 
 @admin.register(InfantMouthUpGi, site=td_infant_admin)
-class InfantMouthUpGiAdmin(CrfModelAdminMixin):
+class InfantMouthUpGiAdmin(InfantCrfModelAdminMixin):
     form = InfantMouthUpGiForm
 
     fieldsets = (
@@ -220,7 +220,7 @@ class InfantMouthUpGiInline(TabularInlineMixin, admin.TabularInline):
 
 
 @admin.register(InfantCardioDisorder, site=td_infant_admin)
-class InfantCardioDisorderAdmin(CrfModelAdminMixin):
+class InfantCardioDisorderAdmin(InfantCrfModelAdminMixin):
     form = InfantCardioDisorderForm
     fieldsets = (
         (None, {
@@ -268,7 +268,7 @@ class InfantCardioDisorderInline(TabularInlineMixin, admin.TabularInline):
 
 
 @admin.register(InfantRespiratoryDefect, site=td_infant_admin)
-class InfantRespiratoryDefectAdmin(CrfModelAdminMixin):
+class InfantRespiratoryDefectAdmin(InfantCrfModelAdminMixin):
     form = InfantRespiratoryDefectForm
 
     fieldsets = (
@@ -317,7 +317,7 @@ class InfantRespiratoryDefectInline(TabularInlineMixin, admin.TabularInline):
 
 
 @admin.register(InfantLowerGi, site=td_infant_admin)
-class InfantLowerGiAdmin(CrfModelAdminMixin):
+class InfantLowerGiAdmin(InfantCrfModelAdminMixin, admin.ModelAdmin):
     form = InfantLowerGiForm
 
     fieldsets = (
@@ -366,7 +366,7 @@ class InfantLowerGiInline(TabularInlineMixin, admin.TabularInline):
 
 
 @admin.register(InfantFemaleGenital, site=td_infant_admin)
-class InfantFemaleGenitalAdmin(CrfModelAdminMixin):
+class InfantFemaleGenitalAdmin(InfantCrfModelAdminMixin):
     form = InfantFemaleGenitalForm
 
     fieldsets = (
@@ -415,7 +415,7 @@ class InfantFemaleGenitalInline(TabularInlineMixin, admin.TabularInline):
 
 
 @admin.register(InfantMaleGenital, site=td_infant_admin)
-class InfantMaleGenitalAdmin(CrfModelAdminMixin):
+class InfantMaleGenitalAdmin(InfantCrfModelAdminMixin):
     form = InfantMaleGenitalForm
 
     fieldsets = (
@@ -464,7 +464,7 @@ class InfantMaleGenitalInline(TabularInlineMixin, admin.TabularInline):
 
 
 @admin.register(InfantRenal, site=td_infant_admin)
-class InfantRenalAdmin(CrfModelAdminMixin):
+class InfantRenalAdmin(InfantCrfModelAdminMixin):
     form = form = InfantRenalForm
 
     fieldsets = (
@@ -514,7 +514,7 @@ class InfantRenalInline(TabularInlineMixin, admin.TabularInline):
 
 
 @admin.register(InfantMusculoskeletal, site=td_infant_admin)
-class InfantMusculoskeletalAdmin(CrfModelAdminMixin):
+class InfantMusculoskeletalAdmin(InfantCrfModelAdminMixin):
     form = form = InfantMusculoskeletalForm
 
     fieldsets = (
@@ -563,7 +563,7 @@ class InfantMusculoskeletalInline(TabularInlineMixin, admin.TabularInline):
 
 
 @admin.register(InfantSkin, site=td_infant_admin)
-class InfantSkinAdmin(CrfModelAdminMixin):
+class InfantSkinAdmin(InfantCrfModelAdminMixin):
     form = form = InfantSkinForm
 
     fieldsets = (
@@ -611,35 +611,6 @@ class InfantSkinInline(TabularInlineMixin, admin.TabularInline):
     )
 
 
-@admin.register(InfantTrisomies, site=td_infant_admin)
-class InfantTrisomiesAdmin(CrfModelAdminMixin):
-    form = InfantTrisomiesForm
-
-    fieldsets = (
-        (None, {
-            'fields': [
-                'congenital_anomalies',
-                'trisomies',
-                'abnormality_status',
-                'trisomies_other',
-            ]
-        }
-
-        ), audit_fieldset_tuple,
-    )
-
-    list_display = ('congenital_anomalies',)
-
-    search_fields = [
-        'congenital_anomalies__infant_visit__appointment__registered_subject__subject_identifier',
-        'congenital_anomalies__infant_visit__appointment__registered_subject__initials', ]
-
-    radio_fields = {
-        'trisomies': admin.VERTICAL,
-        'abnormality_status': admin.VERTICAL
-    }
-
-
 class InfantTrisomiesInline(TabularInlineMixin, admin.TabularInline):
 
     model = InfantTrisomies
@@ -661,7 +632,7 @@ class InfantTrisomiesInline(TabularInlineMixin, admin.TabularInline):
 
 
 @admin.register(InfantCongenitalAnomalies, site=td_infant_admin)
-class InfantCongenitalAnomaliesAdmin(CrfModelAdminMixin):
+class InfantCongenitalAnomaliesAdmin(InfantCrfModelAdminMixin, admin.ModelAdmin):
 
     form = InfantCongenitalAnomaliesForm
 

@@ -7,7 +7,7 @@ from ..admin_site import td_infant_admin
 from ..constants import INFANT
 from ..forms import InfantVisitForm
 from ..models import InfantVisit
-from td_infant.admin.model_admin_mixins import ModelAdminMixin
+from .model_admin_mixins import ModelAdminMixin
 
 
 @admin.register(InfantVisit, site=td_infant_admin)
@@ -35,7 +35,4 @@ class InfantVisitAdmin(VisitModelAdminMixin,
     )
 
     radio_fields = {
-        'reason': admin.VERTICAL,
-        'reason_unscheduled': admin.VERTICAL,
-        'info_source': admin.VERTICAL,
-        'info_source': admin.VERTICAL}
+        'reason_unscheduled': admin.VERTICAL}

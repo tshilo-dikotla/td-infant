@@ -29,11 +29,10 @@ class ModelAdminMixin(ModelAdminNextUrlRedirectMixin,
     next_form_getter_cls = NextFormGetter
 
 
-class CrfModelAdminMixin(VisitTrackingCrfModelAdminMixin,
-                         ModelAdminMixin,
-                         FieldsetsModelAdminMixin,
-                         FormAsJSONModelAdminMixin,
-                         admin.ModelAdmin):
+class InfantCrfModelAdminMixin(
+        VisitTrackingCrfModelAdminMixin, ModelAdminMixin,
+        FieldsetsModelAdminMixin, FormAsJSONModelAdminMixin,
+        admin.ModelAdmin):
 
     show_save_next = True
     show_cancel = True

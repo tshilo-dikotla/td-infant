@@ -1,15 +1,16 @@
 from django.contrib import admin
 
-from td_infant.admin.modeladmin_mixins import CrfModelAdminMixin
+from edc_model_admin.model_admin_audit_fields_mixin import audit_fieldset_tuple
 
 from ..admin_site import td_infant_admin
 from ..forms import InfantFuPhysicalForm
 from ..models import InfantFuPhysical
-from edc_model_admin.model_admin_audit_fields_mixin import audit_fieldset_tuple
+from .model_admin_mixins import InfantCrfModelAdminMixin
 
 
 @admin.register(InfantFuPhysical, site=td_infant_admin)
-class InfantFuPhysicalAdmin(CrfModelAdminMixin, admin.ModelAdmin):
+class InfantFuPhysicalAdmin(InfantCrfModelAdminMixin, admin.ModelAdmin):
+
     form = InfantFuPhysicalForm
 
     fieldsets = (
