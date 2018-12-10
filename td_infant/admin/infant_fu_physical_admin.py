@@ -18,6 +18,7 @@ class InfantFuPhysicalAdmin(InfantCrfModelAdminMixin, admin.ModelAdmin):
             'fields': [
                 'infant_visit',
                 'report_datetime',
+                'weight_kg',
                 'height',
                 'head_circumference',
                 'general_activity',
