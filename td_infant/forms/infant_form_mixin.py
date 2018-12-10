@@ -11,3 +11,4 @@ class InfantModelFormMixin(
         FormValidatorMixin, forms.ModelForm):
 
     visit_model = InfantVisit
+    visit_attr = 'infant_visit'

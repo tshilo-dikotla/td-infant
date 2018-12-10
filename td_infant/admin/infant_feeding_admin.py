@@ -3,11 +3,11 @@ from django.contrib import admin
 from ..admin_site import td_infant_admin
 from ..forms import InfantFeedingForm
 from ..models import InfantFeeding
-from td_infant.admin.model_admin_mixins import CrfModelAdminMixin
+from .model_admin_mixins import InfantCrfModelAdminMixin
 
 
 @admin.register(InfantFeeding, site=td_infant_admin)
-class InfantFeedingAdmin(CrfModelAdminMixin, admin.ModelAdmin):
+class InfantFeedingAdmin(InfantCrfModelAdminMixin, admin.ModelAdmin):
 
     form = InfantFeedingForm
     fields = (

@@ -1,30 +1,56 @@
+from django.conf import settings
 from django.contrib import admin
-
-from td_infant.admin.modeladmin_mixins import CrfModelAdminMixin
+from django_revision.modeladmin_mixin import ModelAdminRevisionMixin
+from edc_base.sites.admin import ModelAdminSiteMixin
+from edc_metadata import NextFormGetter
+from edc_model_admin import (
+    ModelAdminNextUrlRedirectMixin, ModelAdminFormInstructionsMixin,
+    ModelAdminFormAutoNumberMixin, ModelAdminAuditFieldsMixin,
+    ModelAdminReadOnlyMixin, ModelAdminInstitutionMixin,
+    ModelAdminRedirectOnDeleteMixin)
+from edc_model_admin import audit_fieldset_tuple
+from edc_subject_dashboard import ModelAdminSubjectDashboardMixin
 
 from ..admin_site import td_infant_admin
-from ..constants import INFANT
 from ..forms import InfantOffStudyForm
 from ..models import InfantOffStudy
 
 
+class ModelAdminMixin(ModelAdminNextUrlRedirectMixin, ModelAdminFormInstructionsMixin,
+                      ModelAdminFormAutoNumberMixin, ModelAdminRevisionMixin,
+                      ModelAdminAuditFieldsMixin, ModelAdminReadOnlyMixin,
+                      ModelAdminInstitutionMixin, ModelAdminRedirectOnDeleteMixin,
+                      ModelAdminSubjectDashboardMixin, ModelAdminSiteMixin):
+
+    list_per_page = 10
+    date_hierarchy = 'modified'
+    empty_value_display = '-'
+    next_form_getter_cls = NextFormGetter
+    subject_dashboard_url = 'subject_dashboard_url'
+
+    post_url_on_delete_name = settings.DASHBOARD_URL_NAMES.get(
+        subject_dashboard_url)
+
+    def post_url_on_delete_kwargs(self, request, obj):
+        return dict(subject_identifier=obj.subject_identifier)
+
+
 @admin.register(InfantOffStudy, site=td_infant_admin)
-class InfantOffStudyAdmin(CrfModelAdminMixin, admin.ModelAdmin):
+class InfantOffStudyAdmin(ModelAdminMixin, admin.ModelAdmin):
 
     form = InfantOffStudyForm
-    dashboard_type = INFANT
-    visit_model_name = 'infantvisit'
 
-    fields = (
-        'infant_visit',
-        'report_datetime',
-        'offstudy_date',
-        'reason',
-        'reason_other',
-        'comment',
-    )
-
-    list_display = (
-        'infant_visit',
-        'offstudy_date',
-        'reason')
+    fieldsets = (
+        (None, {
+            'fields': [
+                'infant_visit',
+                'report_datetime',
+                'seen_at_clinic',
+                'reason_unseen_clinic',
+                'reason_unseen_clinic_other',
+                'is_contraceptive_initiated',
+                'contr',
+                'contr_other',
+                'reason_not_initiated',
+                'reason_not_initiated_other']}
+         ), audit_fieldset_tuple)
