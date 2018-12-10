@@ -11,11 +11,11 @@ from .model_admin_mixins import InfantCrfModelAdminMixin
 class InfantBirthExamAdmin(InfantCrfModelAdminMixin, admin.ModelAdmin):
     form = InfantBirthExamForm
 
-    fiedlsets = (
+    fieldsets = (
         (None, {
             'fields': [
-                'infant_visit',
                 'report_datetime',
+                'infant_visit',
                 'general_activity',
                 'abnormal_activity',
                 'physical_exam_result',

@@ -13,6 +13,16 @@ class InfantFuDxItemsInline(TabularInlineMixin, admin.TabularInline):
     form = InfantFuDxItemsForm
     extra = 0
 
+    fieldsets = (
+        (None, {
+            'fields': (
+                'fu_dx',
+                'fu_dx_specify',
+                'health_facility',
+                'was_hospitalized')
+        }),
+    )
+
 
 @admin.register(InfantFuDx, site=td_infant_admin)
 class InfantFuDxAdmin(InfantCrfModelAdminMixin, admin.ModelAdmin):

@@ -4,7 +4,7 @@ from edc_base.model_mixins import BaseUuidModel
 from edc_constants.choices import YES_NO
 from edc_visit_tracking.model_mixins import CrfInlineModelMixin
 
-from ..choices import ARV_MODIFICATION_REASON, ARV_DRUG_LIST, DOSE_STATUS, ARV_STATUS_WITH_NEVER
+from ..choices import ARV_MODIFICATION_REASON, ARV_DRUG_LIST, DOSE_STATUS, ARV_STATUS
 
 from .infant_crf_model import InfantCrfModel
 
@@ -23,7 +23,7 @@ class InfantArvProph(InfantCrfModel):
         max_length=25,
         verbose_name=(
             "What is the status of the participant's ARV prophylaxis at this visit or since the last visit? "),
-        choices=ARV_STATUS_WITH_NEVER,
+        choices=ARV_STATUS,
         help_text="referring to prophylaxis other than single dose NVP")
 
     class Meta(InfantCrfModel.Meta):
