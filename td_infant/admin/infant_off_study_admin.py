@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from td_infant.admin.modeladmin_mixins import CrfModelAdminMixin
+from td_infant.admin.model_admin_mixins import CrfModelAdminMixin
 
 from ..admin_site import td_infant_admin
 from ..constants import INFANT
