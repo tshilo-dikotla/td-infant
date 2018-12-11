@@ -5,10 +5,10 @@ from edc_model_admin import audit_fieldset_tuple
 from ..admin_site import td_infant_admin
 from ..forms import InfantArvProphForm, InfantArvProphModForm
 from ..models import InfantArvProphMod, InfantArvProph
-from .model_admin_mixins import InfantCrfModelAdminMixin
+from .model_admin_mixins import InfantCrfModelAdminMixin, ModelAdminMixin
 
 
-class InfantArvProphModInline(TabularInlineMixin, admin.TabularInline, admin.ModelAdmin):
+class InfantArvProphModInline(TabularInlineMixin, admin.TabularInline):
 
     model = InfantArvProphMod
     form = InfantArvProphModForm
@@ -47,7 +47,7 @@ class InfantArvProphAdmin(InfantCrfModelAdminMixin, admin.ModelAdmin):
 
 
 @admin.register(InfantArvProphMod, site=td_infant_admin)
-class InfantArvProphModAdmin(InfantCrfModelAdminMixin, admin.ModelAdmin):
+class InfantArvProphModAdmin(ModelAdminMixin, admin.ModelAdmin):
 
     form = InfantArvProphModForm
 

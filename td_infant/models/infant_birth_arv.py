@@ -48,7 +48,7 @@ class InfantBirthArv(InfantCrfModel):
 
     infant_arv_comments = models.TextField(
         max_length=250,
-        verbose_name="Comment if any additional pertinent information: ",
+        verbose_name="Comment if any additional pertinent information ",
         blank=True,
         null=True)
 

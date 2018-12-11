@@ -63,8 +63,8 @@ class InfantDeathReport(InfantCrfModel):
     cause_category = models.CharField(
         max_length=50,
         choices=CAUSE_OF_DEATH_CAT,
-        verbose_name='based on the narrative above, what category best defines'
-        ' the major cause of death?')
+        verbose_name=('based on the above description, what category best '
+                      'defines the major cause of death?'))
 
     cause_category_other = OtherCharField(
         verbose_name='If "Other" above, please specify',
@@ -125,25 +125,25 @@ class InfantDeathReport(InfantCrfModel):
 
     study_drug_relationship = models.CharField(
         verbose_name=('Relationship between the infant\'s death and '
-                      '(CTX vs Placebo): '),
+                      '(CTX vs Placebo) '),
         max_length=20,
         choices=RELATIONSHIP_CHOICES)
 
     infant_nvp_relationship = models.CharField(
         verbose_name=('Relationship between the infant\'s death and '
-                      'infant extended nevirapine prophylaxis: '),
+                      'infant extended nevirapine prophylaxis '),
         max_length=20,
         choices=RELATIONSHIP_CHOICES)
 
     haart_relationship = models.CharField(
         verbose_name=('Relationship between the infant\'s death and '
-                      'HAART: '),
+                      'HAART '),
         max_length=20,
         choices=RELATIONSHIP_CHOICES)
 
     trad_med_relationship = models.CharField(
         verbose_name=('Relationship between the infant\'s death and '
-                      'traditional medicine use: '),
+                      'traditional medicine use '),
         max_length=20,
         choices=RELATIONSHIP_CHOICES)
 

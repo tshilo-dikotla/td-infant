@@ -29,7 +29,15 @@ ARV_DRUG_LIST = (
     ('HAART,unknown', 'HAART,unknown'),
 )
 
-ARV_STATUS_WITH_NEVER = (('ARV_STATUS_WITH_NEVER', 'ARV_STATUS_WITH_NEVER'),)
+ARV_STATUS = (
+    ('No modifications',
+     'No modifications made since the last attended scheduled visit or today'),
+    ('Starting today',
+     'Starting today or has started since last attended scheduled visit'),
+    ('Never started', 'Never started'),
+    ('Modifications made',
+     'Change in at least one medication since last attended scheduled visit or today'),
+)
 
 ARV_MODIFICATION_REASON = (
     ('Initial dose', 'Initial dose'),
