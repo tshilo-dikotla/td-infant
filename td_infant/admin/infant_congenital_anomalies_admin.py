@@ -500,3 +500,61 @@ class InfantMaleGenitalAdmin(ModelAdminMixin, admin.ModelAdmin):
         'male_genital': admin.VERTICAL,
         'abnormality_status': admin.VERTICAL
     }
+
+
+@admin.register(InfantRenal, site=td_infant_admin)
+class InfantRenalAdmin(ModelAdminMixin, admin.ModelAdmin):
+
+    form = InfantRenalForm
+
+    fieldsets = (
+        (None, {
+            'fields': [
+                'congenital_anomalies',
+                'renal',
+                'abnormality_status',
+                'renal_other',
+            ]
+        }
+
+        ), audit_fieldset_tuple,
+    )
+    list_display = ('congenital_anomalies',)
+
+    search_fields = [
+        'congenital_anomalies__infant_visit__appointment__subject_identifier',
+        'congenital_anomalies__infant_visit__appointment__initials', ]
+
+    radio_fields = {
+        'renal': admin.VERTICAL,
+        'abnormality_status': admin.VERTICAL
+    }
+
+
+@admin.register(InfantMusculoskeletal, site=td_infant_admin)
+class InfantMusculoskeletalAdmin(ModelAdminMixin, admin.ModelAdmin):
+
+    form = InfantMusculoskeletalForm
+
+    fieldsets = (
+        (None, {
+            'fields': [
+                'congenital_anomalies',
+                'musculo_skeletal',
+                'abnormality_status',
+                'musculo_skeletal_other',
+            ]
+        }
+
+        ), audit_fieldset_tuple,
+    )
+    list_display = ('congenital_anomalies',)
+
+    search_fields = [
+        'congenital_anomalies__infant_visit__appointment__subject_identifier',
+        'congenital_anomalies__infant_visit__appointment__initials', ]
+
+    radio_fields = {
+        'musculo_skeletal': admin.VERTICAL,
+        'abnormality_status': admin.VERTICAL
+    }
