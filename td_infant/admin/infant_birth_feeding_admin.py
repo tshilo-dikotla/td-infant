@@ -17,8 +17,9 @@ class InfantVaccinesInline(TabularInlineMixin, admin.TabularInline):
     fieldsets = (
         ['Infant Vaccines', {
             'fields': (
-                'feeding_after_delivery',
-                'comments',)},
+                'infant_birth_feed_vaccine',
+                'vaccination',
+                'vaccine_date')},
          ],)
 
 
