@@ -442,3 +442,32 @@ class InfantLowerGiAdmin(ModelAdminMixin, admin.ModelAdmin):
         'lower_gi': admin.VERTICAL,
         'abnormality_status': admin.VERTICAL
     }
+
+
+@admin.register(InfantFemaleGenital, site=td_infant_admin)
+class InfantFemaleGenitalAdmin(ModelAdminMixin, admin.ModelAdmin):
+
+    form = InfantFemaleGenitalForm
+
+    fieldsets = (
+        (None, {
+            'fields': [
+                'congenital_anomalies',
+                'female_genital',
+                'abnormality_status',
+                'female_genital_other',
+            ]
+        }
+
+        ), audit_fieldset_tuple,
+    )
+    list_display = ('congenital_anomalies',)
+
+    search_fields = [
+        'congenital_anomalies__infant_visit__appointment__subject_identifier',
+        'congenital_anomalies__infant_visit__appointment__initials', ]
+
+    radio_fields = {
+        'female_genital': admin.VERTICAL,
+        'abnormality_status': admin.VERTICAL
+    }
