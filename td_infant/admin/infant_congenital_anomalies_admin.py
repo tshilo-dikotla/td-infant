@@ -147,7 +147,7 @@ class InfantFemaleGenitalInline(TabularInlineMixin, admin.TabularInline):
     fieldsets = (
         ['Infant Female Genital', {
             'fields': (
-                'congenital_anomalies'
+                'congenital_anomalies',
                 'female_genital',
                 'abnormality_status',
                 'female_genital_other',)},
@@ -242,10 +242,8 @@ class InfantCongenitalAnomaliesAdmin(InfantCrfModelAdminMixin, admin.ModelAdmin)
     fieldsets = (
         (None, {
             'fields': [
-                'congenital_anomalies',
-                'other_abnormalities',
-                'abnormality_status',
-                'other_abnormalities_other',
+                'infant_visit',
+                'report_datetime',
             ]
         }
 

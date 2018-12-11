@@ -59,6 +59,7 @@ class InfantCns(BaseCnsItem):
     class Meta:
         app_label = 'td_infant'
         verbose_name = "Congenital Anomalies:Cns"
+        verbose_name_plural = "Congenital Anomalies:Cns"
         unique_together = ('cns', 'congenital_anomalies')
 
 
@@ -89,6 +90,7 @@ class InfantFacialDefect(BaseCnsItem):
     class Meta:
         app_label = 'td_infant'
         verbose_name = "Congenital Anomalies:Facial"
+        verbose_name_plural = "Congenital Anomalies:Facial"
         unique_together = ('facial_defect', 'congenital_anomalies')
 
 
@@ -119,6 +121,7 @@ class InfantCleftDisorder(BaseCnsItem):
     class Meta:
         app_label = 'td_infant'
         verbose_name = "Congenital Anomalies:Cleft"
+        verbose_name_plural = "Congenital Anomalies:Cleft"
         unique_together = ('cleft_disorder', 'congenital_anomalies')
 
 
@@ -149,6 +152,7 @@ class InfantMouthUpGi(BaseCnsItem):
     class Meta:
         app_label = 'td_infant'
         verbose_name = "Congenital Anomalies:MouthUp"
+        verbose_name_plural = "Congenital Anomalies:MouthUp"
         unique_together = ('mouth_up_gi', 'congenital_anomalies')
 
 
@@ -179,6 +183,7 @@ class InfantCardioDisorder(BaseCnsItem):
     class Meta:
         app_label = 'td_infant'
         verbose_name = "Congenital Anomalies:Cardio"
+        verbose_name_plural = "Congenital Anomalies:Cardio"
         unique_together = ('cardio_disorder', 'congenital_anomalies')
 
 
@@ -209,6 +214,7 @@ class InfantRespiratoryDefect(BaseCnsItem):
     class Meta:
         app_label = 'td_infant'
         verbose_name = "Congenital Anomalies:Respiratory"
+        verbose_name_plural = "Congenital Anomalies:Respiratory"
         unique_together = ('respiratory_defect', 'congenital_anomalies')
 
 
@@ -241,6 +247,7 @@ class InfantLowerGi(BaseCnsItem):
     class Meta:
         app_label = 'td_infant'
         verbose_name = "Congenital Anomalies:Lower GI"
+        verbose_name_plural = "Congenital Anomalies:Lower GI"
         unique_together = ('lower_gi', 'congenital_anomalies')
 
 
@@ -273,6 +280,7 @@ class InfantFemaleGenital(BaseCnsItem):
     class Meta:
         app_label = 'td_infant'
         verbose_name = "Congenital Anomalies:Female Gen"
+        verbose_name_plural = "Congenital Anomalies:Female Gen"
         unique_together = ('female_genital', 'congenital_anomalies')
 
 
@@ -305,6 +313,7 @@ class InfantMaleGenital(BaseCnsItem):
     class Meta:
         app_label = 'td_infant'
         verbose_name = "Congenital Anomalies:Male Gen"
+        verbose_name_plural = "Congenital Anomalies:Male Gen"
         unique_together = ('male_genital', 'congenital_anomalies')
 
 
@@ -337,6 +346,7 @@ class InfantRenal(BaseCnsItem):
     class Meta:
         app_label = 'td_infant'
         verbose_name = "Congenital Anomalies: Renal"
+        verbose_name_plural = "Congenital Anomalies: Renal"
         unique_together = ('renal', 'congenital_anomalies')
 
 
@@ -435,6 +445,7 @@ class InfantTrisomies(BaseCnsItem):
     class Meta:
         app_label = 'td_infant'
         verbose_name = "Congenital Anomalies: Trisomes"
+        verbose_name_plural = "Congenital Anomalies: Trisomes"
         unique_together = ('trisomies', 'congenital_anomalies')
 
 
