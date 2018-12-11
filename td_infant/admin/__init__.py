@@ -18,6 +18,7 @@ from .infant_fu_physical_admin import InfantFuPhysicalAdmin
 from .infant_nvp_adjustment_admin import InfantNvpAdjustmentAdmin
 from .infant_nvp_dispensing_admin import InfantNvpDispensingAdmin
 from .infant_off_study_admin import InfantOffStudyAdmin
+from .infant_vaccines_admin import InfantVaccinesAdmin
 from .infant_visit_admin import InfantVisitAdmin
-from .solid_food_assessment_admin import SolidFoodAssessmentAdmin
 from .model_admin_mixins import InfantCrfModelAdminMixin
+from .solid_food_assessment_admin import SolidFoodAssessmentAdmin
