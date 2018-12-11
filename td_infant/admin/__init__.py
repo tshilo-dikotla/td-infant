@@ -13,6 +13,7 @@ from .infant_fu_dx_admin import InfantFuDxAdmin
 from .infant_fu_dx_items_admin import InfantFuDxItemsAdmin
 from .infant_fu_immunizations_admin import InfantFuImmunizationsAdmin
 from .infant_fu_new_med_admin import InfantFuNewMedAdmin
+from .infant_fu_new_med_items_admin import InfantFuNewMedItemsAdmin
 from .infant_fu_physical_admin import InfantFuPhysicalAdmin
 from .infant_nvp_adjustment_admin import InfantNvpAdjustmentAdmin
 from .infant_nvp_dispensing_admin import InfantNvpDispensingAdmin

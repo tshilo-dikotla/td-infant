@@ -36,7 +36,7 @@ class InfantFuNewMedAdmin(InfantCrfModelAdminMixin, admin.ModelAdmin):
             'fields': (
                 'report_datetime',
                 'infant_visit',
-                'new_medications',)
+                'new_medications')
         }),
         audit_fieldset_tuple
     )
