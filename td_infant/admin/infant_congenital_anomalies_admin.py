@@ -24,6 +24,7 @@ from ..models import (
 from edc_model_admin.model_admin_audit_fields_mixin import audit_fieldset_tuple
 from .model_admin_mixins import InfantCrfModelAdminMixin
 from td_infant.models.infant_congenital_anomalies import InfantTrisomies
+from td_infant.admin.model_admin_mixins import ModelAdminMixin
 
 
 class InfantCnsInline(TabularInlineMixin, admin.TabularInline):
@@ -269,3 +270,175 @@ class InfantCongenitalAnomaliesAdmin(InfantCrfModelAdminMixin, admin.ModelAdmin)
         InfantMusculoskeletalInline,
         InfantSkinInline,
         InfantTrisomiesInline]
+
+
+@admin.register(InfantCns, site=td_infant_admin)
+class InfantCnsAdmin(ModelAdminMixin, admin.ModelAdmin):
+
+    form = InfantCnsForm
+
+    fieldsets = (
+        (None, {
+            'fields': [
+                'congenital_anomalies',
+                'cns',
+                'abnormality_status',
+                'cns_other',
+            ]
+        }
+
+        ), audit_fieldset_tuple,
+    )
+
+    list_display = ('congenital_anomalies', 'abnormality_status',)
+
+    list_filter = ('cns',)
+
+    radio_fields = {
+        'cns': admin.VERTICAL,
+        'abnormality_status': admin.VERTICAL}
+
+
+@admin.register(InfantCleftDisorder, site=td_infant_admin)
+class InfantCleftDisorderAdmin(ModelAdminMixin, admin.ModelAdmin):
+
+    form = InfantCleftDisorderForm
+
+    fieldsets = (
+        (None, {
+            'fields': [
+                'congenital_anomalies',
+                'cleft_disorder',
+                'abnormality_status',
+                'cleft_disorders_other',
+            ]
+        }
+
+        ), audit_fieldset_tuple,
+    )
+    list_display = ('congenital_anomalies',)
+
+    search_fields = [
+        'congenital_anomalies__infant_visit__appointment__subject_identifier',
+        'congenital_anomalies__infant_visit__appointment__initials', ]
+
+    radio_fields = {
+        'cleft_disorder': admin.VERTICAL,
+        'abnormality_status': admin.VERTICAL
+    }
+
+
+@admin.register(InfantMouthUpGi, site=td_infant_admin)
+class InfantMouthUpGiAdmin(ModelAdminMixin, admin.ModelAdmin):
+
+    form = InfantMouthUpGiForm
+
+    fieldsets = (
+        (None, {
+            'fields': [
+                'congenital_anomalies',
+                'mouth_up_gi',
+                'abnormality_status',
+                'mouth_up_gi_other',
+            ]
+        }
+
+        ), audit_fieldset_tuple,
+    )
+    list_display = ('congenital_anomalies',)
+
+    search_fields = [
+        'congenital_anomalies__infant_visit__appointment__subject_identifier',
+        'congenital_anomalies__infant_visit__appointment__initials', ]
+
+    radio_fields = {
+        'mouth_up_gi': admin.VERTICAL,
+        'abnormality_status': admin.VERTICAL
+    }
+
+
+@admin.register(InfantCardioDisorder, site=td_infant_admin)
+class InfantCardioDisorderAdmin(ModelAdminMixin, admin.ModelAdmin):
+
+    form = InfantCardioDisorderForm
+
+    fieldsets = (
+        (None, {
+            'fields': [
+                'congenital_anomalies',
+                'cardio_disorder',
+                'abnormality_status',
+                'cardiovascular_other',
+            ]
+        }
+
+        ), audit_fieldset_tuple,
+    )
+    list_display = ('congenital_anomalies',)
+
+    search_fields = [
+        'congenital_anomalies__infant_visit__appointment__subject_identifier',
+        'congenital_anomalies__infant_visit__appointment__initials', ]
+
+    radio_fields = {
+        'cardio_disorder': admin.VERTICAL,
+        'abnormality_status': admin.VERTICAL
+    }
+
+
+@admin.register(InfantRespiratoryDefect, site=td_infant_admin)
+class InfantRespiratoryDefectAdmin(ModelAdminMixin, admin.ModelAdmin):
+
+    form = InfantRespiratoryDefectForm
+
+    fieldsets = (
+        (None, {
+            'fields': [
+                'congenital_anomalies',
+                'respiratory_defect',
+                'abnormality_status',
+                'respiratory_defects_other',
+            ]
+        }
+
+        ), audit_fieldset_tuple,
+    )
+    list_display = ('congenital_anomalies',)
+
+    search_fields = [
+        'congenital_anomalies__infant_visit__appointment__subject_identifier',
+        'congenital_anomalies__infant_visit__appointment__initials', ]
+
+    radio_fields = {
+        'respiratory_defect': admin.VERTICAL,
+        'abnormality_status': admin.VERTICAL
+    }
+
+
+@admin.register(InfantLowerGi, site=td_infant_admin)
+class InfantLowerGiAdmin(ModelAdminMixin, admin.ModelAdmin):
+
+    form = InfantLowerGiForm
+
+    fieldsets = (
+        (None, {
+            'fields': [
+                'congenital_anomalies',
+                'lower_gi',
+                'abnormality_status',
+                'lower_gi_other',
+            ]
+        }
+
+        ), audit_fieldset_tuple,
+    )
+    list_display = ('congenital_anomalies',)
+
+    search_fields = [
+        'congenital_anomalies__infant_visit__appointment__subject_identifier',
+        'congenital_anomalies__infant_visit__appointment__initials', ]
+
+    radio_fields = {
+        'lower_gi': admin.VERTICAL,
+        'abnormality_status': admin.VERTICAL
+    }
