@@ -34,8 +34,8 @@ class InfantFuNewMedAdmin(InfantCrfModelAdminMixin, admin.ModelAdmin):
     fieldsets = (
         (None, {
             'fields': (
-                'report_datetime',
                 'infant_visit',
+                'report_datetime',
                 'new_medications')
         }),
         audit_fieldset_tuple

@@ -31,8 +31,8 @@ class InfantFuDxAdmin(InfantCrfModelAdminMixin, admin.ModelAdmin):
     fieldsets = (
         (None, {
             'fields': (
-                'report_datetime',
-                'infant_visit')
+                'infant_visit',
+                'report_datetime')
         }),
         audit_fieldset_tuple
     )

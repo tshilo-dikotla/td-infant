@@ -13,8 +13,8 @@ class InfantFuAdmin(InfantCrfModelAdminMixin, admin.ModelAdmin):
     fieldsets = (
         (None, {
             'fields': (
-                'report_datetime',
                 'infant_visit',
+                'report_datetime',
                 'physical_assessment',
                 'diarrhea_illness',
                 'has_dx',

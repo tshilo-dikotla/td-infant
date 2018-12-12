@@ -42,8 +42,8 @@ class InfantFuImmunizationsAdmin(InfantCrfModelAdminMixin, admin.ModelAdmin):
     fieldsets = (
         (None, {
             'fields': (
-                'report_datetime',
                 'infant_visit',
+                'report_datetime',
                 'vaccines_received',
                 'vaccines_missed')
         }),

@@ -52,8 +52,6 @@ class InfantDeathReportAdmin(ModelAdminMixin, admin.ModelAdmin):
                 "death_cause",
                 "cause_category",
                 "cause_category_other",
-                "diagnosis_code",
-                "diagnosis_code_other",
                 "illness_duration",
                 "medical_responsibility",
                 "participant_hospitalized",
@@ -78,8 +76,7 @@ class InfantDeathReportAdmin(ModelAdminMixin, admin.ModelAdmin):
         "study_drug_relationship": admin.VERTICAL,
         "infant_nvp_relationship": admin.VERTICAL,
         "haart_relationship": admin.VERTICAL,
-        "trad_med_relationship": admin.VERTICAL,
-        "diagnosis_code": admin.VERTICAL
+        "trad_med_relationship": admin.VERTICAL
     }
 
     def formfield_for_foreignkey(self, db_field, request, **kwargs):
