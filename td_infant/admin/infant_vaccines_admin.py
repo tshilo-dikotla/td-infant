@@ -20,3 +20,5 @@ class InfantVaccinesAdmin(ModelAdminMixin, admin.ModelAdmin):
             ]
         }), audit_fieldset_tuple,
     )
+
+    radio_fields = {'vaccination': admin.VERTICAL}

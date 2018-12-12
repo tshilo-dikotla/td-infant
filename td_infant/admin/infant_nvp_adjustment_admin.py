@@ -14,8 +14,8 @@ class InfantNvpAdjustmentAdmin(InfantCrfModelAdminMixin, admin.ModelAdmin):
     fieldsets = (
         (None, {
             'fields': [
-                'report_datetime',
                 'infant_visit',
+                'report_datetime',
                 'dose_adjustment',
                 'adjusted_dose',
                 'dose_4_weeks',

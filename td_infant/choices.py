@@ -1,5 +1,5 @@
 from edc_constants.constants import (
-    NOT_APPLICABLE, OTHER, FAILED_ELIGIBILITY, UNKNOWN, OFF_STUDY, ON_STUDY, PARTICIPANT)
+    NOT_APPLICABLE, OTHER, FAILED_ELIGIBILITY, UNKNOWN, OFF_STUDY, ON_STUDY, PARTICIPANT, ALIVE, DEAD)
 from edc_visit_tracking.constants import (
     SCHEDULED, UNSCHEDULED, LOST_VISIT, MISSED_VISIT, COMPLETED_PROTOCOL_VISIT)
 from .constants import BROUGHT, REALTIME, CLOTH_NAPPY, BREASTFEED_ONLY, TUBERCULOSIS
@@ -694,4 +694,10 @@ INFO_PROVIDER = (
     ('GRANDFATHER', 'Grandfather'),
     ('SIBLING', 'Sibling'),
     (OTHER, 'Other'),
+)
+
+ALIVE_DEAD_UNKNOWN = (
+    (ALIVE, 'Alive'),
+    (DEAD, 'Dead'),
+    (UNKNOWN, 'Unknown'),
 )

@@ -4,6 +4,7 @@ from edc_base.model_mixins import BaseUuidModel
 from edc_base.sites.site_model_mixin import SiteModelMixin
 from edc_consent.model_mixins import RequiresConsentFieldsModelMixin
 from edc_constants.constants import (DEAD, MALE)
+from edc_constants.constants import ALIVE
 from edc_metadata.model_mixins.creates import CreatesMetadataModelMixin
 from edc_reference.model_mixins import ReferenceModelMixin
 from edc_visit_tracking.choices import VISIT_REASON_MISSED
@@ -12,6 +13,8 @@ from edc_visit_tracking.constants import (
 from edc_visit_tracking.constants import LOST_VISIT
 from edc_visit_tracking.model_mixins import CaretakerFieldsMixin
 from edc_visit_tracking.model_mixins import VisitModelMixin
+
+from ..choices import ALIVE_DEAD_UNKNOWN
 from ..choices import INFANT_VISIT_STUDY_STATUS, VISIT_REASON, VISIT_INFO_SOURCE, INFO_PROVIDER
 from .infant_birth import InfantBirth
 
@@ -47,6 +50,13 @@ class InfantVisit(CaretakerFieldsMixin, VisitModelMixin,
         verbose_name="What is the participant's current study status",
         max_length=50,
         choices=INFANT_VISIT_STUDY_STATUS)
+
+    survival_status = models.CharField(
+        max_length=10,
+        verbose_name='Participant\'s survival status',
+        choices=ALIVE_DEAD_UNKNOWN,
+        null=True,
+        default=ALIVE)
 
     info_source = models.CharField(
         verbose_name='Source of information?',

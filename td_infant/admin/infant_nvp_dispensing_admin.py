@@ -14,8 +14,8 @@ class InfantNvpDispensingAdmin(InfantCrfModelAdminMixin, admin.ModelAdmin):
     fieldsets = (
         (None, {
             'fields': [
-                'report_datetime',
                 'infant_visit',
+                'report_datetime',
                 'nvp_prophylaxis',
                 'reason_not_given',
                 'azt_prophylaxis',
