@@ -30,7 +30,8 @@ class VaccinesMissedInlineAdmin(TabularInlineMixin, admin.TabularInline):
         (None, {
             'fields': (
                 'missed_vaccine_name',
-                'reason_missed')
+                'reason_missed',
+                'reason_missed_other')
         }),
     )
 
