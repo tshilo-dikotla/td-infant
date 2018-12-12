@@ -126,6 +126,7 @@ list_data = {
         ('beans', 'Beans'),
         ('infant_formula', 'Infant Formula'),
         ('tsabana', 'Tsabana'),
+        (NOT_APPLICABLE, 'Not Applicable'),
         (OTHER, 'Other')
     ],
     'td_infant.wcsdxadult': [
