@@ -12,8 +12,8 @@ class InfantBirthArvAdmin(InfantCrfModelAdminMixin, admin.ModelAdmin):
     fieldsets = (
         (None, {
             'fields': [
-                'report_datetime',
                 'infant_visit',
+                'report_datetime',
                 'azt_after_birth',
                 'azt_dose_date',
                 'azt_additional_dose',

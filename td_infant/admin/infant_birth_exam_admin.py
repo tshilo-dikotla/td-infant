@@ -14,8 +14,8 @@ class InfantBirthExamAdmin(InfantCrfModelAdminMixin, admin.ModelAdmin):
     fieldsets = (
         (None, {
             'fields': [
-                'report_datetime',
                 'infant_visit',
+                'report_datetime',
                 'general_activity',
                 'abnormal_activity',
                 'physical_exam_result',

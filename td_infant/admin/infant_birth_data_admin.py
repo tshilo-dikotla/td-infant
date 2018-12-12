@@ -15,6 +15,7 @@ class InfantBirthDataAdmin(InfantCrfModelAdminMixin, admin.ModelAdmin):
         (None, {
             'fields': (
                 'infant_visit',
+                'report_datetime',
                 'weight_kg',
                 'infant_length',
                 'head_circumference',
