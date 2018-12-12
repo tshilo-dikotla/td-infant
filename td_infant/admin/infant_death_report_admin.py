@@ -1,6 +1,5 @@
-from django.contrib import admin
-from edc_model_admin import audit_fieldset_tuple
 from django.conf import settings
+from django.contrib import admin
 from django_revision.modeladmin_mixin import ModelAdminRevisionMixin
 from edc_base.sites.admin import ModelAdminSiteMixin
 from edc_metadata import NextFormGetter
@@ -9,6 +8,7 @@ from edc_model_admin import (
     ModelAdminFormAutoNumberMixin, ModelAdminAuditFieldsMixin,
     ModelAdminReadOnlyMixin, ModelAdminInstitutionMixin,
     ModelAdminRedirectOnDeleteMixin)
+from edc_model_admin import audit_fieldset_tuple
 from edc_subject_dashboard import ModelAdminSubjectDashboardMixin
 
 from ..admin_site import td_infant_admin
@@ -43,7 +43,7 @@ class InfantDeathReportAdmin(ModelAdminMixin, admin.ModelAdmin):
     fieldsets = (
         (None, {
             'fields': (
-                "infant_visit",
+                "subject_identifier",
                 "report_datetime",
                 "death_date",
                 "cause",

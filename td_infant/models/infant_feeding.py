@@ -1,12 +1,12 @@
 from django.db import models
-
-from edc_base.model_fields.custom_fields import OtherCharField
 from edc_base.model_validators import date_not_future
 from edc_constants.choices import YES_NO, YES_NO_NA, YES_NO_UNSURE_NA
 from edc_constants.constants import NOT_APPLICABLE
 from edc_visit_schedule.model_mixins import VisitScheduleModelMixin
-from ..choices import COWS_MILK, TIMES_BREASTFED, WATER_USED
 
+from edc_base.model_fields.custom_fields import OtherCharField
+
+from ..choices import COWS_MILK, TIMES_BREASTFED, WATER_USED
 from .infant_crf_model import InfantCrfModel
 
 
@@ -36,9 +36,9 @@ class InfantFeeding(InfantCrfModel):
         default=NOT_APPLICABLE)
 
     formula_intro_date = models.DateField(
-        verbose_name=("Date participant first received formula milk (or other foods or liquids)"
-                      "since last attended scheduled visit where an infant feeding form"
-                      " was completed"),
+        verbose_name=("Date the infant participant first started receiving "
+                      "solids since the last attended scheduled visit where "
+                      "an infant feeding form was completed"),
         blank=True,
         null=True)
 

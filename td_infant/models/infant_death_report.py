@@ -1,18 +1,23 @@
 from django.db import models
-
+from edc_base.model_mixins import BaseUuidModel
 from edc_base.model_validators import datetime_not_future
+from edc_base.sites import SiteModelMixin
 from edc_base.utils import get_utcnow
-from edc_base.model_fields import OtherCharField
 from edc_constants.choices import YES_NO
+from edc_identifier.model_mixins import UniqueSubjectIdentifierFieldMixin
 from edc_protocol.validators import datetime_not_before_study_start
-from ..choices import RELATIONSHIP_CHOICES
+from edc_search.model_mixins import SearchSlugModelMixin
+
+from edc_base.model_fields import OtherCharField
+
 from ..choices import (
     CAUSE_OF_DEATH, CAUSE_OF_DEATH_CAT, MED_RESPONSIBILITY,
     HOSPITILIZATION_REASONS, SOURCE_OF_DEATH_INFO)
-from .infant_crf_model import InfantCrfModel
+from ..choices import RELATIONSHIP_CHOICES
 
 
-class InfantDeathReport(InfantCrfModel):
+class InfantDeathReport(UniqueSubjectIdentifierFieldMixin, SiteModelMixin,
+                        SearchSlugModelMixin, BaseUuidModel):
 
     """ A model completed by the user after an infant's death. """
 
@@ -115,6 +120,8 @@ class InfantDeathReport(InfantCrfModel):
             'Describe the major cause of death (including pertinent autopsy information '
             'if available), starting with the first noticeable illness thought to be '
             'related to death, continuing to time of death.'),
+        blank=True,
+        null=True,
         help_text=(
             'Note: Cardiac and pulmonary arrest are not major reasons and should not '
             'be used to describe major cause'))
