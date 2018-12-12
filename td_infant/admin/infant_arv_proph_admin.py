@@ -33,8 +33,8 @@ class InfantArvProphAdmin(InfantCrfModelAdminMixin, admin.ModelAdmin):
     fieldsets = (
         (None, {
             'fields': [
-                'report_datetime',
                 'infant_visit',
+                'report_datetime',
                 'prophylatic_nvp',
                 'arv_status']}
          ), audit_fieldset_tuple)
