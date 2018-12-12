@@ -24,10 +24,16 @@ class InfantVisitAdmin(VisitModelAdminMixin,
                 'appointment',
                 'report_datetime',
                 'reason',
-                'reason_unscheduled',
-                'reason_unscheduled_other',
+                'reason_missed',
+                'study_status',
+                'require_crfs',
                 'info_source',
                 'info_source_other',
+                'information_provider',
+                'information_provider_other',
+                'is_present',
+                'survival_status',
+                'last_alive_date',
                 'comments'
             ]}),
         visit_schedule_fieldset_tuple,
@@ -35,4 +41,11 @@ class InfantVisitAdmin(VisitModelAdminMixin,
     )
 
     radio_fields = {
-        'reason_unscheduled': admin.VERTICAL}
+        'reason': admin.VERTICAL,
+        'study_status': admin.VERTICAL,
+        'require_crfs': admin.VERTICAL,
+        'info_source': admin.VERTICAL,
+        'information_provider': admin.VERTICAL,
+        'is_present': admin.VERTICAL,
+        'survival_status': admin.VERTICAL
+    }

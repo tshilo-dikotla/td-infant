@@ -15,6 +15,7 @@ class InfantBirthAdmin(ModelAdminMixin, admin.ModelAdmin):
     fieldsets = (
         (None, {
             'fields': [
+                'subject_identifier',
                 'maternal_labour_del',
                 'report_datetime',
                 'first_name',
