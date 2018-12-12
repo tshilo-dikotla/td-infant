@@ -12,8 +12,7 @@ from edc_visit_tracking.constants import (
 from edc_visit_tracking.constants import LOST_VISIT
 from edc_visit_tracking.model_mixins import CaretakerFieldsMixin
 from edc_visit_tracking.model_mixins import VisitModelMixin
-
-from ..choices import VISIT_REASON
+from ..choices import INFANT_VISIT_STUDY_STATUS, VISIT_REASON, VISIT_INFO_SOURCE, INFO_PROVIDER
 from .infant_birth import InfantBirth
 
 
@@ -24,6 +23,37 @@ class InfantVisit(CaretakerFieldsMixin, VisitModelMixin,
     """ A model completed by the user on the infant visits. """
 
     appointment = models.OneToOneField(Appointment, on_delete=models.PROTECT)
+
+    reason = models.CharField(
+        verbose_name='Reason for visit',
+        max_length=25,
+        choices=VISIT_REASON)
+
+    information_provider = models.CharField(
+        verbose_name=(
+            'Please indicate who provided most of the information for this infant\'s visit'),
+        max_length=20,
+        choices=INFO_PROVIDER)
+
+    reason_unscheduled = models.CharField(
+        verbose_name=(
+            'If \'missed\' above, reason scheduled '
+            'scheduled visit was missed'),
+        blank=True,
+        null=True,
+        max_length=25)
+
+    study_status = models.CharField(
+        verbose_name="What is the participant's current study status",
+        max_length=50,
+        choices=INFANT_VISIT_STUDY_STATUS)
+
+    info_source = models.CharField(
+        verbose_name='Source of information?',
+        max_length=25,
+        blank=True,
+        null=True,
+        choices=VISIT_INFO_SOURCE)
 
     def requires_circumcision_for_male_at_2030_or_2060(self):
         infant_birth = InfantBirth.objects.get(
