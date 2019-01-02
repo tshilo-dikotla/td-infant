@@ -38,3 +38,4 @@ from .infant_birth_exam_form import InfantBirthExamForm
 from .infant_vaccines_form import InfantVaccinesForm
 from .infant_birth_feedin_vaccine_form import InfantBirthFeedinVaccineForm
 from .infant_form_mixin import InfantModelFormMixin
+from .infant_requisition_form import InfantRequisitionForm

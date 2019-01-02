@@ -701,3 +701,15 @@ ALIVE_DEAD_UNKNOWN = (
     (DEAD, 'Dead'),
     (UNKNOWN, 'Unknown'),
 )
+
+STUDY_SITES = (
+    ('40', 'Gaborone'),
+    ('10', 'Molepolole'),
+)
+
+REASON_NOT_DRAWN = (
+    ('collection_failed', 'Tried, but unable to obtain sample from patient'),
+    ('absent', 'Patient did not attend visit'),
+    ('refused', 'Patient refused'),
+    ('no_supplies', 'No supplies'),
+    (OTHER, 'Other'),)

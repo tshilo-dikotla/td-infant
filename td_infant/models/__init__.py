@@ -26,3 +26,5 @@ from .infant_visit import InfantVisit
 from .list_models import Foods, Rations
 from .signals import *
 from .solid_food_assessment import SolidFoodAssessment
+from .infant_requisition import InfantRequisition
+from .onschedule import OnScheduleInfantBirth

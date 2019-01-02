@@ -1,6 +1,11 @@
 from edc_base.model_mixins import ListModelMixin, BaseUuidModel
 
 
+class TestCode (ListModelMixin, BaseUuidModel):
+
+    pass
+
+
 class AutopsyInfoSource(ListModelMixin, BaseUuidModel):
 
     pass

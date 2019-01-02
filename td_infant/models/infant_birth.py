@@ -1,22 +1,21 @@
 from django.db import models
-from django.db.models.deletion import PROTECT
+from django.apps import apps as django_apps
 
 from edc_base.model_mixins import BaseUuidModel
 from edc_base.model_validators import datetime_not_future
 from edc_base.model_validators.date import date_not_future
+
+from edc_base.sites import SiteModelMixin
 from edc_constants.choices import GENDER_UNDETERMINED
 from edc_identifier.model_mixins import UniqueSubjectIdentifierFieldMixin
+from edc_search.model_mixins import SearchSlugModelMixin
+from td_maternal.models.subject_consent import SubjectConsent
+from django.core.exceptions import ValidationError
 
-from td_maternal.models import MaternalLabourDel, SubjectConsent
 
-
-class InfantBirth(UniqueSubjectIdentifierFieldMixin, BaseUuidModel):
+class InfantBirth(UniqueSubjectIdentifierFieldMixin, SiteModelMixin,
+                  SearchSlugModelMixin, BaseUuidModel):
     """ A model completed by the user on the infant's birth. """
-
-    maternal_labour_del = models.ForeignKey(
-        MaternalLabourDel,
-        verbose_name="Mother's delivery record",
-        on_delete=PROTECT)
 
     report_datetime = models.DateTimeField(
         verbose_name="Date and Time infant enrolled",
@@ -42,37 +41,40 @@ class InfantBirth(UniqueSubjectIdentifierFieldMixin, BaseUuidModel):
         max_length=10,
         choices=GENDER_UNDETERMINED)
 
-    def natural_key(self):
-        return self.maternal_labour_del.natural_key()
-    natural_key.dependencies = [
-        'td_maternal.maternallabourdel', 'edc_registration.registered_subject']
-
     def __str__(self):
-        return "{} ({}) {}".format(self.first_name, self.initials, self.gender)
+        return f'{self.first_name}, {self.initials}, {self.gender}'
+
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
 
     @property
-    def group_names(self):
-        return ['Infant Enrollment', 'Infant Enrollment v3']
+    def schedule_name(self):
+        """Return a visit schedule name.
+        """
+        schedule_name = None
+        subject_consent = django_apps.get_model(
+            'td_maternal.subjectconsent').objects.filter(
+                subject_identifier=self.registered_subject.relative_identifier).order_by('version').last()
+        if subject_consent.version == '1':
+            schedule_name = 'infant_schedule_v1'
+        elif subject_consent.version == '3':
+            schedule_name = 'infant_schedule_v3'
+        return schedule_name
 
-#     @property
-#     def maternal_consents(self):
-#         return SubjectConsent.objects.filter(
-#             subject_identifier=self.registered_subject.relative_identifier)
-
-#     def prepare_appointments(self, using):
-#         """Creates infant appointments relative to the date-of-delivery"""
-#         relative_identifier = self.registered_subject.relative_identifier
-#         maternal_labour_del = MaternalLabourDel.objects.get(
-#             registered_subject__subject_identifier=relative_identifier)
-#         maternal_consent = SubjectConsent.objects.filter(
-#                     subject_identifier=relative_identifier).order_by('version').last()
-#         instruction = 'V' + maternal_consent.version
-#         self.create_all(
-# base_appt_datetime=maternal_labour_del.delivery_datetime, using=using,
-# instruction=instruction)
-
-    def get_subject_identifier(self):
-        return self.registered_subject.subject_identifier
+    @property
+    def registered_subject(self):
+        """Return infant registered subject.
+        """
+        registered_subject_cls = django_apps.get_model(
+            'edc_registration.registeredsubject')
+        try:
+            registered_subject = registered_subject_cls.objects.get(
+                subject_identifier=self.subject_identifier)
+        except registered_subject_cls.DoesNotExist:
+            raise ValidationError(
+                f'Registered Subject is missing for {self.subject_identifier}')
+        else:
+            return registered_subject
 
     class Meta:
         app_label = 'td_infant'

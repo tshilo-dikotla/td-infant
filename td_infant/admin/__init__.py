@@ -22,3 +22,4 @@ from .infant_vaccines_admin import InfantVaccinesAdmin
 from .infant_visit_admin import InfantVisitAdmin
 from .model_admin_mixins import InfantCrfModelAdminMixin
 from .solid_food_assessment_admin import SolidFoodAssessmentAdmin
+from .infant_requisition_admin import InfantRequisitionAdmin

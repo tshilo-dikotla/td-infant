@@ -2,21 +2,48 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 
 from edc_constants.constants import BY_BIRTH
+from edc_registration.models import RegisteredSubject
+from edc_visit_schedule.site_visit_schedules import site_visit_schedules
 
 from ..models import InfantBirth
+from django.core.exceptions import ValidationError
 
 
-@receiver(post_save, weak=False, dispatch_uid='update_infant_registered_subject_on_post_save')
-def update_infant_registered_subject_on_post_save(sender, instance, raw, created, using, **kwargs):
-    """Updates an instance of RegisteredSubject on the sender instance.
-    Sender instance is a InfantBirth"""
+@receiver(post_save, weak=False, sender=InfantBirth,
+          dispatch_uid='antenatal_enrollment_on_post_save')
+def infant_birth_on_post_save(sender, instance, raw, created, **kwargs):
+    """Creates an onschedule instance for this infant birth, if
+    it does not exist.
+    """
     if not raw:
-        if isinstance(instance, InfantBirth):
-            instance.registered_subject.first_name = instance.first_name
-            instance.registered_subject.initials = instance.initials
-            instance.registered_subject.dob = instance.dob
-            instance.registered_subject.gender = instance.gender
-            instance.registered_subject.registration_datetime = instance.report_datetime
-            instance.registered_subject.registration_status = BY_BIRTH
-            instance.registered_subject.registration_identifier = instance.pk
-            instance.registered_subject.save(using=using)
+        if not created:
+            _, schedule = site_visit_schedules.get_by_onschedule_model_schedule_name(
+                onschedule_model='td_infant.onscheduleinfantbirth',
+                name=instance.schedule_name)
+            schedule.refresh_schedule(
+                subject_identifier=instance.subject_identifier)
+        else:
+            # put subject on schedule
+            _, schedule = site_visit_schedules.get_by_onschedule_model_schedule_name(
+                onschedule_model='td_infant.onscheduleinfantbirth',
+                name=instance.schedule_name)
+            schedule.put_on_schedule(
+                subject_identifier=instance.subject_identifier,
+                onschedule_datetime=instance.report_datetime)
+
+            # Update infant registered subject
+            try:
+                registered_subject = RegisteredSubject.objects.get(
+                    subject_identifier=instance.subject_identifier)
+            except RegisteredSubject.DoesNotExist:
+                raise ValidationError(
+                    f'Missing registered subject for {instance.subject_identifier}')
+            else:
+                registered_subject.first_name = instance.first_name
+                registered_subject.initials = instance.initials
+                registered_subject.dob = instance.dob
+                registered_subject.gender = instance.gender
+                registered_subject.registration_datetime = instance.report_datetime
+                registered_subject.registration_status = BY_BIRTH
+                registered_subject.registration_identifier = instance.pk
+                registered_subject.save()
