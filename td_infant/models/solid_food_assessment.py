@@ -38,7 +38,6 @@ class SolidFoodAssessment(InfantCrfModel):
 
     porridge_freq = models.IntegerField(
         verbose_name="If yes, please indicate how many times this child has had porridge in the last week",
-        help_text="",
         blank=True,
         null=True,
     )
@@ -51,7 +50,6 @@ class SolidFoodAssessment(InfantCrfModel):
 
     tsabana_week = models.IntegerField(
         verbose_name="If yes, then please indicate how many times this child usually eats tsabana in a week",
-        help_text="",
         blank=True,
         null=True,
     )
@@ -70,7 +68,6 @@ class SolidFoodAssessment(InfantCrfModel):
 
     meat_freq = models.IntegerField(
         verbose_name="If yes, please indicate how many times this child has had meat, chicken or fish in the last week",
-        help_text="",
         blank=True,
         null=True,
     )
@@ -83,7 +80,6 @@ class SolidFoodAssessment(InfantCrfModel):
 
     potatoes_freq = models.IntegerField(
         verbose_name="If yes, please indicate how many times this child has had meat, chicken or fish in the last week",
-        help_text="",
         blank=True,
         null=True,
     )
@@ -97,7 +93,6 @@ class SolidFoodAssessment(InfantCrfModel):
     carrot_swt_potato_freq = models.IntegerField(
         verbose_name="If yes, please indicate how many times this child has had carrot, pumpkin or sweet potato"
                      " in the last week",
-        help_text="",
         blank=True,
         null=True,
     )
@@ -105,12 +100,10 @@ class SolidFoodAssessment(InfantCrfModel):
     green_veg = models.CharField(
         max_length=15,
         choices=YES_NO_UNKNOWN,
-        verbose_name="Since this time yesterday, has this child had any green vegetables?",
-        help_text="")
+        verbose_name="Since this time yesterday, has this child had any green vegetables?")
 
     green_veg_freq = models.IntegerField(
         verbose_name="If yes, please indicate how many times this child has had green vegetables in the last week",
-        help_text="",
         blank=True,
         null=True,
     )
@@ -123,7 +116,6 @@ class SolidFoodAssessment(InfantCrfModel):
 
     fresh_fruits_freq = models.IntegerField(
         verbose_name="If yes, please indicate how many times this child has had fresh fruits in the last week",
-        help_text="",
         blank=True,
         null=True,
     )
@@ -136,7 +128,6 @@ class SolidFoodAssessment(InfantCrfModel):
 
     fullcream_milk_freq = models.IntegerField(
         verbose_name="If yes, please indicate how many times this child has had full cream milk in the last week",
-        help_text="",
         blank=True,
         null=True,
     )
@@ -148,7 +139,6 @@ class SolidFoodAssessment(InfantCrfModel):
 
     skim_milk_freq = models.IntegerField(
         verbose_name="If yes, please indicate how many times this child has had any skim or part-skim in the last week",
-        help_text="",
         blank=True,
         null=True,
     )
@@ -161,7 +151,6 @@ class SolidFoodAssessment(InfantCrfModel):
 
     raw_milk_freq = models.IntegerField(
         verbose_name="If yes, please indicate how many times this child has had raw animal milk in the last week",
-        help_text="",
         blank=True,
         null=True,
     )
@@ -174,7 +163,6 @@ class SolidFoodAssessment(InfantCrfModel):
 
     juice_freq = models.IntegerField(
         verbose_name="If yes, please indicate how many times this child has had juice in the last week",
-        help_text="",
         blank=True,
         null=True,
     )
@@ -187,7 +175,6 @@ class SolidFoodAssessment(InfantCrfModel):
 
     eggs_freq = models.IntegerField(
         verbose_name="If yes, please indicate how many times this child has had eggs in the last week",
-        help_text="",
         blank=True,
         null=True,
     )
@@ -200,7 +187,6 @@ class SolidFoodAssessment(InfantCrfModel):
 
     yogurt_freq = models.IntegerField(
         verbose_name="If yes, please indicate how many times this child has had yogurt in the last week",
-        help_text="",
         blank=True,
         null=True,
     )
@@ -213,7 +199,6 @@ class SolidFoodAssessment(InfantCrfModel):
 
     cheese_freq = models.IntegerField(
         verbose_name="If yes, please indicate how many times this child has had cheese in the last week",
-        help_text="",
         blank=True,
         null=True,
     )
@@ -227,9 +212,7 @@ class SolidFoodAssessment(InfantCrfModel):
 
     rations_receviced = models.ManyToManyField(
         Rations,
-        verbose_name="If yes, please indicate all applicable rations received at the last visit",
-        help_text="",
-    )
+        verbose_name="If yes, please indicate all applicable rations received at the last visit")
 
     class Meta:
         app_label = 'td_infant'

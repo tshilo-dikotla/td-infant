@@ -1,6 +1,7 @@
-from django.db import models
 from django.core.validators import MinValueValidator, MaxValueValidator
+from django.db import models
 from edc_constants.choices import YES_NO
+
 from .infant_crf_model import InfantCrfModel
 
 
@@ -12,7 +13,6 @@ class InfantFu(InfantCrfModel):
         max_length=3,
         choices=YES_NO,
         verbose_name="Was physical assessment done today?",
-        help_text="",
     )
 
     diarrhea_illness = models.CharField(
@@ -41,7 +41,6 @@ class InfantFu(InfantCrfModel):
 
     days_hospitalized = models.IntegerField(
         verbose_name="If 'Yes', total number of days of hospitalization since the last scheduled visit.",
-        help_text="",
         blank=True,
         null=True,
         validators=[MinValueValidator(0), MaxValueValidator(90), ],

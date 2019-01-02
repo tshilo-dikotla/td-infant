@@ -79,12 +79,10 @@ class InfantBirthExam(InfantCrfModel):
         max_length=15,
         choices=YES_NO_NOT_EVALUATED_NA,
         verbose_name="Was Skin Exam Normal?",
-        help_text="",
         default=NOT_APPLICABLE,)
 
     skin_exam_other = models.TextField(
         verbose_name="If abnormal or not evaluated, specify",
-        help_text="",
         blank=True,
         null=True)
 

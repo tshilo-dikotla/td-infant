@@ -41,7 +41,6 @@ class InfantBirthData(InfantCrfModel):
 
     apgar_score_min_1 = models.IntegerField(
         verbose_name="At 1 minute: ",
-        help_text="",
         blank=True,
         null=True,
         validators=[MaxValueValidator(10),
@@ -49,7 +48,6 @@ class InfantBirthData(InfantCrfModel):
 
     apgar_score_min_5 = models.IntegerField(
         verbose_name="At 5 minutes: ",
-        help_text="",
         blank=True,
         null=True,
         validators=[MaxValueValidator(10),
@@ -57,7 +55,6 @@ class InfantBirthData(InfantCrfModel):
 
     apgar_score_min_10 = models.IntegerField(
         verbose_name="At 10 minutes: ",
-        help_text="",
         blank=True,
         null=True,
         validators=[MaxValueValidator(10),
