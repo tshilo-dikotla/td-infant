@@ -1,8 +1,8 @@
-from django.db import models
 from django.core.validators import MinValueValidator, MaxValueValidator
-from edc_constants.constants import NOT_APPLICABLE
+from django.db import models
 from edc_constants.choices import (NORMAL_ABNORMAL,
                                    YES_NO_NOT_EVALUATED_NA, NORMAL_ABNORMAL_NOEXAM)
+from edc_constants.constants import NOT_APPLICABLE
 
 from .infant_crf_model import InfantCrfModel
 
@@ -105,12 +105,10 @@ class InfantFuPhysical(InfantCrfModel):
         max_length=15,
         choices=YES_NO_NOT_EVALUATED_NA,
         verbose_name="Was Skin Exam Normal?",
-        help_text="",
         default=NOT_APPLICABLE,)
 
     skin_exam_other = models.TextField(
         verbose_name="If abnormal or not evaluated, specify",
-        help_text="",
         blank=True,
         null=True)
 

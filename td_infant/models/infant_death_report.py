@@ -97,7 +97,6 @@ class InfantDeathReport(UniqueSubjectIdentifierFieldMixin, SiteModelMixin,
         choices=HOSPITILIZATION_REASONS,
         max_length=50,
         verbose_name='if yes, hospitalized, what was the primary reason for hospitalisation? ',
-        help_text="",
         blank=True,
         null=True)
 
