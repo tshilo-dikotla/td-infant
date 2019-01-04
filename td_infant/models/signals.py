@@ -16,6 +16,22 @@ def infant_birth_on_post_save(sender, instance, raw, created, **kwargs):
     it does not exist.
     """
     if not raw:
+        # Update infant registered subject
+        try:
+            registered_subject = RegisteredSubject.objects.get(
+                subject_identifier=instance.subject_identifier)
+        except RegisteredSubject.DoesNotExist:
+            raise ValidationError(
+                f'Missing registered subject for {instance.subject_identifier}')
+        else:
+            registered_subject.first_name = instance.first_name
+            registered_subject.initials = instance.initials
+            registered_subject.dob = instance.dob
+            registered_subject.gender = instance.gender
+            registered_subject.registration_datetime = instance.report_datetime
+            registered_subject.registration_status = BY_BIRTH
+            registered_subject.registration_identifier = instance.pk
+            registered_subject.save()
         if not created:
             _, schedule = site_visit_schedules.get_by_onschedule_model_schedule_name(
                 onschedule_model='td_infant.onscheduleinfantbirth',
@@ -30,20 +46,3 @@ def infant_birth_on_post_save(sender, instance, raw, created, **kwargs):
             schedule.put_on_schedule(
                 subject_identifier=instance.subject_identifier,
                 onschedule_datetime=instance.report_datetime)
-
-            # Update infant registered subject
-            try:
-                registered_subject = RegisteredSubject.objects.get(
-                    subject_identifier=instance.subject_identifier)
-            except RegisteredSubject.DoesNotExist:
-                raise ValidationError(
-                    f'Missing registered subject for {instance.subject_identifier}')
-            else:
-                registered_subject.first_name = instance.first_name
-                registered_subject.initials = instance.initials
-                registered_subject.dob = instance.dob
-                registered_subject.gender = instance.gender
-                registered_subject.registration_datetime = instance.report_datetime
-                registered_subject.registration_status = BY_BIRTH
-                registered_subject.registration_identifier = instance.pk
-                registered_subject.save()
