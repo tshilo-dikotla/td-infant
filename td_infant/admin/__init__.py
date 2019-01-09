@@ -23,3 +23,5 @@ from .infant_visit_admin import InfantVisitAdmin
 from .model_admin_mixins import InfantCrfModelAdminMixin
 from .solid_food_assessment_admin import SolidFoodAssessmentAdmin
 from .infant_requisition_admin import InfantRequisitionAdmin
+from .infant_appointment_admin import AppointmentAdmin
+from .infant_dummy_subject_consent_admin import InfantDummySubjectConsentAdmin

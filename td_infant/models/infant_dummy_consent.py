@@ -2,10 +2,15 @@ from django.db import models
 
 from edc_base.model_managers import HistoricalRecords
 from edc_base.model_mixins import BaseUuidModel
+from edc_consent.model_mixins import ConsentModelMixin
 from edc_identifier.model_mixins import UniqueSubjectIdentifierFieldMixin
+from edc_base.sites.site_model_mixin import SiteModelMixin
+from edc_consent.field_mixins import PersonalFieldsMixin
 
 
-class InfantDummySubjectConsent(UniqueSubjectIdentifierFieldMixin, BaseUuidModel):
+class InfantDummySubjectConsent(
+        ConsentModelMixin, SiteModelMixin, UniqueSubjectIdentifierFieldMixin,
+        PersonalFieldsMixin, BaseUuidModel):
 
     """ A dummy infant model auto completed by the s. """
 
@@ -30,7 +35,8 @@ class InfantDummySubjectConsent(UniqueSubjectIdentifierFieldMixin, BaseUuidModel
     def natural_key(self):
         return (self.subject_identifier, self.version)
 
-    class Meta:
+    class Meta(ConsentModelMixin.Meta):
         app_label = 'td_infant'
         verbose_name = 'Infant Consent'
-        unique_together = (('subject_identifier', 'version'))
+        unique_together = (
+            ('subject_identifier', 'version'))
