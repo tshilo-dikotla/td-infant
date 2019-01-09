@@ -1,5 +1,4 @@
 from django.db import models
-from edc_appointment.models import Appointment
 from edc_base.model_mixins import BaseUuidModel
 from edc_base.sites.site_model_mixin import SiteModelMixin
 from edc_consent.model_mixins import RequiresConsentFieldsModelMixin
@@ -16,6 +15,7 @@ from edc_visit_tracking.model_mixins import VisitModelMixin
 
 from ..choices import ALIVE_DEAD_UNKNOWN
 from ..choices import INFANT_VISIT_STUDY_STATUS, VISIT_REASON, VISIT_INFO_SOURCE, INFO_PROVIDER
+from .infant_appointment import Appointment
 from .infant_birth import InfantBirth
 
 
