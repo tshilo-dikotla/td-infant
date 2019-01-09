@@ -29,3 +29,4 @@ from .solid_food_assessment import SolidFoodAssessment
 from .infant_requisition import InfantRequisition
 from .onschedule import OnScheduleInfantBirth
 from .infant_dummy_consent import InfantDummySubjectConsent
+from .infant_appointment import Appointment
