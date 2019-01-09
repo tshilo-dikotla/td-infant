@@ -9,7 +9,6 @@ from edc_base.sites import SiteModelMixin
 from edc_constants.choices import GENDER_UNDETERMINED
 from edc_identifier.model_mixins import UniqueSubjectIdentifierFieldMixin
 from edc_search.model_mixins import SearchSlugModelMixin
-from td_maternal.models.subject_consent import SubjectConsent
 from django.core.exceptions import ValidationError
 
 
