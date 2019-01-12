@@ -3,9 +3,12 @@ from edc_constants.constants import YES
 from ..models import InfantArvProph
 from .infant_form_mixin import InfantModelFormMixin
 from ..constants import START, MODIFIED, NEVER_STARTED
+from td_infant_validators.form_validators import InfantArvProphFormValidator
 
 
 class InfantArvProphForm(InfantModelFormMixin):
+
+    form_validator_cls = InfantArvProphFormValidator
 
     def clean(self):
         cleaned_data = super().clean()

@@ -3,6 +3,9 @@ from .infant_form_mixin import InfantModelFormMixin
 from edc_constants.constants import YES
 from ..models import InfantFuImmunizations, VaccinesReceived, VaccinesMissed
 
+from td_infant_validators.form_validators import (
+    VaccinesMissedFormValidator, VaccinesReceivedFormValidator)
+
 
 class InfantFuImmunizationsForm(InfantModelFormMixin):
 
@@ -43,12 +46,16 @@ class InfantFuImmunizationsForm(InfantModelFormMixin):
 
 class VaccinesReceivedForm(InfantModelFormMixin):
 
+    form_validator_cls = VaccinesReceivedFormValidator
+
     class Meta:
         model = VaccinesReceived
         fields = '__all__'
 
 
 class VaccinesMissedForm(InfantModelFormMixin):
+
+    form_validator_cls = VaccinesMissedFormValidator
 
     class Meta:
         model = VaccinesMissed

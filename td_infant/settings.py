@@ -67,6 +67,7 @@ INSTALLED_APPS = [
     'td_infant.apps.EdcMetadataAppConfig',
     'td_infant.apps.EdcFacilityAppConfig',
     'td_infant.apps.AppConfig',
+    'td_infant_validators.apps.AppConfig'
 ]
 
 MIDDLEWARE = [
