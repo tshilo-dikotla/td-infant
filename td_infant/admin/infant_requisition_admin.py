@@ -20,8 +20,6 @@ class InfantRequisitionAdmin(
 
     ordering = ('requisition_identifier',)
 
-    filter_horizontal = ('test_code',)
-
     fieldsets = (
         (None, {
             'fields': (
