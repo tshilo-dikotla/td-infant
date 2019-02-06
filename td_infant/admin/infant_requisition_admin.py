@@ -33,7 +33,6 @@ class InfantRequisitionAdmin(
                 'drawn_datetime',
                 'study_site',
                 'panel',
-                'test_code',
                 'specimen_type',
                 'item_type',
                 'item_count',

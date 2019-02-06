@@ -14,15 +14,14 @@ from edc_metadata.model_mixins.updates import UpdatesRequisitionMetadataModelMix
 from edc_reference.model_mixins import RequisitionReferenceModelMixin
 from edc_search.model_mixins import SearchSlugManager
 from edc_visit_schedule.model_mixins import SubjectScheduleCrfModelMixin
-
 from edc_visit_tracking.managers import CrfModelManager as VisitTrackingCrfModelManager
 from edc_visit_tracking.model_mixins import CrfModelMixin as VisitTrackingCrfModelMixin
 from edc_visit_tracking.model_mixins import PreviousVisitModelMixin
 
 from ..choices import REASON_NOT_DRAWN, STUDY_SITES
+from .infant_visit import InfantVisit
 from .list_models import TestCode
 from .search_slug_model_mixin import SearchSlugModelMixin
-from .infant_visit import InfantVisit
 
 
 class Manager(VisitTrackingCrfModelManager, SearchSlugManager):
@@ -53,11 +52,6 @@ class InfantRequisition(
         default=NOT_APPLICABLE,
         choices=REASON_NOT_DRAWN,
         null=True,
-        blank=True)
-
-    test_code = models.ManyToManyField(
-        TestCode,
-        verbose_name='Additional tests',
         blank=True)
 
     study_site = models.CharField(
