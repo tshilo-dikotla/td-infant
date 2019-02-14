@@ -31,7 +31,6 @@ class InfantRequisitionAdmin(
                 'drawn_datetime',
                 'study_site',
                 'panel',
-                'specimen_type',
                 'item_type',
                 'item_count',
                 'estimated_volume',
