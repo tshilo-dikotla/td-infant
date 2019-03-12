@@ -20,7 +20,6 @@ from edc_visit_tracking.model_mixins import PreviousVisitModelMixin
 
 from ..choices import REASON_NOT_DRAWN, STUDY_SITES
 from .infant_visit import InfantVisit
-from .list_models import TestCode
 from .search_slug_model_mixin import SearchSlugModelMixin
 
 
