@@ -39,7 +39,7 @@ class KaraboEligibility:
             ' they received a BCG vaccine within 72 hours of birth'
             ' in the Under 5 Health'
 
-        if infant_months == YES or not self.validate_infant_weight():
+        if infant_months == YES:
             self.eligible = False
             self.reasons_ineligible = 'Infant has reached 14 months of age '
 
@@ -56,22 +56,3 @@ class KaraboEligibility:
             self.eligible = False
             self.reasons_ineligible = 'Woman is not willing to provide'
             ' informed consent'
-
-    def validate_infant_weight(self):
-        infant_birth_data = self.infant_birth_data_cls.objects.get(
-            subject_identifier=self.subject_identifier)
-
-        if infant_birth_data:
-            weight = infant_birth_data.weight_kg
-            if int(weight) >= 2:
-                return True
-        return False
-
-    @property
-    def infant_birth_data_cls(self):
-        return django_apps.get_model(self.infant_bith_data)
-
-    def infant_birth_months(self):
-        ''' checks if the infant reached 14 months of age or has the infant already
-            attended the 12 month Tshilo Dikotla Study visit
-        '''
