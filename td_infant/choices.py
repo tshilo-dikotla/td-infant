@@ -4,6 +4,10 @@ from edc_visit_tracking.constants import (
     SCHEDULED, UNSCHEDULED, LOST_VISIT, MISSED_VISIT, COMPLETED_PROTOCOL_VISIT)
 from .constants import BROUGHT, REALTIME, CLOTH_NAPPY, BREASTFEED_ONLY, TUBERCULOSIS
 
+ANSWERS = (
+    ('Accepted', 'Yes and the client accepted the signed copy of the consent'),
+    ('Refused', 'Yes and the client refused the signed copy of the consent'),
+)
 
 ARV_DRUG_LIST = (
     ('Nevirapine', 'NVP'),
