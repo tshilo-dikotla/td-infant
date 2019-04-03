@@ -24,7 +24,7 @@ class KaraboSubjectConsent(CryptoMixin, SiteModelMixin, BaseUuidModel):
         verbose_name="Subject Identifier",
         max_length=50)
 
-    subject_screening_model = 'td_maternal.subjectscreening'
+    subject_screening_model = 'td_infant.subjectscreening'
 
     screening_identifier = models.CharField(
         verbose_name='Screening identifier',
