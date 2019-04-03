@@ -9,6 +9,18 @@ ANSWERS = (
     ('Refused', 'Yes and the client refused the signed copy of the consent'),
 )
 
+FAMILY_RELATION = (
+
+    ('me', 'Me'),
+    ('father', 'Father'),
+    ('sibling', 'Sibling'),
+    ('grandmother', 'Grandmother'),
+    ('grandfather', 'Grandfather'),
+    ('aunt', 'Aunt'),
+    ('uncle', 'Uncle'),
+    (NOT_APPLICABLE, 'Not applicable'),
+)
+
 ARV_DRUG_LIST = (
     ('Nevirapine', 'NVP'),
     ('Kaletra', 'KAL'),
