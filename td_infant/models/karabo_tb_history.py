@@ -2,10 +2,10 @@ from django.db import models
 from edc_constants.choices import YES_NO_DONT_KNOW
 
 from ..choices import FAMILY_RELATION
-from .model_mixins import CrfModelMixin
+from .model_mixins import KaraboCrfModelMixin
 
 
-class KaraboTuberculosisHistory(CrfModelMixin):
+class KaraboTuberculosisHistory(KaraboCrfModelMixin):
     """
     crf model about tuberculosis treatment history in family
     members relating to the infant
@@ -159,6 +159,6 @@ class KaraboTuberculosisHistory(CrfModelMixin):
     )
 
     class Meta:
-        app_label = 'td_maternal'
+        app_label = 'td_infant'
         verbose_name = "Karabo Tuberculosis History"
         verbose_name_plural = "Karabo Tuberculosis Histories"

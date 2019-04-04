@@ -1,20 +1,20 @@
 from django.contrib import admin
 from edc_model_admin import audit_fieldset_tuple
 
-from ..admin_site import td_maternal_admin
+from ..admin_site import td_infant_admin
 from ..forms import KaraboTuberculosisHistoryForm
 from ..models import KaraboTuberculosisHistory
-from .modeladmin_mixins import CrfModelAdminMixin
+from .karabo_modeladmin_mixins import KaraboCrfModelAdminMixin
 
 
-@admin.register(KaraboTuberculosisHistory, site=td_maternal_admin)
-class KaraboTuberculosisHistoryAdmin(CrfModelAdminMixin, admin.ModelAdmin):
+@admin.register(KaraboTuberculosisHistory, site=td_infant_admin)
+class KaraboTuberculosisHistoryAdmin(KaraboCrfModelAdminMixin, admin.ModelAdmin):
     form = KaraboTuberculosisHistoryForm
 
     fieldsets = (
         (None, {
             'fields': [
-                'maternal_visit',
+                'infant_visit',
                 'coughing',
                 'coughing_rel',
                 'other_coughing_rel',

@@ -1,12 +1,12 @@
 from django.contrib import admin
 from edc_model_admin import audit_fieldset_tuple
 
-from ..admin_site import td_maternal_admin
+from ..admin_site import td_infant_admin
 from ..forms import KaraboSubjectConsentForm
 from ..models import KaraboSubjectConsent
 
 
-@admin.register(KaraboSubjectConsent, site=td_maternal_admin)
+@admin.register(KaraboSubjectConsent, site=td_infant_admin)
 class KaraboSubjectConsentAdmin(admin.ModelAdmin):
     form = KaraboSubjectConsentForm
 
