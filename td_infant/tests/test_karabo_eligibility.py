@@ -1,4 +1,4 @@
-from django.test import TestCase
+from django.test import TestCase, tag
 from edc_constants.constants import YES, NO
 
 from ..models import KaraboSubjectScreening
@@ -19,11 +19,16 @@ class TestKaraboEligibility(TestCase):
             'willing_to_consent': YES
         }
 
+    @tag('eligibility_ok')
     def test_infant_eligible(self):
         subject_screening = KaraboSubjectScreening(
-            self.options)
+            **self.options)
         self.assertTrue(subject_screening.is_eligible)
 
+    @tag('not_eligible')
     def test_infant_not_eligible(self):
-        pass
-
+        self.options['infant_alive'] = NO
+        self.options['infant_weight'] = NO
+        subject_screening = KaraboSubjectScreening(
+            **self.options)
+        self.assertFalse(subject_screening.is_eligible)
