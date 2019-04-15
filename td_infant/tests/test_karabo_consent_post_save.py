@@ -39,7 +39,7 @@ class TestKaraboConsentSave(BaseTestCase):
             subject_identifier=self.infant_reg_subject.subject_identifier,
             report_datetime=get_utcnow())
 
-    def test_signal_run_resave(self):
+    def test_karabo_tb_form_required(self):
         appointment_2000 = InfantAppointment.objects.get(
             subject_identifier=self.infant_reg_subject.subject_identifier,
             visit_code='2000')
