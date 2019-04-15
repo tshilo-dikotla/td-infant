@@ -54,16 +54,28 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.sites',
     'django_crypto_fields.apps.AppConfig',
+    'edc_base.apps.AppConfig',
+    'edc_device.apps.AppConfig',
+    'edc_consent.apps.AppConfig',
+    'edc_action_item.apps.AppConfig',
+    'edc_identifier.apps.AppConfig',
     'edc_label.apps.AppConfig',
     'edc_lab.apps.AppConfig',
     'edc_locator.apps.AppConfig',
     'edc_export.apps.AppConfig',
-    'edc_timepoint.apps.AppConfig',
-    'edc_action_item.apps.AppConfig',
+    'edc_registration.apps.AppConfig',
+    'edc_reference.apps.AppConfig',
+    'edc_metadata_rules.apps.AppConfig',
+    'edc_visit_schedule.apps.AppConfig',
+    'td_metadata_rules.apps.AppConfig',
+    'td_visit_schedule.apps.AppConfig',
+    'td_labs.apps.AppConfig',
+    'td_reference.apps.AppConfig',
     'td_maternal.apps.AppConfig',
     'td_infant.apps.EdcVisitTrackingAppConfig',
     'td_infant.apps.EdcProtocolAppConfig',
     'td_infant.apps.EdcAppointmentAppConfig',
+    'td_infant.apps.EdcTimepointAppConfig',
     'td_infant.apps.EdcMetadataAppConfig',
     'td_infant.apps.EdcFacilityAppConfig',
     'td_infant.apps.AppConfig',
@@ -138,9 +150,6 @@ USE_L10N = True
 
 USE_TZ = True
 
-AUTO_CREATE_KEYS = True
-
-
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 STATIC_ROOT = os.path.join(BASE_DIR, 'td_infant', 'static')
 STATIC_URL = '/static/'
@@ -150,3 +159,17 @@ DASHBOARD_URL_NAMES = {
     'subject_listboard_url': 'td_dashboard:subject_listboard_url',
     'subject_dashboard_url': 'td_dashboard:subject_dashboard_url',
 }
+
+if 'test' in sys.argv:
+
+    class DisableMigrations:
+
+        def __contains__(self, item):
+            return True
+
+        def __getitem__(self, item):
+            return None
+
+    MIGRATION_MODULES = DisableMigrations()
+    PASSWORD_HASHERS = ('django.contrib.auth.hashers.MD5PasswordHasher', )
+    DEFAULT_FILE_STORAGE = 'inmemorystorage.InMemoryStorage'

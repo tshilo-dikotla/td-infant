@@ -20,7 +20,6 @@ from .infant_congenital_anomalies_form import InfantRenalForm
 from .infant_congenital_anomalies_form import InfantRespiratoryDefectForm
 from .infant_congenital_anomalies_form import InfantSkinForm
 from .infant_congenital_anomalies_form import InfantTrisomiesForm
-from .infant_crf_model_form import InfantCrfModelForm
 from .infant_death_report_form import InfantDeathReportForm
 from .infant_dummy_subject_consent_form import InfantDummySubjectConsentForm
 from .infant_feeding_form import InfantFeedingForm

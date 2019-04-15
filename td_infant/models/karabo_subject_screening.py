@@ -106,4 +106,4 @@ class KaraboSubjectScreening(UniqueSubjectIdentifierFieldMixin,
         self.ineligibility = eligibility_criteria.reasons_ineligible
         if not self.id:
             self.screening_identifier = self.identifier_cls().identifier
-        super(KaraboEligibility, self).save(*args, **kwargs)
+        super(KaraboSubjectScreening, self).save(*args, **kwargs)

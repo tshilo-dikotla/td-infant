@@ -39,12 +39,12 @@ class KaraboSubjectConsent(CryptoMixin, SiteModelMixin, BaseUuidModel):
         help_text=('If reporting today, use today\'s date/time, otherwise use '
                    'the date/time this information was reported.'))
 
-    name = FirstnameField(
+    first_name = FirstnameField(
         verbose_name='First Name',
         help_text=('(Must match name on file'
                    ' with Tshilo Dikotla Study)'))
 
-    surname = LastnameField(
+    last_name = LastnameField(
         verbose_name='Surname',
         help_text=('(Must match name on file '
                    'with Tshilo Dikotla Study)'))
@@ -54,17 +54,17 @@ class KaraboSubjectConsent(CryptoMixin, SiteModelMixin, BaseUuidModel):
         help_text=('(Must match initials on file '
                    'with Tshilo Dikotla Study)'))
 
-    consent_lang = models.CharField(
+    language = models.CharField(
         verbose_name='Language of consent:',
         max_length=25,
         choices=settings.LANGUAGES)
 
-    literacy = models.CharField(
+    is_literate = models.CharField(
         verbose_name='Is the participant literate?',
         max_length=25,
         choices=YES_NO)
 
-    witness_name = LastnameField(
+    guardian_name = LastnameField(
         verbose_name='Witness\'s last and first name',
         validators=[FullNameValidator()],
         blank=True,
@@ -81,7 +81,7 @@ class KaraboSubjectConsent(CryptoMixin, SiteModelMixin, BaseUuidModel):
             datetime_not_before_study_start,
             datetime_not_future])
 
-    omang = IdentityField(
+    identity = IdentityField(
         verbose_name='Omang of consenting woman',
         help_text=mark_safe('(must match Omang on file '
                             'with Tshilo Dikotla Study)'
@@ -90,31 +90,31 @@ class KaraboSubjectConsent(CryptoMixin, SiteModelMixin, BaseUuidModel):
                             'otherwise will need additional ID '
                             'questions.)'))
 
-    review = models.CharField(
+    consent_reviewed = models.CharField(
         verbose_name='I have reviewed the Karabo study '
         'consent with the client.',
         max_length=3,
         choices=YES_NO)
 
-    answer = models.CharField(
+    study_questions = models.CharField(
         verbose_name='I have answered all questions the client'
         ' had about the Karabo study consent.',
         max_length=3,
         choices=YES_NO)
 
-    questions = models.CharField(
+    assessment_score = models.CharField(
         verbose_name='I have asked the client questions'
         ' about the Karabo study and they have demonstrated an'
         ' understanding of the study by their answers.',
         max_length=3,
         choices=YES_NO)
 
-    signed_consent = models.CharField(
+    consent_signature = models.CharField(
         verbose_name='The client has signed the consent form.',
         max_length=3,
         choices=YES_NO)
 
-    offer = models.CharField(
+    consent_copy = models.CharField(
         verbose_name='I have offered the client a signed copy'
         ' of the consent form.',
         max_length=25,

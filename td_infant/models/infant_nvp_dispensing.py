@@ -1,11 +1,10 @@
 from django.db import models
-
 from edc_constants.choices import YES_NO
 
-from .infant_crf_model import InfantCrfModel
+from .infant_crf_model_mixin import InfantCrfModelMixin
 
 
-class InfantNvpDispensing(InfantCrfModel):
+class InfantNvpDispensing(InfantCrfModelMixin):
 
     nvp_prophylaxis = models.CharField(
         choices=YES_NO,
@@ -66,7 +65,7 @@ class InfantNvpDispensing(InfantCrfModel):
         null=True,
         max_length=50)
 
-    class Meta():
+    class Meta(InfantCrfModelMixin.Meta):
         app_label = 'td_infant'
         verbose_name = 'Infant Nevirapine Dispensing'
         verbose_name_plural = 'Infant Nevirapine Dispensing'

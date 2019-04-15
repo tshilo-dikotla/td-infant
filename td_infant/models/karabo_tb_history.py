@@ -1,11 +1,12 @@
 from django.db import models
-from edc_constants.choices import YES_NO_DONT_KNOW
+from edc_constants.choices import YES_NO_DONT_KNOW, YES_NO
+from edc_constants.constants import NO
 
 from ..choices import FAMILY_RELATION
-from .model_mixins import KaraboCrfModelMixin
+from .infant_crf_model_mixin import InfantCrfModelMixin
 
 
-class KaraboTuberculosisHistory(KaraboCrfModelMixin):
+class KaraboTuberculosisHistory(InfantCrfModelMixin):
     """
     crf model about tuberculosis treatment history in family
     members relating to the infant
@@ -156,6 +157,15 @@ class KaraboTuberculosisHistory(KaraboCrfModelMixin):
         help_text='please comment on the nature of the exposure',
         null=True,
         blank=True
+    )
+
+    put_offstudy = models.CharField(
+        verbose_name=(
+            'Is the participant going offstudy?'),
+        max_length=255,
+        choices=YES_NO,
+        default=NO,
+        help_text='Select YES only if the participant is going off study.',
     )
 
     class Meta:

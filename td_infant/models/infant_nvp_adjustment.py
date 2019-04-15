@@ -1,12 +1,10 @@
 from django.db import models
-
 from edc_constants.choices import YES_NO, YES_NO_NA
 
+from .infant_crf_model_mixin import InfantCrfModelMixin
 
-from .infant_crf_model import InfantCrfModel
 
-
-class InfantNvpAdjustment(InfantCrfModel):
+class InfantNvpAdjustment(InfantCrfModelMixin):
 
     dose_adjustment = models.CharField(
         verbose_name='Was it necessary to adjust the infant’s dose of NVP prophylaxis at 2 weeks of life?',
@@ -34,7 +32,7 @@ class InfantNvpAdjustment(InfantCrfModel):
         null=True,
         max_length=50)
 
-    class Meta():
+    class Meta(InfantCrfModelMixin.Meta):
         app_label = 'td_infant'
         verbose_name = 'Infant Nevirapine 2 Week Adjustment'
         verbose_name_plural = 'Infant Nevirapine 2 Week Adjustment'

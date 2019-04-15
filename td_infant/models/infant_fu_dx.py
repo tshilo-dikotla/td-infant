@@ -5,15 +5,14 @@ from edc_constants.choices import YES_NO
 from edc_visit_tracking.model_mixins import CrfInlineModelMixin
 from ..choices import DX_INFANT
 
-# from ..managers import InfantFuDxItemsManager
-from .infant_crf_model import InfantCrfModel
+from .infant_crf_model_mixin import InfantCrfModelMixin
 
 
-class InfantFuDx(InfantCrfModel):
+class InfantFuDx(InfantCrfModelMixin):
 
     """ A model completed by the user on the infant's follow up dx. """
 
-    class Meta(InfantCrfModel.Meta):
+    class Meta(InfantCrfModelMixin.Meta):
         app_label = 'td_infant'
         verbose_name = "Infant FollowUp: Dx"
         verbose_name_plural = "Infant FollowUp: Dx"
@@ -43,10 +42,6 @@ class InfantFuDxItems(CrfInlineModelMixin, BaseUuidModel):
         verbose_name="Hospitalized?",
         choices=YES_NO,
         max_length=3)
-
-#     objects = InfantFuDxItemsManager()
-#
-#     history = SyncHistoricalRecords()
 
     def natural_key(self):
         return (self.fu_dx, ) + self.infant_fu_dx.natural_key()

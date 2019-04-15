@@ -1,12 +1,11 @@
 from django.db import models
-
 from edc_base.model_mixins.base_uuid_model import BaseUuidModel
+
 from ..choices import INFANT_VACCINATIONS, FEEDING_CHOICES
+from .infant_crf_model_mixin import InfantCrfModelMixin
 
-from .infant_crf_model import InfantCrfModel
 
-
-class InfantBirthFeedingVaccine(InfantCrfModel):
+class InfantBirthFeedingVaccine(InfantCrfModelMixin):
 
     """ A model completed by the user on the infant's feeding & vaccination/ immunization. """
 
@@ -22,7 +21,7 @@ class InfantBirthFeedingVaccine(InfantCrfModel):
         blank=True,
         null=True)
 
-    class Meta(InfantCrfModel.Meta):
+    class Meta(InfantCrfModelMixin.Meta):
         app_label = 'td_infant'
         verbose_name = "Birth Feeding & Vaccination"
 

@@ -3,11 +3,10 @@ from django.db import models
 from edc_constants.choices import (NORMAL_ABNORMAL,
                                    YES_NO_NOT_EVALUATED_NA, NORMAL_ABNORMAL_NOEXAM)
 from edc_constants.constants import NOT_APPLICABLE
+from .infant_crf_model_mixin import InfantCrfModelMixin
 
-from .infant_crf_model import InfantCrfModel
 
-
-class InfantFuPhysical(InfantCrfModel):
+class InfantFuPhysical(InfantCrfModelMixin):
 
     """ A model completed by the user on the infant's Infant follow up physical assessment. """
 
@@ -124,7 +123,7 @@ class InfantFuPhysical(InfantCrfModel):
         blank=True,
         null=True)
 
-    class Meta:
+    class Meta(InfantCrfModelMixin.Meta):
         app_label = 'td_infant'
         verbose_name = "Infant FollowUp: Physical"
         verbose_name_plural = "Infant FollowUp: Physical"

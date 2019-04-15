@@ -6,10 +6,10 @@ from edc_visit_tracking.model_mixins import CrfInlineModelMixin
 
 from ..choices import ARV_MODIFICATION_REASON, ARV_DRUG_LIST, DOSE_STATUS, ARV_STATUS
 
-from .infant_crf_model import InfantCrfModel
+from .infant_crf_model_mixin import InfantCrfModelMixin
 
 
-class InfantArvProph(InfantCrfModel):
+class InfantArvProph(InfantCrfModelMixin):
     """ A model completed by the user on the infant's nvp or azt prophylaxis. """
 
     prophylatic_nvp = models.CharField(
@@ -26,7 +26,7 @@ class InfantArvProph(InfantCrfModel):
         choices=ARV_STATUS,
         help_text="referring to prophylaxis other than single dose NVP")
 
-    class Meta(InfantCrfModel.Meta):
+    class Meta(InfantCrfModelMixin.Meta):
         verbose_name = 'Infant NVP or AZT Proph'
         verbose_name_plural = 'Infant NVP or AZT Proph'
 
@@ -68,7 +68,7 @@ class InfantArvProphMod(CrfInlineModelMixin, BaseUuidModel):
     def natural_key(self):
         return (self.arv_code, ) + self.infant_arv_proph.natural_key()
 
-    class Meta(InfantCrfModel.Meta):
+    class Meta:
         verbose_name = 'Infant NVP or AZT Proph: Mods'
         verbose_name_plural = 'Infant NVP or AZT Proph: Mods'
         unique_together = (

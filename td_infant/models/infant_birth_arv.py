@@ -3,10 +3,10 @@ from django.db import models
 from edc_base.model_validators.date import date_not_future
 from edc_constants.choices import YES_NO_UNKNOWN, YES_NO_UNKNOWN_NA
 
-from .infant_crf_model import InfantCrfModel
+from .infant_crf_model_mixin import InfantCrfModelMixin
 
 
-class InfantBirthArv(InfantCrfModel):
+class InfantBirthArv(InfantCrfModelMixin):
 
     """ A model completed by the user on the infant's arv information. """
 
@@ -52,7 +52,7 @@ class InfantBirthArv(InfantCrfModel):
         blank=True,
         null=True)
 
-    class Meta(InfantCrfModel.Meta):
+    class Meta(InfantCrfModelMixin.Meta):
         app_label = 'td_infant'
         verbose_name = "Infant Birth Record: ARV"
         verbose_name_plural = "Infant Birth Record: ARV"

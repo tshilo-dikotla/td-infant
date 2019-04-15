@@ -11,6 +11,8 @@ class AppointmentForm(SiteModelFormMixin, FormValidatorMixin, forms.ModelForm):
     through this form.
     """
 
+    appointment_model = 'td_infant.appointment'
+
     form_validator_cls = AppointmentFormValidator
 
     class Meta:

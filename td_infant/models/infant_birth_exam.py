@@ -2,10 +2,10 @@ from django.db import models
 from edc_constants.choices import NORMAL_ABNORMAL, YES_NO_NOT_EVALUATED_NA, NORMAL_ABNORMAL_NOEXAM
 from edc_constants.constants import NOT_APPLICABLE
 
-from .infant_crf_model import InfantCrfModel
+from .infant_crf_model_mixin import InfantCrfModelMixin
 
 
-class InfantBirthExam(InfantCrfModel):
+class InfantBirthExam(InfantCrfModelMixin):
 
     """ A model completed by the user to record details of the infant's birth. """
 
@@ -104,7 +104,7 @@ class InfantBirthExam(InfantCrfModel):
         blank=True,
         null=True)
 
-    class Meta(InfantCrfModel.Meta):
+    class Meta(InfantCrfModelMixin.Meta):
         app_label = 'td_infant'
         verbose_name = "Infant Birth: Exam"
         verbose_name_plural = "Infant Birth: Exam"

@@ -1,11 +1,12 @@
 from django.db import models
-from edc_constants.choices import YES_NO_UNKNOWN
 from edc_base.model_fields import OtherCharField
+from edc_constants.choices import YES_NO_UNKNOWN
+
 from ..models import Foods, Rations
-from .infant_crf_model import InfantCrfModel
+from .infant_crf_model_mixin import InfantCrfModelMixin
 
 
-class SolidFoodAssessment(InfantCrfModel):
+class SolidFoodAssessment(InfantCrfModelMixin):
 
     """ A model completed by the user on the infant's solid food assessment. """
 
@@ -214,7 +215,7 @@ class SolidFoodAssessment(InfantCrfModel):
         Rations,
         verbose_name="If yes, please indicate all applicable rations received at the last visit")
 
-    class Meta:
+    class Meta(InfantCrfModelMixin.Meta):
         app_label = 'td_infant'
         verbose_name = "Infant Solid Food Assessment"
         verbose_name_plural = "Infant Solid Food Assessment"

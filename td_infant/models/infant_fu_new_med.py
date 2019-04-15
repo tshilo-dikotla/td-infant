@@ -1,19 +1,14 @@
 from django.db import models
-
 from edc_base.model_fields import OtherCharField
 from edc_base.model_mixins import BaseUuidModel
 from edc_constants.choices import YES_NO
-#from edc_sync.models import SyncModelMixin, SyncHistoricalRecords
 from edc_visit_tracking.model_mixins import CrfInlineModelMixin
 
 from ..choices import MEDICATIONS, DRUG_ROUTE
-
-# from ..managers import InfantFuNewMedItemsManager
-
-from .infant_crf_model import InfantCrfModel
+from .infant_crf_model_mixin import InfantCrfModelMixin
 
 
-class InfantFuNewMed(InfantCrfModel):
+class InfantFuNewMed(InfantCrfModelMixin):
 
     """ A model completed by the user on the infant's follow up medications. """
 
@@ -26,7 +21,7 @@ class InfantFuNewMed(InfantCrfModel):
                   "only report oral and intravenous meds",
     )
 
-    class Meta(InfantCrfModel.Meta):
+    class Meta(InfantCrfModelMixin.Meta):
         app_label = 'td_infant'
         verbose_name = "Infant FollowUp: New Medication"
         verbose_name_plural = "Infant FollowUp: New Medication"
@@ -62,11 +57,9 @@ class InfantFuNewMedItems(CrfInlineModelMixin, BaseUuidModel):
         verbose_name="Drug route",
     )
 
-#     objects = InfantFuNewMedItemsManager()
-
     def natural_key(self):
         return (self.medication, ) + self.infant_fu_med.natural_key()
 
-    class Meta(InfantCrfModel.Meta):
+    class Meta:
         verbose_name = "Infant FollowUp: New Med Items"
         verbose_name_plural = "Infant FollowUp: New Med Items"

@@ -1,20 +1,16 @@
 from django.db import models
-
 from edc_base.model_fields import OtherCharField
-from edc_constants.choices import YES_NO_UNKNOWN
 from edc_base.model_mixins import BaseUuidModel
 from edc_base.model_validators import date_not_future
+from edc_constants.choices import YES_NO_UNKNOWN
 from edc_visit_tracking.model_mixins import CrfInlineModelMixin
-
 
 from ..choices import (
     IMMUNIZATIONS, INFANT_AGE_VACCINE_GIVEN, REASONS_VACCINES_MISSED)
-# from ..managers import VaccinesMissedManager, VaccinesReceivedManager
-
-from .infant_crf_model import InfantCrfModel
+from .infant_crf_model_mixin import InfantCrfModelMixin
 
 
-class InfantFuImmunizations(InfantCrfModel):
+class InfantFuImmunizations(InfantCrfModelMixin):
 
     """ A model completed by the user on the infant's follow up immunizations. """
 
@@ -30,7 +26,7 @@ class InfantFuImmunizations(InfantCrfModel):
         verbose_name="Is the child missing any vaccinations?",
         help_text="")
 
-    class Meta(InfantCrfModel.Meta):
+    class Meta(InfantCrfModelMixin.Meta):
         app_label = 'td_infant'
         verbose_name = "Infant FollowUp: Immunizations"
         verbose_name_plural = "Infant FollowUp: Immunizations"
@@ -63,8 +59,6 @@ class VaccinesReceived(CrfInlineModelMixin, BaseUuidModel):
         null=True,
         blank=True,
         max_length=35)
-
-#     objects = VaccinesReceivedManager()
 
     def natural_key(self):
         return (self.received_vaccine_name, ) + self.infant_fu_immunizations.natural_key()
@@ -101,8 +95,6 @@ class VaccinesMissed(CrfInlineModelMixin, BaseUuidModel):
         blank=True)
 
     reason_missed_other = OtherCharField()
-
-#     objects = VaccinesMissedManager()
 
     def natural_key(self):
         return (self.missed_vaccine_name, ) + self.infant_fu_immunizations.natural_key()

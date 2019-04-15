@@ -1,16 +1,16 @@
 from django.db import models
+from edc_base.model_fields.custom_fields import OtherCharField
 from edc_base.model_validators import date_not_future
 from edc_constants.choices import YES_NO, YES_NO_NA, YES_NO_UNSURE_NA
 from edc_constants.constants import NOT_APPLICABLE
+
 from edc_visit_schedule.model_mixins import VisitScheduleModelMixin
 
-from edc_base.model_fields.custom_fields import OtherCharField
-
 from ..choices import COWS_MILK, TIMES_BREASTFED, WATER_USED
-from .infant_crf_model import InfantCrfModel
+from .infant_crf_model_mixin import InfantCrfModelMixin
 
 
-class InfantFeeding(InfantCrfModel):
+class InfantFeeding(InfantCrfModelMixin):
 
     """ A model completed by the user on the infant's feeding. """
 
@@ -246,7 +246,7 @@ class InfantFeeding(InfantCrfModel):
                 prev_visit_index = prev_visit_index - 1
         return None
 
-    class Meta(InfantCrfModel.Meta):
+    class Meta(InfantCrfModelMixin.Meta):
         app_label = 'td_infant'
         verbose_name = "Infant Feeding"
         verbose_name_plural = "Infant Feeding"

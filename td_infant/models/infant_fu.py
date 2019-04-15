@@ -2,10 +2,10 @@ from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
 from edc_constants.choices import YES_NO
 
-from .infant_crf_model import InfantCrfModel
+from .infant_crf_model_mixin import InfantCrfModelMixin
 
 
-class InfantFu(InfantCrfModel):
+class InfantFu(InfantCrfModelMixin):
 
     """ A model completed by the user on the infant's follow up. """
 
@@ -46,6 +46,6 @@ class InfantFu(InfantCrfModel):
         validators=[MinValueValidator(0), MaxValueValidator(90), ],
     )
 
-    class Meta:
+    class Meta(InfantCrfModelMixin.Meta):
         verbose_name = "Infant FollowUp"
         verbose_name_plural = "Infant FollowUp"

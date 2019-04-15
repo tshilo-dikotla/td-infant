@@ -1,5 +1,4 @@
 from django.db import models
-
 from edc_base.model_fields import OtherCharField
 from edc_base.model_mixins import BaseUuidModel
 from edc_constants.choices import CONFIRMED_SUSPECTED
@@ -9,16 +8,14 @@ from ..choices import (
     CARDIOVASCULAR_DISORDER, RESPIRATORY_DEFECT, LOWER_GASTROINTESTINAL_ABNORMALITY,
     FEM_GENITAL_ANOMALY, MALE_GENITAL_ANOMALY, RENAL_ANOMALY, MUSCULOSKELETAL_ABNORMALITY,
     SKIN_ABNORMALITY, TRISOME_CHROSOMESOME_ABNORMALITY, OTHER_DEFECT)
+from .infant_crf_model_mixin import InfantCrfModelMixin
 
 
-from .infant_crf_model import InfantCrfModel
-
-
-class InfantCongenitalAnomalies(InfantCrfModel):
+class InfantCongenitalAnomalies(InfantCrfModelMixin):
 
     """ A model completed by the user on the infant's congenital anomalies. """
 
-    class Meta:
+    class Meta(InfantCrfModelMixin.Meta):
         app_label = 'td_infant'
         verbose_name = "Congenital Anomalies"
 
@@ -239,8 +236,6 @@ class InfantLowerGi(BaseCnsItem):
         null=True,
     )
 
-#     objects = InfantLowerGiManager()
-
     def natural_key(self):
         return (self.lower_gi, ) + self.congenital_anomalies.natural_key()
 
@@ -271,8 +266,6 @@ class InfantFemaleGenital(BaseCnsItem):
         blank=True,
         null=True,
     )
-
-#     objects = InfantFemaleGenitalManager()
 
     def natural_key(self):
         return (self.female_genital, ) + self.congenital_anomalies.natural_key()
@@ -305,8 +298,6 @@ class InfantMaleGenital(BaseCnsItem):
         null=True,
     )
 
-#     objects = InfantMaleGenitalManager()
-
     def natural_key(self):
         return (self.male_genital, ) + self.congenital_anomalies.natural_key()
 
@@ -338,8 +329,6 @@ class InfantRenal(BaseCnsItem):
         null=True,
     )
 
-#     objects = InfantRenalManager()
-
     def natural_key(self):
         return (self.renal, ) + self.congenital_anomalies.natural_key()
 
@@ -370,8 +359,6 @@ class InfantMusculoskeletal(BaseCnsItem):
         blank=True,
         null=True,
     )
-
-#     objects = InfantMusculoskeletalManager()
 
     def natural_key(self):
         return (self.musculo_skeletal, ) + self.congenital_anomalies.natural_key()
@@ -405,8 +392,6 @@ class InfantSkin(BaseCnsItem):
         null=True,
     )
 
-#     objects = InfantSkinManager()
-
     def natural_key(self):
         return (self.skin, ) + self.congenital_anomalies.natural_key()
 
@@ -436,8 +421,6 @@ class InfantTrisomies(BaseCnsItem):
         blank=True,
         null=True,
     )
-
-#     objects = InfantTrisomiesManager()
 
     def natural_key(self):
         return (self.trisomies, ) + self.congenital_anomalies.natural_key()
@@ -470,12 +453,10 @@ class InfantOtherAbnormalityItems(BaseCnsItem):
         null=True,
     )
 
-#     objects = InfantOtherAbnormalityItemsManager()
-
     def natural_key(self):
         return (self.other_abnormalities, ) + self.congenital_anomalies.natural_key()
 
-    class Meta(InfantCrfModel.Meta):
+    class Meta:
         app_label = 'td_infant'
         verbose_name = "Congenital Anomalies: Other"
         unique_together = ('other_abnormalities', 'congenital_anomalies')

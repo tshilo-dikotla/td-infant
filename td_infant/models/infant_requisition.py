@@ -4,7 +4,6 @@ from django.db import models
 from django.db.models.deletion import PROTECT
 from edc_base.model_managers import HistoricalRecords
 from edc_base.model_mixins import BaseUuidModel
-from edc_consent.model_mixins import RequiresConsentFieldsModelMixin
 from edc_constants.constants import NOT_APPLICABLE
 from edc_identifier.model_mixins import NonUniqueSubjectIdentifierFieldMixin
 from edc_lab.choices import PRIORITY
@@ -13,10 +12,12 @@ from edc_lab.models import RequisitionModelMixin, RequisitionStatusMixin
 from edc_metadata.model_mixins.updates import UpdatesRequisitionMetadataModelMixin
 from edc_reference.model_mixins import RequisitionReferenceModelMixin
 from edc_search.model_mixins import SearchSlugManager
-from edc_visit_schedule.model_mixins import SubjectScheduleCrfModelMixin
 from edc_visit_tracking.managers import CrfModelManager as VisitTrackingCrfModelManager
 from edc_visit_tracking.model_mixins import CrfModelMixin as VisitTrackingCrfModelMixin
 from edc_visit_tracking.model_mixins import PreviousVisitModelMixin
+
+from edc_consent.model_mixins import RequiresConsentFieldsModelMixin
+from edc_visit_schedule.model_mixins import SubjectScheduleCrfModelMixin
 
 from ..choices import REASON_NOT_DRAWN, STUDY_SITES
 from .infant_visit import InfantVisit
@@ -78,8 +79,6 @@ class InfantRequisition(
         max_length=25,
         choices=PRIORITY,
         default='normal',)
-
-#     on_site = CurrentSiteManager()
 
     objects = Manager()
 

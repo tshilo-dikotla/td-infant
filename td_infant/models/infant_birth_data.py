@@ -1,10 +1,10 @@
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
 from edc_constants.choices import YES_NO, GENDER
-from .infant_crf_model import InfantCrfModel
+from .infant_crf_model_mixin import InfantCrfModelMixin
 
 
-class InfantBirthData(InfantCrfModel):
+class InfantBirthData(InfantCrfModelMixin):
     """ A model completed by the user on the infant's birth exam. """
 
     infant_gender = models.CharField(
@@ -72,7 +72,7 @@ class InfantBirthData(InfantCrfModel):
         blank=True,
         null=True)
 
-    class Meta(InfantCrfModel.Meta):
+    class Meta(InfantCrfModelMixin.Meta):
         app_label = 'td_infant'
         verbose_name = "Infant Birth: Data"
         verbose_name_plural = "Infant Birth: Data"
