@@ -22,14 +22,14 @@ class InfantBirthData(InfantCrfModelMixin):
     infant_length = models.DecimalField(
         max_digits=4,
         decimal_places=2,
-        validators=[MinValueValidator(0), MaxValueValidator(90)],
+        validators=[MinValueValidator(11), MaxValueValidator(90)],
         verbose_name="What was the infant's length at birth? ",
         help_text="Measured in centimeters, (cm)")
 
     head_circumference = models.DecimalField(
         max_digits=4,
         decimal_places=2,
-        validators=[MinValueValidator(0), MaxValueValidator(41)],
+        validators=[MinValueValidator(11), MaxValueValidator(41)],
         verbose_name="What was the head circumference in centimeters? ",
         help_text="Measured in centimeters, (cm)")
 
