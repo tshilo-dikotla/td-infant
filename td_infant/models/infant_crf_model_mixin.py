@@ -1,14 +1,15 @@
+from django.apps import apps as django_apps
+from django.core.exceptions import ValidationError
 from django.db import models
 from django.db.models.deletion import PROTECT
 from edc_base.model_mixins import BaseUuidModel, FormAsJSONModelMixin
 from edc_base.sites.site_model_mixin import SiteModelMixin
+from edc_consent.model_mixins import RequiresConsentFieldsModelMixin
 from edc_metadata.model_mixins.updates import UpdatesCrfMetadataModelMixin
 from edc_reference.model_mixins import ReferenceModelMixin
+from edc_visit_schedule.model_mixins import SubjectScheduleCrfModelMixin
 from edc_visit_tracking.model_mixins import CrfModelMixin as BaseCrfModelMixin
 from edc_visit_tracking.model_mixins import PreviousVisitModelMixin
-
-from edc_consent.model_mixins import RequiresConsentFieldsModelMixin
-from edc_visit_schedule.model_mixins import SubjectScheduleCrfModelMixin
 
 from .infant_visit import InfantVisit
 
@@ -31,6 +32,22 @@ class InfantCrfModelMixin(
         'td_infant.infantvisit',
         'sites.Site',
         'edc_appointment.appointment']
+
+    def save(self, *args, **kwargs):
+        self.consent_version = self.get_consent_version()
+        super(InfantCrfModelMixin, self).save(*args, **kwargs)
+
+    def get_consent_version(self):
+        subject_consent_cls = django_apps.get_model(
+            'td_infant.infantdummysubjectconsent')
+        try:
+            subject_consent_obj = subject_consent_cls.objects.get(
+                subject_identifier=self.infant_visit.subject_identifier)
+        except subject_consent_cls.DoesNotExist:
+            raise ValidationError(
+                'Missing Infant Dummy Consent form. Cannot proceed.')
+        else:
+            return subject_consent_obj.version
 
     class Meta:
         abstract = True
