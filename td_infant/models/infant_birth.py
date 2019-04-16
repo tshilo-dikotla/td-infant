@@ -49,7 +49,20 @@ class InfantBirth(UniqueSubjectIdentifierFieldMixin, SiteModelMixin,
         return f'{self.first_name}, {self.initials}, {self.gender}'
 
     def save(self, *args, **kwargs):
-        super().save(*args, **kwargs)
+        self.consent_version = self.get_consent_version()
+        super(InfantBirth, self).save(*args, **kwargs)
+
+    def get_consent_version(self):
+        subject_consent_cls = django_apps.get_model(
+            'td_infant.infantdummysubjectconsent')
+        try:
+            subject_consent_obj = subject_consent_cls.objects.get(
+                subject_identifier=self.subject_identifier)
+        except subject_consent_cls.DoesNotExist:
+            raise ValidationError(
+                'Missing Infant Dummy Consent form. Cannot proceed.')
+        else:
+            return subject_consent_obj.version
 
     @property
     def schedule_name(self):
