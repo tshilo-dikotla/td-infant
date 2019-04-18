@@ -23,6 +23,7 @@ from .infant_off_study_admin import InfantOffStudyAdmin
 from .infant_requisition_admin import InfantRequisitionAdmin
 from .infant_vaccines_admin import InfantVaccinesAdmin
 from .infant_visit_admin import InfantVisitAdmin
+from .karabo_offstudy_admin import KaraboOffstudyAdmin
 from .karabo_subject_consent_admin import KaraboSubjectConsentAdmin
 from .karabo_subject_screening_admin import KaraboSubjectScreeningAdmin
 from .karabo_tb_history_admin import KaraboTuberculosisHistoryAdmin

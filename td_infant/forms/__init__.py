@@ -39,6 +39,7 @@ from .infant_offstudy_form import InfantOffStudyForm
 from .infant_requisition_form import InfantRequisitionForm
 from .infant_vaccines_form import InfantVaccinesForm
 from .infant_visit_form import InfantVisitForm
+from .karabo_offstudy_form import KaraboOffstudyForm
 from .karabo_subject_consent_form import KaraboSubjectConsentForm
 from .karabo_subject_screening_form import KaraboSubjectScreeningForm
 from .karabo_tb_history_form import KaraboTuberculosisHistoryForm

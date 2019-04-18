@@ -1,6 +1,7 @@
 from django.db import models
 from edc_base.model_mixins import BaseUuidModel
 from edc_base.sites.site_model_mixin import SiteModelMixin
+from edc_consent.model_mixins import RequiresConsentFieldsModelMixin
 from edc_constants.constants import ALIVE
 from edc_constants.constants import MALE
 from edc_metadata.model_mixins.creates import CreatesMetadataModelMixin
@@ -12,9 +13,7 @@ from edc_visit_tracking.constants import LOST_VISIT
 from edc_visit_tracking.model_mixins import CaretakerFieldsMixin
 from edc_visit_tracking.model_mixins import VisitModelMixin
 
-from edc_consent.model_mixins import RequiresConsentFieldsModelMixin
-
-from ..choices import ALIVE_DEAD_UNKNOWN
+from ..choices import ALIVE_DEAD_UNKNOWN, VISIT_INFO_SOURCE
 from ..choices import INFANT_VISIT_STUDY_STATUS, VISIT_REASON, INFO_PROVIDER
 from .infant_appointment import Appointment
 from .infant_birth import InfantBirth
@@ -65,7 +64,7 @@ class InfantVisit(
         max_length=25,
         blank=True,
         null=True,
-        choices=INFO_PROVIDER)
+        choices=VISIT_INFO_SOURCE)
 
     def requires_circumcision_for_male_at_2030_or_2060(self):
         infant_birth = InfantBirth.objects.get(
