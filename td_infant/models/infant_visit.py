@@ -62,8 +62,6 @@ class InfantVisit(
     info_source = models.CharField(
         verbose_name='Source of information?',
         max_length=25,
-        blank=True,
-        null=True,
         choices=VISIT_INFO_SOURCE)
 
     def requires_circumcision_for_male_at_2030_or_2060(self):
