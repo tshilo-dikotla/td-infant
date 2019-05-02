@@ -1,9 +1,13 @@
-from .infant_form_mixin import InfantModelFormMixin
-from ..models import InfantFuNewMed, InfantFuNewMedItems
+from td_infant_validators.form_validators import InfantFuNewMedFormValidator
 from td_infant_validators.form_validators import InfantFuNewMedItemsFormValidator
+
+from ..models import InfantFuNewMed, InfantFuNewMedItems
+from .infant_form_mixin import InfantModelFormMixin
 
 
 class InfantFuNewMedForm(InfantModelFormMixin):
+
+    form_validator_cls = InfantFuNewMedFormValidator
 
     class Meta:
         model = InfantFuNewMed
