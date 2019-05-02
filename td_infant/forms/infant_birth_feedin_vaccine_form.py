@@ -6,7 +6,7 @@ from .infant_form_mixin import InfantModelFormMixin
 
 class InfantBirthFeedinVaccineForm(InfantModelFormMixin):
 
-    orm_validator_cls = InfantBirthDataFormValidator
+    form_validator_cls = InfantBirthDataFormValidator
 
     class Meta:
         model = InfantBirthFeedingVaccine

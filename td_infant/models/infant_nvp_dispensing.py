@@ -9,7 +9,7 @@ class InfantNvpDispensing(InfantCrfModelMixin):
     nvp_prophylaxis = models.CharField(
         choices=YES_NO,
         max_length=3,
-        help_text='',
+
         verbose_name='Was NVP infant prophylaxis administered to the infant after delivery?')
 
     reason_not_given = models.CharField(
@@ -21,13 +21,11 @@ class InfantNvpDispensing(InfantCrfModelMixin):
     azt_prophylaxis = models.CharField(
         choices=YES_NO,
         max_length=3,
-        help_text='',
         verbose_name='Was AZT infant prophylaxis administered to the infant '
                      'after delivery in the hospital?')
 
     azt_dose_given = models.CharField(
         max_length=50,
-        help_text='',
         blank=True,
         null=True,
         verbose_name='If YES, please specify how many doses of AZT were given.')
@@ -41,7 +39,7 @@ class InfantNvpDispensing(InfantCrfModelMixin):
         verbose_name='Were instructions given to the mother on administration '
                      'of infant NVP prophylaxis?',
         choices=YES_NO,
-        help_text='',
+
         max_length=3)
 
     dose_admin_infant = models.CharField(
@@ -54,7 +52,6 @@ class InfantNvpDispensing(InfantCrfModelMixin):
     correct_dose = models.CharField(
         verbose_name='Was the NVP infant prophylaxis correct dose given?',
         choices=YES_NO,
-        help_text='',
         max_length=3)
 
     corrected_dose = models.CharField(
