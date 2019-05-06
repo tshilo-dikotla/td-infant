@@ -6,7 +6,7 @@ from faker import Faker
 from model_mommy.recipe import Recipe, seq
 
 from .models import KaraboSubjectConsent, InfantBirth, InfantVisit
-from .models import KaraboSubjectScreening
+from .models import KaraboSubjectScreening, InfantBirthData
 
 
 fake = Faker()
@@ -19,6 +19,19 @@ infantbirth = Recipe(
     dob=get_utcnow().date(),
     gender=MALE,
     site=Site.objects.get_current(),
+)
+
+infantbirthdata = Recipe(
+    InfantBirthData,
+    infant_gender=MALE,
+    weight_kg=2,
+    infant_length=45.0,
+    head_circumference=20.0,
+    apgar_score=YES,
+    apgar_score_min_1=7,
+    apgar_score_min_5=8,
+    apgar_score_min_10=9,
+    congenital_anomalities=NO
 )
 
 karabosubjectconsent = Recipe(

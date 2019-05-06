@@ -1,6 +1,7 @@
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
 from edc_constants.choices import YES_NO, GENDER
+
 from .infant_crf_model_mixin import InfantCrfModelMixin
 
 
@@ -43,8 +44,7 @@ class InfantBirthData(InfantCrfModelMixin):
         verbose_name="At 1 minute: ",
         blank=True,
         null=True,
-        validators=[MaxValueValidator(10),
-                    MinValueValidator(0)])
+        validators=[MinValueValidator(0), MaxValueValidator(10)])
 
     apgar_score_min_5 = models.IntegerField(
         verbose_name="At 5 minutes: ",
