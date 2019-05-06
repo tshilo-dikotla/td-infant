@@ -39,12 +39,6 @@ class InfantRequisition(
 
     infant_visit = models.ForeignKey(InfantVisit, on_delete=PROTECT)
 
-    reason_not_drawn = models.CharField(
-        verbose_name='If not drawn, please explain',
-        max_length=25,
-        default=NOT_APPLICABLE,
-        choices=REASON_NOT_DRAWN)
-
     study_site = models.CharField(
         verbose_name='Study site',
         max_length=25,
