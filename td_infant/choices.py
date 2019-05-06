@@ -292,7 +292,8 @@ FEM_GENITAL_ANOMALY = (
 
 HOSPITILIZATION_REASONS = (
     ('respiratory illness(unspecified)', 'Respiratory Illness(unspecified)'),
-    ('respiratory illness, cxr confirmed', 'Respiratory Illness, CXR confirmed'),
+    ('respiratory illness, cxr confirmed',
+     'Respiratory Illness, CXR confirmed'),
     ('respiratory illness, cxr confirmed, bacterial pathogen, specify',
      'Respiratory Illness, CXR confirmed, bacterial pathogen, specify'),
     ('respiratory illness, cxr confirmed, tb or probable tb',
@@ -301,7 +302,8 @@ HOSPITILIZATION_REASONS = (
     ('diarrhea illness, viral or bacterial pathogen, specify',
      'Diarrhea Illness, viral or bacterial pathogen, specify'),
     ('sepsis(unspecified)', 'Sepsis(unspecified)'),
-    ('sepsis, pathogen specified, specify', 'Sepsis, pathogen specified, specify'),
+    ('sepsis, pathogen specified, specify',
+     'Sepsis, pathogen specified, specify'),
     ('mengitis(unspecified)', 'Mengitis(unspecified)'),
     ('mengitis, pathogen specified, specify',
      'Mengitis, pathogen specified, specify'),
@@ -609,7 +611,8 @@ SOURCE_OF_DEATH_INFO = (
     ('health_care_provider',
      'Contact with other (non-study) physician/nurse/other health care provider'),
     ('death_certificate', 'Death Certificate'),
-    ('relatives_friends', 'Information from participant\'s relatives or friends'),
+    ('relatives_friends',
+     'Information from participant\'s relatives or friends'),
     ('obituary', 'Obituary'),
     ('pending_information', 'Information requested, still pending'),
     ('no_info', 'No information will ever be available'),
@@ -722,10 +725,3 @@ STUDY_SITES = (
     ('40', 'Gaborone'),
     ('10', 'Molepolole'),
 )
-
-REASON_NOT_DRAWN = (
-    ('collection_failed', 'Tried, but unable to obtain sample from patient'),
-    ('absent', 'Patient did not attend visit'),
-    ('refused', 'Patient refused'),
-    ('no_supplies', 'No supplies'),
-    (OTHER, 'Other'),)
