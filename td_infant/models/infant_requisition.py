@@ -1,11 +1,11 @@
 from django.apps import apps as django_apps
 from django.conf import settings
+from django.core.exceptions import ValidationError
 from django.db import models
 from django.db.models.deletion import PROTECT
 from edc_base.model_managers import HistoricalRecords
 from edc_base.model_mixins import BaseUuidModel
 from edc_consent.model_mixins import RequiresConsentFieldsModelMixin
-from edc_constants.constants import NOT_APPLICABLE
 from edc_identifier.model_mixins import NonUniqueSubjectIdentifierFieldMixin
 from edc_lab.choices import PRIORITY
 from edc_lab.models import RequisitionIdentifierMixin
@@ -80,7 +80,19 @@ class InfantRequisition(
                 'edc_protocol')
             self.protocol_number = edc_protocol_app_config.protocol_number
         self.subject_identifier = self.infant_visit.subject_identifier
+        self.consent_version = self.get_consent_version()
         super().save(*args, **kwargs)
+
+    def get_consent_version(self):
+        infant_consent_cls = django_apps.get_model(
+            'td_infant.infantdummysubjectconsent')
+        try:
+            infant_consent_obj = infant_consent_cls.objects.get(
+                subject_identifier=self.infant_visit.subject_identifier)
+        except infant_consent_cls.DoesNotExist:
+            raise ValidationError(
+                'Missing Infant Dummy Consent form.')
+        return infant_consent_obj.version
 
     def get_search_slug_fields(self):
         fields = super().get_search_slug_fields()
