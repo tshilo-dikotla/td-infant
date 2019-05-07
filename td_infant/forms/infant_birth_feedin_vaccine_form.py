@@ -40,16 +40,7 @@ class InfantBirthFeedinVaccineForm(InfantModelFormMixin):
 
     def clean(self):
         cleaned_data = super().clean()
-        total = self.data.get('infantvaccines_set-TOTAL_FORMS')
-        vaccines = []
-        for i in range(int(total)):
-            vaccine = self.data.get(
-                'infantvaccines_set-' + str(i) + '-vaccination')
-            if vaccine in vaccines:
-                message = f'Duplicate vaccines cannot be Entered Got {vaccine}'
-                raise forms.ValidationError(message)
-            vaccines.append(vaccine)
-            self.validate_vaccine_date_against_birth_date()
+        self.validate_vaccine_date_against_birth_date()
         return cleaned_data
 
     def validate_vaccine_date_against_birth_date(self):
