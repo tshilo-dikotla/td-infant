@@ -38,9 +38,7 @@ class InfantVaccines(BaseUuidModel):
         max_length=100)
 
     vaccine_date = models.DateField(
-        verbose_name='Date Vaccine was given',
-        null=True,
-        blank=True)
+        verbose_name='Date Vaccine was given')
 
     class Meta:
         verbose_name = "Infant Vaccines"
