@@ -33,16 +33,20 @@ class InfantBirthFeedinVaccineForm(InfantModelFormMixin):
             infant_date = infant_birth.report_datetime.date()
             if vaccine_date and vaccine_date < infant_date:
                 raise forms.ValidationError(
-                    "The date vaccine was given should not be before the delivery date")
+                    "The date vaccine was given should not be before the "
+                    f"delivery date Got {vaccine_date} "
+                    f"delivery date {infant_date}"
+                )
 
     def clean(self):
         cleaned_data = super().clean()
         total = self.data.get('infantvaccines_set-TOTAL_FORMS')
         vaccines = []
         for i in range(int(total)):
-            vaccine = self.data.get('infantvaccines_set-' + str(i) + '-vaccination')
+            vaccine = self.data.get(
+                'infantvaccines_set-' + str(i) + '-vaccination')
             if vaccine in vaccines:
-                message = 'Duplicate vacciness cannot be entered'
+                message = f'Duplicate vaccines cannot be Entered Got {vaccine}'
                 raise forms.ValidationError(message)
             vaccines.append(vaccine)
             self.validate_vaccine_date_against_birth_date()
@@ -53,8 +57,8 @@ class InfantBirthFeedinVaccineForm(InfantModelFormMixin):
             'infant_visit').subject_identifier
         total = self.data.get('infantvaccines_set-TOTAL_FORMS')
         for i in range(int(total)):
-            vaccine_date = self.data.get('infantvaccines_set-' + str(i) + 
-                                         '-vaccine_date')
+            vaccine_date = self.data.get(
+                'infantvaccines_set-' + str(i) + '-vaccine_date')
             vaccine_date = datetime.datetime.strptime(vaccine_date,
                                                       '%Y-%m-%d')
             self.validate_against_birth_date(infant_identifier,
