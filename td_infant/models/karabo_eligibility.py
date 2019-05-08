@@ -1,4 +1,3 @@
-from django.apps import apps as django_apps
 from edc_constants.constants import YES, NO
 
 

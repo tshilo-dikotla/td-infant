@@ -1,11 +1,11 @@
 from django.core.exceptions import ValidationError
 from django.db.models.signals import post_save
 from django.dispatch import receiver
-from edc_appointment.constants import IN_PROGRESS_APPT, INCOMPLETE_APPT
 from edc_constants.constants import BY_BIRTH
 from edc_registration.models import RegisteredSubject
-
 from edc_visit_schedule.site_visit_schedules import site_visit_schedules
+
+from edc_appointment.constants import IN_PROGRESS_APPT, INCOMPLETE_APPT
 
 from ..models import InfantBirth, KaraboSubjectConsent, Appointment, InfantVisit
 
@@ -58,7 +58,7 @@ def resave_infant_visit_on_post_save(sender, instance, raw, created, **kwargs):
     if created:
         try:
             registered_subject = RegisteredSubject.objects.get(
-                relative_identifier=instance.subject_identifier)
+                subject_identifier=instance.subject_identifier)
         except RegisteredSubject.DoesNotExist:
             raise ValidationError(
                 f'Missing registered subject for {instance.subject_identifier}')

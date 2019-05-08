@@ -18,7 +18,7 @@ class KaraboSubjectScreening(UniqueSubjectIdentifierFieldMixin,
     identifier_cls = KaraboScreeningIdentifier
 
     screening_identifier = models.CharField(
-        verbose_name="Karabo Eligibility Identifier",
+        verbose_name="Screening Identifier",
         max_length=36,
         unique=True,
         editable=False)

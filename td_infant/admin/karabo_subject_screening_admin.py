@@ -1,19 +1,22 @@
 from django.contrib import admin
-from edc_model_admin import audit_fieldset_tuple
+from edc_model_admin import audit_fieldset_tuple, audit_fields
 
 from ..admin_site import td_infant_admin
 from ..forms import KaraboSubjectScreeningForm
 from ..models import KaraboSubjectScreening
+from .model_admin_mixins import ModelAdminMixin
 
 
 @admin.register(KaraboSubjectScreening, site=td_infant_admin)
-class KaraboSubjectScreeningAdmin(admin.ModelAdmin):
+class KaraboSubjectScreeningAdmin(ModelAdminMixin, admin.ModelAdmin):
     form = KaraboSubjectScreeningForm
 
     fieldsets = (
         (None, {
             'fields': [
                 'report_datetime',
+                'screening_identifier',
+                'subject_identifier',
                 'infant_alive',
                 'infant_weight',
                 'major_anomalies',
@@ -37,3 +40,9 @@ class KaraboSubjectScreeningAdmin(admin.ModelAdmin):
         'incarcerated': admin.VERTICAL,
         'willing_to_consent': admin.VERTICAL,
     }
+
+    readonly_fields = ('screening_identifier',)
+
+    def get_readonly_fields(self, request, obj=None):
+        return (super().get_readonly_fields(request, obj=obj)
+                + audit_fields)
