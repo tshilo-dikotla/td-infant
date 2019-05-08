@@ -43,4 +43,4 @@ class InfantVaccines(BaseUuidModel):
     class Meta:
         verbose_name = "Infant Vaccines"
         verbose_name_plural = "Infant Vaccines"
-        unique_together = (infant_birth_feed_vaccine, vaccination)
+        unique_together = ('infant_birth_feed_vaccine', 'vaccination')
