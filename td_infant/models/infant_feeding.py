@@ -122,14 +122,16 @@ class InfantFeeding(InfantCrfModelMixin):
         default=NOT_APPLICABLE)
 
     fruits_veg = models.CharField(
-        verbose_name="Since the last attended scheduled visit where an infant feeding form was completed "
+        verbose_name="Since the last attended scheduled visit where an infant"
+                     " feeding form was completed "
                      "did the participant take Fruits/vegetables",
         max_length=10,
         choices=YES_NO_UNSURE_NA,
         default=NOT_APPLICABLE)
 
     cereal_porridge = models.CharField(
-        verbose_name="Since the last attended scheduled visit where an infant feeding form was completed "
+        verbose_name="Since the last attended scheduled visit where an infant"
+                     " feeding form was completed "
                      "did the participant take Cereal/porridge?",
         max_length=12,
         choices=YES_NO_UNSURE_NA,

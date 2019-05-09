@@ -9,6 +9,11 @@ class InfantFuNewMedForm(InfantModelFormMixin):
 
     form_validator_cls = InfantFuNewMedFormValidator
 
+    def clean(self):
+        cleaned_data = super().clean()
+        arv_count = int(self.data.get('infantfunewmeditems_set-TOTAL_FORMS'))
+        return cleaned_data
+
     class Meta:
         model = InfantFuNewMed
         fields = '__all__'
