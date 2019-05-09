@@ -12,14 +12,13 @@ class InfantFuNewMedForm(InfantModelFormMixin):
     form_validator_cls = InfantFuNewMedFormValidator
 
     def clean(self):
-        cleaned_data = super().clean()
+        super().clean()
         condition = self.cleaned_data.get('new_medications')
         total_med = self.data.get('infantfunewmeditems_set-TOTAL_FORMS')
         if condition == YES and int(total_med) < 1:
             raise forms.ValidationError({
                 'new_medications': 'Please fill up in-line form'
             })
-        return cleaned_data
 
     class Meta:
         model = InfantFuNewMed
