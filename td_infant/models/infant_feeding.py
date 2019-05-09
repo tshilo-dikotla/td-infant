@@ -204,47 +204,12 @@ class InfantFeeding(InfantCrfModelMixin):
             self.last_att_sche_visit = self.previous_infant_feeding
         super(InfantFeeding, self).save(*args, **kwargs)
 
-    def previous_infant_instance(self, infant_visit):
-        """ Returns previous infant visit. """
-        from .infant_visit import InfantVisit
-        from edc_appointment.models import Appointment
-        visit = ['2000', '2010', '2030', '2060', '2090', '2120']
-        try:
-            registered_subject = infant_visit.appointment.registered_subject
-            previous_visit_code = visit[
-                visit.index(self.infant_visit.appointment.visit_definition.code) - 1]
-            previous_appointment = Appointment.objects.get(registered_subject=registered_subject,
-                                                           visit_definition__code=previous_visit_code)
-            return InfantVisit.objects.get(appointment=previous_appointment)
-        except Appointment.DoesNotExist:
-            return None
-        except InfantVisit.DoesNotExist:
-            return None
-        except AttributeError:
-            return None
-
     @property
     def previous_infant_feeding(self):
         """ Return previous infant feeding from. """
-        visit_def = VisitScheduleModelMixin.objects.all()
-        visit = []
-        for x in visit_def:
-            visit.append(x.visit_code)
-
-        if not (self.infant_visit.appointment.visit_definition.code in ['2000', '2010']):
-            prev_visit_index = visit.index(
-                self.infant_visit.appointment.visit_definition.code) - 1
-            registered_subject = self.infant_visit.appointment.registered_subject
-            while prev_visit_index > 0:
-                infant_feeding = InfantFeeding.objects.filter(
-                    infant_visit__appointment__registered_subject=registered_subject,
-                    infant_visit__appointment__visit_definition__code=visit[
-                        prev_visit_index]
-                ).order_by('-created', '-infant_visit__appointment__visit_instance').first()
-                if infant_feeding:
-                    return infant_feeding.report_datetime.date()
-                prev_visit_index = prev_visit_index - 1
-        return None
+        return self.__class__.objects.filter(
+            report_datetime_lt=self.report_datetime).order_by(
+                '-report_datetime').first()
 
     class Meta(InfantCrfModelMixin.Meta):
         app_label = 'td_infant'
