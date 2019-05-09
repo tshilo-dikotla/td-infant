@@ -60,8 +60,10 @@ def resave_infant_visit_on_post_save(sender, instance, raw, created, **kwargs):
     """
     if created:
         try:
-            registered_subject = RegisteredSubject.objects.get(
-                relative_identifier=instance.subject_identifier)
+            maternal_reg_subject = RegisteredSubject.objects.get(
+                subject_identifier=instance.subject_identifier)
+            infant_reg_subject = RegisteredSubject.objects.get(
+                relative_identifier=maternal_reg_subject.subject_identifier)
         except RegisteredSubject.DoesNotExist:
             raise ValidationError(
                 f'Missing registered subject for {instance.subject_identifier}')
@@ -69,7 +71,7 @@ def resave_infant_visit_on_post_save(sender, instance, raw, created, **kwargs):
             infant_appointment = Appointment.objects.filter(
                 timepoint__lte=180,
                 appt_status=IN_PROGRESS_APPT,
-                subject_identifier=registered_subject.subject_identifier).order_by('-timepoint').first()
+                subject_identifier=infant_reg_subject.subject_identifier).order_by('-timepoint').first()
             try:
                 infant_visit = InfantVisit.objects.get(
                     appointment=infant_appointment)
