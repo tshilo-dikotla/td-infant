@@ -31,7 +31,8 @@ class KaraboTuberculosisHistoryAdmin(KaraboCrfModelAdminMixin, admin.ModelAdmin)
                 'diagnosis_rel',
                 'other_diagnosis_rel',
                 'tb_exposure',
-                'tb_exposure_det'
+                'tb_exposure_det',
+                'put_offstudy'
             ]}
          ), audit_fieldset_tuple)
 
@@ -48,6 +49,7 @@ class KaraboTuberculosisHistoryAdmin(KaraboCrfModelAdminMixin, admin.ModelAdmin)
         'diagnosis': admin.VERTICAL,
         'diagnosis_rel': admin.VERTICAL,
         'tb_exposure': admin.VERTICAL,
+        'put_offstudy': admin.VERTICAL,
     }
 
     list_display = (

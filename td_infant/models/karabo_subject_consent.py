@@ -1,5 +1,6 @@
 from django.apps import apps as django_apps
 from django.conf import settings
+from django.core.exceptions import ValidationError
 from django.db import models
 from django.utils.safestring import mark_safe
 from django_crypto_fields.fields import (
@@ -24,10 +25,13 @@ class KaraboSubjectConsent(CryptoMixin, SiteModelMixin, BaseUuidModel):
         verbose_name="Subject Identifier",
         max_length=50)
 
-    subject_screening_model = 'td_infant.subjectscreening'
-
     screening_identifier = models.CharField(
-        verbose_name='Screening identifier',
+        verbose_name="Screening Identifier",
+        max_length=36,
+        unique=True)
+
+    maternal_subject_identifier = models.CharField(
+        verbose_name="Subject Identifier",
         max_length=50)
 
     report_datetime = models.DateTimeField(
@@ -125,9 +129,19 @@ class KaraboSubjectConsent(CryptoMixin, SiteModelMixin, BaseUuidModel):
            Instance must exist since MaternalEligibility is completed
            before consent.
         """
-        model_cls = django_apps.get_model(self.maternal_eligibility_model)
-        return model_cls.objects.get(
-            screening_identifier=self.screening_identifier)
+        model_cls = django_apps.get_model('td_infant.karabosubjectscreening')
+        try:
+            karabo_model_obj = model_cls.objects.get(
+                screening_identifier=self.screening_identifier)
+        except model_cls.DoesNotExist:
+            raise ValidationError(
+                f'Missing Karabo Screening.')
+        else:
+            return karabo_model_obj
+
+    def save(self, *args, **kwargs):
+        self.maternal_subject_identifier = self.subject_identifier[:-3]
+        super(KaraboSubjectConsent, self).save(*args, **kwargs)
 
     class Meta:
         app_label = 'td_infant'

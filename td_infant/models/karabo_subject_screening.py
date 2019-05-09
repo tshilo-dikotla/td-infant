@@ -18,7 +18,7 @@ class KaraboSubjectScreening(UniqueSubjectIdentifierFieldMixin,
     identifier_cls = KaraboScreeningIdentifier
 
     screening_identifier = models.CharField(
-        verbose_name="Karabo Eligibility Identifier",
+        verbose_name="Screening Identifier",
         max_length=36,
         unique=True,
         editable=False)
@@ -101,7 +101,7 @@ class KaraboSubjectScreening(UniqueSubjectIdentifierFieldMixin,
         verbose_name_plural = "Karabo Eligibility"
 
     def save(self, *args, **kwargs):
-        eligibility_criteria = KaraboEligibility(*args, **kwargs)
+        eligibility_criteria = KaraboEligibility(model_obj=self)
         self.is_eligible = eligibility_criteria.eligible
         self.ineligibility = eligibility_criteria.reasons_ineligible
         if not self.id:

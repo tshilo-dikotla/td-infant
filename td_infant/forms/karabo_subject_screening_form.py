@@ -4,7 +4,9 @@ from ..models import KaraboSubjectScreening
 
 class KaraboSubjectScreeningForm(forms.ModelForm):
 
-    # form_validator_cls = 
+    subject_identifier = forms.CharField(
+        label='Subject Identifier',
+        widget=forms.TextInput(attrs={'readonly': 'readonly'}))
 
     class Meta:
         model = KaraboSubjectScreening

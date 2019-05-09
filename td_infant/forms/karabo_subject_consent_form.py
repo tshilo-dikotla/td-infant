@@ -4,7 +4,13 @@ from ..models import KaraboSubjectConsent
 
 class KaraboSubjectConsentForm(forms.ModelForm):
 
-    # form_validator_cls = 
+    screening_identifier = forms.CharField(
+        label='Screening Identifier',
+        widget=forms.TextInput(attrs={'readonly': 'readonly'}))
+
+    subject_identifier = forms.CharField(
+        label='Subject Identifier',
+        widget=forms.TextInput(attrs={'readonly': 'readonly'}))
 
     class Meta:
         model = KaraboSubjectConsent
