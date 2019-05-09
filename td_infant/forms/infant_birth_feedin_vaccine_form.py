@@ -19,7 +19,7 @@ class InfantBirthFeedinVaccineForm(InfantModelFormMixin):
         return django_apps.get_model(self.infant_birth_model)
 
     def validate_against_birth_date(self, infant_identifier=None,
-                                    vaccine_date=None):
+                                    vaccine_date=None, vaccine_name=None):
 
         try:
             infant_birth = self.infant_birth_cls.objects.get(
@@ -35,8 +35,8 @@ class InfantBirthFeedinVaccineForm(InfantModelFormMixin):
                 if vaccine_date < infant_date:
                     raise forms.ValidationError(
                         "The date vaccine was given should not be before the "
-                        f"delivery date Got {vaccine_date} "
-                        f"delivery date {infant_date}"
+                        f"delivery date Got vaccine {vaccine_name} and date {vaccine_date} "
+                        f" but delivery date is {infant_date}"
                     )
 
     def clean(self):
@@ -51,11 +51,13 @@ class InfantBirthFeedinVaccineForm(InfantModelFormMixin):
         for i in range(int(total)):
             vaccine_date = self.data.get(
                 'infantvaccines_set-' + str(i) + '-vaccine_date')
-            if vaccine_date:
-                vaccine_date = datetime.datetime.strptime(vaccine_date,
-                                                      '%Y-%m-%d')
-                self.validate_against_birth_date(infant_identifier,
-                                             vaccine_date.date())
+            vaccine_name = self.data.get(
+                'infantvaccines_set-' + str(i) + '-vaccination')
+            if vaccine_name and vaccine_date:
+                vaccine_date = datetime.datetime.strptime(
+                    vaccine_date, '%Y-%m-%d')
+                self.validate_against_birth_date(
+                    infant_identifier, vaccine_date.date(), vaccine_name)
 
     class Meta:
         model = InfantBirthFeedingVaccine
