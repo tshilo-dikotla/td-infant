@@ -9,7 +9,6 @@ class AppConfig(DjangoApponfig):
 
     def ready(self):
         from .models import infant_birth_on_post_save
-        from .models import resave_infant_visit_on_post_save
 
 
 if settings.APP_NAME == 'td_infant':
