@@ -28,8 +28,6 @@ from .infant_off_study import InfantOffStudy
 from .infant_requisition import InfantRequisition
 from .infant_visit import InfantVisit
 from .karabo_offstudy import KaraboOffstudy
-from .karabo_subject_consent import KaraboSubjectConsent
-from .karabo_subject_screening import KaraboSubjectScreening
 from .karabo_tb_history import KaraboTuberculosisHistory
 from .list_models import Foods, Rations
 from .onschedule import OnScheduleInfantBirth

@@ -1,13 +1,16 @@
 from django.core.exceptions import ValidationError
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+from edc_appointment.constants import IN_PROGRESS_APPT
 from edc_constants.constants import BY_BIRTH
 from edc_registration.models import RegisteredSubject
+
 from edc_visit_schedule.site_visit_schedules import site_visit_schedules
+from td_maternal.models.karabo_subject_consent import KaraboSubjectConsent
 
-from edc_appointment.constants import IN_PROGRESS_APPT, INCOMPLETE_APPT
-
-from ..models import InfantBirth, KaraboSubjectConsent, Appointment, InfantVisit
+from ..models import InfantBirth
+from .infant_appointment import Appointment
+from .infant_visit import InfantVisit
 
 
 @receiver(post_save, weak=False, sender=InfantBirth,
@@ -57,8 +60,10 @@ def resave_infant_visit_on_post_save(sender, instance, raw, created, **kwargs):
     """
     if created:
         try:
-            registered_subject = RegisteredSubject.objects.get(
+            maternal_reg_subject = RegisteredSubject.objects.get(
                 subject_identifier=instance.subject_identifier)
+            infant_reg_subject = RegisteredSubject.objects.get(
+                relative_identifier=maternal_reg_subject.subject_identifier)
         except RegisteredSubject.DoesNotExist:
             raise ValidationError(
                 f'Missing registered subject for {instance.subject_identifier}')
@@ -66,7 +71,7 @@ def resave_infant_visit_on_post_save(sender, instance, raw, created, **kwargs):
             infant_appointment = Appointment.objects.filter(
                 timepoint__lte=180,
                 appt_status=IN_PROGRESS_APPT,
-                subject_identifier=registered_subject.subject_identifier).order_by('-timepoint').first()
+                subject_identifier=infant_reg_subject.subject_identifier).order_by('-timepoint').first()
             try:
                 infant_visit = InfantVisit.objects.get(
                     appointment=infant_appointment)
