@@ -31,12 +31,13 @@ class InfantBirthFeedinVaccineForm(InfantModelFormMixin):
                 f'before  proceeding.')
         else:
             infant_date = infant_birth.report_datetime.date()
-            if vaccine_date and vaccine_date < infant_date:
-                raise forms.ValidationError(
-                    "The date vaccine was given should not be before the "
-                    f"delivery date Got {vaccine_date} "
-                    f"delivery date {infant_date}"
-                )
+            if vaccine_date and infant_date:
+                if vaccine_date < infant_date:
+                    raise forms.ValidationError(
+                        "The date vaccine was given should not be before the "
+                        f"delivery date Got {vaccine_date} "
+                        f"delivery date {infant_date}"
+                    )
 
     def clean(self):
         cleaned_data = super().clean()
@@ -50,9 +51,10 @@ class InfantBirthFeedinVaccineForm(InfantModelFormMixin):
         for i in range(int(total)):
             vaccine_date = self.data.get(
                 'infantvaccines_set-' + str(i) + '-vaccine_date')
-            vaccine_date = datetime.datetime.strptime(vaccine_date,
+            if vaccine_date:
+                vaccine_date = datetime.datetime.strptime(vaccine_date,
                                                       '%Y-%m-%d')
-            self.validate_against_birth_date(infant_identifier,
+                self.validate_against_birth_date(infant_identifier,
                                              vaccine_date.date())
 
     class Meta:
