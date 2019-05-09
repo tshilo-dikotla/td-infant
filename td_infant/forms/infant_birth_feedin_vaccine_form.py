@@ -40,9 +40,8 @@ class InfantBirthFeedinVaccineForm(InfantModelFormMixin):
                     )
 
     def clean(self):
-        cleaned_data = super().clean()
+        super().clean()
         self.validate_vaccine_date_against_birth_date()
-        return cleaned_data
 
     def validate_vaccine_date_against_birth_date(self):
         infant_identifier = self.cleaned_data.get(
