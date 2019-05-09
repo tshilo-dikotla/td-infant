@@ -1,3 +1,5 @@
+from django import forms
+from edc_constants.constants import YES
 from td_infant_validators.form_validators import InfantFuNewMedFormValidator
 from td_infant_validators.form_validators import InfantFuNewMedItemsFormValidator
 
@@ -11,7 +13,12 @@ class InfantFuNewMedForm(InfantModelFormMixin):
 
     def clean(self):
         cleaned_data = super().clean()
-        arv_count = int(self.data.get('infantfunewmeditems_set-TOTAL_FORMS'))
+        condition = self.cleaned_data.get('new_medications')
+        total_med = self.data.get('infantfunewmeditems_set-TOTAL_FORMS')
+        if condition == YES and int(total_med) < 1:
+            raise forms.ValidationError({
+                'new_medications': 'Please fill up in-line form'
+            })
         return cleaned_data
 
     class Meta:
