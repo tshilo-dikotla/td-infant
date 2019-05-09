@@ -4,8 +4,6 @@ from edc_base.model_validators import date_not_future
 from edc_constants.choices import YES_NO, YES_NO_NA, YES_NO_UNSURE_NA
 from edc_constants.constants import NOT_APPLICABLE
 
-from edc_visit_schedule.model_mixins import VisitScheduleModelMixin
-
 from ..choices import COWS_MILK, TIMES_BREASTFED, WATER_USED
 from .infant_crf_model_mixin import InfantCrfModelMixin
 
@@ -201,14 +199,14 @@ class InfantFeeding(InfantCrfModelMixin):
 
     def save(self, *args, **kwargs):
         if self.previous_infant_feeding:
-            self.last_att_sche_visit = self.previous_infant_feeding
+            self.last_att_sche_visit = self.previous_infant_feeding.report_datetime.date()
         super(InfantFeeding, self).save(*args, **kwargs)
 
     @property
     def previous_infant_feeding(self):
         """ Return previous infant feeding from. """
         return self.__class__.objects.filter(
-            report_datetime_lt=self.report_datetime).order_by(
+            report_datetime__lt=self.report_datetime).order_by(
                 '-report_datetime').first()
 
     class Meta(InfantCrfModelMixin.Meta):
