@@ -52,15 +52,17 @@ class TestKaraboConsentSave(BaseTestCase):
         appointment_2000.appt_status = INCOMPLETE
         appointment_2000.save()
 
-        mommy.make_recipe(
-            'td_infant.karabosubjectscreening',
+        karbo = mommy.make_recipe(
+            'td_maternal.karabosubjectscreening',
             subject_identifier=self.subject_consent.subject_identifier,
             report_datetime=get_utcnow())
 
         mommy.make_recipe(
-            'td_infant.karabosubjectconsent',
+            'td_maternal.karabosubjectconsent',
             subject_identifier=self.subject_consent.subject_identifier,
             report_datetime=get_utcnow())
+
+        print('>>>>>>>>>>>>', karbo.__dict__)
 
         appointment_2010 = InfantAppointment.objects.get(
             subject_identifier=self.infant_reg_subject.subject_identifier,
