@@ -9,7 +9,7 @@ from ..models import InfantRequisition
 from .infant_form_mixin import InfantModelFormMixin
 
 
-class InfantRequisitionForm(RequisitionFormMixin, InfantModelFormMixin):
+class InfantRequisitionForm(InfantModelFormMixin, RequisitionFormMixin):
 
     requisition_identifier = forms.CharField(
         label='Requisition identifier',
