@@ -153,7 +153,7 @@ class KaraboTuberculosisHistory(InfantCrfModelMixin):
         choices=YES_NO_DONT_KNOW
     )
 
-    tb_exposure_det = models.CharField(
+    tb_exposure_det = models.TextField(
         verbose_name=(
             'If yes to question 16, please comment on the nature'
             ' of the exposure'),
