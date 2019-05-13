@@ -6,9 +6,6 @@ from django.db.models.deletion import PROTECT
 from edc_base.model_managers import HistoricalRecords
 from edc_base.model_mixins import BaseUuidModel
 from edc_identifier.model_mixins import NonUniqueSubjectIdentifierFieldMixin
-from edc_lab.choices import PRIORITY
-from edc_lab.models import RequisitionIdentifierMixin
-from edc_lab.models import RequisitionModelMixin, RequisitionStatusMixin
 from edc_metadata.model_mixins.updates import UpdatesRequisitionMetadataModelMixin
 from edc_reference.model_mixins import RequisitionReferenceModelMixin
 from edc_search.model_mixins import SearchSlugManager
@@ -18,6 +15,9 @@ from edc_visit_tracking.model_mixins import CrfModelMixin as VisitTrackingCrfMod
 from edc_visit_tracking.model_mixins import PreviousVisitModelMixin
 
 from edc_consent.model_mixins import RequiresConsentFieldsModelMixin
+from edc_lab.choices import PRIORITY
+from edc_lab.models import RequisitionIdentifierMixin
+from edc_lab.models import RequisitionModelMixin, RequisitionStatusMixin
 
 from ..choices import STUDY_SITES
 from .infant_visit import InfantVisit
@@ -45,20 +45,6 @@ class InfantRequisition(
         max_length=25,
         choices=STUDY_SITES,
         default=settings.DEFAULT_STUDY_SITE)
-
-    estimated_volume = models.DecimalField(
-        verbose_name='Estimated volume in mL',
-        max_digits=7,
-        decimal_places=2,
-        help_text=(
-            'If applicable, estimated volume of sample for this test/order. '
-            'This is the total volume if number of "tubes" above is greater than 1'))
-
-    item_count = models.IntegerField(
-        verbose_name='Total number of items',
-        help_text=(
-            'Number of tubes, samples, cards, etc being sent for this test/order only. '
-            'Determines number of labels to print'))
 
     priority = models.CharField(
         verbose_name='Priority',
