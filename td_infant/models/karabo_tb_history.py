@@ -1,4 +1,5 @@
 from django.db import models
+from edc_base.model_fields import OtherCharField
 from edc_constants.choices import YES_NO_DONT_KNOW, YES_NO
 from edc_constants.constants import NO
 
@@ -14,7 +15,8 @@ class KaraboTuberculosisHistory(InfantCrfModelMixin):
 
     coughing = models.CharField(
         verbose_name=(
-            'Since the last scheduled visit, has any member of '
+            'Since the last scheduled visit or if this is the enrollment '
+            'visit, since birth, has any member of '
             'the household where your has infant stayed been '
             'coughing for two weeks or more?'),
         max_length=12,
@@ -30,9 +32,8 @@ class KaraboTuberculosisHistory(InfantCrfModelMixin):
         choices=FAMILY_RELATION
     )
 
-    other_coughing_rel = models.CharField(
-        verbose_name=('Other'),
-        max_length=255,
+    other_coughing_rel = OtherCharField(
+        max_length=35,
         help_text='Indicate Relationship',
         null=True,
         blank=True
@@ -40,8 +41,9 @@ class KaraboTuberculosisHistory(InfantCrfModelMixin):
 
     fever = models.CharField(
         verbose_name=(
-            'Since the last scheduled visit, has any member'
-            ' of the household where your infant stayed had an unexplained'
+            'Since the last scheduled visit or if this is the enrollment '
+            'visit, since birth, has any member of the household where '
+            'your infant stayed had an unexplained'
             ' fever concerning for tuberculosis?'),
         max_length=12,
         choices=YES_NO_DONT_KNOW
@@ -49,15 +51,14 @@ class KaraboTuberculosisHistory(InfantCrfModelMixin):
 
     fever_rel = models.CharField(
         verbose_name=(
-            'If yes to question 8, please indicate the relationship'
+            'If yes to question 5, please indicate the relationship'
             ' of the person or persons to the infant'),
         max_length=25,
         choices=FAMILY_RELATION
     )
 
-    other_fever_rel = models.CharField(
-        verbose_name=('Other'),
-        max_length=255,
+    other_fever_rel = OtherCharField(
+        max_length=35,
         help_text='Indicate Relationship',
         null=True,
         blank=True
@@ -65,7 +66,8 @@ class KaraboTuberculosisHistory(InfantCrfModelMixin):
 
     weight_loss = models.CharField(
         verbose_name=(
-            'Since the last attended scheduled visit has any member'
+            'Since the last attended scheduled visit or if this is the '
+            'enrollment visit, since birth, has any member'
             ' of the household where your infant stayed had any unexplained'
             ' weight loss?'),
         max_length=12,
@@ -74,15 +76,14 @@ class KaraboTuberculosisHistory(InfantCrfModelMixin):
 
     weight_loss_rel = models.CharField(
         verbose_name=(
-            'If yes to question 10, please indicate the relationship'
+            'If yes to question 8, please indicate the relationship'
             ' of the person or persons to the infant.'),
         max_length=25,
         choices=FAMILY_RELATION
     )
 
-    other_weight_loss = models.CharField(
-        verbose_name=('Other'),
-        max_length=255,
+    other_weight_loss = OtherCharField(
+        max_length=35,
         help_text='Indicate Relationship',
         null=True,
         blank=True
@@ -90,7 +91,8 @@ class KaraboTuberculosisHistory(InfantCrfModelMixin):
 
     night_sweats = models.CharField(
         verbose_name=(
-            'Since the last attended scheduled visit has any member'
+            'Since the last attended scheduled visit or if this is the '
+            'enrollment visit, since birth, has any member'
             ' of the household where your infant stayed had night sweats?'
             ' An adult or child would be considered to have night sweats'
             ' if they have had more than two nights of walking up with '
@@ -102,15 +104,14 @@ class KaraboTuberculosisHistory(InfantCrfModelMixin):
 
     night_sweats_rel = models.CharField(
         verbose_name=(
-            'If yes to question 12, please indicate the relationship of the '
+            'If yes to question 11, please indicate the relationship of the '
             'person or persons to the infant'),
         max_length=25,
         choices=FAMILY_RELATION
     )
 
-    other_night_sweats = models.CharField(
-        verbose_name=('Other'),
-        max_length=255,
+    other_night_sweats = OtherCharField(
+        max_length=35,
         help_text='Indicate Relationship',
         null=True,
         blank=True
@@ -118,7 +119,8 @@ class KaraboTuberculosisHistory(InfantCrfModelMixin):
 
     diagnosis = models.CharField(
         verbose_name=(
-            'Since the last scheduled visit, has any member of the household'
+            'Since the last scheduled visit or if this is the '
+            'enrollment visit, since birth, has any member of the household'
             ' where your infant has stayed been diagnosed with tuberculosis?'),
         max_length=12,
         choices=YES_NO_DONT_KNOW
@@ -132,9 +134,8 @@ class KaraboTuberculosisHistory(InfantCrfModelMixin):
         choices=FAMILY_RELATION
     )
 
-    other_diagnosis_rel = models.CharField(
-        verbose_name=('Other'),
-        max_length=255,
+    other_diagnosis_rel = OtherCharField(
+        max_length=35,
         help_text='Indicate Relationship',
         null=True,
         blank=True
@@ -142,14 +143,17 @@ class KaraboTuberculosisHistory(InfantCrfModelMixin):
 
     tb_exposure = models.CharField(
         verbose_name=(
-            'Since the last attended scheduled visit do you have any reason'
+            'Since the last attended scheduled visit or if this is the '
+            'enrollment visit, since birth, do you have any reason'
             ' to suspect your infant was exposed to tuberculosis outside of'
             ' the household.'),
-        max_length=25,
-        choices=FAMILY_RELATION
+        help_text=('e.g: public transport, health facility visit, church or '
+                   'community gathering.'),
+        max_length=15,
+        choices=YES_NO_DONT_KNOW
     )
 
-    tb_exposure_det = models.CharField(
+    tb_exposure_det = models.TextField(
         verbose_name=(
             'If yes to question 16, please comment on the nature'
             ' of the exposure'),
@@ -162,7 +166,7 @@ class KaraboTuberculosisHistory(InfantCrfModelMixin):
     put_offstudy = models.CharField(
         verbose_name=(
             'Is the participant going offstudy?'),
-        max_length=255,
+        max_length=3,
         choices=YES_NO,
         default=NO,
         help_text='Select YES only if the participant is going off study.',

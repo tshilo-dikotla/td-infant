@@ -1,8 +1,11 @@
-from edc_constants.constants import (
-    NOT_APPLICABLE, OTHER, FAILED_ELIGIBILITY, UNKNOWN, OFF_STUDY, ON_STUDY, PARTICIPANT, ALIVE, DEAD)
+from edc_constants.constants import NOT_APPLICABLE, FAILED_ELIGIBILITY
+from edc_constants.constants import OTHER, UNKNOWN, OFF_STUDY, ON_STUDY
+from edc_constants.constants import PARTICIPANT, ALIVE, DEAD
 from edc_visit_tracking.constants import (
     SCHEDULED, UNSCHEDULED, LOST_VISIT, MISSED_VISIT, COMPLETED_PROTOCOL_VISIT)
+
 from .constants import BROUGHT, REALTIME, CLOTH_NAPPY, BREASTFEED_ONLY, TUBERCULOSIS
+
 
 ANSWERS = (
     ('Accepted', 'Yes and the client accepted the signed copy of the consent'),
@@ -18,6 +21,7 @@ FAMILY_RELATION = (
     ('grandfather', 'Grandfather'),
     ('aunt', 'Aunt'),
     ('uncle', 'Uncle'),
+    (OTHER, 'Other'),
     (NOT_APPLICABLE, 'Not applicable'),
 )
 
