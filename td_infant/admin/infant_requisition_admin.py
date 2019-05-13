@@ -1,9 +1,10 @@
 from django.contrib import admin
+from edc_model_admin import audit_fieldset_tuple
+
 from edc_lab.admin import RequisitionAdminMixin
 from edc_lab.admin import requisition_identifier_fields
 from edc_lab.admin import requisition_identifier_fieldset, requisition_verify_fields
-from edc_lab.admin import requisition_verify_fieldset
-from edc_model_admin import audit_fieldset_tuple
+from edc_lab.admin import requisition_verify_fieldset, requisition_status_fieldset
 
 from ..admin_site import td_infant_admin
 from ..forms import InfantRequisitionForm
@@ -37,6 +38,7 @@ class InfantRequisitionAdmin(
                 'priority',
                 'comments',
             )}),
+        requisition_status_fieldset,
         requisition_identifier_fieldset,
         requisition_verify_fieldset,
         audit_fieldset_tuple)

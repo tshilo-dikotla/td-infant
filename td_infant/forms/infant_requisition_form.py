@@ -3,13 +3,15 @@ from django import forms
 from django.conf import settings
 from django.utils import timezone
 from edc_base.utils import convert_php_dateformat
+from edc_form_validators import FormValidatorMixin
 from edc_lab.forms.modelform_mixins import RequisitionFormMixin
 
 from ..models import InfantRequisition
 from .infant_form_mixin import InfantModelFormMixin
 
 
-class InfantRequisitionForm(InfantModelFormMixin, RequisitionFormMixin):
+class InfantRequisitionForm(InfantModelFormMixin, RequisitionFormMixin,
+                            FormValidatorMixin):
 
     requisition_identifier = forms.CharField(
         label='Requisition identifier',
