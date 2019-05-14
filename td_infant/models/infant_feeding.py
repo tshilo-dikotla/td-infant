@@ -20,7 +20,7 @@ class InfantFeeding(InfantCrfModelMixin):
 
     other_feeding = models.CharField(
         verbose_name=("Since the last attended scheduled visit where an infant feeding form"
-                      " was completed, has the child received any formula milk or "
+                      " was completed, has the child received any"
                       " liquids other than breast-milk? "),
         max_length=3,
         choices=YES_NO,
