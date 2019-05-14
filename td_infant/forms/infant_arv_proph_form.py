@@ -1,5 +1,5 @@
 from django.core.exceptions import ValidationError
-from edc_constants.constants import YES
+from edc_constants.constants import YES, OTHER
 from ..models import InfantArvProph
 from .infant_form_mixin import InfantModelFormMixin
 from ..constants import START, MODIFIED, NEVER_STARTED
@@ -25,6 +25,19 @@ class InfantArvProphForm(InfantModelFormMixin):
                     'arv_status': 'Infant never started prophlaxis, '
                     'do not complete the infant arv proph mods table.'}
                 raise ValidationError(message)
+
+            total_prophmod = self.data.get('infantarvprophmod_set-TOTAL_FORMS')
+            for i in range(int(total_prophmod)):
+                modification_code = self.data.get(
+                    'infantarvprophmod_set-' + str(i) + '-modification_code')
+                other_reason = self.data.get(
+                    'infantarvprophmod_set-' + str(i) + '-other_reason')
+                if modification_code == OTHER and not other_reason:
+                    message = {
+                        'arv_status': 'Please specify other reasons'
+                        ' in the table below'
+                    }
+                    raise ValidationError(message)
 
     class Meta:
         model = InfantArvProph

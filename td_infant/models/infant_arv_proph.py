@@ -14,7 +14,8 @@ class InfantArvProph(InfantCrfModelMixin):
 
     prophylatic_nvp = models.CharField(
         verbose_name=(
-            'Was the baby supposed to be taking taking prophylactic antiretroviral medication for '
+            'Was the baby supposed to be taking taking prophylactic'
+            ' antiretroviral medication for '
             'any period since the last attended scheduled visit?'),
         max_length=3,
         choices=YES_NO)
@@ -22,7 +23,8 @@ class InfantArvProph(InfantCrfModelMixin):
     arv_status = models.CharField(
         max_length=25,
         verbose_name=(
-            "What is the status of the participant's ARV prophylaxis at this visit or since the last visit? "),
+            "What is the status of the participant's ARV prophylaxis at"
+            " this visit or since the last visit? "),
         choices=ARV_STATUS,
         help_text="referring to prophylaxis other than single dose NVP")
 
@@ -66,7 +68,7 @@ class InfantArvProphMod(CrfInlineModelMixin, BaseUuidModel):
         blank=True)
 
     def natural_key(self):
-        return (self.arv_code, ) + self.infant_arv_proph.natural_key()
+        return (self.arv_code,) + self.infant_arv_proph.natural_key()
 
     class Meta:
         verbose_name = 'Infant NVP or AZT Proph: Mods'
