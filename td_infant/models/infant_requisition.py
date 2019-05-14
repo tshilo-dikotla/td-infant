@@ -5,6 +5,7 @@ from django.db import models
 from django.db.models.deletion import PROTECT
 from edc_base.model_managers import HistoricalRecords
 from edc_base.model_mixins import BaseUuidModel
+from edc_constants.constants import NOT_APPLICABLE
 from edc_identifier.model_mixins import NonUniqueSubjectIdentifierFieldMixin
 from edc_metadata.model_mixins.updates import UpdatesRequisitionMetadataModelMixin
 from edc_reference.model_mixins import RequisitionReferenceModelMixin
@@ -19,7 +20,7 @@ from edc_lab.choices import PRIORITY
 from edc_lab.models import RequisitionIdentifierMixin
 from edc_lab.models import RequisitionModelMixin, RequisitionStatusMixin
 
-from ..choices import STUDY_SITES
+from ..choices import STUDY_SITES, ITEM_TYPE
 from .infant_visit import InfantVisit
 from .search_slug_model_mixin import SearchSlugModelMixin
 
@@ -51,6 +52,12 @@ class InfantRequisition(
         max_length=25,
         choices=PRIORITY,
         default='normal',)
+
+    item_type = models.CharField(
+        verbose_name='Item collection type',
+        max_length=25,
+        choices=ITEM_TYPE,
+        default=NOT_APPLICABLE)
 
     comments = models.TextField(
         max_length=350,

@@ -3,6 +3,7 @@ from edc_constants.constants import OTHER, UNKNOWN, OFF_STUDY, ON_STUDY
 from edc_constants.constants import PARTICIPANT, ALIVE, DEAD
 from edc_visit_tracking.constants import (
     SCHEDULED, UNSCHEDULED, LOST_VISIT, MISSED_VISIT, COMPLETED_PROTOCOL_VISIT)
+from edc_lab.constants import TUBE
 
 from .constants import BROUGHT, REALTIME, CLOTH_NAPPY, BREASTFEED_ONLY, TUBERCULOSIS
 
@@ -368,6 +369,12 @@ INFANT_AGE_VACCINE_GIVEN = (
     ('42-47', '42-47 months'),
     ('48-53', '48-53 months'),
     ('54-59', '54-59 months'))
+
+ITEM_TYPE = (
+    (NOT_APPLICABLE, 'Not applicable'),
+    (TUBE, 'Tube'),
+    ('dbs', 'DBS Card'),
+)
 
 LOWER_GASTROINTESTINAL_ABNORMALITY = (
     ('None', 'None'),
