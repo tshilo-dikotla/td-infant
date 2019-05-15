@@ -1,6 +1,6 @@
 from django.forms import forms
 from .infant_form_mixin import InfantModelFormMixin
-from edc_constants.constants import YES
+from edc_constants.constants import YES, OTHER
 from ..models import InfantFuImmunizations, VaccinesReceived, VaccinesMissed
 
 from td_infant_validators.form_validators import (
@@ -10,7 +10,7 @@ from td_infant_validators.form_validators import (
 class InfantFuImmunizationsForm(InfantModelFormMixin):
 
     def clean(self):
-        cleaned_data = super().clean()
+        super().clean()
         vaccines_received = self.data.get(
             'vaccinesreceived_set-0-received_vaccine_name')
         if self.data.get('vaccines_received') == YES:
@@ -37,7 +37,20 @@ class InfantFuImmunizationsForm(InfantModelFormMixin):
             if missed_vaccine_name:
                 raise forms.ValidationError(
                     'No vaccines missed. Do not fill Missed Vaccines table')
-        return cleaned_data
+
+        missed_vaccines = self.data.get('vaccinesmissed_set-TOTAL_FORMS')
+        for i in range(int(missed_vaccines)):
+            reason_missed = self.data.get(
+                'vaccinesmissed_set-' + str(i) + '-reason_missed')
+            other_reason = self.data.get(
+                'vaccinesmissed_set-' + str(i) + '-reason_missed_other')
+
+            if reason_missed == OTHER and not other_reason:
+                message = {
+                    'vaccines_missed': 'Please specify other reasons'
+                    ' in the table below'
+                }
+                raise forms.ValidationError(message)
 
     class Meta:
         model = InfantFuImmunizations

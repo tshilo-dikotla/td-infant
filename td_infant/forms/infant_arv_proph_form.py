@@ -32,6 +32,7 @@ class InfantArvProphForm(InfantModelFormMixin):
                     'infantarvprophmod_set-' + str(i) + '-modification_code')
                 other_reason = self.data.get(
                     'infantarvprophmod_set-' + str(i) + '-other_reason')
+
                 if modification_code == OTHER and not other_reason:
                     message = {
                         'arv_status': 'Please specify other reasons'
