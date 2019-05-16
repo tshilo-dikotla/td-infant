@@ -47,7 +47,7 @@ class InfantFuImmunizationsForm(InfantModelFormMixin):
 
             if reason_missed == OTHER and not other_reason:
                 message = {
-                    'vaccines_missed': 'Please specify other reasons'
+                    'vaccines_missed': 'Please specify other reasons missed'
                     ' in the table below'
                 }
                 raise forms.ValidationError(message)
