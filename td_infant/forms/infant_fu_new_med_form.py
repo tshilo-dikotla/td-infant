@@ -1,5 +1,5 @@
 from django import forms
-from edc_constants.constants import YES
+from edc_constants.constants import YES, NO
 from td_infant_validators.form_validators import InfantFuNewMedFormValidator
 from td_infant_validators.form_validators import InfantFuNewMedItemsFormValidator
 
@@ -18,6 +18,11 @@ class InfantFuNewMedForm(InfantModelFormMixin):
         if condition == YES and int(total_med) < 1:
             raise forms.ValidationError({
                 'new_medications': 'Please fill up in-line form'
+            })
+        elif condition == NO and int(total_med) > 0:
+            raise forms.ValidationError({
+                'new_medications': "Infant did'nt receive any medication "
+                "Please do not fill the table below"
             })
 
     class Meta:
