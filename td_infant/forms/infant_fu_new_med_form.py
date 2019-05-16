@@ -20,7 +20,7 @@ class InfantFuNewMedForm(InfantModelFormMixin):
             raise forms.ValidationError({
                 'new_medications': 'Please fill up in-line form'
             })
-        elif (condition == NO and int(total_med) > 0) and medication:
+        elif (condition == NO and medication):
             raise forms.ValidationError({
                 'new_medications': "Infant did'nt receive any medication "
                 "Please do not fill the table below"
