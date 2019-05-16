@@ -50,7 +50,8 @@ class SolidFoodAssessmentAdmin(InfantCrfModelAdminMixin, admin.ModelAdmin):
                 'cheese',
                 'cheese_freq',
                 'rations',
-                'rations_receviced'
+                'rations_receviced',
+                'rations_receviced_other'
             ]
         }), audit_fieldset_tuple
     )

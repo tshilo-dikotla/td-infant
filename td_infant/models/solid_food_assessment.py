@@ -11,7 +11,7 @@ class SolidFoodAssessment(InfantCrfModelMixin):
     """ A model completed by the user on the infant's solid food assessment. """
 
     age_solid_food = models.IntegerField(
-        verbose_name="At approximately what age, in months did this child start receiving solid foods"
+        verbose_name="At approximately what age, in months did this"" child start receiving solid foods"
                      " (foods other than breast milk or formula?)",
         help_text="Months.",
     )
@@ -214,6 +214,13 @@ class SolidFoodAssessment(InfantCrfModelMixin):
     rations_receviced = models.ManyToManyField(
         Rations,
         verbose_name="If yes, please indicate all applicable rations received at the last visit")
+
+    rations_receviced_other = OtherCharField(
+        max_length=35,
+        verbose_name="if other specify...",
+        blank=True,
+        null=True,
+    )
 
     class Meta(InfantCrfModelMixin.Meta):
         app_label = 'td_infant'
