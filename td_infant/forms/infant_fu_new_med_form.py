@@ -15,11 +15,12 @@ class InfantFuNewMedForm(InfantModelFormMixin):
         super().clean()
         condition = self.cleaned_data.get('new_medications')
         total_med = self.data.get('infantfunewmeditems_set-TOTAL_FORMS')
+        medication = self.data.get('infantfunewmeditems_set-0-medication')
         if condition == YES and int(total_med) < 1:
             raise forms.ValidationError({
                 'new_medications': 'Please fill up in-line form'
             })
-        elif condition == NO and int(total_med) > 0:
+        elif (condition == NO and int(total_med) > 0) and medication:
             raise forms.ValidationError({
                 'new_medications': "Infant did'nt receive any medication "
                 "Please do not fill the table below"
