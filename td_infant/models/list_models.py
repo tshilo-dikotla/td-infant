@@ -41,11 +41,6 @@ class HouseholdGoods (ListModelMixin, BaseUuidModel):
     pass
 
 
-# class InfantVaccines (ListModelMixin, BaseUuidModel):
-#
-#     pass
-
-
 class Malformations(ListModelMixin, BaseUuidModel):
 
     pass

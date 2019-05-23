@@ -15,7 +15,7 @@ class KaraboTuberculosisHistory(InfantCrfModelMixin):
 
     coughing = models.CharField(
         verbose_name=(
-            'Since the last scheduled visit or if this is the enrollment '
+            'Since the last scheduled visit, or if this is the enrollment '
             'visit, since birth, has any member of '
             'the household where your has infant stayed been '
             'coughing for two weeks or more?'),
@@ -41,7 +41,7 @@ class KaraboTuberculosisHistory(InfantCrfModelMixin):
 
     fever = models.CharField(
         verbose_name=(
-            'Since the last scheduled visit or if this is the enrollment '
+            'Since the last scheduled visit, or if this is the enrollment '
             'visit, since birth, has any member of the household where '
             'your infant stayed had an unexplained'
             ' fever concerning for tuberculosis?'),
@@ -66,7 +66,7 @@ class KaraboTuberculosisHistory(InfantCrfModelMixin):
 
     weight_loss = models.CharField(
         verbose_name=(
-            'Since the last attended scheduled visit or if this is the '
+            'Since the last attended scheduled visit, or if this is the '
             'enrollment visit, since birth, has any member'
             ' of the household where your infant stayed had any unexplained'
             ' weight loss?'),
@@ -91,11 +91,11 @@ class KaraboTuberculosisHistory(InfantCrfModelMixin):
 
     night_sweats = models.CharField(
         verbose_name=(
-            'Since the last attended scheduled visit or if this is the '
+            'Since the last attended scheduled visit, or if this is the '
             'enrollment visit, since birth, has any member'
             ' of the household where your infant stayed had night sweats?'
             ' An adult or child would be considered to have night sweats'
-            ' if they have had more than two nights of walking up with '
+            ' if they have had more than two nights of waking up with '
             'their night clothing drenched due to sweating with a need to'
             ' change the night clothing.'),
         max_length=12,
@@ -119,7 +119,7 @@ class KaraboTuberculosisHistory(InfantCrfModelMixin):
 
     diagnosis = models.CharField(
         verbose_name=(
-            'Since the last scheduled visit or if this is the '
+            'Since the last scheduled visit, or if this is the '
             'enrollment visit, since birth, has any member of the household'
             ' where your infant has stayed been diagnosed with tuberculosis?'),
         max_length=12,
@@ -143,7 +143,7 @@ class KaraboTuberculosisHistory(InfantCrfModelMixin):
 
     tb_exposure = models.CharField(
         verbose_name=(
-            'Since the last attended scheduled visit or if this is the '
+            'Since the last attended scheduled visit, or if this is the '
             'enrollment visit, since birth, do you have any reason'
             ' to suspect your infant was exposed to tuberculosis outside of'
             ' the household.'),
@@ -175,4 +175,4 @@ class KaraboTuberculosisHistory(InfantCrfModelMixin):
     class Meta:
         app_label = 'td_infant'
         verbose_name = "Karabo Tuberculosis History"
-        verbose_name_plural = "Karabo Tuberculosis Histories"
+        verbose_name_plural = "Karabo Tuberculosis History"
