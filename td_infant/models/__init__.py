@@ -13,7 +13,6 @@ from .infant_congenital_anomalies import InfantFemaleGenital, InfantRenal, Infan
 from .infant_congenital_anomalies import InfantMusculoskeletal, InfantSkin
 from .infant_congenital_anomalies import InfantOtherAbnormalityItems, InfantMaleGenital
 from .infant_congenital_anomalies import InfantRespiratoryDefect, InfantLowerGi
-from .infant_death_report import InfantDeathReport
 from .infant_dummy_consent import InfantDummySubjectConsent
 from .infant_feeding import InfantFeeding
 from .infant_fu import InfantFu
@@ -24,7 +23,6 @@ from .infant_fu_new_med import InfantFuNewMed, InfantFuNewMedItems
 from .infant_fu_physical import InfantFuPhysical
 from .infant_nvp_adjustment import InfantNvpAdjustment
 from .infant_nvp_dispensing import InfantNvpDispensing
-from .infant_off_study import InfantOffStudy
 from .infant_requisition import InfantRequisition
 from .infant_visit import InfantVisit
 from .karabo_offstudy import KaraboOffstudy
