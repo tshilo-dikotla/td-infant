@@ -17,7 +17,6 @@ class InfantVisitAdmin(VisitModelAdminMixin,
 
     form = InfantVisitForm
     dashboard_type = INFANT
-#     requisition_model = InfantRequisition
     fieldsets = (
         (None, {
             'fields': [
