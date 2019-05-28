@@ -15,6 +15,7 @@ class SolidFoodAssessment(InfantCrfModelMixin):
                       'child start receiving solid foods '
                       '(foods other than breast milk or formula?)'),
         help_text='Months.',
+        default=0
     )
 
     solid_foods = models.ManyToManyField(

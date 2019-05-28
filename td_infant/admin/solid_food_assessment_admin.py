@@ -74,3 +74,5 @@ class SolidFoodAssessmentAdmin(InfantCrfModelAdminMixin, admin.ModelAdmin):
                     'rations': admin.VERTICAL,
                     }
     filter_horizontal = ('solid_foods', 'rations_receviced')
+
+    readonly_fields = ('age_solid_food',)
