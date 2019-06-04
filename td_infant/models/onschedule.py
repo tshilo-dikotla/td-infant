@@ -1,5 +1,6 @@
 from django.apps import apps as django_apps
 from django.core.exceptions import ValidationError
+from django.db import models
 from edc_base.model_managers import HistoricalRecords
 from edc_base.model_mixins import BaseUuidModel
 from edc_base.sites import CurrentSiteManager
@@ -11,6 +12,10 @@ class OnScheduleInfantBirth(OnScheduleModelMixin, BaseUuidModel):
 
     """A model used by the system. Auto-completed by infant birth.
     """
+    schedule_name = models.CharField(max_length=25,
+                                     blank=True,
+                                     null=True)
+
     on_site = CurrentSiteManager()
 
     objects = SubjectIdentifierManager()

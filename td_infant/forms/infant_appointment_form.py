@@ -1,7 +1,9 @@
 from django import forms
-from edc_appointment.form_validators import AppointmentFormValidator
 from edc_base.sites.forms import SiteModelFormMixin
 from edc_form_validators import FormValidatorMixin
+
+from edc_appointment.form_validators import AppointmentFormValidator
+from td_infant_validators.form_validators import AppointmentFormValidator
 
 from ..models import Appointment
 
