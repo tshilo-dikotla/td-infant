@@ -15,7 +15,6 @@ from ..admin_site import td_infant_admin
 from ..constants import INFANT
 from ..forms import InfantVisitForm
 from ..models import InfantVisit
-from .model_admin_mixins import ModelAdminMixin
 
 
 class ModelAdminMixin(ModelAdminNextUrlRedirectMixin, ModelAdminFormAutoNumberMixin,
