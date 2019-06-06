@@ -1,6 +1,4 @@
 from td_infant_validators.form_validators import SolidFoodAssessementFormValidator
-
-from django import forms
 from django.apps import apps as django_apps
 
 from ..models import SolidFoodAssessment
@@ -14,8 +12,10 @@ class SolidFoodAssessmentForm(InfantModelFormMixin):
     infant_birth = 'td_infant.infantbirth'
 
     def clean(self):
-        from builtins import int
         super().clean()
+
+    def save(self, commit=True):
+        instance = super(SolidFoodAssessmentForm, self).save(commit=False)
         age_solid_food = self.cleaned_data.get('age_solid_food')
         if not age_solid_food:
             birth_date = self.infant_birth_cls.objects.get(
@@ -25,7 +25,10 @@ class SolidFoodAssessmentForm(InfantModelFormMixin):
             date_diff = (report_date - birth_date).days
             weeks = date_diff / 7
             months = weeks / 4
-            self.cleaned_data['age_solid_food'] = int(months)
+            instance.age_solid_food = months
+        if commit:
+            instance.save()
+        return instance
 
     class Meta:
         model = SolidFoodAssessment
