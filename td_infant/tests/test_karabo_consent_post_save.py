@@ -1,5 +1,6 @@
+from td_maternal.tests.base_test_case import BaseTestCase
+
 from django.test import tag
-from edc_appointment.models import Appointment as MaternalAppointment
 from edc_base.utils import get_utcnow
 from edc_constants.constants import INCOMPLETE
 from edc_metadata.constants import REQUIRED
@@ -7,12 +8,11 @@ from edc_metadata.models import CrfMetadata
 from edc_registration.models import RegisteredSubject
 from model_mommy import mommy
 
-from td_maternal.tests.base_test_case import BaseTestCase
+from edc_appointment.models import Appointment as MaternalAppointment
 
 from ..models import Appointment as InfantAppointment
 
 
-@tag('karabo')
 class TestKaraboConsentSave(BaseTestCase):
 
     def setUp(self):
@@ -61,8 +61,6 @@ class TestKaraboConsentSave(BaseTestCase):
             'td_maternal.karabosubjectconsent',
             subject_identifier=self.subject_consent.subject_identifier,
             report_datetime=get_utcnow())
-
-        print('>>>>>>>>>>>>', karbo.__dict__)
 
         appointment_2010 = InfantAppointment.objects.get(
             subject_identifier=self.infant_reg_subject.subject_identifier,
