@@ -13,6 +13,7 @@ class InfantFuDxForm(InfantModelFormMixin):
 
     def clean(self):
         super().clean()
+
         infant_fu_dx = self.data.get('infantfudxitems_set-0-fu_dx')
         if not infant_fu_dx:
             raise ValidationError('Please fill the table below')

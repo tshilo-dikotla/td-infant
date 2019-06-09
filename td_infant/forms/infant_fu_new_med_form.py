@@ -1,17 +1,21 @@
-from django import forms
-from edc_constants.constants import YES, NO
+from td_infant_validators.form_validators import CrfOffStudyFormValidator
 from td_infant_validators.form_validators import InfantFuNewMedFormValidator
 from td_infant_validators.form_validators import InfantFuNewMedItemsFormValidator
+
+from django import forms
+from edc_constants.constants import YES, NO
 
 from ..models import InfantFuNewMed, InfantFuNewMedItems
 from .infant_form_mixin import InfantModelFormMixin
 
 
-class InfantFuNewMedForm(InfantModelFormMixin):
+class InfantFuNewMedForm(InfantModelFormMixin, CrfOffStudyFormValidator):
 
     form_validator_cls = InfantFuNewMedFormValidator
 
     def clean(self):
+        self.subject_identifier = self.cleaned_data.get(
+            'infant_visit').appointment.subject_identifier
         super().clean()
         condition = self.cleaned_data.get('new_medications')
         total_med = self.data.get('infantfunewmeditems_set-TOTAL_FORMS')

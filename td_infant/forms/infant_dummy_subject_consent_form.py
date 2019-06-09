@@ -20,6 +20,11 @@ class InfantDummySubjectConsentForm(
         initial=settings.DEFAULT_STUDY_SITE,
         widget=forms.RadioSelect)
 
+    def clean(self):
+        self.subject_identifier = self.cleaned_data.get(
+            'infant_visit').appointment.subject_identifier
+        super().clean()
+
     class Meta:
         model = InfantDummySubjectConsent
         fields = '__all__'

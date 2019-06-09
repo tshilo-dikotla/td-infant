@@ -5,7 +5,7 @@ from ..models import InfantBirthArv
 from .infant_form_mixin import InfantModelFormMixin
 
 
-class InfantBirthArvForm(InfantModelFormMixin, CrfOffStudyFormValidator):
+class InfantBirthArvForm(InfantModelFormMixin):
 
     form_validator_cls = InfantBirthArvFormValidator
 

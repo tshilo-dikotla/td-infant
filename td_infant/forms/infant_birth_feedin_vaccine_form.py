@@ -1,9 +1,10 @@
+from td_infant_validators.form_validators import (
+    InfantBirthFeedingFormValidator)
 import datetime
+
 from django import forms
 from django.apps import apps as django_apps
 from django.core.exceptions import ValidationError
-from td_infant_validators.form_validators import (
-    InfantBirthFeedingFormValidator)
 
 from ..models import InfantBirthFeedingVaccine
 from .infant_form_mixin import InfantModelFormMixin
@@ -41,6 +42,9 @@ class InfantBirthFeedinVaccineForm(InfantModelFormMixin):
 
     def clean(self):
         super().clean()
+        self.subject_identifier = self.cleaned_data.get(
+            'infant_visit').appointment.subject_identifier
+
         self.validate_vaccine_date_against_birth_date()
 
     def validate_vaccine_date_against_birth_date(self):
