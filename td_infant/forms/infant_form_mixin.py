@@ -1,3 +1,5 @@
+from td_infant_validators.form_validators import CrfOffStudyFormValidator
+
 from django import forms
 from edc_base.sites import SiteModelFormMixin
 from edc_form_validators import FormValidatorMixin
@@ -8,6 +10,6 @@ from ..models import InfantVisit
 
 class InfantModelFormMixin(
         SiteModelFormMixin, VisitTrackingModelFormMixin,
-        FormValidatorMixin, forms.ModelForm):
+        FormValidatorMixin, CrfOffStudyFormValidator , forms.ModelForm):
 
     visit_model = InfantVisit

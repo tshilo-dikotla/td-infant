@@ -1,3 +1,5 @@
+from td_infant_validators.form_validators import CrfOffStudyFormValidator
+
 from django import forms
 from django.conf import settings
 from edc_base.sites import SiteModelFormMixin
@@ -9,7 +11,7 @@ from ..models import InfantDummySubjectConsent
 
 
 class InfantDummySubjectConsentForm(
-        SiteModelFormMixin, FormValidatorMixin, ConsentModelFormMixin,
+        SiteModelFormMixin, FormValidatorMixin, CrfOffStudyFormValidator, ConsentModelFormMixin,
         forms.ModelForm):
 
     study_site = forms.ChoiceField(
