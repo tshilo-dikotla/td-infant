@@ -1,20 +1,16 @@
-from td_infant_validators.form_validators import CrfOffStudyFormValidator
-from td_infant_validators.form_validators import InfantRequisitionFormValidator
-
 from arrow.arrow import Arrow
 from django import forms
 from django.conf import settings
 from django.utils import timezone
 from edc_base.utils import convert_php_dateformat
-from edc_form_validators import FormValidatorMixin
 from edc_lab.forms.modelform_mixins import RequisitionFormMixin
+from td_infant_validators.form_validators import InfantRequisitionFormValidator
 
 from ..models import InfantRequisition
 from .infant_form_mixin import InfantModelFormMixin
 
 
-class InfantRequisitionForm(InfantModelFormMixin, RequisitionFormMixin,
-                            CrfOffStudyFormValidator, FormValidatorMixin):
+class InfantRequisitionForm(InfantModelFormMixin, RequisitionFormMixin):
 
     form_validator_cls = InfantRequisitionFormValidator
 
@@ -34,11 +30,6 @@ class InfantRequisitionForm(InfantModelFormMixin, RequisitionFormMixin,
                 raise forms.ValidationError({
                     'requisition_datetime':
                     f'Invalid. Cannot be before date of visit {formatted}.'})
-
-    def clean(self):
-        self.subject_identifier = self.cleaned_data.get(
-            'infant_visit').appointment.subject_identifier
-        super().clean()
 
     class Meta:
         model = InfantRequisition
