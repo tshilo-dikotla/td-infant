@@ -15,6 +15,7 @@ class KaraboTuberculosisHistoryAdmin(KaraboCrfModelAdminMixin, admin.ModelAdmin)
         (None, {
             'fields': [
                 'infant_visit',
+                'report_datetime',
                 'coughing',
                 'coughing_rel',
                 'other_coughing_rel',
