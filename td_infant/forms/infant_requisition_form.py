@@ -18,6 +18,10 @@ class InfantRequisitionForm(InfantModelFormMixin, RequisitionFormMixin):
         label='Requisition identifier',
         widget=forms.TextInput(attrs={'readonly': 'readonly'}))
 
+    def clean(self):
+        self.validate_requisition_datetime()
+        super().clean()
+
     def validate_requisition_datetime(self):
         requisition_datetime = self.cleaned_data.get('requisition_datetime')
         maternal_visit = self.cleaned_data.get('infant_visit')
