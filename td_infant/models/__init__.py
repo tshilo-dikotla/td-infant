@@ -23,6 +23,7 @@ from .infant_fu_new_med import InfantFuNewMed, InfantFuNewMedItems
 from .infant_fu_physical import InfantFuPhysical
 from .infant_nvp_adjustment import InfantNvpAdjustment
 from .infant_nvp_dispensing import InfantNvpDispensing
+from .infant_offschedule import InfantOffSchedule
 from .infant_requisition import InfantRequisition
 from .infant_visit import InfantVisit
 from .karabo_offstudy import KaraboOffstudy
