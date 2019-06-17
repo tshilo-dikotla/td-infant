@@ -27,7 +27,9 @@ from .infant_requisition import InfantRequisition
 from .infant_visit import InfantVisit
 from .karabo_offstudy import KaraboOffstudy
 from .karabo_tb_history import KaraboTuberculosisHistory
-from .list_models import Foods, Rations
+from .list_models import CoughingRelation, DiagnosisRelation
+from .list_models import Foods, Rations, FeverRelation, NightSweatsRelation
 from .onschedule import OnScheduleInfantBirth
 from .signals import *
 from .solid_food_assessment import SolidFoodAssessment
+

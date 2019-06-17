@@ -39,16 +39,11 @@ class KaraboTuberculosisHistoryAdmin(KaraboCrfModelAdminMixin, admin.ModelAdmin)
 
     radio_fields = {
         'coughing': admin.VERTICAL,
-        'coughing_rel': admin.VERTICAL,
         'fever': admin.VERTICAL,
-        'fever_rel': admin.VERTICAL,
         'weight_loss': admin.VERTICAL,
-        'weight_loss_rel': admin.VERTICAL,
         'diagnosis': admin.VERTICAL,
         'night_sweats': admin.VERTICAL,
-        'night_sweats_rel': admin.VERTICAL,
         'diagnosis': admin.VERTICAL,
-        'diagnosis_rel': admin.VERTICAL,
         'tb_exposure': admin.VERTICAL,
         'put_offstudy': admin.VERTICAL,
     }
@@ -61,3 +56,8 @@ class KaraboTuberculosisHistoryAdmin(KaraboCrfModelAdminMixin, admin.ModelAdmin)
         'other_night_sweats',
         'other_diagnosis_rel',
         'tb_exposure_det')
+
+    filter_horizontal = (
+         'coughing_rel', 'fever_rel', 'weight_loss_rel',
+         'night_sweats_rel', 'diagnosis_rel'
+         )

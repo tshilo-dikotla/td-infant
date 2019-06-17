@@ -2,7 +2,6 @@ from edc_constants.constants import NOT_APPLICABLE, OTHER
 
 from edc_list_data import PreloadData
 
-
 list_data = {
     'td_infant.chronicconditions': [
         ('asthma', 'Asthma'),
@@ -243,7 +242,51 @@ list_data = {
         ('sympt_nephropathy_or_cardiomyopathy',
          'Sympt nephropathy/cardiomyopathy'),
         ('CS99999', 'CS99999'),
-        (NOT_APPLICABLE, 'Not Applicable')]
+        (NOT_APPLICABLE, 'Not Applicable')],
+
+    'td_infant.coughingrelation': [
+        ('me', 'Me'),
+        ('father', 'Father'),
+        ('sibling', 'Sibling'),
+        ('grandmother', 'Grandmother'),
+        ('grandfather', 'Grandfather'),
+        ('aunt', 'Aunt'),
+        ('uncle', 'Uncle'),
+        (OTHER, 'Other'),
+        (NOT_APPLICABLE, 'Not applicable')],
+
+    'td_infant.feverrelation': [
+        ('me', 'Me'),
+        ('father', 'Father'),
+        ('sibling', 'Sibling'),
+        ('grandmother', 'Grandmother'),
+        ('grandfather', 'Grandfather'),
+        ('aunt', 'Aunt'),
+        ('uncle', 'Uncle'),
+        (OTHER, 'Other'),
+        (NOT_APPLICABLE, 'Not applicable')],
+
+    'td_infant.diagnosisrelation': [
+        ('me', 'Me'),
+        ('father', 'Father'),
+        ('sibling', 'Sibling'),
+        ('grandmother', 'Grandmother'),
+        ('grandfather', 'Grandfather'),
+        ('aunt', 'Aunt'),
+        ('uncle', 'Uncle'),
+        (OTHER, 'Other'),
+        (NOT_APPLICABLE, 'Not applicable')],
+
+    'td_infant.nightsweatsrelation': [
+        ('me', 'Me'),
+        ('father', 'Father'),
+        ('sibling', 'Sibling'),
+        ('grandmother', 'Grandmother'),
+        ('grandfather', 'Grandfather'),
+        ('aunt', 'Aunt'),
+        ('uncle', 'Uncle'),
+        (OTHER, 'Other'),
+        (NOT_APPLICABLE, 'Not applicable')]
 }
 
 preload_data = PreloadData(

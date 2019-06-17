@@ -109,3 +109,23 @@ class WcsDxAdult(ListModelMixin, BaseUuidModel):
 class WcsDxPed(ListModelMixin, BaseUuidModel):
 
     pass
+
+
+class CoughingRelation(ListModelMixin, BaseUuidModel):
+    pass
+
+
+class FeverRelation(ListModelMixin, BaseUuidModel):
+    pass
+
+
+class WeightLossRelation(ListModelMixin, BaseUuidModel):
+    pass
+
+
+class NightSweatsRelation(ListModelMixin, BaseUuidModel):
+    pass
+
+
+class DiagnosisRelation(ListModelMixin, BaseUuidModel):
+    pass

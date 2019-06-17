@@ -3,8 +3,11 @@ from edc_base.model_fields import OtherCharField
 from edc_constants.choices import YES_NO_DONT_KNOW, YES_NO
 from edc_constants.constants import NO
 
-from ..choices import FAMILY_RELATION
 from .infant_crf_model_mixin import InfantCrfModelMixin
+
+from .list_models import (
+    CoughingRelation, WeightLossRelation, NightSweatsRelation,
+    DiagnosisRelation, FeverRelation)
 
 
 class KaraboTuberculosisHistory(InfantCrfModelMixin):
@@ -23,13 +26,12 @@ class KaraboTuberculosisHistory(InfantCrfModelMixin):
         choices=YES_NO_DONT_KNOW
     )
 
-    coughing_rel = models.CharField(
+    coughing_rel = models.ManyToManyField(
+        CoughingRelation,
         verbose_name=(
             'If yes to question 3, please indicate the '
             'relationship of this individual or individuals to your infant.'
-        ),
-        max_length=25,
-        choices=FAMILY_RELATION
+        )
     )
 
     other_coughing_rel = OtherCharField(
@@ -49,12 +51,11 @@ class KaraboTuberculosisHistory(InfantCrfModelMixin):
         choices=YES_NO_DONT_KNOW
     )
 
-    fever_rel = models.CharField(
+    fever_rel = models.ManyToManyField(
+        FeverRelation,
         verbose_name=(
             'If yes to question 6, please indicate the relationship'
             ' of the person or persons to the infant'),
-        max_length=25,
-        choices=FAMILY_RELATION
     )
 
     other_fever_rel = OtherCharField(
@@ -74,12 +75,11 @@ class KaraboTuberculosisHistory(InfantCrfModelMixin):
         choices=YES_NO_DONT_KNOW
     )
 
-    weight_loss_rel = models.CharField(
+    weight_loss_rel = models.ManyToManyField(
+        WeightLossRelation,
         verbose_name=(
             'If yes to question 9, please indicate the relationship'
             ' of the person or persons to the infant.'),
-        max_length=25,
-        choices=FAMILY_RELATION
     )
 
     other_weight_loss = OtherCharField(
@@ -102,12 +102,11 @@ class KaraboTuberculosisHistory(InfantCrfModelMixin):
         choices=YES_NO_DONT_KNOW
     )
 
-    night_sweats_rel = models.CharField(
+    night_sweats_rel = models.ManyToManyField(
+        NightSweatsRelation,
         verbose_name=(
             'If yes to question 12, please indicate the relationship of the '
             'person or persons to the infant'),
-        max_length=25,
-        choices=FAMILY_RELATION
     )
 
     other_night_sweats = OtherCharField(
@@ -126,12 +125,11 @@ class KaraboTuberculosisHistory(InfantCrfModelMixin):
         choices=YES_NO_DONT_KNOW
     )
 
-    diagnosis_rel = models.CharField(
+    diagnosis_rel = models.ManyToManyField(
+        DiagnosisRelation,
         verbose_name=(
             'If yes to question 15, please indicate the relationship of'
             ' the person or persons to the infant'),
-        max_length=25,
-        choices=FAMILY_RELATION
     )
 
     other_diagnosis_rel = OtherCharField(
