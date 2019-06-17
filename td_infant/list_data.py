@@ -266,6 +266,17 @@ list_data = {
         (OTHER, 'Other'),
         (NOT_APPLICABLE, 'Not applicable')],
 
+    'td_infant.weightlossrelation': [
+        ('me', 'Me'),
+        ('father', 'Father'),
+        ('sibling', 'Sibling'),
+        ('grandmother', 'Grandmother'),
+        ('grandfather', 'Grandfather'),
+        ('aunt', 'Aunt'),
+        ('uncle', 'Uncle'),
+        (OTHER, 'Other'),
+        (NOT_APPLICABLE, 'Not applicable')],
+
     'td_infant.diagnosisrelation': [
         ('me', 'Me'),
         ('father', 'Father'),
