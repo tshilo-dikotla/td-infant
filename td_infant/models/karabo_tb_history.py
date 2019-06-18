@@ -82,7 +82,7 @@ class KaraboTuberculosisHistory(InfantCrfModelMixin):
             ' of the person or persons to the infant.'),
     )
 
-    other_weight_loss = OtherCharField(
+    other_weight_loss_rel = OtherCharField(
         max_length=35,
         help_text='Indicate Relationship',
         null=True,
@@ -109,7 +109,7 @@ class KaraboTuberculosisHistory(InfantCrfModelMixin):
             'person or persons to the infant'),
     )
 
-    other_night_sweats = OtherCharField(
+    other_night_sweats_rel = OtherCharField(
         max_length=35,
         help_text='Indicate Relationship',
         null=True,

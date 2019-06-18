@@ -24,10 +24,10 @@ class KaraboTuberculosisHistoryAdmin(KaraboCrfModelAdminMixin, admin.ModelAdmin)
                 'other_fever_rel',
                 'weight_loss',
                 'weight_loss_rel',
-                'other_weight_loss',
+                'other_weight_loss_rel',
                 'night_sweats',
                 'night_sweats_rel',
-                'other_night_sweats',
+                'other_night_sweats_rel',
                 'diagnosis',
                 'diagnosis_rel',
                 'other_diagnosis_rel',
@@ -52,8 +52,8 @@ class KaraboTuberculosisHistoryAdmin(KaraboCrfModelAdminMixin, admin.ModelAdmin)
         'other_coughing_rel',
         'other_diagnosis_rel',
         'other_fever_rel',
-        'other_weight_loss',
-        'other_night_sweats',
+        'other_weight_loss_rel',
+        'other_night_sweats_rel',
         'other_diagnosis_rel',
         'tb_exposure_det')
 
