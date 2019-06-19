@@ -5,8 +5,8 @@ from edc_visit_tracking.constants import (
     SCHEDULED, UNSCHEDULED, LOST_VISIT, MISSED_VISIT, COMPLETED_PROTOCOL_VISIT)
 from edc_lab.constants import TUBE
 
-from .constants import BROUGHT, REALTIME, CLOTH_NAPPY, BREASTFEED_ONLY, TUBERCULOSIS
-
+from .constants import BROUGHT, REALTIME, CLOTH_NAPPY, BREASTFEED_ONLY
+from .constants import TUBERCULOSIS, MIN_AGE_OF_CONSENT
 
 ANSWERS = (
     ('Accepted', 'Yes and the client accepted the signed copy of the consent'),
@@ -334,6 +334,41 @@ IMMUNIZATIONS = (
     ('Pentavalent',
      'Pentavalent Vaccine (Contains DPT, Hepatitis B and Haemophilus Influenza B Vaccine)'),
     ('diptheria_tetanus', 'Diptheria and Tetanus'))
+
+KARABO_OFF_STUDY_REASON = (
+    ('maternal_death_post_deliv',
+     'Maternal death POST delivery (complete the Death Report Form AF005)'),
+    ('moving_out_of_study_area_pre_deliv',
+     'Participant stated she will be moving out of the study area or '
+     'unable to stay in study area PRIOR delivery'),
+    ('loss_to_followup',
+     'Participant lost to follow-up/unable to locate'),
+    ('loss_to_followup_contacted',
+     'Participant lost to follow-up, contacted but did not come to study '
+     'clinic'),
+    ('withdrew_consent',
+     'Mother changed mind and withdrew consent'),
+    ('father_refused',
+     'Father of the baby refused to participate, hence participant '
+     'withdrew consent'),
+    ('withdrew_by_family',
+     ' Other family member did not want mother/infant to participate and'
+     ' participant withdrew consent'),
+    ('hiv_pos', ' Infant found to be HIV-infected'),
+    ('ill',
+     ' Infant diagnosed with medical condition making survival to 12 months'
+     ' unlikely'),
+    ('complete',
+     (' Completion of protocol required period of time for observation'
+      ' (see Study Protocol for definition of Completion.)'
+      ' [skip to end of form]')),
+    ('death',
+     (' Participant death (complete the DEATH REPORT FORM AF005) (For '
+      'EAE Reporting requirements see EAE Reporting Manual)')),
+    ('enrolled_erroneously',
+     'Enrolled erroneously – did not meet eligibility criteria'),
+    (OTHER, ' Other'),
+)
 
 INFANT_VACCINATIONS = (
     ('Vitamin_A', 'Vitamin A'),

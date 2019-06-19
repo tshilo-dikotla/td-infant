@@ -33,4 +33,3 @@ from .list_models import Foods, Rations, FeverRelation, NightSweatsRelation
 from .onschedule import OnScheduleInfantBirth
 from .signals import *
 from .solid_food_assessment import SolidFoodAssessment
-
