@@ -18,6 +18,7 @@ from .infant_fu_new_med_items_admin import InfantFuNewMedItemsAdmin
 from .infant_fu_physical_admin import InfantFuPhysicalAdmin
 from .infant_nvp_adjustment_admin import InfantNvpAdjustmentAdmin
 from .infant_nvp_dispensing_admin import InfantNvpDispensingAdmin
+from .infant_offschedule_admin import InfantOffScheduleAdmin
 from .infant_requisition_admin import InfantRequisitionAdmin
 from .infant_vaccines_admin import InfantVaccinesAdmin
 from .infant_visit_admin import InfantVisitAdmin
