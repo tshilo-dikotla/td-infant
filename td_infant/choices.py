@@ -1,9 +1,9 @@
 from edc_constants.constants import NOT_APPLICABLE, FAILED_ELIGIBILITY
 from edc_constants.constants import OTHER, UNKNOWN, OFF_STUDY, ON_STUDY
 from edc_constants.constants import PARTICIPANT, ALIVE, DEAD
+from edc_lab.constants import TUBE
 from edc_visit_tracking.constants import (
     SCHEDULED, UNSCHEDULED, LOST_VISIT, MISSED_VISIT, COMPLETED_PROTOCOL_VISIT)
-from edc_lab.constants import TUBE
 
 from .constants import BROUGHT, REALTIME, CLOTH_NAPPY, BREASTFEED_ONLY
 from .constants import TUBERCULOSIS, MIN_AGE_OF_CONSENT
@@ -13,6 +13,10 @@ ANSWERS = (
     ('Refused', 'Yes and the client refused the signed copy of the consent'),
 )
 
+VOLUME_UNITS = (
+    ('mL', 'mL'),
+    ('Drops', 'Drops')
+    )
 FAMILY_RELATION = (
 
     ('me', 'Me'),

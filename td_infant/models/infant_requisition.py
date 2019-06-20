@@ -22,7 +22,7 @@ from edc_visit_tracking.managers import CrfModelManager as VisitTrackingCrfModel
 from edc_visit_tracking.model_mixins import CrfModelMixin as VisitTrackingCrfModelMixin
 from edc_visit_tracking.model_mixins import PreviousVisitModelMixin
 
-from ..choices import STUDY_SITES, ITEM_TYPE
+from ..choices import STUDY_SITES, ITEM_TYPE, VOLUME_UNITS
 from .infant_visit import InfantVisit
 from .search_slug_model_mixin import SearchSlugModelMixin
 
@@ -44,7 +44,7 @@ class InfantRequisition(
     infant_visit = models.ForeignKey(InfantVisit, on_delete=PROTECT)
 
     estimated_volume = models.DecimalField(
-        verbose_name='Estimated volume in mL',
+        verbose_name='Estimated Volume',
         max_digits=7,
         decimal_places=2,
         validators=[MinValueValidator(Decimal(0.01))],
@@ -53,6 +53,13 @@ class InfantRequisition(
         help_text=(
             'If applicable, estimated volume of sample for this test/order. '
             'This is the total volume if number of "tubes" above is greater than 1'))
+
+    volume_units = models.CharField(
+        verbose_name='Volume Units',
+        max_length=5,
+        choices=VOLUME_UNITS,
+        blank=True
+        )
 
     study_site = models.CharField(
         verbose_name='Study site',
