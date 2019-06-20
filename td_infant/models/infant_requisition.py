@@ -1,6 +1,9 @@
+from decimal import Decimal
+
 from django.apps import apps as django_apps
 from django.conf import settings
 from django.core.exceptions import ValidationError
+from django.core.validators import MinValueValidator
 from django.db import models
 from django.db.models.deletion import PROTECT
 from edc_base.model_managers import HistoricalRecords
@@ -39,6 +42,17 @@ class InfantRequisition(
     lab_profile_name = 'td_infant'
 
     infant_visit = models.ForeignKey(InfantVisit, on_delete=PROTECT)
+
+    estimated_volume = models.DecimalField(
+        verbose_name='Estimated volume in mL',
+        max_digits=7,
+        decimal_places=2,
+        validators=[MinValueValidator(Decimal(0.01))],
+        null=True,
+        blank=True,
+        help_text=(
+            'If applicable, estimated volume of sample for this test/order. '
+            'This is the total volume if number of "tubes" above is greater than 1'))
 
     study_site = models.CharField(
         verbose_name='Study site',
