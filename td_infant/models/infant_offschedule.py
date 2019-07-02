@@ -1,3 +1,5 @@
+from td_maternal.models.model_mixins import ConsentVersionModelModelMixin
+
 from django.apps import apps as django_apps
 from django.core.exceptions import ValidationError
 from django.db import models
@@ -7,7 +9,6 @@ from edc_base.sites import CurrentSiteManager
 from edc_identifier.managers import SubjectIdentifierManager
 
 from edc_visit_schedule.model_mixins import OffScheduleModelMixin
-from td_maternal.models.model_mixins import ConsentVersionModelModelMixin
 
 
 class InfantOffSchedule(ConsentVersionModelModelMixin, OffScheduleModelMixin, BaseUuidModel):
@@ -15,8 +16,7 @@ class InfantOffSchedule(ConsentVersionModelModelMixin, OffScheduleModelMixin, Ba
     schedule_name = models.CharField(
         max_length=25,
         blank=True,
-        null=True,
-        unique=True)
+        null=True)
 
     on_site = CurrentSiteManager()
 
@@ -40,4 +40,4 @@ class InfantOffSchedule(ConsentVersionModelModelMixin, OffScheduleModelMixin, Ba
             return subject_consent_obj.version
 
     class Meta:
-        pass
+        unique_together = ('subject_identifier', 'schedule_name')
