@@ -11,6 +11,7 @@ from edc_model_admin import (
     ModelAdminReadOnlyMixin, ModelAdminInstitutionMixin,
     FormAsJSONModelAdminMixin, ModelAdminRedirectOnDeleteMixin)
 from edc_fieldsets import FieldsetsModelAdminMixin
+from import_export.admin import ImportExportActionModelAdmin
 from edc_metadata import NextFormGetter
 from edc_visit_tracking.modeladmin_mixins import (
     CrfModelAdminMixin as VisitTrackingCrfModelAdminMixin)
@@ -20,7 +21,7 @@ class ModelAdminMixin(ModelAdminNextUrlRedirectMixin,
                       ModelAdminFormInstructionsMixin,
                       ModelAdminFormAutoNumberMixin, ModelAdminRevisionMixin,
                       ModelAdminAuditFieldsMixin, ModelAdminReadOnlyMixin,
-                      ModelAdminInstitutionMixin,
+                      ModelAdminInstitutionMixin, ImportExportActionModelAdmin,
                       ModelAdminRedirectOnDeleteMixin,
                       ModelAdminSiteMixin):
 
