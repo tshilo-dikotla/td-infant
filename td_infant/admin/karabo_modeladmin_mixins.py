@@ -6,6 +6,7 @@ from django_revision.modeladmin_mixin import ModelAdminRevisionMixin
 from edc_base.sites.admin import ModelAdminSiteMixin
 from edc_fieldsets import FieldsetsModelAdminMixin
 from edc_metadata import NextFormGetter
+from import_export.admin import ImportExportActionModelAdmin
 from edc_model_admin import (
     ModelAdminNextUrlRedirectMixin, ModelAdminFormInstructionsMixin,
     ModelAdminFormAutoNumberMixin, ModelAdminAuditFieldsMixin,
@@ -24,6 +25,7 @@ class KaraboModelAdminMixin(ModelAdminNextUrlRedirectMixin,
                             ModelAdminReadOnlyMixin,
                             ModelAdminInstitutionMixin,
                             ModelAdminRedirectOnDeleteMixin,
+                            ImportExportActionModelAdmin,
                             ModelAdminSiteMixin):
 
     list_per_page = 10
