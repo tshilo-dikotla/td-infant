@@ -37,14 +37,14 @@ class OnScheduleInfantBirth(OnScheduleModelMixin, BaseUuidModel):
     def get_consent_version(self):
         subject_consent_cls = django_apps.get_model(
             'td_infant.infantdummysubjectconsent')
-        try:
-            subject_consent_obj = subject_consent_cls.objects.get(
-                subject_identifier=self.subject_identifier)
-        except subject_consent_cls.DoesNotExist:
+        subject_consent_objs = subject_consent_cls.objects.filter(
+            subject_identifier=self.subject_identifier).order_by(
+                '-consent_datetime')
+        if subject_consent_objs:
+            return subject_consent_objs.first().version
+        else:
             raise ValidationError(
                 'Missing Infant Dummy Consent form. Cannot proceed.')
-        else:
-            return subject_consent_obj.version
 
     class Meta:
         unique_together = ('subject_identifier', 'schedule_name')

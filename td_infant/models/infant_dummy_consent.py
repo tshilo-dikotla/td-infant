@@ -1,15 +1,15 @@
 from django.db import models
-
 from edc_base.model_managers import HistoricalRecords
 from edc_base.model_mixins import BaseUuidModel
-from edc_consent.model_mixins import ConsentModelMixin
-from edc_identifier.model_mixins import UniqueSubjectIdentifierFieldMixin
 from edc_base.sites.site_model_mixin import SiteModelMixin
+from edc_identifier.model_mixins import NonUniqueSubjectIdentifierFieldMixin
+
 from edc_consent.field_mixins import PersonalFieldsMixin
+from edc_consent.model_mixins import ConsentModelMixin
 
 
 class InfantDummySubjectConsent(
-        ConsentModelMixin, SiteModelMixin, UniqueSubjectIdentifierFieldMixin,
+        ConsentModelMixin, SiteModelMixin, NonUniqueSubjectIdentifierFieldMixin,
         PersonalFieldsMixin, BaseUuidModel):
 
     """ A dummy infant model auto completed by the s. """
