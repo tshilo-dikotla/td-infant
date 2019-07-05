@@ -1,0 +1,10 @@
+BREASTFEED_ONLY = 'Breastfeeding only'
+BROUGHT = 'brought'
+CLOTH_NAPPY = 'cloth nappy'
+INFANT = 'infant'
+REALTIME = 'real-time'
+TUBERCULOSIS = 'TB'
+NEVER_STARTED = 'Never started'
+START = 'Starting today'
+MODIFIED = 'Modifications made'
+MIN_AGE_OF_CONSENT = 18
