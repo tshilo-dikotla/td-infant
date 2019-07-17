@@ -8,15 +8,16 @@ from django.db import models
 from django.db.models.deletion import PROTECT
 from edc_base.model_managers import HistoricalRecords
 from edc_base.model_mixins import BaseUuidModel
-from edc_consent.model_mixins import RequiresConsentFieldsModelMixin
 from edc_constants.constants import NOT_APPLICABLE
 from edc_identifier.model_mixins import NonUniqueSubjectIdentifierFieldMixin
-from edc_lab.choices import PRIORITY
-from edc_lab.models import RequisitionIdentifierMixin
-from edc_lab.models import RequisitionModelMixin, RequisitionStatusMixin
 from edc_metadata.model_mixins.updates import UpdatesRequisitionMetadataModelMixin
 from edc_reference.model_mixins import RequisitionReferenceModelMixin
 from edc_search.model_mixins import SearchSlugManager
+
+from edc_consent.model_mixins import RequiresConsentFieldsModelMixin
+from edc_lab.choices import PRIORITY
+from edc_lab.models import RequisitionIdentifierMixin
+from edc_lab.models import RequisitionModelMixin, RequisitionStatusMixin
 from edc_visit_schedule.model_mixins import SubjectScheduleCrfModelMixin
 from edc_visit_tracking.managers import CrfModelManager as VisitTrackingCrfModelManager
 from edc_visit_tracking.model_mixins import CrfModelMixin as VisitTrackingCrfModelMixin
@@ -103,15 +104,16 @@ class InfantRequisition(
         super().save(*args, **kwargs)
 
     def get_consent_version(self):
-        infant_consent_cls = django_apps.get_model(
+        subject_consent_cls = django_apps.get_model(
             'td_infant.infantdummysubjectconsent')
-        try:
-            infant_consent_obj = infant_consent_cls.objects.get(
-                subject_identifier=self.infant_visit.subject_identifier)
-        except infant_consent_cls.DoesNotExist:
+        subject_consent_objs = subject_consent_cls.objects.filter(
+            subject_identifier=self.infant_visit.subject_identifier).order_by(
+                '-consent_datetime')
+        if subject_consent_objs:
+            return subject_consent_objs.first().version
+        else:
             raise ValidationError(
-                'Missing Infant Dummy Consent form.')
-        return infant_consent_obj.version
+                'Missing Infant Dummy Consent form. Cannot proceed.')
 
     def get_search_slug_fields(self):
         fields = super().get_search_slug_fields()

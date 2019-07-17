@@ -11,6 +11,7 @@ from edc_model_admin import (
     ModelAdminFormAutoNumberMixin, ModelAdminAuditFieldsMixin,
     ModelAdminReadOnlyMixin, ModelAdminInstitutionMixin,
     FormAsJSONModelAdminMixin, ModelAdminRedirectOnDeleteMixin)
+from import_export.admin import ImportExportActionModelAdmin
 
 from edc_visit_tracking.modeladmin_mixins import (
     CrfModelAdminMixin as VisitTrackingCrfModelAdminMixin)
@@ -24,7 +25,8 @@ class KaraboModelAdminMixin(ModelAdminNextUrlRedirectMixin,
                             ModelAdminReadOnlyMixin,
                             ModelAdminInstitutionMixin,
                             ModelAdminRedirectOnDeleteMixin,
-                            ModelAdminSiteMixin):
+                            ModelAdminSiteMixin,
+                            ImportExportActionModelAdmin):
 
     list_per_page = 10
     date_hierarchy = 'modified'
