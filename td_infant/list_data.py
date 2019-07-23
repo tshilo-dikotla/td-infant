@@ -48,8 +48,7 @@ list_data = {
         ('Dairy products (milk, yogurt, cheese)', 'Dairy products (milk, yogurt, cheese)'),
         ('Flesh foods (meat, fish, poultry and liver/organ meat)',
          'Flesh foods (meat, fish, poultry and liver/organ meat)'),
-        ('Vitamin A rich fruts and vegetables (carrots)',
-         'Vitamin A rich fruits and vegetables (carrots)'),
+        ('Vitamin A rich fruts and vegetables (carrots)', 'Vitamin A rich fruts and vegetables (carrots)'),
         ('Grains, roots and tubers', 'Grains, roots and tubers'),
         ('Other', 'Other')
     ],
