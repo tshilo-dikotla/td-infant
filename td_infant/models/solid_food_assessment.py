@@ -1,6 +1,6 @@
 from django.db import models
 from edc_base.model_fields import OtherCharField
-from edc_constants.choices import YES_NO_UNKNOWN
+from ..choices import YES_NO_UNKNOWN
 
 from ..models import Foods, Rations
 from .infant_crf_model_mixin import InfantCrfModelMixin

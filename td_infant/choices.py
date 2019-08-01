@@ -1,6 +1,6 @@
 from edc_constants.constants import NOT_APPLICABLE, FAILED_ELIGIBILITY
 from edc_constants.constants import OTHER, UNKNOWN, OFF_STUDY, ON_STUDY
-from edc_constants.constants import PARTICIPANT, ALIVE, DEAD
+from edc_constants.constants import PARTICIPANT, ALIVE, DEAD, YES, NO
 from edc_lab.constants import TUBE
 from edc_visit_tracking.constants import (
     SCHEDULED, UNSCHEDULED, LOST_VISIT, MISSED_VISIT, COMPLETED_PROTOCOL_VISIT)
@@ -17,6 +17,7 @@ VOLUME_UNITS = (
     ('mL', 'mL'),
     ('Drops', 'Drops')
     )
+
 FAMILY_RELATION = (
 
     ('me', 'Me'),
@@ -777,4 +778,17 @@ ALIVE_DEAD_UNKNOWN = (
 STUDY_SITES = (
     ('40', 'Gaborone'),
     ('10', 'Molepolole'),
+)
+
+YES_NO_UNKNOWN = (
+    (YES, YES),
+    (NO, NO),
+    ('Unknown', 'Unknown'),
+)
+
+YES_NO_UNKNOWN_NA = (
+    (YES, YES),
+    (NO, NO),
+    ('Unknown', 'Unknown'),
+    (NOT_APPLICABLE, 'Not applicable'),
 )
