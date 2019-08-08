@@ -20,7 +20,7 @@ class InfantVaccinesInline(TabularInlineMixin, admin.TabularInline):
                 'infant_birth_feed_vaccine',
                 'vaccination',
                 'vaccine_date')},
-         ],)
+         ], audit_fieldset_tuple)
 
 
 @admin.register(InfantBirthFeedingVaccine, site=td_infant_admin)
@@ -36,7 +36,7 @@ class InfantBirthFeedingVaccineAdmin(InfantCrfModelAdminMixin, admin.ModelAdmin)
                 'feeding_after_delivery',
                 'comments',
             ]
-        }), audit_fieldset_tuple,
+        }),
     )
 
     list_display = ('feeding_after_delivery',)

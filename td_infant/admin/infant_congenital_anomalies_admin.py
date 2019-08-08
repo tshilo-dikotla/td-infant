@@ -1,5 +1,9 @@
+from td_infant.admin.model_admin_mixins import ModelAdminMixin
+from td_infant.models.infant_congenital_anomalies import InfantTrisomies
+
 from django.contrib import admin
 from edc_model_admin import TabularInlineMixin
+from edc_model_admin.model_admin_audit_fields_mixin import audit_fieldset_tuple
 
 from ..admin_site import td_infant_admin
 from ..constants import INFANT
@@ -21,10 +25,7 @@ from ..models import (
     InfantFemaleGenital, InfantRenal, InfantMusculoskeletal,
     InfantSkin
 )
-from edc_model_admin.model_admin_audit_fields_mixin import audit_fieldset_tuple
 from .model_admin_mixins import InfantCrfModelAdminMixin
-from td_infant.models.infant_congenital_anomalies import InfantTrisomies
-from td_infant.admin.model_admin_mixins import ModelAdminMixin
 
 
 class InfantCnsInline(TabularInlineMixin, admin.TabularInline):
@@ -40,7 +41,7 @@ class InfantCnsInline(TabularInlineMixin, admin.TabularInline):
                 'cns',
                 'abnormality_status',
                 'cns_other',)},
-         ],)
+         ], audit_fieldset_tuple)
 
 
 class InfantFacialDefectInline(TabularInlineMixin, admin.TabularInline):
@@ -56,7 +57,7 @@ class InfantFacialDefectInline(TabularInlineMixin, admin.TabularInline):
                 'facial_defect',
                 'abnormality_status',
                 'facial_defects_other',)},
-         ],)
+         ], audit_fieldset_tuple)
 
 
 class InfantCleftDisorderInline(TabularInlineMixin, admin.TabularInline):
@@ -88,7 +89,7 @@ class InfantMouthUpGiInline(TabularInlineMixin, admin.TabularInline):
                 'mouth_up_gi',
                 'abnormality_status',
                 'mouth_up_gi_other',)},
-         ],)
+         ], audit_fieldset_tuple)
 
 
 class InfantCardioDisorderInline(TabularInlineMixin, admin.TabularInline):
@@ -104,7 +105,7 @@ class InfantCardioDisorderInline(TabularInlineMixin, admin.TabularInline):
                 'cardio_disorder',
                 'abnormality_status',
                 'cardiovascular_other',)},
-         ],)
+         ], audit_fieldset_tuple)
 
 
 class InfantRespiratoryDefectInline(TabularInlineMixin, admin.TabularInline):
@@ -120,7 +121,7 @@ class InfantRespiratoryDefectInline(TabularInlineMixin, admin.TabularInline):
                 'respiratory_defect',
                 'abnormality_status',
                 'respiratory_defects_other',)},
-         ],)
+         ], audit_fieldset_tuple)
 
 
 class InfantLowerGiInline(TabularInlineMixin, admin.TabularInline):
@@ -136,7 +137,7 @@ class InfantLowerGiInline(TabularInlineMixin, admin.TabularInline):
                 'lower_gi',
                 'abnormality_status',
                 'lower_gi_other',)},
-         ],)
+         ], audit_fieldset_tuple)
 
 
 class InfantFemaleGenitalInline(TabularInlineMixin, admin.TabularInline):
@@ -152,7 +153,7 @@ class InfantFemaleGenitalInline(TabularInlineMixin, admin.TabularInline):
                 'female_genital',
                 'abnormality_status',
                 'female_genital_other',)},
-         ],)
+         ], audit_fieldset_tuple)
 
 
 class InfantMaleGenitalInline(TabularInlineMixin, admin.TabularInline):
@@ -168,7 +169,7 @@ class InfantMaleGenitalInline(TabularInlineMixin, admin.TabularInline):
                 'male_genital',
                 'abnormality_status',
                 'male_genital_other',)},
-         ],)
+         ], audit_fieldset_tuple)
 
 
 class InfantRenalInline(TabularInlineMixin, admin.TabularInline):
@@ -184,7 +185,7 @@ class InfantRenalInline(TabularInlineMixin, admin.TabularInline):
                 'renal',
                 'abnormality_status',
                 'renal_other',)},
-         ],)
+         ], audit_fieldset_tuple)
 
 
 class InfantMusculoskeletalInline(TabularInlineMixin, admin.TabularInline):
@@ -200,7 +201,7 @@ class InfantMusculoskeletalInline(TabularInlineMixin, admin.TabularInline):
                 'musculo_skeletal',
                 'abnormality_status',
                 'musculo_skeletal_other',)},
-         ],)
+         ], audit_fieldset_tuple)
 
 
 class InfantSkinInline(TabularInlineMixin, admin.TabularInline):
@@ -216,7 +217,7 @@ class InfantSkinInline(TabularInlineMixin, admin.TabularInline):
                 'skin',
                 'abnormality_status',
                 'skin_other',)},
-         ],)
+         ], audit_fieldset_tuple)
 
 
 class InfantTrisomiesInline(TabularInlineMixin, admin.TabularInline):
@@ -232,7 +233,7 @@ class InfantTrisomiesInline(TabularInlineMixin, admin.TabularInline):
                 'trisomies',
                 'abnormality_status',
                 'trisomies_other',)},
-         ],)
+         ], audit_fieldset_tuple)
 
 
 @admin.register(InfantCongenitalAnomalies, site=td_infant_admin)
@@ -248,7 +249,7 @@ class InfantCongenitalAnomaliesAdmin(InfantCrfModelAdminMixin, admin.ModelAdmin)
             ]
         }
 
-        ), audit_fieldset_tuple,
+        ),
     )
 
     dashboard_type = INFANT

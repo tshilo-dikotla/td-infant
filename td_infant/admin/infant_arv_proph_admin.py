@@ -23,7 +23,7 @@ class InfantArvProphModInline(TabularInlineMixin, admin.TabularInline):
                 'modification_date',
                 'modification_code',
                 'other_reason']}
-         ),)
+         ), audit_fieldset_tuple)
 
 
 @admin.register(InfantArvProph, site=td_infant_admin)
@@ -37,7 +37,7 @@ class InfantArvProphAdmin(InfantCrfModelAdminMixin, admin.ModelAdmin):
                 'report_datetime',
                 'prophylatic_nvp',
                 'arv_status']}
-         ), audit_fieldset_tuple)
+         ),)
 
     inlines = [InfantArvProphModInline, ]
     radio_fields = {
