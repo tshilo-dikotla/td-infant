@@ -20,7 +20,7 @@ class InfantFuDxItemsInline(TabularInlineMixin, admin.TabularInline):
                 'fu_dx_specify',
                 'health_facility',
                 'was_hospitalized')
-        }),
+        }), audit_fieldset_tuple
     )
 
 
@@ -34,7 +34,6 @@ class InfantFuDxAdmin(InfantCrfModelAdminMixin, admin.ModelAdmin):
                 'infant_visit',
                 'report_datetime')
         }),
-        audit_fieldset_tuple
     )
 
     inlines = [InfantFuDxItemsInline, ]

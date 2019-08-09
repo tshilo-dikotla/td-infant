@@ -1,7 +1,7 @@
 from django.db import models
 
 from edc_base.model_validators.date import date_not_future
-from edc_constants.choices import YES_NO_UNKNOWN, YES_NO_UNKNOWN_NA
+from ..choices import YES_NO_UNKNOWN, YES_NO_UNKNOWN_NA
 
 from .infant_crf_model_mixin import InfantCrfModelMixin
 

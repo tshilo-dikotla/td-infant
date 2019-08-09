@@ -17,7 +17,7 @@ class VaccinesReceivedInlineAdmin(TabularInlineMixin, admin.TabularInline):
                 'received_vaccine_name',
                 'date_given',
                 'infant_age')
-        }),
+        }), audit_fieldset_tuple
     )
 
 
@@ -32,7 +32,7 @@ class VaccinesMissedInlineAdmin(TabularInlineMixin, admin.TabularInline):
                 'missed_vaccine_name',
                 'reason_missed',
                 'reason_missed_other')
-        }),
+        }), audit_fieldset_tuple
     )
 
 
@@ -48,7 +48,6 @@ class InfantFuImmunizationsAdmin(InfantCrfModelAdminMixin, admin.ModelAdmin):
                 'vaccines_received',
                 'vaccines_missed')
         }),
-        audit_fieldset_tuple
     )
 
     inlines = [VaccinesReceivedInlineAdmin, VaccinesMissedInlineAdmin, ]

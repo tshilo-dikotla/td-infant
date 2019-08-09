@@ -2,11 +2,12 @@ from django.db import models
 from edc_base.model_fields import OtherCharField
 from edc_base.model_mixins import BaseUuidModel
 from edc_base.model_validators import date_not_future
-from edc_constants.choices import YES_NO_UNKNOWN
+
 from edc_visit_tracking.model_mixins import CrfInlineModelMixin
 
 from ..choices import (
     IMMUNIZATIONS, INFANT_AGE_VACCINE_GIVEN, REASONS_VACCINES_MISSED)
+from ..choices import YES_NO_UNKNOWN
 from .infant_crf_model_mixin import InfantCrfModelMixin
 
 
@@ -61,7 +62,7 @@ class VaccinesReceived(CrfInlineModelMixin, BaseUuidModel):
         max_length=35)
 
     def natural_key(self):
-        return (self.received_vaccine_name, ) + self.infant_fu_immunizations.natural_key()
+        return (self.received_vaccine_name,) + self.infant_fu_immunizations.natural_key()
 
     class Meta:
         app_label = 'td_infant'
@@ -97,7 +98,7 @@ class VaccinesMissed(CrfInlineModelMixin, BaseUuidModel):
     reason_missed_other = OtherCharField()
 
     def natural_key(self):
-        return (self.missed_vaccine_name, ) + self.infant_fu_immunizations.natural_key()
+        return (self.missed_vaccine_name,) + self.infant_fu_immunizations.natural_key()
 
     class Meta:
         app_label = 'td_infant'

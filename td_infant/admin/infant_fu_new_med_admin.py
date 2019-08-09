@@ -22,7 +22,7 @@ class InfantFuNewMedItemsInline(TabularInlineMixin, admin.TabularInline):
                 'date_first_medication',
                 'stop_date',
                 'drug_route')
-        }),
+        }), audit_fieldset_tuple
     )
 
 
@@ -38,7 +38,6 @@ class InfantFuNewMedAdmin(InfantCrfModelAdminMixin, admin.ModelAdmin):
                 'report_datetime',
                 'new_medications')
         }),
-        audit_fieldset_tuple
     )
 
     radio_fields = {'new_medications': admin.VERTICAL, }

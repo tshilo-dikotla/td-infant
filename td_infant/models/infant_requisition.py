@@ -23,7 +23,7 @@ from edc_visit_tracking.managers import CrfModelManager as VisitTrackingCrfModel
 from edc_visit_tracking.model_mixins import CrfModelMixin as VisitTrackingCrfModelMixin
 from edc_visit_tracking.model_mixins import PreviousVisitModelMixin
 
-from ..choices import STUDY_SITES, ITEM_TYPE, VOLUME_UNITS
+from ..choices import STUDY_SITES, ITEM_TYPE, VOLUME_UNITS, REASON_NOT_DRAWN
 from .infant_visit import InfantVisit
 from .search_slug_model_mixin import SearchSlugModelMixin
 
@@ -60,7 +60,7 @@ class InfantRequisition(
         max_length=5,
         choices=VOLUME_UNITS,
         blank=True
-        )
+    )
 
     study_site = models.CharField(
         verbose_name='Study site',
@@ -73,6 +73,12 @@ class InfantRequisition(
         max_length=25,
         choices=PRIORITY,
         default='normal',)
+
+    reason_not_drawn = models.CharField(
+        verbose_name='If not drawn, please explain',
+        max_length=25,
+        default=NOT_APPLICABLE,
+        choices=REASON_NOT_DRAWN)
 
     item_type = models.CharField(
         verbose_name='Item collection type',
