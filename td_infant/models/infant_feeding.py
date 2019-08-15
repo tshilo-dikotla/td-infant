@@ -200,14 +200,16 @@ class InfantFeeding(InfantCrfModelMixin):
         null=True)
 
     def save(self, *args, **kwargs):
-        if self.previous_infant_feeding:
-            self.last_att_sche_visit = self.previous_infant_feeding.report_datetime.date()
+        previous_infant_feeding = self.previous_infant_feeding(self.infant_visit)
+        if previous_infant_feeding:
+            self.last_att_sche_visit = previous_infant_feeding.report_datetime.date()
         super(InfantFeeding, self).save(*args, **kwargs)
 
-    @property
-    def previous_infant_feeding(self):
+    def previous_infant_feeding(self, infant_visit):
         """ Return previous infant feeding from. """
+
         return self.__class__.objects.filter(
+            infant_visit__appointment__subject_identifier=infant_visit.appointment.subject_identifier,
             report_datetime__lt=self.report_datetime).order_by(
                 '-report_datetime').first()
 
