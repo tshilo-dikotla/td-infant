@@ -77,7 +77,6 @@ class KaraboOffstudy(InfantCrfModelMixin):
                 'Missing Infant Dummy Consent form. Cannot proceed.')
 
     def save(self, *args, **kwargs):
-        self.report_datetime = self.offschedule_datetime
         super().save(*args, **kwargs)
 
     class Meta:

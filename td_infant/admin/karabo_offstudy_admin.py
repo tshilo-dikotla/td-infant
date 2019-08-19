@@ -18,6 +18,7 @@ class KaraboOffstudyAdmin(InfantCrfModelAdminMixin, admin.ModelAdmin):
                 'infant_visit',
                 'report_datetime',
                 'offstudy_date',
+                'offschedule_datetime',
                 'reason',
                 'reason_other',
                 'comment']}
