@@ -5,6 +5,7 @@ from django.apps import apps as django_apps
 
 from ..models import SolidFoodAssessment
 from .infant_form_mixin import InfantModelFormMixin
+from dateutil.relativedelta import relativedelta
 
 
 class SolidFoodAssessmentForm(InfantModelFormMixin, CrfOffStudyFormValidator):
@@ -12,6 +13,7 @@ class SolidFoodAssessmentForm(InfantModelFormMixin, CrfOffStudyFormValidator):
     form_validator_cls = SolidFoodAssessementFormValidator
 
     infant_birth = 'td_infant.infantbirth'
+    infant_feeding = 'td_infant.infantfeeding'
 
     def clean(self):
         self.subject_identifier = self.cleaned_data.get(
@@ -25,10 +27,12 @@ class SolidFoodAssessmentForm(InfantModelFormMixin, CrfOffStudyFormValidator):
             birth_date = self.infant_birth_cls.objects.get(
                 subject_identifier=self.cleaned_data.get(
                     'infant_visit').subject_identifier).dob
-            report_date = self.cleaned_data.get('report_datetime').date()
-            date_diff = (report_date - birth_date).days
-            weeks = date_diff / 7
-            months = weeks / 4
+            solids_intro_date = self.infant_feeding_cls.objects.filter(
+                infant_visit__subject_identifier=self.cleaned_data.get(
+                    'infant_visit').subject_identifier,
+                formula_intro_date__isnull=False).last().formula_intro_date
+            difference = relativedelta(solids_intro_date, birth_date)
+            months = difference.months
             instance.age_solid_food = months
         if commit:
             instance.save()
@@ -41,3 +45,7 @@ class SolidFoodAssessmentForm(InfantModelFormMixin, CrfOffStudyFormValidator):
     @property
     def infant_birth_cls(self):
         return django_apps.get_model(self.infant_birth)
+
+    @property
+    def infant_feeding_cls(self):
+        return django_apps.get_model(self.infant_feeding)
