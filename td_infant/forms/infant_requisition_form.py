@@ -23,8 +23,6 @@ class InfantRequisitionForm(InfantModelFormMixin, RequisitionFormMixin,
 
     def clean(self):
         self.validate_requisition_datetime()
-        self.validate_other_specify_field(
-            form_validator=self.form_validator_cls)
         super().clean()
 
     def validate_requisition_datetime(self):
