@@ -23,6 +23,8 @@ class InfantRequisitionForm(InfantModelFormMixin, RequisitionFormMixin,
 
     def clean(self):
         self.validate_requisition_datetime()
+        self.validate_other_specify_field(
+            form_validator=self.form_validator_cls)
         super().clean()
 
     def validate_requisition_datetime(self):
@@ -37,6 +39,10 @@ class InfantRequisitionForm(InfantModelFormMixin, RequisitionFormMixin,
                 raise forms.ValidationError({
                     'requisition_datetime':
                     f'Invalid. Cannot be before date of visit {formatted}.'})
+
+    def validate_other_specify_field(self, form_validator=None):
+        form_validator.validate_other_specify(
+            field='reason_not_drawn', other_stored_value='other')
 
     class Meta:
         model = InfantRequisition
