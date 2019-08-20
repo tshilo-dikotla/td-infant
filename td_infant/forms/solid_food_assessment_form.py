@@ -1,11 +1,11 @@
 from td_infant_validators.form_validators import CrfOffStudyFormValidator
 from td_infant_validators.form_validators import SolidFoodAssessementFormValidator
 
+from dateutil.relativedelta import relativedelta
 from django.apps import apps as django_apps
 
 from ..models import SolidFoodAssessment
 from .infant_form_mixin import InfantModelFormMixin
-from dateutil.relativedelta import relativedelta
 
 
 class SolidFoodAssessmentForm(InfantModelFormMixin, CrfOffStudyFormValidator):
@@ -27,13 +27,17 @@ class SolidFoodAssessmentForm(InfantModelFormMixin, CrfOffStudyFormValidator):
             birth_date = self.infant_birth_cls.objects.get(
                 subject_identifier=self.cleaned_data.get(
                     'infant_visit').subject_identifier).dob
-            solids_intro_date = self.infant_feeding_cls.objects.filter(
+            infant_feeding_qs = self.infant_feeding_cls.objects.filter(
                 infant_visit__subject_identifier=self.cleaned_data.get(
                     'infant_visit').subject_identifier,
-                formula_intro_date__isnull=False).last().formula_intro_date
-            difference = relativedelta(solids_intro_date, birth_date)
-            months = difference.months
-            instance.age_solid_food = months
+                formula_intro_date__isnull=False)
+            if infant_feeding_qs.exists():
+                solids_intro_date = infant_feeding_qs.last().formula_intro_date
+                difference = relativedelta(solids_intro_date, birth_date)
+                months = difference.months
+                instance.age_solid_food = months
+            else:
+                instance.age_solid_food = 0
         if commit:
             instance.save()
         return instance
