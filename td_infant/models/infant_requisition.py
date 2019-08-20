@@ -8,16 +8,15 @@ from django.db import models
 from django.db.models.deletion import PROTECT
 from edc_base.model_managers import HistoricalRecords
 from edc_base.model_mixins import BaseUuidModel
+from edc_consent.model_mixins import RequiresConsentFieldsModelMixin
 from edc_constants.constants import NOT_APPLICABLE
 from edc_identifier.model_mixins import NonUniqueSubjectIdentifierFieldMixin
-from edc_metadata.model_mixins.updates import UpdatesRequisitionMetadataModelMixin
-from edc_reference.model_mixins import RequisitionReferenceModelMixin
-from edc_search.model_mixins import SearchSlugManager
-
-from edc_consent.model_mixins import RequiresConsentFieldsModelMixin
 from edc_lab.choices import PRIORITY
 from edc_lab.models import RequisitionIdentifierMixin
 from edc_lab.models import RequisitionModelMixin, RequisitionStatusMixin
+from edc_metadata.model_mixins.updates import UpdatesRequisitionMetadataModelMixin
+from edc_reference.model_mixins import RequisitionReferenceModelMixin
+from edc_search.model_mixins import SearchSlugManager
 from edc_visit_schedule.model_mixins import SubjectScheduleCrfModelMixin
 from edc_visit_tracking.managers import CrfModelManager as VisitTrackingCrfModelManager
 from edc_visit_tracking.model_mixins import CrfModelMixin as VisitTrackingCrfModelMixin
@@ -105,6 +104,7 @@ class InfantRequisition(
             edc_protocol_app_config = django_apps.get_app_config(
                 'edc_protocol')
             self.protocol_number = edc_protocol_app_config.protocol_number
+        self.report_datetime = self.requisition_datetime
         self.subject_identifier = self.infant_visit.subject_identifier
         self.consent_version = self.get_consent_version()
         super().save(*args, **kwargs)
