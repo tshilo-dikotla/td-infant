@@ -23,7 +23,7 @@ class InfantFuPhysical(InfantCrfModelMixin):
         decimal_places=2,
         verbose_name="Height ",
         help_text="Please measure twice and enter the average of the two. Measured in centimeters, (cm)",
-        validators=[MinValueValidator(0), MaxValueValidator(90), ],
+        validators=[MinValueValidator(0), MaxValueValidator(125), ],
     )
 
     head_circumference = models.DecimalField(
@@ -31,7 +31,7 @@ class InfantFuPhysical(InfantCrfModelMixin):
         decimal_places=2,
         verbose_name="What was the head circumference in centimeters? ",
         help_text="Please measure twice and enter the average of the two. Measured in centimeters, (cm)",
-        validators=[MinValueValidator(0), MaxValueValidator(52.0), ],
+        validators=[MinValueValidator(0), MaxValueValidator(54.0), ],
     )
 
     general_activity = models.CharField(
