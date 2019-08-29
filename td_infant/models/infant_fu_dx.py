@@ -49,4 +49,4 @@ class InfantFuDxItems(CrfInlineModelMixin, BaseUuidModel):
     class Meta:
         app_label = 'td_infant'
         verbose_name = "Infant FollowUp: Dx"
-        unique_together = ('fu_dx', 'infant_fu_dx')
+        unique_together = ('fu_dx', 'infant_fu_dx', 'fu_dx_specify')
