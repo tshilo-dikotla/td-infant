@@ -34,6 +34,7 @@ from .infant_fu_new_med_form import InfantFuNewMedItemsForm
 from .infant_fu_physical_form import InfantFuPhysicalForm
 from .infant_nvp_adjustment_form import InfantNvpAdjustmentForm
 from .infant_nvp_dispensing_form import InfantNvpDispensingForm
+from .infant_offschedule_form import InfantOffScheduleForm
 from .infant_requisition_form import InfantRequisitionForm
 from .infant_vaccines_form import InfantVaccinesForm
 from .infant_visit_form import InfantVisitForm
