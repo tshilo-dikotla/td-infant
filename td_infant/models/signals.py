@@ -1,13 +1,12 @@
-from td_maternal.models.karabo_subject_consent import KaraboSubjectConsent
-
 from django.core.exceptions import ValidationError
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from edc_constants.constants import BY_BIRTH
 from edc_registration.models import RegisteredSubject
-from edc_visit_schedule.site_visit_schedules import site_visit_schedules
 
 from edc_appointment.constants import IN_PROGRESS_APPT
+from edc_visit_schedule.site_visit_schedules import site_visit_schedules
+from td_maternal.models.karabo_subject_consent import KaraboSubjectConsent
 
 from ..models import InfantBirth
 from .infant_appointment import Appointment
@@ -44,7 +43,8 @@ def infant_birth_on_post_save(sender, instance, raw, created, **kwargs):
                 onschedule_model='td_infant.onscheduleinfantbirth',
                 name=instance.schedule_name)
             schedule.refresh_schedule(
-                subject_identifier=instance.subject_identifier)
+                subject_identifier=instance.subject_identifier,
+                schedule_name=instance.schedule_name)
         else:
             # put subject on schedule
             _, schedule = site_visit_schedules.get_by_onschedule_model_schedule_name(
@@ -53,7 +53,8 @@ def infant_birth_on_post_save(sender, instance, raw, created, **kwargs):
             schedule.put_on_schedule(
                 subject_identifier=instance.subject_identifier,
                 onschedule_datetime=instance.report_datetime)
-            add_schedule_name(model_obj=OnScheduleInfantBirth, instance=instance)
+            add_schedule_name(
+                model_obj=OnScheduleInfantBirth, instance=instance)
 
 
 @receiver(post_save, weak=False, sender=KaraboSubjectConsent,
