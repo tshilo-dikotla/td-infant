@@ -11,7 +11,7 @@ from edc_base.model_validators.date import date_not_future
 from edc_base.sites import SiteModelMixin
 from edc_constants.choices import GENDER_UNDETERMINED
 from edc_identifier.model_mixins import UniqueSubjectIdentifierFieldMixin
-from edc_search.model_mixins import SearchSlugModelMixin
+from .search_slug_model_mixin import SearchSlugModelMixin
 
 
 class InfantBirth(UniqueSubjectIdentifierFieldMixin, SiteModelMixin,
