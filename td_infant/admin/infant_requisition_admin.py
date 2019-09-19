@@ -1,4 +1,7 @@
 from django.contrib import admin
+from django.http import HttpResponse
+import csv
+
 from edc_lab.admin import RequisitionAdminMixin
 from edc_lab.admin import requisition_identifier_fields
 from edc_lab.admin import requisition_identifier_fieldset, requisition_verify_fields
@@ -11,13 +14,37 @@ from ..models import InfantRequisition
 from .model_admin_mixins import InfantCrfModelAdminMixin
 
 
+class ExportRequisitionCsvMixin:
+
+    def export_as_csv(self, request, queryset):
+
+        meta = self.model._meta
+        field_names = [field.name for field in meta.fields]
+        field_names += ['panel_name'] 
+
+        response = HttpResponse(content_type='text/csv')
+        response['Content-Disposition'] = 'attachment; filename={}.csv'.format(meta)
+        writer = csv.writer(response)
+
+        writer.writerow(field_names)
+        field_names.remove('panel_name')
+        for obj in queryset:
+            data = [getattr(obj, field) for field in field_names]
+            data += [obj.panel.name]
+            writer.writerow(data)
+
+        return response
+
+    export_as_csv.short_description = "Export with panel name"
+
+
 @admin.register(InfantRequisition, site=td_infant_admin)
 class InfantRequisitionAdmin(
         InfantCrfModelAdminMixin, RequisitionAdminMixin,
-        admin.ModelAdmin):
+        ExportRequisitionCsvMixin, admin.ModelAdmin):
 
     form = InfantRequisitionForm
-
+    actions = ["export_as_csv"]
     ordering = ('requisition_identifier',)
 
     fieldsets = (
