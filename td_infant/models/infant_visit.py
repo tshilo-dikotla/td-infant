@@ -8,6 +8,7 @@ from edc_visit_tracking.model_mixins import CaretakerFieldsMixin
 from edc_visit_tracking.model_mixins import VisitModelMixin
 
 from edc_consent.model_mixins import RequiresConsentFieldsModelMixin
+from edc_visit_schedule.model_mixins import SubjectScheduleCrfModelMixin
 
 from ..choices import ALIVE_DEAD_UNKNOWN, VISIT_INFO_SOURCE
 from ..choices import INFANT_VISIT_STUDY_STATUS, VISIT_REASON, INFO_PROVIDER
@@ -15,11 +16,13 @@ from .infant_appointment import Appointment
 
 
 class InfantVisit(
-        VisitModelMixin, CreatesMetadataModelMixin,
+        VisitModelMixin, CreatesMetadataModelMixin, SubjectScheduleCrfModelMixin,
         ReferenceModelMixin, RequiresConsentFieldsModelMixin,
         CaretakerFieldsMixin, SiteModelMixin, BaseUuidModel):
 
     """ A model completed by the user on the infant visits. """
+
+    offschedule_compare_dates_as_datetimes = False
 
     appointment = models.OneToOneField(Appointment, on_delete=models.PROTECT)
 
@@ -27,6 +30,14 @@ class InfantVisit(
         verbose_name='Reason for visit',
         max_length=25,
         choices=VISIT_REASON)
+
+    reason_missed = models.CharField(
+        verbose_name=(
+            'If \'missed\' above, reason scheduled '
+            'scheduled visit was missed'),
+        blank=True,
+        null=True,
+        max_length=250)
 
     information_provider = models.CharField(
         verbose_name=(
