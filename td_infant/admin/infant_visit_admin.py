@@ -57,6 +57,7 @@ class InfantVisitAdmin(
                 'appointment',
                 'report_datetime',
                 'reason',
+                'reason_missed',
                 'study_status',
                 'require_crfs',
                 'info_source',
