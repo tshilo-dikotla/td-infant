@@ -20,4 +20,6 @@ class InfantOffScheduleAdmin(ModelAdminMixin, admin.ModelAdmin):
             ]}
          ), audit_fieldset_tuple)
 
+    search_fields = ('subject_identifier',)
+
     list_filter = ('schedule_name', 'subject_identifier',)
