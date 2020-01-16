@@ -56,12 +56,12 @@ ARV_DRUG_LIST = (
 )
 
 ARV_STATUS = (
-    ('No modifications',
+    ('no_mod',
      'No modifications made since the last attended scheduled visit or today'),
-    ('Starting today',
+    ('start',
      'Starting today or has started since last attended scheduled visit'),
-    ('Never started', 'Never started'),
-    ('Modifications made',
+    ('never_started', 'Never started'),
+    ('modified',
      'Change in at least one medication since last attended scheduled visit or today'),
 )
 
