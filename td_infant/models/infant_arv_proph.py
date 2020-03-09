@@ -41,7 +41,7 @@ class InfantArvProphMod(CrfInlineModelMixin, BaseUuidModel):
 
     arv_code = models.CharField(
         verbose_name="ARV Code",
-        max_length=25,
+        max_length=30,
         choices=ARV_DRUG_LIST,
     )
 
