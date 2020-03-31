@@ -1,3 +1,5 @@
+from edc_visit_schedule.fieldsets import visit_schedule_fieldset_tuple, visit_schedule_fields
+
 from django.conf import settings
 from django.contrib import admin
 from django.urls.base import reverse
@@ -10,18 +12,19 @@ from edc_model_admin import (
     ModelAdminFormAutoNumberMixin, ModelAdminRedirectOnDeleteMixin,
     ModelAdminAuditFieldsMixin, ModelAdminReadOnlyMixin,
     audit_fieldset_tuple)
-from edc_visit_schedule.fieldsets import visit_schedule_fieldset_tuple, visit_schedule_fields
 
 from ..admin_site import td_infant_admin
 from ..forms import AppointmentForm
 from ..models import Appointment
+from .exportaction_mixin import ExportActionMixin
 
 
 @admin.register(Appointment, site=td_infant_admin)
 class AppointmentAdmin(ModelAdminFormInstructionsMixin, ModelAdminNextUrlRedirectMixin,
                        ModelAdminFormAutoNumberMixin, ModelAdminRevisionMixin,
                        ModelAdminAuditFieldsMixin, ModelAdminRedirectOnDeleteMixin,
-                       ModelAdminReadOnlyMixin, ModelAdminSiteMixin, admin.ModelAdmin):
+                       ModelAdminReadOnlyMixin, ModelAdminSiteMixin,
+                       ExportActionMixin, admin.ModelAdmin):
 
     post_url_on_delete_name = settings.DASHBOARD_URL_NAMES.get(
         'infant_subject_dashboard_url')
@@ -72,8 +75,8 @@ class AppointmentAdmin(ModelAdminFormInstructionsMixin, ModelAdminNextUrlRedirec
 
     def get_readonly_fields(self, request, obj=None):
         return (super().get_readonly_fields(request, obj=obj)
-                + visit_schedule_fields
-                + ('subject_identifier', 'timepoint', 'timepoint_datetime',
+                +visit_schedule_fields
+                +('subject_identifier', 'timepoint', 'timepoint_datetime',
                    'visit_code_sequence', 'facility_name'))
 
     def view_on_site(self, obj):

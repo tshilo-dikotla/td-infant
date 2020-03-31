@@ -44,7 +44,7 @@ class InfantFuDxItems(CrfInlineModelMixin, BaseUuidModel):
         max_length=3)
 
     def natural_key(self):
-        return (self.fu_dx, ) + self.infant_fu_dx.natural_key()
+        return (self.fu_dx,) + self.infant_fu_dx.natural_key()
 
     class Meta:
         app_label = 'td_infant'
