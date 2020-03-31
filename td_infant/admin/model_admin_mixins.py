@@ -16,7 +16,7 @@ from simple_history.admin import SimpleHistoryAdmin
 from edc_visit_tracking.modeladmin_mixins import (
     CrfModelAdminMixin as VisitTrackingCrfModelAdminMixin)
 
-from import_export.admin import ImportExportActionModelAdmin
+from .exportaction_mixin import ExportActionMixin
 
 
 class ModelAdminMixin(ModelAdminNextUrlRedirectMixin,
@@ -26,7 +26,7 @@ class ModelAdminMixin(ModelAdminNextUrlRedirectMixin,
                       ModelAdminInstitutionMixin,
                       ModelAdminRedirectOnDeleteMixin,
                       ModelAdminSiteMixin,
-                      ImportExportActionModelAdmin):
+                      ExportActionMixin):
 
     list_per_page = 10
     date_hierarchy = 'modified'

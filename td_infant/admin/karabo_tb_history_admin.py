@@ -48,16 +48,7 @@ class KaraboTuberculosisHistoryAdmin(KaraboCrfModelAdminMixin, admin.ModelAdmin)
         'put_offstudy': admin.VERTICAL,
     }
 
-    list_display = (
-        'other_coughing_rel',
-        'other_diagnosis_rel',
-        'other_fever_rel',
-        'other_weight_loss_rel',
-        'other_night_sweats_rel',
-        'other_diagnosis_rel',
-        'tb_exposure_det')
-
     filter_horizontal = (
-         'coughing_rel', 'fever_rel', 'weight_loss_rel',
-         'night_sweats_rel', 'diagnosis_rel'
-         )
+        'coughing_rel', 'fever_rel', 'weight_loss_rel',
+        'night_sweats_rel', 'diagnosis_rel'
+    )

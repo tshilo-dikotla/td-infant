@@ -17,11 +17,12 @@ from ..admin_site import td_infant_admin
 from ..constants import INFANT
 from ..forms import InfantVisitForm
 from ..models import InfantVisit
+from .exportaction_mixin import ExportActionMixin
 
 
 class ModelAdminMixin(ModelAdminNextUrlRedirectMixin, ModelAdminFormAutoNumberMixin,
                       ModelAdminRevisionMixin, ModelAdminReplaceLabelTextMixin,
-                      ModelAdminInstitutionMixin):
+                      ModelAdminInstitutionMixin, ExportActionMixin):
 
     list_per_page = 10
     date_hierarchy = 'modified'
