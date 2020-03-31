@@ -23,5 +23,5 @@ class InfantFuDxItemsAdmin(ModelAdminMixin, admin.ModelAdmin):
 
     radio_fields = {'health_facility': admin.VERTICAL,
                     'was_hospitalized': admin.VERTICAL}
-    
-    search_fields=['infant_fu_dx__infant_visit__subject_identifier',]
+
+    search_fields = ['infant_fu_dx__infant_visit__subject_identifier', ]

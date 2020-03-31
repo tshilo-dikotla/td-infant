@@ -10,9 +10,6 @@ from edc_identifier.managers import SubjectIdentifierManager
 from edc_protocol.validators import date_not_before_study_start
 from edc_protocol.validators import datetime_not_before_study_start
 
-from edc_visit_schedule.model_mixins import OffScheduleModelMixin
-from edc_visit_schedule.site_visit_schedules import site_visit_schedules
-
 from ..choices import KARABO_OFF_STUDY_REASON
 from .infant_crf_model_mixin import InfantCrfModelMixin
 
