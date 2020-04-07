@@ -1,13 +1,14 @@
 from django.db import models
 from edc_base.model_mixins import BaseUuidModel
 from edc_base.sites.site_model_mixin import SiteModelMixin
+from edc_consent.model_mixins import RequiresConsentFieldsModelMixin
+from edc_constants.choices import YES_NO
 from edc_constants.constants import ALIVE
 from edc_metadata.model_mixins.creates import CreatesMetadataModelMixin
+
 from edc_reference.model_mixins import ReferenceModelMixin
 from edc_visit_tracking.model_mixins import CaretakerFieldsMixin
 from edc_visit_tracking.model_mixins import VisitModelMixin
-
-from edc_consent.model_mixins import RequiresConsentFieldsModelMixin
 
 from ..choices import ALIVE_DEAD_UNKNOWN, VISIT_INFO_SOURCE
 from ..choices import INFANT_VISIT_STUDY_STATUS, VISIT_REASON, INFO_PROVIDER
@@ -35,6 +36,12 @@ class InfantVisit(
         blank=True,
         null=True,
         max_length=250)
+
+    covid_visit = models.CharField(
+        verbose_name=('Is this a telephonic visit that is occurring '
+                      'during COVID-19?'),
+        max_length=3,
+        choices=YES_NO)
 
     information_provider = models.CharField(
         verbose_name=(
