@@ -13,6 +13,7 @@ from .infant_congenital_anomalies import InfantFemaleGenital, InfantRenal, Infan
 from .infant_congenital_anomalies import InfantMusculoskeletal, InfantSkin
 from .infant_congenital_anomalies import InfantOtherAbnormalityItems, InfantMaleGenital
 from .infant_congenital_anomalies import InfantRespiratoryDefect, InfantLowerGi
+from .infant_covid_screening import InfantCovidScreening
 from .infant_dummy_consent import InfantDummySubjectConsent
 from .infant_feeding import InfantFeeding
 from .infant_fu import InfantFu
@@ -33,3 +34,4 @@ from .list_models import Foods, Rations, FeverRelation, NightSweatsRelation
 from .onschedule import OnScheduleInfantBirth
 from .signals import *
 from .solid_food_assessment import SolidFoodAssessment
+

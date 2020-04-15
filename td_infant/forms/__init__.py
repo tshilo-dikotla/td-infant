@@ -20,6 +20,7 @@ from .infant_congenital_anomalies_form import InfantRenalForm
 from .infant_congenital_anomalies_form import InfantRespiratoryDefectForm
 from .infant_congenital_anomalies_form import InfantSkinForm
 from .infant_congenital_anomalies_form import InfantTrisomiesForm
+from .infant_covid_screening_form import InfantCovidScreeningForm
 from .infant_dummy_subject_consent_form import InfantDummySubjectConsentForm
 from .infant_feeding_form import InfantFeedingForm
 from .infant_form_mixin import InfantModelFormMixin
@@ -41,3 +42,4 @@ from .infant_visit_form import InfantVisitForm
 from .karabo_offstudy_form import KaraboOffstudyForm
 from .karabo_tb_history_form import KaraboTuberculosisHistoryForm
 from .solid_food_assessment_form import SolidFoodAssessmentForm
+
