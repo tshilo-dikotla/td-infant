@@ -31,6 +31,20 @@ list_data = {
         ('Intrauterine Device', 'Intrauterine Device'),
         (NOT_APPLICABLE, 'Not Applicable')
     ],
+    'td_infant.covidsymptoms': [
+        ('fever', 'Fever >37.5°C (99.5°F)'),
+        ('chills', 'Chills'),
+        ('nasal_congestion', 'Nasal Congestion'),
+        ('sore_throat', 'Sore throat'),
+        ('cough', 'Cough(new onset)'),
+        ('shortness_of_breath', 'Shortness of breath (dyspnea)'),
+        ('muscle_aches', 'Muscle aches (myalgia)'),
+        ('nausea/vomiting', 'Nausea/vomiting'),
+        ('diarrhea', 'Diarrhea'),
+        ('abdominal_pain', 'Abdominal pain'),
+        ('chest_pain', 'Chest pain'),
+        (NOT_APPLICABLE, 'Not Applicable')
+    ],
     'td_infant.deliverycomplications': [
         ('Uterine rupture', 'Uterine rupture'),
         ('Hemorrhage req. transfusion', 'Hemorrhage req. transfusion'),
