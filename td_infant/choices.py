@@ -1,9 +1,10 @@
 from edc_constants.constants import NOT_APPLICABLE, FAILED_ELIGIBILITY
-from edc_constants.constants import OTHER, UNKNOWN, OFF_STUDY, ON_STUDY
-from edc_constants.constants import PARTICIPANT, ALIVE, DEAD, YES, NO
+from edc_constants.constants import OTHER, UNKNOWN, OFF_STUDY, ON_STUDY, NEG
+from edc_constants.constants import PARTICIPANT, ALIVE, DEAD, YES, NO, POS
 from edc_lab.constants import TUBE
-from edc_visit_tracking.constants import (
-    SCHEDULED, UNSCHEDULED, LOST_VISIT, MISSED_VISIT, COMPLETED_PROTOCOL_VISIT)
+
+from edc_visit_tracking.constants import MISSED_VISIT, COMPLETED_PROTOCOL_VISIT
+from edc_visit_tracking.constants import SCHEDULED, UNSCHEDULED, LOST_VISIT
 
 from .constants import BROUGHT, REALTIME, CLOTH_NAPPY, BREASTFEED_ONLY
 from .constants import TUBERCULOSIS, MIN_AGE_OF_CONSENT
@@ -793,6 +794,12 @@ YES_NO_UNKNOWN_NA = (
     (NOT_APPLICABLE, 'Not applicable'),
 )
 
+POS_NEG_PENDING = (
+    (POS, 'Positive'),
+    (NEG, 'Negative'),
+    ('pending', 'Pending')
+)
+
 REASON_NOT_DRAWN = (
     (NOT_APPLICABLE, 'Not applicable'),
     ('collection_failed', 'Tried, but unable to obtain sample from patient'),
@@ -800,4 +807,11 @@ REASON_NOT_DRAWN = (
     ('refused', 'Patient refused'),
     ('no_supplies', 'No supplies'),
     ('other', 'Other'),
+)
+
+YES_NO_TRIED = (
+    (YES, YES),
+    (NO, NO),
+    ('tried', 'Tried, but could not get tested'),
+    (UNKNOWN, 'Unknown'),
 )
