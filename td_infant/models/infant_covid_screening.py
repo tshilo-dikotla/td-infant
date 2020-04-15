@@ -64,7 +64,9 @@ class InfantCovidScreening(InfantCrfModelMixin):
         verbose_name='In the last 14 days, have you experienced')
 
     comments = models.TextField(
-        max_length=150)
+        max_length=150,
+        null=True,
+        blank=True)
 
     class Meta:
         app_label = 'td_infant'
