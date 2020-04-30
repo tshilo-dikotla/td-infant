@@ -1,13 +1,18 @@
 from django.db import models
 from edc_base.model_validators.date import date_not_future
 from edc_constants.choices import YES_NO, YES_NO_UNKNOWN
-
+from edc_action_item.model_mixins.action_model_mixin import ActionModelMixin
+from ..action_items import INFANT_COVID_SCREENING_ACTION
 from ..choices import YES_NO_TRIED, POS_NEG_PENDING
 from .infant_crf_model_mixin import InfantCrfModelMixin
 from .list_models import CovidSymptoms
 
 
-class InfantCovidScreening(InfantCrfModelMixin):
+class InfantCovidScreening(ActionModelMixin, InfantCrfModelMixin):
+
+    tracking_identifier_prefix = 'IC'
+
+    action_name = INFANT_COVID_SCREENING_ACTION
 
     covid_tested = models.CharField(
         verbose_name='Have you been tested for COVID-19?',
@@ -67,6 +72,10 @@ class InfantCovidScreening(InfantCrfModelMixin):
         max_length=150,
         null=True,
         blank=True)
+
+    @property
+    def subject_identifier(self):
+        return self.infant_visit.subject_identifier
 
     class Meta:
         app_label = 'td_infant'
