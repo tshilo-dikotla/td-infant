@@ -6,8 +6,6 @@ from .infant_birth_data import InfantBirthData
 from .infant_birth_exam import InfantBirthExam
 from .infant_birth_feeding import InfantBirthFeedingVaccine
 from .infant_birth_feeding import InfantVaccines
-from .infant_clinician_notes import InfantClinicianNotes
-from .infant_clinician_notes import ClinicianNotesImage
 from .infant_congenital_anomalies import InfantCardioDisorder, InfantFacialDefect
 from .infant_congenital_anomalies import InfantCleftDisorder, InfantMouthUpGi, InfantCns
 from .infant_congenital_anomalies import InfantCongenitalAnomalies, BaseCnsItem

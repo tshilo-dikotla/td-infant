@@ -160,7 +160,7 @@ class SolidFoodAssessment(InfantCrfModelMixin):
         max_length=15,
         choices=YES_NO_UNKNOWN,
         verbose_name=('Since this time yesterday, has this child had any'
-                      ' raw animal milk?',))
+                      ' raw animal milk?'))
 
     raw_milk_freq = models.IntegerField(
         verbose_name=('If yes, please indicate how many times this child'
