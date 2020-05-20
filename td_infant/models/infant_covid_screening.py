@@ -1,7 +1,8 @@
 from django.db import models
+from edc_action_item.model_mixins.action_model_mixin import ActionModelMixin
 from edc_base.model_validators.date import date_not_future
 from edc_constants.choices import YES_NO, YES_NO_UNKNOWN
-from edc_action_item.model_mixins.action_model_mixin import ActionModelMixin
+
 from ..action_items import INFANT_COVID_SCREENING_ACTION
 from ..choices import YES_NO_TRIED, POS_NEG_PENDING
 from .infant_crf_model_mixin import InfantCrfModelMixin
@@ -42,7 +43,7 @@ class InfantCovidScreening(ActionModelMixin, InfantCrfModelMixin):
     household_positive = models.CharField(
         verbose_name=('Has anyone in your household tested positive '
                       'for COVID-19'),
-        max_length=3,
+        max_length=7,
         choices=YES_NO_UNKNOWN)
 
     household_test_date = models.DateField(
@@ -61,7 +62,7 @@ class InfantCovidScreening(ActionModelMixin, InfantCrfModelMixin):
     covid_contact = models.CharField(
         verbose_name=('Have you been in close contact with anyone outside of '
                       'your household who tested positive for COVID-19?'),
-        max_length=3,
+        max_length=7,
         choices=YES_NO_UNKNOWN)
 
     covid_symptoms = models.ManyToManyField(
