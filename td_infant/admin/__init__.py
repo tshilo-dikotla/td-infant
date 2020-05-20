@@ -6,7 +6,6 @@ from .infant_birth_arv_admin import InfantBirthArvAdmin
 from .infant_birth_data_admin import InfantBirthDataAdmin
 from .infant_birth_exam_admin import InfantBirthExamAdmin
 from .infant_birth_feeding_admin import InfantBirthFeedingVaccineAdmin
-from .infant_clinician_notes_admin import ClinicianNotesAdmin
 from .infant_congenital_anomalies_admin import InfantCongenitalAnomaliesAdmin
 from .infant_covid_screening_admin import InfantCovidScreeningAdmin
 from .infant_dummy_subject_consent_admin import InfantDummySubjectConsentAdmin
