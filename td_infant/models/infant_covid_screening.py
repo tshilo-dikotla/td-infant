@@ -80,3 +80,4 @@ class InfantCovidScreening(ActionModelMixin, InfantCrfModelMixin):
 
     class Meta:
         app_label = 'td_infant'
+        verbose_name = 'Infant Covid Screening'
