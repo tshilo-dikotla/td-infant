@@ -9,7 +9,6 @@ class InfantCovidScreeningAction(Action):
     reference_model = 'td_infant.infantcovidscreening'
     admin_site_name = 'td_infant_admin'
     priority = HIGH_PRIORITY
-    singleton = True
 
     def close_action_item_on_save(self):
         """Returns True if action item for \'action_identifier\'
