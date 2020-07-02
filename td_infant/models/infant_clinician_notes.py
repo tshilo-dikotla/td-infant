@@ -19,7 +19,7 @@ class ClinicianNotesImage(BaseUuidModel):
         InfantClinicianNotes,
         on_delete=models.PROTECT,
         related_name='infant_clinician_notes',)
-    image = models.ImageField(upload_to='media/')
+    image = models.ImageField(upload_to='infant_notes/')
     user_uploaded = models.CharField(
         max_length=50,
         blank=True,
