@@ -6,6 +6,8 @@ from .infant_birth_data_form import InfantBirthDataForm
 from .infant_birth_exam_form import InfantBirthExamForm
 from .infant_birth_feedin_vaccine_form import InfantBirthFeedinVaccineForm
 from .infant_birth_form import InfantBirthForm
+from .infant_clinician_notes_form import ClinicianNotesImageForm
+from .infant_clinician_notes_form import InfantClinicianNotesForm
 from .infant_congenital_anomalies_form import InfantCardioDisorderForm
 from .infant_congenital_anomalies_form import InfantCleftDisorderForm
 from .infant_congenital_anomalies_form import InfantCnsForm
