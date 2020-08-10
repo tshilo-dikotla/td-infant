@@ -74,6 +74,6 @@ class ExportActionMixin:
                     subject_identifier=model_obj.subject_identifier,
                     version=consent_version)
             except subject_consent_cls.DoesNotExist:
-                ValidationError('Missing Infant Dummy Consent form.')
+                raise ValidationError('Missing Infant Dummy Consent form.')
             else:
                 return infant_consent.consent_datetime
