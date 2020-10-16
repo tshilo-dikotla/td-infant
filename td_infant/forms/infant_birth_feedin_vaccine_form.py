@@ -31,12 +31,12 @@ class InfantBirthFeedinVaccineForm(InfantModelFormMixin):
                 'Please complete Infant Birth form '
                 f'before  proceeding.')
         else:
-            infant_date = infant_birth.report_datetime.date()
+            infant_date = infant_birth.dob
             if vaccine_date and infant_date:
                 if vaccine_date < infant_date:
                     raise forms.ValidationError(
                         "The date vaccine was given should not be before the "
-                        f"delivery date Got vaccine {vaccine_name} and date {vaccine_date} "
+                        f"delivery date. Got vaccine {vaccine_name} and date {vaccine_date} "
                         f" but delivery date is {infant_date}"
                     )
 
