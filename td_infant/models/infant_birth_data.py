@@ -17,12 +17,16 @@ class InfantBirthData(InfantCrfModelMixin):
     weight_kg = models.DecimalField(
         max_digits=3,
         decimal_places=2,
+        blank=True,
+        null=True,
         verbose_name="What was the infant's birth weight? ",
         help_text="Measured in Kilograms (kg)")
 
     infant_length = models.DecimalField(
         max_digits=4,
         decimal_places=2,
+        blank=True,
+        null=True,
         validators=[MinValueValidator(11), MaxValueValidator(125)],
         verbose_name="What was the infant's length at birth? ",
         help_text="Measured in centimeters, (cm)")
@@ -30,6 +34,8 @@ class InfantBirthData(InfantCrfModelMixin):
     head_circumference = models.DecimalField(
         max_digits=4,
         decimal_places=2,
+        blank=True,
+        null=True,
         validators=[MinValueValidator(11), MaxValueValidator(54)],
         verbose_name="What was the head circumference in centimeters? ",
         help_text="Measured in centimeters, (cm)")
