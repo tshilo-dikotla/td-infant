@@ -43,7 +43,7 @@ if settings.APP_NAME == 'td_infant':
         study_open_datetime = datetime(
             2016, 4, 1, 0, 0, 0, tzinfo=gettz('UTC'))
         study_close_datetime = datetime(
-            2020, 11, 30, 23, 59, 59, tzinfo=gettz('UTC'))
+            2022, 5, 31, 23, 59, 59, tzinfo=gettz('UTC'))
 
     class EdcAppointmentAppConfig(BaseEdcAppointmentAppConfig):
         default_appt_type = 'clinic'
