@@ -7,6 +7,7 @@ from edc_constants.constants import ALIVE
 from edc_metadata.model_mixins.creates import CreatesMetadataModelMixin
 
 from edc_reference.model_mixins import ReferenceModelMixin
+from edc_visit_tracking.constants import MISSED_VISIT
 from edc_visit_tracking.model_mixins import CaretakerFieldsMixin
 from edc_visit_tracking.model_mixins import VisitModelMixin
 
@@ -80,6 +81,20 @@ class InfantVisit(
 
     def get_visit_reason_choices(self):
         return VISIT_REASON
+
+    def run_metadata_rules(self, visit=None):
+        """Runs all the rule groups.
+
+        Initially called by post_save signal.
+
+        Also called by post_save signal after metadata is updated.
+        """
+        visit = visit or self
+
+        if visit.reason != MISSED_VISIT:
+            metadata_rule_evaluator = self.metadata_rule_evaluator_cls(
+                visit=visit)
+            metadata_rule_evaluator.evaluate_rules()
 
     class Meta(VisitModelMixin.Meta):
         app_label = 'td_infant'
