@@ -340,7 +340,6 @@ IMMUNIZATIONS = (
     ('Pentavalent',
      'Pentavalent Vaccine (Contains DPT, Hepatitis B and Haemophilus Influenza B Vaccine)'),
     ('diptheria_tetanus', 'Diptheria and Tetanus'),
-    ('catch_up_vaccine', 'Catch-up Vaccine'),
 )
 
 KARABO_OFF_STUDY_REASON = (
@@ -411,7 +410,8 @@ INFANT_AGE_VACCINE_GIVEN = (
     ('36-41', '36-41 months'),
     ('42-47', '42-47 months'),
     ('48-53', '48-53 months'),
-    ('54-59', '54-59 months'))
+    ('54-59', '54-59 months'),
+    ('catch_up_vaccine', 'Catch-up Vaccine'))
 
 ITEM_TYPE = (
     (NOT_APPLICABLE, 'Not applicable'),
