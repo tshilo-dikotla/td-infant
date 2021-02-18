@@ -340,6 +340,7 @@ IMMUNIZATIONS = (
     ('Pentavalent',
      'Pentavalent Vaccine (Contains DPT, Hepatitis B and Haemophilus Influenza B Vaccine)'),
     ('diptheria_tetanus', 'Diptheria and Tetanus'),
+    ('measles_rubella', 'Measles and Rubella'),
 )
 
 KARABO_OFF_STUDY_REASON = (
