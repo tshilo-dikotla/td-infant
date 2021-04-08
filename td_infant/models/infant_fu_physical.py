@@ -15,14 +15,15 @@ class InfantFuPhysical(InfantCrfModelMixin):
         decimal_places=2,
         verbose_name="Weight ",
         help_text="Please measure twice and enter the average of the two. Measured in kg.",
-        validators=[MinValueValidator(0), MaxValueValidator(20.0), ],
+        validators=[MinValueValidator(0), MaxValueValidator(25.0), ],
     )
 
     height = models.DecimalField(
         max_digits=6,
         decimal_places=2,
         verbose_name="Height ",
-        help_text="Please measure twice and enter the average of the two. Measured in centimeters, (cm)",
+        help_text=("Please measure twice and enter the average of the two. Measured in "
+                   "centimeters, (cm)"),
         validators=[MinValueValidator(0), MaxValueValidator(125), ],
     )
 
@@ -30,7 +31,8 @@ class InfantFuPhysical(InfantCrfModelMixin):
         max_digits=5,
         decimal_places=2,
         verbose_name="What was the head circumference in centimeters? ",
-        help_text="Please measure twice and enter the average of the two. Measured in centimeters, (cm)",
+        help_text=("Please measure twice and enter the average of the two. Measured in "
+                   "centimeters, (cm)"),
         validators=[MinValueValidator(0), MaxValueValidator(65.0), ],
     )
 
