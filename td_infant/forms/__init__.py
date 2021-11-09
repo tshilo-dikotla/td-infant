@@ -35,6 +35,7 @@ from .infant_fu_immunizations_form import VaccinesReceivedForm
 from .infant_fu_new_med_form import InfantFuNewMedForm
 from .infant_fu_new_med_form import InfantFuNewMedItemsForm
 from .infant_fu_physical_form import InfantFuPhysicalForm
+from .infant_labresults_files_form import InfantLabResultsFilesForm, LabResultsFileForm
 from .infant_nvp_adjustment_form import InfantNvpAdjustmentForm
 from .infant_nvp_dispensing_form import InfantNvpDispensingForm
 from .infant_offschedule_form import InfantOffScheduleForm
