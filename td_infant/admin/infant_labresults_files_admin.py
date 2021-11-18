@@ -39,3 +39,5 @@ class InfantLabResultsFilesAdmin(
          ), )
 
     inlines = [LabResultsFileInline]
+
+    search_fields = ('infant_visit__subject_identifier',)

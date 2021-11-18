@@ -39,3 +39,5 @@ class ClinicianNotesAdmin(
          ), )
 
     inlines = [ClinicianNotesImageInline]
+
+    search_fields = ('infant_visit__subject_identifier',)
