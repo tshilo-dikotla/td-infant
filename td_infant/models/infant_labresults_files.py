@@ -1,13 +1,19 @@
 from django.db import models
 from django.utils.html import mark_safe
 from edc_base.model_mixins import BaseUuidModel
+from edc_base.sites.site_model_mixin import SiteModelMixin
 from edc_base.utils import get_utcnow
-from .infant_crf_model_mixin import InfantCrfModelMixin
+from edc_identifier.model_mixins import UniqueSubjectIdentifierFieldMixin
 
 
-class InfantLabResultsFiles(InfantCrfModelMixin):
+class InfantLabResultsFiles(
+        UniqueSubjectIdentifierFieldMixin, SiteModelMixin, BaseUuidModel):
 
-    class Meta(InfantCrfModelMixin.Meta):
+    @property
+    def related_objects(self):
+        return getattr(self, 'infant_lab_results')
+
+    class Meta:
         app_label = 'td_infant'
         verbose_name = 'Infant Lab Results Files'
         verbose_name_plural = 'Infant Lab Results Files'

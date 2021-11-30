@@ -1,30 +1,32 @@
 from django.db import models
 from django.utils.html import mark_safe
 from edc_base.model_mixins import BaseUuidModel
+from edc_base.sites.site_model_mixin import SiteModelMixin
 from edc_base.utils import get_utcnow
-from .infant_crf_model_mixin import InfantCrfModelMixin
+from edc_identifier.model_mixins import UniqueSubjectIdentifierFieldMixin
 
 
-class InfantClinicianNotes(InfantCrfModelMixin):
+class InfantClinicianNotesArchives(
+        UniqueSubjectIdentifierFieldMixin, SiteModelMixin, BaseUuidModel):
 
     @property
     def related_objects(self):
-        return getattr(self, 'infant_clinician_notes')
+        return getattr(self, 'infant_notes_archives')
 
-    class Meta(InfantCrfModelMixin.Meta):
+    class Meta:
         app_label = 'td_infant'
-        verbose_name = 'Infant Clinician Notes'
-        verbose_name_plural = 'Infant Clinician Notes'
+        verbose_name = 'Infant Clinician Notes Archives'
+        verbose_name_plural = 'Infant Clinician Notes Archives'
 
 
-class ClinicianNotesImage(BaseUuidModel):
+class ClinicianNotesImageArchive(BaseUuidModel):
 
     clinician_notes = models.ForeignKey(
-        InfantClinicianNotes,
+        InfantClinicianNotesArchives,
         on_delete=models.PROTECT,
-        related_name='infant_clinician_notes',)
+        related_name='infant_notes_archives',)
 
-    image = models.FileField(upload_to='infant_notes/')
+    image = models.FileField(upload_to='infant_notes_archives/')
 
     user_uploaded = models.CharField(
         max_length=50,

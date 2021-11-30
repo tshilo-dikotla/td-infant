@@ -2,19 +2,19 @@ from django import forms
 from edc_base.sites import SiteModelFormMixin
 from edc_form_validators import FormValidatorMixin
 
-from ..models import InfantLabResultsFiles, LabResultsFile
+from ..models import InfantClinicianNotesArchives, ClinicianNotesImageArchive
 
 
-class InfantLabResultsFilesForm(
+class InfantClinicianNotesArchivesForm(
         SiteModelFormMixin, FormValidatorMixin, forms.ModelForm):
 
     class Meta:
-        model = InfantLabResultsFiles
+        model = InfantClinicianNotesArchives
         fields = '__all__'
 
 
-class LabResultsFileForm(forms.ModelForm):
+class ClinicianNotesImageArchiveForm(forms.ModelForm):
 
     class Meta:
-        model = LabResultsFile
+        model = ClinicianNotesImageArchive
         fields = '__all__'
