@@ -8,6 +8,11 @@ from ..models import InfantClinicianNotesArchives, ClinicianNotesImageArchive
 class InfantClinicianNotesArchivesForm(
         SiteModelFormMixin, FormValidatorMixin, forms.ModelForm):
 
+    subject_identifier = forms.CharField(
+        label='Subject Identifier',
+        widget=forms.TextInput(attrs={'readonly': 'readonly'}),
+        required=False)
+
     class Meta:
         model = InfantClinicianNotesArchives
         fields = '__all__'
