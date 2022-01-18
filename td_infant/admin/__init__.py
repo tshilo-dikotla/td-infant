@@ -7,7 +7,6 @@ from .infant_birth_data_admin import InfantBirthDataAdmin
 from .infant_birth_exam_admin import InfantBirthExamAdmin
 from .infant_birth_feeding_admin import InfantBirthFeedingVaccineAdmin
 from .infant_clinician_notes_admin import ClinicianNotesAdmin
-from .infant_clinician_notes_archives_admin import ClinicianNotesArchivesAdmin
 from .infant_congenital_anomalies_admin import InfantCongenitalAnomaliesAdmin
 from .infant_covid_screening_admin import InfantCovidScreeningAdmin
 from .infant_dummy_subject_consent_admin import InfantDummySubjectConsentAdmin
@@ -19,7 +18,6 @@ from .infant_fu_immunizations_admin import InfantFuImmunizationsAdmin
 from .infant_fu_new_med_admin import InfantFuNewMedAdmin
 from .infant_fu_new_med_items_admin import InfantFuNewMedItemsAdmin
 from .infant_fu_physical_admin import InfantFuPhysicalAdmin
-from .infant_labresults_files_admin import InfantLabResultsFilesAdmin
 from .infant_nvp_adjustment_admin import InfantNvpAdjustmentAdmin
 from .infant_nvp_dispensing_admin import InfantNvpDispensingAdmin
 from .infant_offschedule_admin import InfantOffScheduleAdmin

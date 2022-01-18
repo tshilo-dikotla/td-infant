@@ -6,8 +6,6 @@ from .infant_birth_data_form import InfantBirthDataForm
 from .infant_birth_exam_form import InfantBirthExamForm
 from .infant_birth_feedin_vaccine_form import InfantBirthFeedinVaccineForm
 from .infant_birth_form import InfantBirthForm
-from .infant_clinician_notes_archives_form import InfantClinicianNotesArchivesForm
-from .infant_clinician_notes_archives_form import ClinicianNotesImageArchiveForm
 from .infant_clinician_notes_form import ClinicianNotesImageForm
 from .infant_clinician_notes_form import InfantClinicianNotesForm
 from .infant_congenital_anomalies_form import InfantCardioDisorderForm
@@ -37,7 +35,6 @@ from .infant_fu_immunizations_form import VaccinesReceivedForm
 from .infant_fu_new_med_form import InfantFuNewMedForm
 from .infant_fu_new_med_form import InfantFuNewMedItemsForm
 from .infant_fu_physical_form import InfantFuPhysicalForm
-from .infant_labresults_files_form import InfantLabResultsFilesForm, LabResultsFileForm
 from .infant_nvp_adjustment_form import InfantNvpAdjustmentForm
 from .infant_nvp_dispensing_form import InfantNvpDispensingForm
 from .infant_offschedule_form import InfantOffScheduleForm

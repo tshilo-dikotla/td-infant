@@ -1,8 +1,6 @@
 from .infant_appointment import Appointment
 from .infant_arv_proph import InfantArvProph, InfantArvProphMod
 from .infant_birth import InfantBirth
-from .infant_clinician_notes_archives import InfantClinicianNotesArchives
-from .infant_clinician_notes_archives import ClinicianNotesImageArchive
 from .infant_birth_arv import InfantBirthArv
 from .infant_birth_data import InfantBirthData
 from .infant_birth_exam import InfantBirthExam
