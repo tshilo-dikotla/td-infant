@@ -19,6 +19,7 @@ from .infant_covid_screening import InfantCovidScreening
 from .infant_dummy_consent import InfantDummySubjectConsent
 from .infant_feeding import InfantFeeding
 from .infant_fu import InfantFu
+from .infant_labresults_files import InfantLabResultsFiles, LabResultsFile
 from .infant_fu_dx import InfantFuDx, InfantFuDxItems
 from .infant_fu_immunizations import InfantFuImmunizations, VaccinesReceived
 from .infant_fu_immunizations import VaccinesMissed
